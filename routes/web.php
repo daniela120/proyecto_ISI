@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/product', function () {
+    return view('productos.productosindex');
+});
+
 Route::get('/admi', function () {
     return view('indexadmi');
 });

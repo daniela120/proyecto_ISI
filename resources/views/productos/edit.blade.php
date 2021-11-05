@@ -25,7 +25,17 @@
                          </div>
                     </div>
                     
-                   
+                   <!-- <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <div>
+                            <label for="password" class="form-fields"> Contraseña </label>
+                            <input type="text" value="{{old('password')}}" class="form-control" rows="3"  name="password" id="password">
+                            @if ($errors->has('password'))
+                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>-->
                     
                     <div class="row">
                         <div class="col-lg-12 form-group">

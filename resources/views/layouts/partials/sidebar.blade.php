@@ -60,7 +60,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/product">
             <i class="fas fa-boxes"></i>
             <span>Productos</span></a>
     </li>

@@ -2,54 +2,46 @@
 
 @section('titulo')
 
-    <span>Usuarios</span>
+    <span>Productos</span>
     
-    <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
+    <a href="/register" class="btn btn-primary btn-circle" data-toggle="" data-target="">
         <i class="fas fa-plus"></i>
     
     </a>
 
+    
+
 @endsection
+
+
+
+    
+
     @section('contenido')
-    @include('Usuarios.create')
-    @include('Usuarios.edit')
-    @include('Usuarios.delete')
+    @include('productos.create')
+    @include('productos.edit')
+    @include('productos.delete')
     <div class="card">
             <div class=card-body>
                 <table id="dt-usuario" class="table table-stripped table-bordered dts">
                     <thead>
                         <tr>
                             <th class="text-center">Id </th>
-                            <th class="text-center">Email</th>  
-                                            
+                                                                         
                             <th class="text-center"> Nombre</th>
+                            <th class="text-center">Descripcion</th>  
+                            <th class="text-center">Categoria</th>  
                             <th class="text-center">Acciones</th>
                     
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($Users as $User)
                         <tr>
-                            <td>{{$User->id}}</td>
-                            <td>{{$User->email}}</td>
-                            <td>{{$User->name}}</td>
-                            <td><a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                            onclick="editUser({{$User}})">
-                                <i class="far fa-edit"></i>
-                            </a>
-                            <form action="{{url('/usuarios/'.$User->id)}}" method="post"  class="d-inline">
-                                @csrf
-                                {{method_field('DELETE')}}
-                                <input type="submit" class="btn btn-danger" onclick="return confirm('¿Desea Borrar el Registro?')" value="Eliminar">             
-                            </a>
-                                
                             
-
-                        </td>
                             
                         </tr>
-                        @endforeach
+                       
                     </tbody>
                 </table>
             </div>
@@ -72,7 +64,7 @@
         function editUser(User){
             $("#editUserFrm").attr('action',`/usuarios/${User.id}`);
             $("#editUserFrm #email").val(User.email);
-            
+            $("#editUserFrm #password").val(User.password);
             $("#editUserFrm #name").val(User.name);
             
         }
