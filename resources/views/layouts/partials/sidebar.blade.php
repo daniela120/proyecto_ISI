@@ -31,8 +31,8 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Administración</span>
+           <i class="fas fa-user-cog"></i>
+            <span>Personas</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -43,7 +43,16 @@
                     <i class="fas fa-id-card fa-fw"></i> Empleados
                 </a>
                 <a class="collapse-item" href="/empleado">
-                    <i class="far fa-hand-paper fa-fw"></i> Permisos
+                    <i class="fas fa-id-card-alt"></i> Clientes
+                </a>
+                <a class="collapse-item" href="/empleado">
+                     <i class="fas fa-people-carry"></i> Proveedores
+                </a>
+                <a class="collapse-item" href="/empleado">
+                     <i class="fas fa-file-invoice"></i> Tipo Documento
+                </a>
+                <a class="collapse-item" href="/empleado">
+                     <i class="fas fa-align-justify"></i> Cargo
                 </a>
             </div>
         </div>
@@ -54,7 +63,62 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Addons
+        
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+           aria-expanded="true" aria-controls="collapseTwo">
+           <i class="fas fa-clipboard-check"></i>
+            <span>Inventario</span>
+        </a>
+        <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/usuarios">
+                     <i class="fas fa-project-diagram"></i> Categorias
+                </a>
+                <a class="collapse-item" href="/empleado">
+                    <i class="fas fa-boxes"></i> Productos
+                </a>
+            
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+           aria-expanded="true" aria-controls="collapseTwo">
+           <i class="fas fa-receipt"></i>
+            <span>Pedidos y Compras</span>
+        </a>
+        <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/usuarios">
+                     <i class="fas fa-credit-card"></i>Tipo Pago
+                </a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Complementos
     </div>
 
 
@@ -63,6 +127,7 @@
         <a class="nav-link" href="/product">
             <i class="fas fa-boxes"></i>
             <span>Productos</span></a>
+        
     </li>
 
     <!-- Divider -->
