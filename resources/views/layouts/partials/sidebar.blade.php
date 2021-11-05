@@ -75,7 +75,7 @@
         </a>
         <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/usuarios">
+                <a class="collapse-item" href="/categorias">
                      <i class="fas fa-project-diagram"></i> Categorias
                 </a>
                 <a class="collapse-item" href="/empleado">

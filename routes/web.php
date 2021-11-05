@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EmpleadoController;
 
 
@@ -107,6 +108,7 @@ Route::get('/persona', function () {
 
 Route::resource('persona', PersonaController::class);
 Route::resource('usuarios', UserController::class);
+Route::resource('categorias', CategoriasController::class);
 
 //Rutas Creadas por Andres
 
