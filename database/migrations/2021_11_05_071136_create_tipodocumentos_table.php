@@ -15,6 +15,9 @@ class CreateTipodocumentosTable extends Migration
     {
         Schema::create('tipodocumentos', function (Blueprint $table) {
             $table->id();
+            $table->string('TipoDocumento');
+            $table->string('Descripcion');
+
             $table->timestamps();
         });
     }

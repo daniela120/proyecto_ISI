@@ -15,6 +15,11 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
+            $table->date('Fecha');
+            $table->string('HoraPedido');
+            $table->string('HoraRecibido');
+            $table->string('Id_Proveedor');
+            $table->string('Descripcion_Compra');
             $table->timestamps();
         });
     }

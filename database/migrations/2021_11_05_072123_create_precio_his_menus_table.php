@@ -15,6 +15,9 @@ class CreatePrecioHisMenusTable extends Migration
     {
         Schema::create('precio_his_menus', function (Blueprint $table) {
             $table->id();
+            $table->date('FechaInicio');
+            $table->date('FechaFinal');
+            $table->double('Precio');
             $table->timestamps();
         });
     }
