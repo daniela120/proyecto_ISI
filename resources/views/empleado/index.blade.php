@@ -4,7 +4,7 @@
 
     
 <span>Empleados</span>
-    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createEmp">
+    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
 
@@ -49,11 +49,11 @@
             <td> 
                     
             <a href="" class="edit-form-data" data-toggle="modal" data-target="#editEmp"
-                                 onclick="editCategoria({{$Categorias}})">
+                                 onclick="">
                                     <i class="far fa-edit"></i>
              </a>
             <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteEmp"
-                                 onclick="deleteCategoria({{$Categorias}})">
+                                 onclick="">
                                     <i class="far fa-trash-alt"></i>
             </a>   
                     

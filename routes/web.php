@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CargoempleadosController;
+use App\Http\Controllers\TipodocumentosController;
 
 Route::get('/', function () {
     return view('index');
@@ -114,6 +115,7 @@ Route::resource('cargoempleados',CargoempleadosController::class);
 Route::resource('clientes', ClientesController::class);
 Route::resource('pagos', TiposdepagoController::class);
 Route::resource('categorias', CategoriasController::class);
+Route::resource('documentos', TipodocumentosController::class);
 
 //Rutas Creadas por Andres
 
