@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ClientesController;
-
+use App\Http\Controllers\CargoempleadosController;
 
 Route::get('/', function () {
     return view('index');
@@ -110,9 +110,11 @@ Route::get('/persona', function () {
 
 Route::resource('persona', PersonaController::class);
 Route::resource('usuarios', UserController::class);
-Route::resource('categorias', CategoriasController::class);
+Route::resource('cargoempleados',CargoempleadosController::class);
 Route::resource('clientes', ClientesController::class);
 Route::resource('pagos', TiposdepagoController::class);
+Route::resource('categorias', CategoriasController::class);
+
 //Rutas Creadas por Andres
 
 Route::get('/login', function () {
