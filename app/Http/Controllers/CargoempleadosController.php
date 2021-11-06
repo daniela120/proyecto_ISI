@@ -15,6 +15,8 @@ class CargoempleadosController extends Controller
     public function index()
     {
         //
+        $datos['cargoempleados']=cargoempleados::paginate(10);
+        return view('cargoempleados.cargoempleadosindex',$datos);
     }
 
     /**
@@ -25,6 +27,7 @@ class CargoempleadosController extends Controller
     public function create()
     {
         //
+        return view('cargoempleadsos.create');
     }
 
     /**
@@ -36,6 +39,11 @@ class CargoempleadosController extends Controller
     public function store(Request $request)
     {
         //
+        $cargoempleados = request()->except('_token');
+        cargoempleados::insert($cargoempleados);
+        alert()->success('Cargo guardada correctamente');
+        
+        return redirect()->route('cargoempleados.index');
     }
 
     /**
@@ -67,9 +75,13 @@ class CargoempleadosController extends Controller
      * @param  \App\Models\cargoempleados  $cargoempleados
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cargoempleados $cargoempleados)
+    public function update(Request $request, $id)
     {
         //
+        $cargoempleados= request()->except(['_token','_method']);
+        cargoempleados::where('id','=',$id)->update($cargoempleados);
+        alert()->success('Cargo Actualizada correctamente');
+        return redirect()->route('cargoempleados.index');
     }
 
     /**
@@ -78,8 +90,11 @@ class CargoempleadosController extends Controller
      * @param  \App\Models\cargoempleados  $cargoempleados
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cargoempleados $cargoempleados)
+    public function destroy($id)
     {
         //
+        cargoempleados::destroy($id);
+        alert()->success('Cargo Eliminada correctamente');
+        return redirect('cargoempleados');
     }
 }
