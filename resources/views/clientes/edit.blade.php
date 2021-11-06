@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('contenido')
 <div class="container">
 
 <form action="{{ url('/clientes/'.$clientes->id) }}" method="post">
