@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
 
 

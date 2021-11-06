@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
 
 <form action="{{ url('/clientes') }}" method="post" enctype="multipart/form-data">
