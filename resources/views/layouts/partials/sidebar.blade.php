@@ -39,6 +39,9 @@
                 <a class="collapse-item" href="/usuarios">
                     <i class="fas fa-users fa-fw"></i> Usuarios
                 </a>
+                <a class="collapse-item" href="/estadoenvios">
+                    <i class="fas fa-users fa-fw"></i> Estado Envios
+                </a>
                 <a class="collapse-item" href="/empleado">
                     <i class="fas fa-id-card fa-fw"></i> Empleados
                 </a>

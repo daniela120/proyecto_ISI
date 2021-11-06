@@ -4,30 +4,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nueva Categoria</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo Estado de envio</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/categorias') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('/estadoenvios') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Categoria" class="form-fields"> Categoría </label>
-                            <input type="text" class="form-control" name="Categoria" id="Categoria">
+                            <label for="Estado de Envio" class="form-fields"> Estado de Envio </label>
+                            <input type="text" class="form-control" name="Nombre_Estado" id="Nombre_Estado">
                             
                         </div>
                     </div>
                     
-                    <div class="col-lg-6 form-group">
-                        <div>
-                            <label for="Descripcion" class="form-fields"> Descripción</label>
-                            <input type="text" class="form-control" name="Descripcion" id="Descripcion">
-                           
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="buttons-form-submit d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
@@ -41,5 +35,3 @@
         </div>
     </div>
 </div>
-
-

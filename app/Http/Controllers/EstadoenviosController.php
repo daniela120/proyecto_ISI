@@ -15,6 +15,8 @@ class EstadoenviosController extends Controller
     public function index()
     {
         //
+        $datos['Estadoenvios']=Estadoenvios::paginate(10);
+        return view('Estadoenvios.Estadoenviosindex',$datos);
     }
 
     /**
@@ -25,6 +27,7 @@ class EstadoenviosController extends Controller
     public function create()
     {
         //
+        return view('EstadoEnvios.create');
     }
 
     /**
@@ -36,6 +39,10 @@ class EstadoenviosController extends Controller
     public function store(Request $request)
     {
         //
+        $estadoenvios= request()->except('_token');
+        Estadoenvios::insert($estadoenvios);
+        alert()->success('Estado de envio guardado correctamente');
+        return redirect()->route('estadoenvios.index');
     }
 
     /**
@@ -67,9 +74,13 @@ class EstadoenviosController extends Controller
      * @param  \App\Models\estadoenvios  $estadoenvios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, estadoenvios $estadoenvios)
+    public function update(Request $request, $id)
     {
         //
+        $Estadoenvios= request()->except(['_token','_method']);
+        Estadoenvios::where('id','=',$id)->update($Estadoenvios);
+        alert()->success('Estado de envio Actualizado correctamente');
+        return redirect()->route('estadoenvios.index');
     }
 
     /**
@@ -78,8 +89,11 @@ class EstadoenviosController extends Controller
      * @param  \App\Models\estadoenvios  $estadoenvios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(estadoenvios $estadoenvios)
+    public function destroy($id)
     {
         //
+        Estadoenvios::destroy($id);
+        alert()->success('Estadoenvio Eliminado correctamente');
+        return redirect('estadoenvios');
     }
 }

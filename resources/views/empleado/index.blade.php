@@ -4,7 +4,7 @@
 
     
 <span>Empleados</span>
-    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createEmp">
+    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
 
@@ -46,28 +46,18 @@
         @foreach( $empleados as $empleado )
 
         <tr>
-            <td> 
-                    
-            <a href="" class="edit-form-data" data-toggle="modal" data-target="#editEmp"
-                                 onclick="editCategoria({{$Categorias}})">
+
+        <td>
+                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
+                                 >
                                     <i class="far fa-edit"></i>
-             </a>
-            <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteEmp"
-                                 onclick="deleteCategoria({{$Categorias}})">
+                                </a>
+                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
+                                 >
                                     <i class="far fa-trash-alt"></i>
-            </a>   
-                    
-                    
-        
-        
-                    <form action="{{url('/empleado/'.$empleado->id)}} " class="d-inline" method="post">
-                    @csrf 
-                    {{method_field('DELETE')  }}
-                        <input class="btn btn-danger" type="submit" onclick="return confirm ('¿Quieres Borrar?')"value="Borrar">
-                    
-                    </form>
-        
-            </td>
+                                </a>
+                            </td>
+            
             <td>{{$empleado->id}}</td>
             <td>{{$empleado->Nombre}}</td>
             <td>{{$empleado->Apellido}}</td>
