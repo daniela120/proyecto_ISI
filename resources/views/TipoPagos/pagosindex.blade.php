@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Categorias</span>
+    <span>Tipo de Pagos</span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
@@ -10,9 +10,9 @@
 
 @endsection
     @section('contenido')
-    @include('Categorias.create')
-    @include('Categorias.edit')
-    @include('Categorias.delete')
+    @include('TipoPagos.create')
+    @include('TipoPagos.edit')
+    @include('TipoPagos.delete')
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
@@ -21,27 +21,25 @@
                         <tr>
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
-                            <th class="text-center">Categoría</th>                      
-                            <th class="text-center">Descripción</th>        
+                            <th class="text-center">Tipo de Pago</th>                             
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($Categorias as $Categorias)
+                        @foreach($tiposdepago as $tiposdepago)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick="editCategoria({{$Categorias}})">
+                                 onclick="editPago({{$tiposdepago}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                 onclick="deleteCategoria({{$Categorias}})">
+                                 onclick="deletePago({{$tiposdepago}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{$Categorias->id}}</td>
-                            <td>{{$Categorias->Categoria}}</td>
-                            <td>{{$Categorias->Descripcion}}</td>         
+                            <td>{{$tiposdepago->id}}</td>
+                            <td>{{$tiposdepago->Nombre_Tipo_Pago}}</td>        
                         </tr>
                         @endforeach
                     </tbody>
@@ -62,11 +60,9 @@
     <!-- funcion editCategoria para pasar parametros y editar-->
     <script>    
 
-        function editCategoria(Categorias){
-            $("#editCategoriaFrm").attr('action',`/categorias/${Categorias.id}`);
-            $("#editCategoriaFrm #Categoria").val(Categorias.Categoria);  
-            $("#editCategoriaFrm #Categoria").val(Categorias.Categoria);     
-            $("#editCategoriaFrm #Descripcion").val(Categorias.Descripcion);
+        function editPago(tiposdepago){
+            $("#editPagoFrm").attr('action',`/pagos/${tiposdepago.id}`);
+            $("#editPagoFrm #Nombre_Tipo_Pago").val(tiposdepago.Nombre_Tipo_Pago);  
             
         } 
     </script>
@@ -74,8 +70,9 @@
      <!-- funcion deleteCategoria para pasar parametros y eliminar-->
     <script>    
 
-        function deleteCategoria(Categorias){
-            $("#deleteCategoriaFrm").attr('action',`/categorias/${Categorias.id}`);
+        function deletePago(tiposdepago){
+            $("#deletePagoFrm").attr('action',`/pagos/${tiposdepago.id}`);
+            $("deletetPagoFrm #Nombre_Tipo_Pago").val(tiposdepago.Nombre_Tipo_Pago);
                    
         } 
     </script>

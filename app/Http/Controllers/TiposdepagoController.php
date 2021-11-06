@@ -14,7 +14,8 @@ class TiposdepagoController extends Controller
      */
     public function index()
     {
-        //
+        $datos['tiposdepago']=tiposdepago::paginate(10);
+        return view('TipoPagos.pagosindex',$datos);
     }
 
     /**
@@ -24,7 +25,7 @@ class TiposdepagoController extends Controller
      */
     public function create()
     {
-        //
+        return view('TipoPagos.create');
     }
 
     /**
@@ -35,7 +36,11 @@ class TiposdepagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tiposdepago = request()->except('_token');
+        tiposdepago::insert($tiposdepago);
+        alert()->success('Tipo de Pago guardado correctamente');
+        
+        return redirect()->route('pagos.index');
     }
 
     /**
@@ -67,9 +72,12 @@ class TiposdepagoController extends Controller
      * @param  \App\Models\tiposdepago  $tiposdepago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tiposdepago $tiposdepago)
+    public function update(Request $request, $id)
     {
-        //
+        $tiposdepago= request()->except(['_token','_method']);
+        tiposdepago::where('id','=',$id)->update($tiposdepago);
+        alert()->success('Tipo de Pagos Actualizada correctamente');
+        return redirect()->route('pagos.index');
     }
 
     /**
@@ -78,8 +86,10 @@ class TiposdepagoController extends Controller
      * @param  \App\Models\tiposdepago  $tiposdepago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tiposdepago $tiposdepago)
+    public function destroy($id)
     {
-        //
+        tiposdepago::destroy($id);
+        alert()->success('Tipo de Pago Eliminado correctamente');
+        return redirect('pagos');
     }
 }

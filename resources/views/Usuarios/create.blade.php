@@ -12,53 +12,41 @@
             <div class="modal-body">
     <form action="{{ url('/usuarios') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                    <div class="col-lg-6 form-group">
+                <div class="row">
+                    <div class="col-lg-12 form-group">
                         <div>
                             <label for="email" class="form-fields"> Email </label>
-                            <input type="text" class="form-control" name="email" id="email">
+                            <input type="text" class="form-control" rows="3" name="email" id="email">
                             @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
-                    </div>
+                    </div>  
+                </div>
                     
-                    <div class="col-lg-6 form-group">
+                <div class="row">
+                    <div class="col-lg-12 form-group">
                         <div>
-                            <label for="contraseña" class="form-fields"> Contraseña </label>
-                            <input type="text" class="form-control" name="password" id="password">
-                            @if ($errors->has('password'))
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
+                            <label for="nombre"> Nombre </label>
+                                <input type="text" class="form-control" rows="3" name="name" id="name">
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                         </div>
                     </div>
                 </div>
                     
-                   <!-- <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <div>
-                                <label for="nombre"> Nombre </label>
-                                <input type="text" class="form-control" rows="3" name="name" id="name">
-                                @if ($errors->has('name'))
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
-                            </div>
-                         </div>
-                    </div>-->
-                    
-                    
                     <div class="buttons-form-submit d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">
+                            Cerrar
+                        </button>
                         <button type="submit" href="#" class="btn btn-primary">
                                 Guardar
                                 <i class="fas fa-spinner fa-spin d-none"></i>
                         </button>
+                    </div>
+                </form>    
             </div>
-            
-
-</form>
-            
-</div>
-</div>
         </div>
     </div>
+</div>

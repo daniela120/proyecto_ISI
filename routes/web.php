@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\TiposdepagoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EmpleadoController;
@@ -111,6 +112,7 @@ Route::resource('persona', PersonaController::class);
 Route::resource('usuarios', UserController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('clientes', ClientesController::class);
+Route::resource('pagos', TiposdepagoController::class);
 //Rutas Creadas por Andres
 
 Route::get('/login', function () {

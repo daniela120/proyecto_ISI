@@ -25,7 +25,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
+        return view('Categorias.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Categorias = request()->except('_token');
+        Categorias::insert($Categorias);
+        alert()->success('Categoria guardada correctamente');
+        
+        return redirect()->route('categorias.index');
+        
     }
 
     /**
@@ -68,9 +73,12 @@ class CategoriasController extends Controller
      * @param  \App\Models\categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categorias $categorias)
+    public function update(Request $request, $id)
     {
-        //
+        $Categorias= request()->except(['_token','_method']);
+        Categorias::where('id','=',$id)->update($Categorias);
+        alert()->success('Categoria Actualizada correctamente');
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -79,8 +87,10 @@ class CategoriasController extends Controller
      * @param  \App\Models\categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categorias $categorias)
+    public function destroy($id)
     {
-        //
+        Categorias::destroy($id);
+        alert()->success('Categoria Eliminada correctamente');
+        return redirect('categorias');
     }
 }

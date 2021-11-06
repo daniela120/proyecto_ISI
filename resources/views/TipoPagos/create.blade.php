@@ -4,28 +4,20 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nueva Categoria</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo de Tipo Pago</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/categorias') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('/pagos') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                    <div class="col-lg-6 form-group">
+                    <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Categoria" class="form-fields"> Categoría </label>
-                            <input type="text" class="form-control" name="Categoria" id="Categoria">
+                            <label for="Nombre_Tipo_Pago" class="form-fields"> Tipo de  Pago</label>
+                            <input type="text" class="form-control" rows="3" name="Nombre_Tipo_Pago" id="Nombre_Tipo_Pago">
                             
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-6 form-group">
-                        <div>
-                            <label for="Descripcion" class="form-fields"> Descripción</label>
-                            <input type="text" class="form-control" name="Descripcion" id="Descripcion">
-                           
                         </div>
                     </div>
                 </div>

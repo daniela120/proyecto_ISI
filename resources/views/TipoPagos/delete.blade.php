@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar Categoria</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar un Tipo de Pago</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,13 +12,13 @@
 
              <!-- campos(labels y textbox)-->
             <div class="modal-body">
-                <form action="" role="form" method="POST" id="deleteCategoriaFrm" enctype="multipart/form-data">
+                <form action="" role="form" method="POST" id="deletePagoFrm" enctype="multipart/form-data">
                 @method('DELETE')
                     {{csrf_field()}}
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Categoria" class="form-fields"> ¿Esta seguro de eliminar la Categoría?</label>
+                                <label for="Categoria" class="form-fields"> ¿Esta seguro de eliminar el Tipo de Pago?</label>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 Cerrar
                         </button>
                         <button type="submit" href="#" class="btn btn-primary">
-                                 Eliminar
+                                Eliminar
                             <i class="fas fa-spinner fa-spin d-none"></i>
                         </button>
                     </div>
