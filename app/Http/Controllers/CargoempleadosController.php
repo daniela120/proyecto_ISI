@@ -27,7 +27,7 @@ class CargoempleadosController extends Controller
     public function create()
     {
         //
-        return view('cargoempleadsos.create');
+        return view('cargoempleados.create');
     }
 
     /**
