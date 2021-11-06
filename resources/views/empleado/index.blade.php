@@ -40,20 +40,20 @@
                             <th class="text-center">Id Turno</th>
                             <th class="text-center">Documento</th>
                             
-                            </tr>
+                        </tr>
                     </thead>
                     <tbody>
         @foreach( $empleados as $empleado )
 
         <tr>
-
-        <td>
-                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 >
+            <td> 
+                    
+            <a href="" class="edit-form-data" data-toggle="modal" data-target="#editEmp"
+                                 onclick="">
                                     <i class="far fa-edit"></i>
-                                </a>
-                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                 >
+             </a>
+            <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteEmp"
+                                 onclick="">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -78,7 +78,7 @@
 </table>
             </div>
 
-{!!$empleados->links() !!}
+
 </div>
 
 </div>
