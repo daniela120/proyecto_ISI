@@ -55,6 +55,14 @@
 
                     <div class="col-lg-6 form-group">
                         <div>
+                            <label for="IdCargo" class="form-fields"> Id Cargo</label>
+                            <input type="select" class="form-control" name="Direccion" id="Descripcion">
+                           
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        <div>
                             <label for="Descripcion" class="form-fields"> Descripción</label>
                             <input type="text" class="form-control" name="Descripcion" id="Descripcion">
                            
