@@ -63,32 +63,18 @@
 
     <!--EDIT -->
     <script>    
-        function editcargoempleado(cargoempleados){
+        function editcargoempleado(Cargoempleados){
             $("#editCargoempleadoFrm").attr('action',`/cargoempleados/${Cargoempleados.id}`);
-            $("#editCargoempleadoFrm #cargoempleados").val(cargoempleados.Cargo);  
-            $("#editCargoempleadoFrm #Descripcion").val(cargoempleados.Descripcion);
+            $("#editCargoempleadoFrm #cargoempleados").val(Cargoempleados.Cargoempleados);  
+            $("#editCargoempleadoFrm #Descripcion").val(Cargoempleados.Descripcion);
         } 
     </script>
 
     <!--DELETE -->
     <script>    
-        function deletecargoempleados(cargoempleados){
+        function deletecargoempleados(Cargoempleados){
         $("#deleteCargoempleadoFrm").attr('action',`/cargoempleados/${Cargoempleados.id}`);      
     } 
     </script>
-    @if(!$errors->isEmpty())
-        @if($errors->has('post'))
-            <script>
-                $(function () {
-                    $('#editeMdl').modal('show');
-                });
-            </script>
-        @else
-            <script>
-                $(function () {
-                    $('#editMdl').modal('show');
-                });
-            </script>
-        @endif
-    @endif
+    
 @endpush
