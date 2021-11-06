@@ -40,7 +40,7 @@
                             <th class="text-center">Id Turno</th>
                             <th class="text-center">Documento</th>
                             
-                            </tr>
+                        </tr>
                     </thead>
                     <tbody>
         @foreach( $empleados as $empleado )
@@ -88,7 +88,7 @@
 </table>
             </div>
 
-{!!$empleados->links() !!}
+
 </div>
 
 </div>

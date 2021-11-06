@@ -17,8 +17,8 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="cargoempleados" class="form-fields"> Cargo</label>
-                                <input type="text" value="{{old('cargoempleados')}}" class="form-control" rows="3"  name="cargoempleados" id="cargoempleados">     
+                                <label for="Cargo" class="form-fields"> Cargo</label>
+                                <input type="text" value="{{old('Cargo')}}" class="form-control" rows="3"  name="Cargo" id="Cargo">     
                             </div>
                         </div>
                     </div>
