@@ -73,6 +73,7 @@ class EmpleadoController extends Controller
        // $datosEmpleado = $request->all();
        $datosEmpleado = $request-> except("_token");
        Empleado::insert($datosEmpleado);
+       
        // return  response()->json($datosEmpleado);
        return redirect('empleado')->with('mensaje','Empleado agregado con éxito');
     }

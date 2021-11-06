@@ -4,7 +4,7 @@
 
     
 <span>Empleados</span>
-    <a href="{{url('/empleado/create') }}" class="btn btn-primary btn-circle" data-toggle="" data-target="">
+    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createEmp">
         <i class="fas fa-plus"></i>
     </a>
 
@@ -18,6 +18,9 @@
 <!--@section('content')-->
 
 @section('contenido')
+    @include('empleado.create')
+    @include('empleado.edit')
+    @include('empleado.delete')
     <div class="card">
             <div class=card-body>
                     <table id="dt-empleado" class="table table-stripped table-bordered dts">
@@ -43,26 +46,28 @@
         @foreach( $empleados as $empleado )
 
         <tr>
-        <td> 
-                
-                <a href="{{url('/empleado/'.$empleado->id. '/edit' )}}" class="btn btn-primary">
-    
-                Editar
-            
-                </a>
-            
-                
-                 |
-    
-    
-                <form action="{{url('/empleado/'.$empleado->id)}} " class="d-inline" method="post">
-                @csrf 
-                {{method_field('DELETE')  }}
-                    <input class="btn btn-danger" type="submit" onclick="return confirm ('¿Quieres Borrar?')"value="Borrar">
-                
-                </form>
-    
-                </td>
+            <td> 
+                    
+            <a href="" class="edit-form-data" data-toggle="modal" data-target="#editEmp"
+                                 onclick="editCategoria({{$Categorias}})">
+                                    <i class="far fa-edit"></i>
+             </a>
+            <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteEmp"
+                                 onclick="deleteCategoria({{$Categorias}})">
+                                    <i class="far fa-trash-alt"></i>
+            </a>   
+                    
+                    
+        
+        
+                    <form action="{{url('/empleado/'.$empleado->id)}} " class="d-inline" method="post">
+                    @csrf 
+                    {{method_field('DELETE')  }}
+                        <input class="btn btn-danger" type="submit" onclick="return confirm ('¿Quieres Borrar?')"value="Borrar">
+                    
+                    </form>
+        
+            </td>
             <td>{{$empleado->id}}</td>
             <td>{{$empleado->Nombre}}</td>
             <td>{{$empleado->Apellido}}</td>
@@ -79,8 +84,8 @@
 
         </tr>
         @endforeach
-    < </tbody>
-                </table>
+     </tbody>
+</table>
             </div>
 
 {!!$empleados->links() !!}
@@ -97,3 +102,7 @@
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
     @endpush  
+
+
+
+
