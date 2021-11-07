@@ -15,7 +15,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $datos['empleados']=Empleado::paginate(10);
+        $datos['empleado']=Empleado::paginate(10);
         return view('empleado.index', $datos);
     }
 
@@ -37,45 +37,11 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $campos=[
-            'Nombre'=>'required|alpha|max:30',
-            'Apellido'=>'required|alpha|max:30',
-            'FechaNacimiento'=>'required|date',
-            'FechaContratacion'=>'required|date',
-            'Direccion'=>'required|string|max:100',
-            'Id_Cargo'=>'required|numeric|between:1,5',
-            'Telefono'=>'required|digits:8',
-            'Id_Usuario'=>'digits:1',
-            'Id_Documento'=>'required|numeric|between:1,2',
-            'Id_Turno'=>'required|numeric|between:1,2',
-            'Documento'=>'required|alpha|max:100',
-
-
-            
-
-
-        ];
-
-        $mensaje=[
-            'required'=>'El :attribute es requerido',
-            'FechaNacimiento.required'=>'La Fecha de nacimiento es requerida',
-            'FechaContratacion.required'=>'La Fecha de contratacion es requerida',
-            'Direccion.required'=>'La Direccion es requerida',
-
-
-        ];
-
-        $this->validate($request,$campos,$mensaje);
-
-
-       // $datosEmpleado = $request->all();
-       $datosEmpleado = $request-> except("_token");
-       Empleado::insert($datosEmpleado);
-       
-       // return  response()->json($datosEmpleado);
-       return redirect('empleado')->with('mensaje','Empleado agregado con éxito');
+        $empleado=request()->except('_token');
+        Empleado::insert($empleado);
+        alert()->success('Empleado guardado correctamente');
+        return redirect()->route('empleado.index');
+      
     }
 
     /**
@@ -113,45 +79,7 @@ class EmpleadoController extends Controller
     public function update(Request $request,  $id)
     {
 
-        $campos=[
-            'Nombre'=>'required|alpha|max:30',
-            'Apellido'=>'required|alpha|max:30',
-            'FechaNacimiento'=>'required|date',
-            'FechaContratacion'=>'required|date',
-            'Direccion'=>'required|string|max:100',
-            'Id_Cargo'=>'required|numeric|between:1,5',
-            'Telefono'=>'required|digits:8',
-            'Id_Usuario'=>'digits:1',
-            'Id_Documento'=>'required|numeric|between:1,2',
-            'Id_Turno'=>'required|numeric|between:1,2',
-            'Documento'=>'required|alpha|max:100',
-
-
-            
-
-
-        ];
-
-        $mensaje=[
-            'required'=>'El :attribute es requerido',
-            'FechaNacimiento.required'=>'La Fecha de nacimiento es requerida',
-            'FechaContratacion.required'=>'La Fecha de contratacion es requerida',
-            'Direccion.required'=>'La Direccion es requerida',
-
-
-        ];
-
-        $this->validate($request,$campos,$mensaje);
-        
-        //
-    
-        $datosEmpleado = $request-> except(["_token","_method"]);
-        Empleado::where('id','=',$id)->update($datosEmpleado);
-
-        $empleado=Empleado::findOrFail($id);
-
-       // return view('empleado.edit', compact('empleado'));
-       return redirect('empleado')->with('mensaje','Empleado Modificado');
+       
     }
 
     /**

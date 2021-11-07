@@ -51,10 +51,10 @@
                 <a class="collapse-item" href="/empleado">
                      <i class="fas fa-people-carry"></i> Proveedores
                 </a>
-                <a class="collapse-item" href="/empleado">
+                <a class="collapse-item" href="/documentos">
                      <i class="fas fa-file-invoice"></i> Tipo Documento
                 </a>
-                <a class="collapse-item" href="/empleado">
+                <a class="collapse-item" href="/cargoempleados">
                      <i class="fas fa-align-justify"></i> Cargo
                 </a>
             </div>

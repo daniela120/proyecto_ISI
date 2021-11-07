@@ -2,30 +2,23 @@
 
 @section('titulo')
 
+    <span>Empleados </span>
     
-<span>Empleados</span>
-    <a href="" class="btn btn-primary btn-circle" data-toggle="model" data-target="#createMdl">
+    <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
 
-
-@endsection
-
-
-
-
-
-<!--@section('content')-->
-
-@section('contenido')
+@endsection 
+    @section('contenido')
     @include('empleado.create')
     @include('empleado.edit')
     @include('empleado.delete')
+    <!-- tabla -->
     <div class="card">
             <div class=card-body>
-                    <table id="dt-empleado" class="table table-stripped table-bordered dts">
+                <table id="dt-Empleados" class="table table-stripped table-bordered dts">
                     <thead>
-                        <tr>
+                    <tr>
                         <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre</th>
@@ -43,56 +36,54 @@
                         </tr>
                     </thead>
                     <tbody>
-        @foreach( $empleados as $empleado )
-
-        <tr>
-            <td> 
-                    
-            <a href="" class="edit-form-data" data-toggle="modal" data-target="#editEmp"
-                                 onclick="">
+                        
+                        @foreach($empleado as $empleado)
+                        <tr>
+                            <td>
+                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
+                                >
                                     <i class="far fa-edit"></i>
-             </a>
-            <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteEmp"
-                                 onclick="">
+                                </a>
+                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
+                               >
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-            
-            <td>{{$empleado->id}}</td>
-            <td>{{$empleado->Nombre}}</td>
-            <td>{{$empleado->Apellido}}</td>
-            <td>{{$empleado->FechaNacimiento}}</td>
-            <td>{{$empleado->FechaContratacion}}</td>
-            <td>{{$empleado->Direccion}}</td>
-            <td>{{$empleado->Id_Cargo}}</td>
-            <td>{{$empleado->Telefono}}</td>
-            <td>{{$empleado->Id_Usuario}}</td>
-            <td>{{$empleado->Id_Documento}}</td>
-            <td>{{$empleado->Id_Turno}}</td>
-            <td>{{$empleado->Documento}}</td>
-            
-
-        </tr>
-        @endforeach
-     </tbody>
-</table>
+                            <td>{{$empleado->id}}</td>
+                                <td>{{$empleado->Nombre}}</td>
+                                <td>{{$empleado->Apellido}}</td>
+                                <td>{{$empleado->FechaNacimiento}}</td>
+                                <td>{{$empleado->FechaContratacion}}</td>
+                                <td>{{$empleado->Direccion}}</td>
+                                <td>{{$empleado->Id_Cargo}}</td>
+                                <td>{{$empleado->Telefono}}</td>
+                                <td>{{$empleado->Id_Usuario}}</td>
+                                <td>{{$empleado->Id_Documento}}</td>
+                                <td>{{$empleado->Id_Turno}}</td>
+                                <td>{{$empleado->Documento}}</td>
+                                    
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+        </div>
+              
+    @endsection
 
-
-</div>
-
-</div>
-<!--@endsection-->
-@endsection
-
+    <!-- librerias -->
 @push('styles')
     <link rel="stylesheet" href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" >
 @endpush  
 @push('scripts')
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    @endpush  
 
-
-
-
+    <!-- funcion editEstadoEnvio para pasar parametros y editar-->
+    
+    
+     <!-- funcion deleteEstadoEnvio para pasar parametros y eliminar-->
+ 
+     <!-- para validaciones-->
+     
+@endpush
