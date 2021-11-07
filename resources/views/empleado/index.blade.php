@@ -37,7 +37,7 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($empleado as $empleado)
+                        @foreach($empleados as $empleado)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
