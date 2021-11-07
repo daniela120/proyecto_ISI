@@ -15,7 +15,7 @@ class ClientesController extends Controller
     public function index()
     {
         //
-        $datos['cliente']= clientes::paginate(1);
+        $datos['cliente']= clientes::paginate(10);
         return view('clientes.index',$datos);
     }
 
@@ -39,6 +39,7 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         //
+        /*
         $campos=[
             'Nombre' => 'required|string|max:100',
             'Apellido' => 'required|string|max:100',
@@ -57,12 +58,12 @@ class ClientesController extends Controller
             'Telefono.required'=> 'El numero debe contener 8 digitos'
         ];
         $this->validate($request, $campos,$mensaje);
-
+        */
         //$datosClientes = request()->all();
         $datosClientes = request()->except('_token');
         clientes::insert($datosClientes);
         //return response()->json($datosClientes);
-        return redirect('clientes')->with('mensaje','clientes agregado con exito');
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -85,9 +86,11 @@ class ClientesController extends Controller
     public function edit($id)
     {
         //
+        /*
         $clientes=clientes::findOrFail($id);
 
         return view('clientes.edit', compact('clientes') );
+        */
     }
 
     /**
@@ -100,6 +103,7 @@ class ClientesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        /*
         $campos=[
             'Nombre' => 'required|string|max:100',
             'Apellido' => 'required|string|max:100',
@@ -118,14 +122,14 @@ class ClientesController extends Controller
             'Telefono.required'=> 'El numero debe contener 8 digitos'
         ];
         $this->validate($request, $campos,$mensaje);
+        */
 
         //
         $datosClientes = request()->except(['_token','_method']);
         clientes::where('id','=',$id)->update($datosClientes);
+        alert()->success('Cliente Actualizada correctamente');
         
-        $clientes=clientes::findOrFail($id);
-        //return view('clientes.edit', compact('clientes') );
-        return redirect('clientes')->with('mensaje','Cliente Modificado');
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -138,6 +142,7 @@ class ClientesController extends Controller
     {
         //
         clientes::destroy($id);
-        return redirect('clientes')->with('mensaje','Cliente borrado');
+        alert()->success('Categoria Eliminada correctamente');
+        return redirect('clientes');
     }
 }
