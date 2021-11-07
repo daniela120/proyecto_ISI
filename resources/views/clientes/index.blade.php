@@ -30,7 +30,7 @@
                             <th class="text-center">Contraseña</th>  
                             <th class="text-center">Direccion</th>   
                             <th class="text-center">Telefono</th>   
-                            <th class="text-center">FechaNacimiento</th>      
+                            <th class="text-center">Fecha Nacimiento</th>      
                         </tr>
                     </thead>
 
@@ -81,7 +81,7 @@
         function editClientes(Clientes){
             $("#editClientesFrm").attr('action',`/clientes/${Clientes.id}`);
             $("#editClientesFrm #Nombre").val(Clientes.Nombre);     
-            $("#editClientesFrm #Apellido").val(Cliente.Apellido);
+            $("#editClientesFrm #Apellido").val(Clientes.Apellido);
             $("#editClientesFrm #Usuario").val(Clientes.Usuario);
             $("#editClientesFrm #Correo").val(Clientes.Correo);
             $("#editClientesFrm #Contraseña").val(Clientes.Contraseña);
