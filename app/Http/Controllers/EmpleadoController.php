@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use App\Models\cargoempleados;
 
 
 class EmpleadoController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +17,9 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
+        $datoss['empleado']=cargoempleados::all();
         $datos['empleados']=Empleado::paginate(10);
-        return view('empleado.index', $datos);
+        return view('empleado.index', $datos,$datoss);
     }
 
     /**
@@ -26,7 +29,10 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
+        
         return view('empleado.create');
+        //return view('empleado.create')->with('cargoempleadoss',$cargoempleadoss );
+      //return view('empleado.create',compact('cargoempleado','cargoempleadoss'));
     }
 
     /**
@@ -37,8 +43,10 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        $empleado=request()->except('_token');
+        Empleado::insert($empleado);
+        alert()->success('Empleado guardado correctamente');
+        return redirect()->route('empleado.index');
       
     }
 

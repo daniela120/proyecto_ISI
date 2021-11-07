@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar Estado de Envio</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar Categoria</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,13 +12,13 @@
 
              <!-- campos(labels y textbox)-->
             <div class="modal-body">
-                <form action="" role="form" method="POST" id="deleteEstadoEnvioFrm" enctype="multipart/form-data">
+                <form action="" role="form" method="POST" id="deleteClientesFrm" enctype="multipart/form-data">
                 @method('DELETE')
                     {{csrf_field()}}
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Estadoenvios" class="form-fields"> ¿Esta seguro de eliminar el estado de envio?</label>
+                                <label for="Clientes" class="form-fields"> ¿Esta seguro de eliminar el cliente?</label>
                             </div>
                         </div>
                     </div>

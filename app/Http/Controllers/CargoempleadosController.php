@@ -30,6 +30,8 @@ class CargoempleadosController extends Controller
         return view('cargoempleados.create');
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
