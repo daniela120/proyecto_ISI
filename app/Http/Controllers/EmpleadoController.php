@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use App\Models\cargoempleados;
+use App\Models\tipodocumentos;
+use App\Models\turnos;
+use App\Models\User;
 
 
 class EmpleadoController extends Controller
@@ -17,9 +20,16 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $datoss['empleado']=cargoempleados::all();
-        $datos['empleados']=Empleado::paginate(10);
-        return view('empleado.index', $datos,$datoss);
+        $users=User::all();   
+
+        $turnos=turnos::all();
+
+        $cargos=cargoempleados::all();
+        
+        $empleados=Empleado::paginate(10);
+
+        $documentos=tipodocumentos::all();
+        return view('empleado.index')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
     }
 
     /**
@@ -70,9 +80,7 @@ class EmpleadoController extends Controller
     public function edit( $id)
     {
         //
-        $empleado=Empleado::findOrFail($id);
-
-        return view('empleado.edit', compact('empleado'));
+        
     }
 
     /**
@@ -84,7 +92,10 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request,  $id)
     {
-
+        $empleados= request()->except(['_token','_method']);
+        Empleado::where('id','=',$id)->update($empleados);
+        alert()->success('Empleado Actualizado correctamente');
+        return redirect()->route('empleado.index');
        
     }
 
@@ -98,6 +109,7 @@ class EmpleadoController extends Controller
     {
         //
         Empleado::destroy($id);
-        return redirect('empleado')->with('mensaje','Empleado Borrado');
+        alert()->success('Empleado Eliminado correctamente');
+        return redirect('empleado');
     }
 }

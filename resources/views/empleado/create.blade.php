@@ -10,8 +10,9 @@
                 </button>
             </div>
             <div class="modal-body">
-
+            
             @include('empleado.form')
+
 
          </div>
         </div>

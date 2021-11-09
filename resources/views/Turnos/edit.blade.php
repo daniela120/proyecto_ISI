@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo de Tipo Documento</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Editar Turno</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,6 +30,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-12 form-group">
+                        <div>
+                            <label for="Hora Entrada" class="form-fields"> Hora de entrada</label>
+                            <input type="time" value="{{old('HoraEntrada')}}"  class="form-control" rows="3" name="HoraEntrada" id="HoraEntrada">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 form-group">
+                        <div>
+                            <label for="Hora Salida" class="form-fields"> Hora de salida</label>
+                            <input type="time" value="{{old('HoraSalida')}}" class="form-control" rows="3" name="HoraSalida" id="HoraSalida">
+                            
+                        </div>
+                    </div>
                 
                 <div class="buttons-form-submit d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>

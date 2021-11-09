@@ -70,10 +70,10 @@
     <script>    
         function editturnos(turnos){
             $("#editturnosForm").attr('action',`/turnos/${turnos.id}`);
-            $("#editTipoTurnoForm #TipoTurno").val(turnos.TipoTurno);  
-            $("#editTipoTurnoForm #Descripcion").val(turnos.Descripcion);            
-            $("#editTipoTurnoForm #HoraEntrada").val(turnos.HoraEntrada);
-            $("#editTipoTurnoForm #HoraSalida").val(turnos.HoraSalida);
+            $("#editturnosForm #TipoTurno").val(turnos.TipoTurno);  
+            $("#editturnosForm #Descripcion").val(turnos.Descripcion);            
+            $("#editturnosForm #HoraEntrada").val(turnos.HoraEntrada);
+            $("#editturnosForm #HoraSalida").val(turnos.HoraSalida);
 
         } 
     </script>

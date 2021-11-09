@@ -11,10 +11,13 @@
             </div>
 
              <!-- campos(labels y textbox)-->
-            <div class="modal-body">
+             <div class="modal-body">
                 <form action="" role="form" method="POST" id="deleteTurnoFrm" enctype="multipart/form-data">
-                    @method('DELETE')
+                @method('DELETE')
                     {{csrf_field()}}
+                    
+
+
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
@@ -37,3 +40,9 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+

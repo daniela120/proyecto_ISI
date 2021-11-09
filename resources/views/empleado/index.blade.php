@@ -41,11 +41,11 @@
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                >
+                                onclick="editempleados({{$empleados}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                               >
+                                onclick="deleteEmpleado({{$empleados}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -80,9 +80,36 @@
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- funcion editEstadoEnvio para pasar parametros y editar-->
+
+    <script>    
+        function editempleados(empleados){
+            $("#editEmpleadoFrm").attr('action',`/empleado/${empleados.id}`);
+            $("#editEmpleadoFrm #Nombre").val(empleados.Nombre);              
+            $("#editEmpleadoFrm #Apellido").val(empleados.Apellido);    
+            $("#editEmpleadoFrm #FechaNacimiento").val(empleados.FechaNacimiento);    
+            $("#editEmpleadoFrm #FechaContratacion").val(empleados.FechaContratacion);    
+            $("#editEmpleadoFrm #Direccion").val(empleados.Direccion);    
+            $("#editEmpleadoFrm #Id_Cargo").val(empleados.Id_Cargo);    
+            $("#editEmpleadoFrm #Telefono").val(empleados.Telefono);    
+            $("#editEmpleadoFrm #Id_Usuario").val(empleados.Id_Usuario);    
+            $("#editEmpleadoFrm #Id_Documento").val(empleados.Id_Documento);    
+            $("#editEmpleadoFrm #Id_Turno").val(empleados.Id_Turno);    
+            $("#editEmpleadoFrm #Documento").val(empleados.Documento);    
+              
+             
+
+        } 
+    </script>
     
     
      <!-- funcion deleteEstadoEnvio para pasar parametros y eliminar-->
+     <script>    
+
+function deleteEmpleado(empleados){
+    $("#deleteEmpleadoFrm").attr('action',`/empleado/${empleados.id}`);
+           
+} 
+</script>
  
      <!-- para validaciones-->
      
