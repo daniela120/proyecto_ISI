@@ -58,12 +58,20 @@
                         </div>
 
                         <div class="col-lg-6 form-group">
-                            <div>
-                                <label for="IdCargo" class="form-fields"> Id Cargo</label>
-                                <input type="select" value="{{old('Id_Cargo')}}"  class="form-control" name="Id_Cargo" id="Id_Cargo">
-                            
-                            </div>
+                        
+                        <div>
+                            <label for="IdCargo" class="form-fields"> Id Cargo</label>
+                            <select name="Id_Cargo" id="Id_Cargo" class="form-control" >
+                               
+                            @foreach(  $cargos as $cargoempleado)
+                                <option value="{{ $cargoempleado['id'] }}">{{$cargoempleado['Cargo'] }}</option>
+
+                                @endforeach
+                            </select>
+                        
                         </div>
+                    
+                    </div>
 
                         <div class="col-lg-6 form-group">
                             <div>
@@ -78,7 +86,14 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="IdUsuario" class="form-fields"> Id Usuario</label>
-                                <input type="select"  class="form-control" name="Id Usuario" id="Id Usuario">
+                                <select name="Id_Turno" id="Id_Turno" class="form-control" >
+                                   
+                                @foreach($users as $user)
+
+                                <option value="{{ $user['id'] }}">{{$user['name'] }}</option>
+
+                                @endforeach
+                                </select>
                             
                             </div>
                         </div>
@@ -86,7 +101,14 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="IdDocumento" class="form-fields"> Id Documento</label>
-                                <input type="select" class="form-control" name="Id Documento" id="Id Documento">
+                                <select name="Id_Documento" id="Id_Documento" class="form-control" >
+                                   
+                                @foreach($documentos as $documento)
+
+                                <option value="{{ $documento['id'] }}">{{$documento['TipoDocumento'] }}</option>
+
+                                @endforeach
+                                </select>
                             
                             </div>
                         </div>
@@ -94,7 +116,14 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="IdTurno" class="form-fields"> Id Turno</label>
-                                <input type="select" value="{{old('Id_Turno')}}"  class="form-control" name="Id Turno" id="Id Turno">
+                                <select name="Id_Turno" id="Id_Turno" class="form-control" >
+                                   
+                                @foreach($turnos as $turno)
+
+                                <option value="{{ $turno['id'] }}">{{$turno['TipoTurno'] }}</option>
+
+                                @endforeach
+                                </select>
                             
                             </div>
                         </div>
