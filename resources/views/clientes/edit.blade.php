@@ -18,7 +18,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Nombre" class="form-fields"> Nombre </label>
-                                <input type="text" value="{{old('Nombre')}}" class="form-control" rows="3"  name="Nombre" id="Nombre">     
+                                <input type="text" value="{{old('Nombre')}}" 
+                                class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Nombre" id="Nombre">
+                                @if($errors->has('Nombre'))
+                                    <span class="text-danger">{{$errors->first('Nombre')}}</span>
+                                @endif   
                             </div>
                         </div>
                     </div>
@@ -26,8 +31,13 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Apellido">  Apellido </label>
-                                <input type="text" value="{{old('Apellido')}}" class="form-control" rows="3"  name="Apellido" id="Nombre">     
+                                <label for="Apellido"> Apellido </label>
+                                <input type="text" value="{{old('Apellido')}}" 
+                                class="form-control {{$errors->has('Apellido') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Apellido" id="Apellido">     
+                                @if($errors->has('Apellido'))
+                                    <span class="text-danger">{{$errors->first('Apellido')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -36,7 +46,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Usuario"> Usuario </label>
-                                <input type="text" value="{{old('Usuario')}}" class="form-control" rows="3"  name="Usuario" id="Usuario">     
+                                <input type="text" value="{{old('Usuario')}}" 
+                                class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Usuario" id="Usuario">
+                                @if($errors->has('Usuario'))
+                                    <span class="text-danger">{{$errors->first('Usuario')}}</span>
+                                @endif     
                             </div>
                         </div>
                     </div>
@@ -45,7 +60,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Correo" > Correo </label>
-                                <input type="text" value="{{old('Correo')}}" class="form-control" rows="3"  name="Correo" id="Correo">     
+                                <input type="text" value="{{old('Correo')}}" 
+                                class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Correo" id="Correo">
+                                @if($errors->has('Correo'))
+                                    <span class="text-danger">{{$errors->first('Correo')}}</span>
+                                @endif     
                             </div>
                         </div>
                     </div>
@@ -54,7 +74,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Contraseña" > Contraseña </label>
-                                <input type="password" value="{{old('Contraseña')}}" class="form-control" rows="3"  name="Contraseña" id="Contraseña">     
+                                <input type="password" value="{{old('Contraseña')}}" 
+                                class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Contraseña" id="Contraseña">   
+                                @if($errors->has('Contraseña'))
+                                    <span class="text-danger">{{$errors->first('Contraseña')}}</span>
+                                @endif  
                             </div>
                         </div>
                     </div>
@@ -63,7 +88,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Direccion"> Direccion </label>
-                                <input type="text" value="{{old('Direccion')}}" class="form-control" rows="3" name="Direccion" id="Direccion">   
+                                <input type="text" value="{{old('Direccion')}}" 
+                                class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
+                                rows="3" name="Direccion" id="Direccion">   
+                                @if($errors->has('Direccion'))
+                                    <span class="text-danger">{{$errors->first('Direccion')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -72,7 +102,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Telefono" > Telefono </label>
-                                <input type="numeric" value="{{old('Telefono')}}" class="form-control" rows="3"  name="Telefono" id="Telefono">     
+                                <input type="numeric" value="{{old('Telefono')}}" 
+                                class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Telefono" id="Telefono">   
+                                @if($errors->has('Telefono'))
+                                    <span class="text-danger">{{$errors->first('Telefono')}}</span>
+                                @endif  
                             </div>
                         </div>
                     </div>
@@ -81,7 +116,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="FechaNacimiento" > Fecha Nacimiento </label>
-                                <input type="date" value="{{old('FechaNacimiento')}}" class="form-control" rows="3"  name="FechaNacimiento" id="FechaNacimiento">     
+                                <input type="date" value="{{old('FechaNacimiento')}}" 
+                                class="form-control {{$errors->has('FechaNacimiento') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="FechaNacimiento" id="FechaNacimiento">    
+                                @if($errors->has('FechaNacimiento'))
+                                    <span class="text-danger">{{$errors->first('FechaNacimiento')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -82,7 +82,7 @@ class ClientesController extends Controller
      * @param  \App\Models\clientes  $clientes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientesRequest $request, $id)
     {
             
         //

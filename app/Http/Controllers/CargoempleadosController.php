@@ -78,7 +78,7 @@ class CargoempleadosController extends Controller
      * @param  \App\Models\cargoempleados  $cargoempleados
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CargosRequest $request, $id)
     {
         //
         $cargoempleados= request()->except(['_token','_method']);
