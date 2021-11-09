@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HTTP\Requests\CargosRequest;
 use App\Models\cargoempleados;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class CargoempleadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CargosRequest $request)
     {
         //
         $cargoempleados = request()->except('_token');

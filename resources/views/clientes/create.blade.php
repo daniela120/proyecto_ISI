@@ -1,4 +1,4 @@
-@<!-- Modal -->
+<!-- Modal -->
 <div class="modal animated zoomIn" id="createMdl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -16,43 +16,66 @@
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Nombre" class="form-fields"> Nombre </label>
-                            <input type="text" class="form-control" name="Nombre" id="Nombre">
-                            
+                            <input type="text" class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
+                            name="Nombre" id="Nombre" value="{{old('Nombre')}}">
+                            @if($errors->has('Nombre'))
+                            <span class="text-danger">{{$errors->first('Nombre')}}</span>
+                            @endif
                         </div>
                     </div>
                     
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Apellido" class="form-fields"> Apellido </label>
-                            <input type="text" class="form-control" name="Apellido" id="Apellido">
+                            <input type="text" class="form-control {{$errors->has('Apellido') ? 'is-invalid' : '' }}" 
+                            name="Apellido" id="Apellido" value="{{old('Apellido')}}">
+                            @if($errors->has('Apellido'))
+                            <span class="text-danger">{{$errors->first('Apellido')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Usuario" class="form-fields"> Usuario </label>
-                            <input type="text" class="form-control" name="Usuario" id="Usuario">
+                            <input type="text" class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
+                            name="Usuario" id="Usuario" value="{{old('Usuario')}}">
+                            @if($errors->has('Usuario'))
+                            <span class="text-danger">{{$errors->first('Usuario')}}</span>
+                            @endif
                         </div>
                     </div>
                     
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Correo" class="form-fields"> Correo </label>
-                            <input type="email" class="form-control" name="Correo" id="Correo">
+                            <input type="email" class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
+                            name="Correo" id="Correo" value="{{old('Correo')}}">
+                            @if($errors->has('Correo'))
+                            <span class="text-danger">{{$errors->first('Correo')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Contraseña" class="form-fields"> Contraseña </label>
-                            <input type="password" class="form-control" name="Contraseña" id="Contraseña">
+                            <input type="password" class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
+                            name="Contraseña" id="Contraseña" value="{{old('Contraseña')}}">
+                            @if($errors->has('Contraseña'))
+                            <span class="text-danger">{{$errors->first('Contraseña')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Direccion" class="form-fields"> Direccion </label>
-                            <input type="text" class="form-control" name="Direccion" id="Direccion">
+                            <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
+                            name="Direccion" id="Direccion" value="{{old('Direccion')}}">
+                            @if($errors->has('Direccion'))
+                            <span class="text-danger">{{$errors->first('Direccion')}}</span>
+                            @endif
                            
                         </div>
                     </div>
@@ -60,16 +83,22 @@
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Telefono" class="form-fields"> Telefono </label>
-                            <input type="numeric" class="form-control" name="Telefono" id="Telefono">
-                           
+                            <input type="numeric" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
+                            name="Telefono" id="Telefono" value="{{old('Telefono')}}">
+                            @if($errors->has('Telefono'))
+                            <span class="text-danger">{{$errors->first('Telefono')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="FechaNacimiento" class="form-fields"> Fecha Nacimiento </label>
-                            <input type="date" class="form-control" name="FechaNacimiento" id="FechaNacimiento">
-                           
+                            <input type="date" class="form-control {{$errors->has('FechaNacimiento') ? 'is-invalid' : '' }}" 
+                            name="FechaNacimiento" id="FechaNacimiento" value="{{old('FechaNacimiento')}}">
+                            @if($errors->has('FechaNacimiento'))
+                            <span class="text-danger">{{$errors->first('FechaNacimiento')}}</span>
+                            @endif
                         </div>
                     </div>
 
