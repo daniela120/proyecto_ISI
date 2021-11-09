@@ -77,5 +77,20 @@
         $("#deleteCargoempleadoFrm").attr('action',`/cargoempleados/${Cargoempleados.id}`);      
     } 
     </script>
+    @if(!$errors->isEmpty())
+        @if($errors->has('post'))
+            <script>
+                $(function () {
+                    $('#createMdl').modal('show');
+                });
+            </script>   
+        @else
+            <script>
+                $(function () {
+                    $('#editMdl').modal('show');
+                });
+            </script>
+        @endif
+    @endif
     
 @endpush

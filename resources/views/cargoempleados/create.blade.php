@@ -15,17 +15,25 @@
             <div class="row">
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Cargo" class="form-fields"> Cargos Empleados </label>
-                            <input type="text" class="form-control" name="Cargo" id="Cargo">
-                            
+                            <label for="Cargo" 
+                            class="form-fields" > Cargos </label>
+                            <input type="text" class="form-control {{$errors->has('Cargo') ? 'is-invalid' : '' }}" 
+                            name="Cargo" id="Cargo" value="{{old('Cargo')}}">
+                            @if($errors->has('Cargo'))
+                            <span class="text-danger">{{$errors->first('Cargo')}}</span>
+                            @endif
                         </div>
                     </div>
                     
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Descripcion" class="form-fields"> Descripción</label>
-                            <input type="text" class="form-control" name="Descripcion" id="Descripcion">
-                           
+                            <label for="Descripcion" 
+                            class="form-fields" > Descripción</label>
+                            <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : ''}} " 
+                                name="Descripcion" id="Descripcion" value="{{old('Descripcion')}}" >
+                            @if($errors->has('Descripcion'))
+                            <span class="text-danger">{{$errors->first('Descripcion')}}</span>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Cargo" class="form-fields"> Cargo</label>
-                                <input type="text" value="{{old('Cargo')}}" class="form-control" rows="3"  name="Cargo" id="Cargo">     
+                                <input type="text" value="{{old('Cargo')}}" 
+                                class="form-control {{$errors->has('Cargo') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Cargo" id="Cargo">
+                                @if($errors->has('Cargo'))
+                                    <span class="text-danger">{{$errors->first('Cargo')}}</span>
+                                @endif   
                             </div>
                         </div>
                     </div>
@@ -27,7 +32,12 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Descripcion"> Descripción </label>
-                                <input type="text" value="{{old('Descripcion')}}" class="form-control" rows="3" name="Descripcion" id="Descripcion">   
+                                <input type="text" value="{{old('Descripcion')}}" 
+                                class="form-control form-control {{$errors->has('Descripcion') ? 'is-invalid' : ''}}" 
+                                rows="3" name="Descripcion" id="Descripcion">  
+                                @if($errors->has('Descripcion'))
+                                    <span class="text-danger">{{$errors->first('Descripcion')}}</span>
+                                @endif 
                             </div>
                         </div>
                     </div>

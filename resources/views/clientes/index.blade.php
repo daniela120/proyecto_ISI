@@ -33,8 +33,9 @@
                             <th class="text-center">Fecha Nacimiento</th>      
                         </tr>
                     </thead>
-
-                    @foreach($cliente as $cliente)
+                    
+                    <tbody>
+                        @foreach($cliente as $cliente)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
@@ -63,9 +64,6 @@
         </div>
               
     @endsection
-
-
-
 <!-- librerias -->
 @push('styles')
     <link rel="stylesheet" href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" >
@@ -101,18 +99,26 @@
         } 
     </script>
 
-
-
-
-
-@if(Session::has('mensaje'))
-<div class="alert alert-success alert-dimissible" role="alert">
-{{ Session::get('mensaje')}}
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-</button>
-</div>
+    <!-- para validaciones-->
+    @if(!$errors->isEmpty())
+        @if($errors->has('post'))
+            <script>
+                $(function () {
+                    $('#createMdl').modal('show');
+                });
+            </script>   
+        @else
+            <script>
+                $(function () {
+                    $('#editMdl').modal('show');
+                });
+            </script>
+        @endif
     @endif
+    
+@endpush
+
+
 
 
 
