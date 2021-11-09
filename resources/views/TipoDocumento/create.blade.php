@@ -10,17 +10,26 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/documentoss') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('/documentos') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Nombre_Tipo_Pago" class="form-fields"> Tipo de  Documento</label>
-                            <input type="text" class="form-control" rows="3" name="Nombre_Tipo_Pago" id="Nombre_Tipo_Pago">
+                            <label for="Tipo Documento" class="form-fields"> Tipo de  Documento</label>
+                            <input type="text" class="form-control" rows="3" name="TipoDocumento" id="TipoDocumento">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 form-group">
+                        <div>
+                            <label for="Descripcion" class="form-fields"> Descripcion</label>
+                            <input type="text" class="form-control" rows="3" name="Descripcion" id="Descripcion">
                             
                         </div>
                     </div>
                 </div>
+                
                 <div class="buttons-form-submit d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
                     <button type="submit" href="#" class="btn btn-primary">

@@ -31,11 +31,11 @@
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick=")">
+                                 onclick="edittipodocumentos({{$tipodocumentos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                 onclick="">
+                                onclick="deletetipodocumentos({{$tipodocumentos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -60,6 +60,21 @@
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- funcion editCategoria para pasar parametros y editar-->
+    <script>    
+        function edittipodocumentos(tipodocumentos){
+            $("#editTipoDocumentoForm").attr('action',`/documentos/${tipodocumentos.id}`);
+            $("#editTipoDocumentoForm #TipoDocumento").val(tipodocumentos.TipoDocumento); 
+             
+            $("#editTipoDocumentoForm #Descripcion").val(tipodocumentos.Descripcion);
+        } 
+    </script>
+
+    <!--DELETE -->
+    <script>    
+        function deletetipodocumentos(tipodocumentos){
+        $("#deleteTipoDocumentoFrm").attr('action',`/documentos/${tipodocumentos.id}`);      
+    } 
+    </script>
     
      <!-- para validaciones-->
     @if(!$errors->isEmpty())
