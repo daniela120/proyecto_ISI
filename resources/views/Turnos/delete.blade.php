@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar Cargo</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Eliminar turno</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,13 +12,13 @@
 
              <!-- campos(labels y textbox)-->
             <div class="modal-body">
-                <form action="" role="form" method="POST" id="deleteTipoDocumentoFrm" enctype="multipart/form-data">
-                @method('DELETE')
+                <form action="" role="form" method="POST" id="deleteTurnoFrm" enctype="multipart/form-data">
+                    @method('DELETE')
                     {{csrf_field()}}
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Cargoempleados" class="form-fields"> ¿Esta seguro de eliminar el registro de Tipo de Documento?</label>
+                                <label for="Turno" class="form-fields"> ¿Esta seguro de eliminar el turno?</label>
                             </div>
                         </div>
                     </div>

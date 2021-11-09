@@ -38,6 +38,11 @@ class TipodocumentosController extends Controller
     public function store(Request $request)
     {
         //
+        $tipodocumentos = request()->except('_token');
+        tipodocumentos::insert($tipodocumentos);
+        alert()->success('tipo documento guardado correctamente');
+        
+        return redirect()->route('documentos.index');
     }
 
     /**
@@ -69,9 +74,13 @@ class TipodocumentosController extends Controller
      * @param  \App\Models\tipodocumentos  $tipodocumentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tipodocumentos $tipodocumentos)
+    public function update(Request $request,$id)
     {
         //
+        $tipodocumentos= request()->except(['_token','_method']);
+        tipodocumentos::where('id','=',$id)->update($tipodocumentos);
+        alert()->success('Tipo de documento Actualizado correctamente');
+        return redirect()->route('documentos.index');
     }
 
     /**
@@ -80,8 +89,11 @@ class TipodocumentosController extends Controller
      * @param  \App\Models\tipodocumentos  $tipodocumentos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tipodocumentos $tipodocumentos)
+    public function destroy($id)
     {
         //
+        tipodocumentos::destroy($id);
+        alert()->success('Tipo de documento Eliminado correctamente');
+        return redirect('documentos');
     }
 }

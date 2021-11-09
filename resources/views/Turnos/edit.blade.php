@@ -10,14 +10,14 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/documentos') }}" method="post" id="editTipoDocumentoForm" enctype="multipart/form-data">
+    <form action="{{ url('/turnos') }}" method="post" id="editturnosForm" enctype="multipart/form-data">
           @method('PUT')
             @csrf
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Tipo Documento" class="form-fields"> Tipo de  Documento</label>
-                            <input type="text" value="{{old('TipoDocumento')}}" class="form-control" rows="3" name="TipoDocumento" id="TipoDocumento">
+                            <label for="Tipo Turno" class="form-fields"> Tipo de  Turno</label>
+                            <input type="text" value="{{old('TipoTurno')}}" class="form-control" rows="3" name="TipoTurno" id="TipoTurno">
                             
                         </div>
                     </div>

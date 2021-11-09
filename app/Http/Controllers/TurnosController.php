@@ -15,6 +15,8 @@ class TurnosController extends Controller
     public function index()
     {
         //
+        $datos['turnos']=turnos::paginate(10);
+        return view('Turnos.Turnosindex',$datos);
     }
 
     /**
@@ -36,6 +38,11 @@ class TurnosController extends Controller
     public function store(Request $request)
     {
         //
+        $turnos = request()->except('_token');
+        turnos::insert($turnos);
+        alert()->success('Turno guardado correctamente');
+        
+        return redirect()->route('turnos.index');
     }
 
     /**
@@ -67,9 +74,13 @@ class TurnosController extends Controller
      * @param  \App\Models\turnos  $turnos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, turnos $turnos)
+    public function update(Request $request, $id)
     {
         //
+        $turnos= request()->except(['_token','_method']);
+        turnos::where('id','=',$id)->update($turnos);
+        alert()->success('Turno Actualizado correctamente');
+        return redirect()->route('turnos.index');
     }
 
     /**
@@ -78,8 +89,11 @@ class TurnosController extends Controller
      * @param  \App\Models\turnos  $turnos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(turnos $turnos)
+    public function destroy($id)
     {
         //
+        turnos::destroy($id);
+        alert()->success('Turno Eliminado correctamente');
+        return redirect('turnos');
     }
 }

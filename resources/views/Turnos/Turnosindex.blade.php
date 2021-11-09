@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Tipo de Documento</span>
+    <span>Turnos</span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
@@ -10,38 +10,43 @@
 
 @endsection
     @section('contenido')
-    @include('TipoDocumento.create')
-    @include('TipoDocumento..edit')
-    @include('TipoDocumento..delete')
+    @include('Turnos.create')
+    @include('Turnos.edit')
+    @include('Turnos.delete')
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
-                <table id="dt-usuario" class="table table-stripped table-bordered dts">
+                <table id="dt-turno" class="table table-stripped table-bordered dts">
                     <thead>
                         <tr>
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
-                            <th class="text-center">Tipo de Documento</th> 
-                            <th class="text-center">Descripcion</th>                             
+                            <th class="text-center">Tipo de Turno</th> 
+                            <th class="text-center">Descripcion</th>  
+                            <th class="text-center">Hora de entrada</th> 
+                            <th class="text-center">Hora de salida</th>  
+
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($tipodocumentos as $tipodocumentos)
+                        @foreach($turnos as $turnos)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick="edittipodocumentos({{$tipodocumentos}})">
+                                 onclick="editturnos({{$turnos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deletetipodocumentos({{$tipodocumentos}})">
+                                onclick="deleteturnos({{$turnos}})" >
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{$tipodocumentos->id}}</td>
-                            <td>{{$tipodocumentos->TipoDocumento}}</td> 
-                            <td>{{$tipodocumentos->Descripcion}}</td>        
+                            <td>{{$turnos->id}}</td>
+                            <td>{{$turnos->TipoTurno}}</td> 
+                            <td>{{$turnos->Descripcion}}</td> 
+                            <td>{{$turnos->HoraEntrada}}</td>  
+                            <td>{{$turnos->HoraSalida}}</td>     
                         </tr>
                         @endforeach
                     </tbody>
@@ -60,23 +65,28 @@
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- funcion editCategoria para pasar parametros y editar-->
+    
+
     <script>    
-        function edittipodocumentos(tipodocumentos){
-            $("#editTipoDocumentoForm").attr('action',`/documentos/${tipodocumentos.id}`);
-            $("#editTipoDocumentoForm #TipoDocumento").val(tipodocumentos.TipoDocumento); 
-             
-            $("#editTipoDocumentoForm #Descripcion").val(tipodocumentos.Descripcion);
+        function editturnos(turnos){
+            $("#editturnosForm").attr('action',`/turnos/${turnos.id}`);
+            $("#editTipoTurnoForm #TipoTurno").val(turnos.TipoTurno);  
+            $("#editTipoTurnoForm #Descripcion").val(turnos.Descripcion);            
+            $("#editTipoTurnoForm #HoraEntrada").val(turnos.HoraEntrada);
+            $("#editTipoTurnoForm #HoraSalida").val(turnos.HoraSalida);
+
         } 
     </script>
 
     <!--DELETE -->
-    <script>    
-        function deletetipodocumentos(tipodocumentos){
-        $("#deleteTipoDocumentoFrm").attr('action',`/documentos/${tipodocumentos.id}`);      
+   
+   <script>    
+        function deleteTurnos(turnos){
+        $("#deleteTurnoFrm").attr('action',`/turnos/${turnos.id}`);      
     } 
     </script>
     
-     <!-- para validaciones-->
+       <!-- para validaciones-->
     @if(!$errors->isEmpty())
         @if($errors->has('post'))
             <script>
@@ -92,5 +102,6 @@
             </script>
         @endif
     @endif
+    
 @endpush
 
