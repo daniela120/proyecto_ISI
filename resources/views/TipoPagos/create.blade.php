@@ -16,8 +16,11 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Nombre_Tipo_Pago" class="form-fields"> Tipo de  Pago</label>
-                            <input type="text" class="form-control" rows="3" name="Nombre_Tipo_Pago" id="Nombre_Tipo_Pago">
-                            
+                            <input type="text" class="form-control {{$errors->has('Nombre_Tipo_Pago') ? 'is-invalid' : '' }}"
+                                 rows="3" name="Nombre_Tipo_Pago" id="Nombre_Tipo_Pago">
+                            @if($errors->has('Nombre_Tipo_Pago'))
+                            <span class="text-danger">{{$errors->first('Nombre_Tipo_Pago')}}</span>
+                            @endif
                         </div>
                     </div>
                 </div>

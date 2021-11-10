@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\categorias;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CategoriasRequest;
 class CategoriasController extends Controller
 {
     /**
@@ -34,7 +34,7 @@ class CategoriasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriasRequest $request)
     {
         $Categorias = request()->except('_token');
         Categorias::insert($Categorias);
@@ -73,7 +73,7 @@ class CategoriasController extends Controller
      * @param  \App\Models\categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoriasRequest $request, $id)
     {
         $Categorias= request()->except(['_token','_method']);
         Categorias::where('id','=',$id)->update($Categorias);
