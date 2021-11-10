@@ -83,8 +83,8 @@
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Telefono" class="form-fields"> Telefono </label>
-                            <input type="numeric" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
-                            name="Telefono" id="Telefono" value="{{old('Telefono')}}">
+                            <input type="tel" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
+                            name="Telefono" id="Telefono" value="{{old('Telefono')}}" pattern='[2,9,8]\d{3}\d{4}' >
                             @if($errors->has('Telefono'))
                             <span class="text-danger">{{$errors->first('Telefono')}}</span>
                             @endif
