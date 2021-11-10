@@ -104,7 +104,8 @@
                                 <label for="Telefono" > Telefono </label>
                                 <input type="numeric" value="{{old('Telefono')}}" 
                                 class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Telefono" id="Telefono" pattern='[2,3,7,8,9]\d{3}\d{4}'>
+                                rows="3"  name="Telefono" id="Telefono" pattern='[2,3,7,8,9]\d{3}\d{4}'
+                                placeholder='inicie con 2,3,7,8 o 9'>
                                 @if($errors->has('Telefono'))
                                     <span class="text-danger">{{$errors->first('Telefono')}}</span>
                                 @endif
