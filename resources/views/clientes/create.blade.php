@@ -84,7 +84,7 @@
                         <div>
                             <label for="Telefono" class="form-fields"> Telefono </label>
                             <input type="tel" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
-                            name="Telefono" id="Telefono" value="{{old('Telefono')}}" pattern='[2,9,8]\d{3}\d{4}' >
+                            name="Telefono" id="Telefono" value="{{old('Telefono')}}">
                             @if($errors->has('Telefono'))
                             <span class="text-danger">{{$errors->first('Telefono')}}</span>
                             @endif

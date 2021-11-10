@@ -42,8 +42,8 @@ class ClientesController extends Controller
         //
         
         
-        $datosClientes = request()->except('_token');
-        clientes::insert($datosClientes);
+        $Clientes = request()->except('_token');
+        clientes::insert($Clientes);
         alert()->success('Cargo guardada correctamente');
         return redirect()->route('clientes.index');
     }
@@ -86,8 +86,8 @@ class ClientesController extends Controller
     {
             
         //
-        $datosClientes = request()->except(['_token','_method']);
-        clientes::where('id','=',$id)->update($datosClientes);
+        $Clientes = request()->except(['_token','_method']);
+        clientes::where('id','=',$id)->update($Clientes);
         alert()->success('Cliente Actualizada correctamente');
         return redirect()->route('clientes.index');
     }

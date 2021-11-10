@@ -20,10 +20,10 @@
                                 <label for="Nombre" class="form-fields"> Nombre </label>
                                 <input type="text" value="{{old('Nombre')}}" 
                                 class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Nombre" id="Nombre">
+                                rows="3"  name="Nombre" id="Nombre">  
                                 @if($errors->has('Nombre'))
                                     <span class="text-danger">{{$errors->first('Nombre')}}</span>
-                                @endif   
+                                @endif 
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                 <label for="Apellido"> Apellido </label>
                                 <input type="text" value="{{old('Apellido')}}" 
                                 class="form-control {{$errors->has('Apellido') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Apellido" id="Apellido">     
+                                rows="3"  name="Apellido" id="Apellido">   
                                 @if($errors->has('Apellido'))
                                     <span class="text-danger">{{$errors->first('Apellido')}}</span>
                                 @endif
@@ -48,10 +48,10 @@
                                 <label for="Usuario"> Usuario </label>
                                 <input type="text" value="{{old('Usuario')}}" 
                                 class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Usuario" id="Usuario">
+                                rows="3"  name="Usuario" id="Usuario">     
                                 @if($errors->has('Usuario'))
                                     <span class="text-danger">{{$errors->first('Usuario')}}</span>
-                                @endif     
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -62,10 +62,10 @@
                                 <label for="Correo" > Correo </label>
                                 <input type="text" value="{{old('Correo')}}" 
                                 class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Correo" id="Correo">
+                                rows="3"  name="Correo" id="Correo">     
                                 @if($errors->has('Correo'))
                                     <span class="text-danger">{{$errors->first('Correo')}}</span>
-                                @endif     
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                 <label for="Contraseña" > Contraseña </label>
                                 <input type="password" value="{{old('Contraseña')}}" 
                                 class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Contraseña" id="Contraseña">   
+                                rows="3"  name="Contraseña" id="Contraseña">
                                 @if($errors->has('Contraseña'))
                                     <span class="text-danger">{{$errors->first('Contraseña')}}</span>
                                 @endif  
@@ -90,7 +90,7 @@
                                 <label for="Direccion"> Direccion </label>
                                 <input type="text" value="{{old('Direccion')}}" 
                                 class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
-                                rows="3" name="Direccion" id="Direccion">   
+                                rows="3" name="Direccion" id="Direccion">
                                 @if($errors->has('Direccion'))
                                     <span class="text-danger">{{$errors->first('Direccion')}}</span>
                                 @endif
@@ -104,10 +104,10 @@
                                 <label for="Telefono" > Telefono </label>
                                 <input type="numeric" value="{{old('Telefono')}}" 
                                 class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Telefono" id="Telefono">   
+                                rows="3"  name="Telefono" id="Telefono">
                                 @if($errors->has('Telefono'))
                                     <span class="text-danger">{{$errors->first('Telefono')}}</span>
-                                @endif  
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -118,10 +118,10 @@
                                 <label for="FechaNacimiento" > Fecha Nacimiento </label>
                                 <input type="date" value="{{old('FechaNacimiento')}}" 
                                 class="form-control {{$errors->has('FechaNacimiento') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="FechaNacimiento" id="FechaNacimiento">    
+                                rows="3"  name="FechaNacimiento" id="FechaNacimiento">
                                 @if($errors->has('FechaNacimiento'))
                                     <span class="text-danger">{{$errors->first('FechaNacimiento')}}</span>
-                                @endif
+                                @endif 
                             </div>
                         </div>
                     </div>
