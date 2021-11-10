@@ -108,7 +108,7 @@
                 });
             </script>   
         @else
-            <script>
+        <script>
                 $(function () {
                     $('#editMdl').modal('show');
                 });

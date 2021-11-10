@@ -32,7 +32,7 @@ class ClientesRequest extends FormRequest
             'Contraseña' =>['required', 'string'],
             'Direccion' =>['required', 'string', 'min:7'],
             'Telefono' =>['required', 'digits:8'],
-            'FechaNacimiento' =>['required', 'date', ]
+            'FechaNacimiento' =>['required', 'date' ]
         ];
     }
 
