@@ -79,21 +79,24 @@
                    
         } 
     </script>
-     <!-- para validaciones-->
+    
+    
+    <!-- para validaciones-->
     @if(!$errors->isEmpty())
         @if($errors->has('post'))
             <script>
                 $(function () {
-                    $('#editeMdl').modal('show');
+                    $('#createMdl').modal('show');
                 });
             </script>
+          
         @else
             <script>
                 $(function () {
                     $('#editMdl').modal('show');
                 });
             </script>
+        
         @endif
     @endif
 @endpush
-

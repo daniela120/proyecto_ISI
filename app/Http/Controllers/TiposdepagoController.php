@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\tiposdepago;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\TiposdepagoRequest;
 class TiposdepagoController extends Controller
 {
     /**
@@ -34,7 +34,7 @@ class TiposdepagoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TiposdepagoRequest $request)
     {
         $tiposdepago = request()->except('_token');
         tiposdepago::insert($tiposdepago);
@@ -72,7 +72,7 @@ class TiposdepagoController extends Controller
      * @param  \App\Models\tiposdepago  $tiposdepago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TiposdepagoRequest $request, $id)
     {
         $tiposdepago= request()->except(['_token','_method']);
         tiposdepago::where('id','=',$id)->update($tiposdepago);
