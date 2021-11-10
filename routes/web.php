@@ -119,17 +119,16 @@ Route::resource('pagos', TiposdepagoController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('documentos', TipodocumentosController::class);
 Route::resource('turnos', TurnosController::class);
-
-
-
 Route::resource('estadoenvios', EstadoenviosController::class);
+Route::resource('empleado', EmpleadoController::class);
+
 
 //Rutas Creadas por Andres
 
 Route::get('/login', function () {
     return view('auth.login');
 });
-
+/** 
 Route::resource('empleado', EmpleadoController::class)->middleware('auth');
 Auth::routes(['reset'=>false]);
 
@@ -140,8 +139,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/', [EmpleadoController::class, 'index'])->name('home');
 });
 
-Auth::routes();
 
+Auth::routes();
+*/
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Auth::routes();

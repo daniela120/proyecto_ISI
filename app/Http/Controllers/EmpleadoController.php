@@ -29,7 +29,7 @@ class EmpleadoController extends Controller
         $empleados=Empleado::paginate(10);
 
         $documentos=tipodocumentos::all();
-        return view('empleado.index')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
+        return view('empleado.Empleadoindex')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
     }
 
     /**
