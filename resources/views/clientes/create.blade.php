@@ -17,7 +17,7 @@
                         <div>
                             <label for="Nombre" class="form-fields"> Nombre </label>
                             <input type="text" class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
-                            name="Nombre" id="Nombre" value="{{old('Nombre')}}">
+                            name="Nombre" id="Nombre" value="{{old('Nombre')}}" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Nombre'))
                             <span class="text-danger">{{$errors->first('Nombre')}}</span>
                             @endif
@@ -28,7 +28,7 @@
                         <div>
                             <label for="Apellido" class="form-fields"> Apellido </label>
                             <input type="text" class="form-control {{$errors->has('Apellido') ? 'is-invalid' : '' }}" 
-                            name="Apellido" id="Apellido" value="{{old('Apellido')}}">
+                            name="Apellido" id="Apellido" value="{{old('Apellido')}}" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Apellido'))
                             <span class="text-danger">{{$errors->first('Apellido')}}</span>
                             @endif
