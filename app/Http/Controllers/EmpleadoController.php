@@ -102,7 +102,7 @@ class EmpleadoController extends Controller
 
         $cargos=cargoempleados::all();
         $documentos=tipodocumentos::all();
-
+        
         $empleados= request()->except(['_token','_method']);
         Empleado::where('id','=',$id)->update($empleados);
         alert()->success('Empleado Actualizado correctamente');

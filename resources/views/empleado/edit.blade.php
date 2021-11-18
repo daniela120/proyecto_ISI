@@ -11,15 +11,16 @@
             </div>
             <div class="modal-body">
            
-            $empleados = Empleado::where('id',$id)->get();
+            
           
-            @foreach($empleados as $empleados)
            
+
+            @foreach($empleados as $empleados)
                 <form   method="POST"  action= "{{url('/empleado/'.$empleados->id)}} " role="form" id="editEmpleadoFrm" enctype="multipart/form-data">
                    @method('PUT')
                     @csrf
-                  
-
+             @endforeach     
+            
                     <div class="row">
             <div class="col-lg-6 form-group">
                             <div>
@@ -157,7 +158,7 @@
 
 
                 </form>
-                @endforeach
+                
             </div>
         </div>
     </div>
