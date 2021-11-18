@@ -24,10 +24,10 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Apellido</th>
                             <th class="text-center">Fecha de Nacimiento</th>
-                            <th class="text-center">Fecha de Contratacion</th>
+                            <th class="text-center">Fecha de Contratación</th>
                             <th class="text-center">Dirección</th>
                             <th class="text-center">Id Cargo</th>
-                            <th class="text-center"> Telefono</th>
+                            <th class="text-center"> Teléfono</th>
                             <th class="text-center">Id Usuario</th>
                             <th class="text-center">Id Documento</th>
                             <th class="text-center">Id Turno</th>
@@ -44,10 +44,14 @@
                                 onclick="editempleados({{$empleados}})">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
+                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deleteEmpleado({{$empleados}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+
+                               
+                   
+                
                             </td>
                             <td>{{$empleado->id}}</td>
                                 <td>{{$empleado->Nombre}}</td>
@@ -71,7 +75,11 @@
               
     @endsection
 
-    <!-- librerias -->
+    <!-- librerias 
+
+    "{{ url('/empleado/.$empleado->id') }}"
+{{ url('/empleado/.$empleado->id') }}
+onclick="editempleados({{$empleados}})"-->
 @push('styles')
     <link rel="stylesheet" href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" >
 @endpush  
@@ -81,6 +89,7 @@
 
     <!-- funcion editEstadoEnvio para pasar parametros y editar-->
 
+   <!---->
     <script>    
         function editempleados(empleados){
             $("#editEmpleadoFrm").attr('action',`/empleado/${empleados.id}`);
@@ -100,17 +109,32 @@
 
         } 
     </script>
+   
     
-    
-     <!-- funcion deleteEstadoEnvio para pasar parametros y eliminar-->
+     <!-- funcion deleteCategoria para pasar parametros y eliminar-->
      <script>    
 
 function deleteEmpleado(empleados){
-    $("#deleteEmpleadoFrm").attr('action',`/empleado/${empleados.id}`);
+    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleados.id}`);
            
 } 
 </script>
- 
-     <!-- para validaciones-->
-     
+
+<!-- para validaciones-->
+@if(!$errors->isEmpty())
+@if($errors->has('post'))
+    <script>
+        $(function () {
+            $('#createMdl').modal('show');
+        });
+    </script>   
+@else
+<script>
+        $(function () {
+            $('#editMdl').modal('show');
+        });
+    </script>
+@endif
+@endif
+
 @endpush
