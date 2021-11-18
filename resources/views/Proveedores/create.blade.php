@@ -59,7 +59,7 @@
 
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Direccion" class="form-fields">Dirección</label>
+                            <label for="Direccion" class="form-fields">Direccción</label>
                             <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}"
                              name="Direccion" id="Direccion">
                             @if ($errors->has('Direccion'))
