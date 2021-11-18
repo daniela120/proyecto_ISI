@@ -77,9 +77,12 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit( Empleado $empleado)
     {
         //
+        $empleados=Empleado::findOrFail( $id);
+
+        return view('empleado.edit',compact('empleados'));
         
     }
 
@@ -92,10 +95,21 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request,  $id)
     {
+
+        $users=User::all();   
+
+        $turnos=turnos::all();
+
+        $cargos=cargoempleados::all();
+        $documentos=tipodocumentos::all();
+        
         $empleados= request()->except(['_token','_method']);
         Empleado::where('id','=',$id)->update($empleados);
         alert()->success('Empleado Actualizado correctamente');
-        return redirect()->route('empleado.index');
+        
+      //  $empleados=Empleado::findOrFail( $id);
+
+      return redirect()->route('empleado.index')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);;
        
     }
 

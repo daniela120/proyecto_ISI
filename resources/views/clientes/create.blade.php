@@ -17,7 +17,7 @@
                         <div>
                             <label for="Nombre" class="form-fields"> Nombre </label>
                             <input type="text" class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
-                            name="Nombre" id="Nombre" value="{{old('Nombre')}}">
+                            name="Nombre" id="Nombre" value="{{old('Nombre')}}" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Nombre'))
                             <span class="text-danger">{{$errors->first('Nombre')}}</span>
                             @endif
@@ -28,7 +28,7 @@
                         <div>
                             <label for="Apellido" class="form-fields"> Apellido </label>
                             <input type="text" class="form-control {{$errors->has('Apellido') ? 'is-invalid' : '' }}" 
-                            name="Apellido" id="Apellido" value="{{old('Apellido')}}">
+                            name="Apellido" id="Apellido" value="{{old('Apellido')}}" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Apellido'))
                             <span class="text-danger">{{$errors->first('Apellido')}}</span>
                             @endif
@@ -84,7 +84,8 @@
                         <div>
                             <label for="Telefono" class="form-fields"> Telefono </label>
                             <input type="tel" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
-                            name="Telefono" id="Telefono" value="{{old('Telefono')}}"  pattern='[2,3,7,8,9]\d{3}\d{4}'>
+                            name="Telefono" id="Telefono" value="{{old('Telefono')}}"  pattern='[2,3,7,8,9]\d{3}\d{4}'
+                            placeholder='debe iniciar con 2,3,7,8 o 9'>
                             @if($errors->has('Telefono'))
                             <span class="text-danger">{{$errors->first('Telefono')}}</span>
                             @endif

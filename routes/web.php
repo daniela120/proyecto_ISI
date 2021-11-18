@@ -112,7 +112,7 @@ Route::get('/persona', function () {
 //
 
 
-Route::resource('persona', PersonaController::class);
+
 Route::resource('usuarios', UserController::class);
 Route::resource('cargoempleados',CargoempleadosController::class);
 Route::resource('clientes', ClientesController::class);
@@ -121,26 +121,4 @@ Route::resource('categorias', CategoriasController::class);
 Route::resource('documentos', TipodocumentosController::class);
 Route::resource('turnos', TurnosController::class);
 Route::resource('estadoenvios', EstadoenviosController::class);
-Route::resource('empleado', EmpleadoController::class);
 Route::resource('proveedores', ProveedoresController::class);
-
-
-//Rutas Creadas por Andres
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
