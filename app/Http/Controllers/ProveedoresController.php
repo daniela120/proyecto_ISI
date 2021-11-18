@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\proveedores;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProveedoresRequest;
 
 class ProveedoresController extends Controller
 {
@@ -14,7 +15,8 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        //
+        $datos['Proveedores']=Proveedores::paginate(10);
+        return view('Proveedores.proveedoresindex',$datos);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProveedoresController extends Controller
      */
     public function create()
     {
-        //
+        return view('Proveedores.create');
     }
 
     /**
@@ -33,9 +35,14 @@ class ProveedoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProveedoresRequest $request)
     {
-        //
+        $Proveedores = request()->except('_token');
+        Proveedores::insert($Proveedores);
+        alert()->success('Proveedor guardado correctamente');
+        
+        return redirect()->route('proveedores.index');
+        
     }
 
     /**
@@ -44,9 +51,12 @@ class ProveedoresController extends Controller
      * @param  \App\Models\proveedores  $proveedores
      * @return \Illuminate\Http\Response
      */
-    public function show(proveedores $proveedores)
+    public function show(ProveedoresRequest $request, $id)
     {
-        //
+        $Proveedores= request()->except(['_token','_method']);
+        Proveedores::where('id','=',$id)->update($Proveedores);
+        alert()->success('Proveedor Actualizado correctamente');
+        return redirect()->route('proveedores.index');
     }
 
     /**
@@ -78,8 +88,10 @@ class ProveedoresController extends Controller
      * @param  \App\Models\proveedores  $proveedores
      * @return \Illuminate\Http\Response
      */
-    public function destroy(proveedores $proveedores)
+    public function destroy($id)
     {
-        //
+        Proveedores::destroy($id);
+        alert()->success(' Proveedor Eliminado correctamente');
+        return redirect('proveedores');
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CargoempleadosController;
 use App\Http\Controllers\EstadoenviosController;
 use App\Http\Controllers\TipodocumentosController;
+use App\Http\Controllers\ProveedoresController;
 
 Route::get('/', function () {
     return view('index');
@@ -121,6 +122,7 @@ Route::resource('documentos', TipodocumentosController::class);
 Route::resource('turnos', TurnosController::class);
 Route::resource('estadoenvios', EstadoenviosController::class);
 Route::resource('empleado', EmpleadoController::class);
+Route::resource('proveedores', ProveedoresController::class);
 
 
 //Rutas Creadas por Andres
@@ -128,20 +130,7 @@ Route::resource('empleado', EmpleadoController::class);
 Route::get('/login', function () {
     return view('auth.login');
 });
-/** 
-Route::resource('empleado', EmpleadoController::class)->middleware('auth');
-Auth::routes(['reset'=>false]);
 
-Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
-
-Route::group(['middleware'=>'auth'], function(){
-   
-    Route::get('/', [EmpleadoController::class, 'index'])->name('home');
-});
-
-
-Auth::routes();
-*/
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Auth::routes();
