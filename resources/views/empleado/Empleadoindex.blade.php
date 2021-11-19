@@ -41,7 +41,7 @@
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                onclick="editempleados({{$empleados}})">
+                                onclick="editempleados({{$empleado}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#deleteMdl"
@@ -91,19 +91,19 @@ onclick="editempleados({{$empleados}})"-->
 
    <!---->
     <script>    
-        function editempleados(empleados){
-            $("#editEmpleadoFrm").attr('action',`/empleado/${empleados.id}`);
-            $("#editEmpleadoFrm #Nombre").val(empleados.Nombre);              
-            $("#editEmpleadoFrm #Apellido").val(empleados.Apellido);    
-            $("#editEmpleadoFrm #FechaNacimiento").val(empleados.FechaNacimiento);    
-            $("#editEmpleadoFrm #FechaContratacion").val(empleados.FechaContratacion);    
-            $("#editEmpleadoFrm #Direccion").val(empleados.Direccion);    
-            $("#editEmpleadoFrm #Id_Cargo").val(empleados.Id_Cargo);    
-            $("#editEmpleadoFrm #Telefono").val(empleados.Telefono);    
-            $("#editEmpleadoFrm #Id_Usuario").val(empleados.Id_Usuario);    
-            $("#editEmpleadoFrm #Id_Documento").val(empleados.Id_Documento);    
-            $("#editEmpleadoFrm #Id_Turno").val(empleados.Id_Turno);    
-            $("#editEmpleadoFrm #Documento").val(empleados.Documento);    
+        function editempleados(empleado){
+            $("#editEmpleadoFrm").attr('action',`/empleado/${empleado.id}`);
+            $("#editEmpleadoFrm #Nombre").val(empleado.Nombre);              
+            $("#editEmpleadoFrm #Apellido").val(empleado.Apellido);    
+            $("#editEmpleadoFrm #FechaNacimiento").val(empleado.FechaNacimiento);    
+            $("#editEmpleadoFrm #FechaContratacion").val(empleado.FechaContratacion);    
+            $("#editEmpleadoFrm #Direccion").val(empleado.Direccion);    
+            $("#editEmpleadoFrm #Id_Cargo").val(empleado.Id_Cargo);    
+            $("#editEmpleadoFrm #Telefono").val(empleado.Telefono);    
+            $("#editEmpleadoFrm #Id_Usuario").val(empleado.Id_Usuario);    
+            $("#editEmpleadoFrm #Id_Documento").val(empleado.Id_Documento);    
+            $("#editEmpleadoFrm #Id_Turno").val(empleado.Id_Turno);    
+            $("#editEmpleadoFrm #Documento").val(empleado.Documento);    
               
              
 
