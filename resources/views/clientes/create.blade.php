@@ -39,7 +39,7 @@
                         <div>
                             <label for="Usuario" class="form-fields"> Usuario </label>
                             <input type="text" class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
-                            name="Usuario" id="Usuario" value="{{old('Usuario')}}">
+                            name="Usuario" id="Usuario" value="{{old('Usuario')}}" placeholder='user01'>
                             @if($errors->has('Usuario'))
                             <span class="text-danger">{{$errors->first('Usuario')}}</span>
                             @endif
@@ -50,7 +50,7 @@
                         <div>
                             <label for="Correo" class="form-fields"> Correo </label>
                             <input type="email" class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
-                            name="Correo" id="Correo" value="{{old('Correo')}}">
+                            name="Correo" id="Correo" value="{{old('Correo')}}" placeholder='ejm@gg.co'>
                             @if($errors->has('Correo'))
                             <span class="text-danger">{{$errors->first('Correo')}}</span>
                             @endif
@@ -61,7 +61,7 @@
                         <div>
                             <label for="Contraseña" class="form-fields"> Contraseña </label>
                             <input type="password" class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
-                            name="Contraseña" id="Contraseña" value="{{old('Contraseña')}}">
+                            name="Contraseña" id="Contraseña" value="{{old('Contraseña')}}" placeholder='contraseña01'>
                             @if($errors->has('Contraseña'))
                             <span class="text-danger">{{$errors->first('Contraseña')}}</span>
                             @endif
@@ -70,7 +70,7 @@
 
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Direccion" class="form-fields"> Direccion </label>
+                            <label for="Direccion" class="form-fields"> Dirección </label>
                             <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
                             name="Direccion" id="Direccion" value="{{old('Direccion')}}">
                             @if($errors->has('Direccion'))
@@ -82,7 +82,7 @@
 
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Telefono" class="form-fields"> Telefono </label>
+                            <label for="Telefono" class="form-fields"> Teléfono </label>
                             <input type="tel" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
                             name="Telefono" id="Telefono" value="{{old('Telefono')}}"  pattern='[2,3,7,8,9]\d{3}\d{4}'
                             placeholder='debe iniciar con 2,3,7,8 o 9'>
