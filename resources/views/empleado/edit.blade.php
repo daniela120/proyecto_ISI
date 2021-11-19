@@ -91,7 +91,7 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="IdUsuario" class="form-fields"> Id Usuario</label>
-                                <select name="Id_Turno" id="Id_Turno" class="form-control" >
+                                <select name="Id_Usuario" id="Id_Usuario" class="form-control" >
                                    
                                 @foreach($users as $user)
 
