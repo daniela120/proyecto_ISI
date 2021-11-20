@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoriasRequest extends FormRequest
+class TipodocumentosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class CategoriasRequest extends FormRequest
     public function rules()
     {
         return [
-            'Categoria'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+[ ](?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
-            'Descripcion'=>['required','string','max:255','min:3','regex:/^[A-Z][a-z,á,é,í,ó,ú]+[ ][A-Z][a-z,á,é,í,ó,ú]+$/']
+            'TipoDocumento'=>['required','string','max:255','min:3','regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
+            'Descripcion'=>['required','string','max:255','min:3','regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/']
         ];
     }
 
@@ -44,4 +44,5 @@ public function withValidator($validator)
     
     
 }
+
 

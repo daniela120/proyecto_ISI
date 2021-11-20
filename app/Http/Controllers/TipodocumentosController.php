@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\tipodocumentos;
 use Illuminate\Http\Request;
+use App\Http\Requests\TipodocumentosRequest;
 
 class TipodocumentosController extends Controller
 {
@@ -35,7 +36,7 @@ class TipodocumentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipodocumentosRequest $request)
     {
         //
         $tipodocumentos = request()->except('_token');
@@ -74,7 +75,7 @@ class TipodocumentosController extends Controller
      * @param  \App\Models\tipodocumentos  $tipodocumentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(TipodocumentosRequest $request, $id)
     {
         //
         $tipodocumentos= request()->except(['_token','_method']);
