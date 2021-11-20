@@ -68,9 +68,9 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 form-group">
+                    <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Direccion" class="form-fields"> Dirección </label>
+                            <label for="Direccion" class="form-field"> Dirección </label>
                             <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
                             name="Direccion" id="Direccion" value="{{old('Direccion')}}">
                             @if($errors->has('Direccion'))
@@ -85,7 +85,7 @@
                             <label for="Telefono" class="form-fields"> Teléfono </label>
                             <input type="tel" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
                             name="Telefono" id="Telefono" value="{{old('Telefono')}}"  pattern='[2,3,7,8,9]\d{3}\d{4}'
-                            placeholder='debe iniciar con 2,3,7,8 o 9'>
+                            placeholder='Iniciar con 2,3,7,8 o 9'>
                             @if($errors->has('Telefono'))
                             <span class="text-danger">{{$errors->first('Telefono')}}</span>
                             @endif
