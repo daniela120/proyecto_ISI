@@ -17,7 +17,7 @@
                         <div>
                             <label for="NombreCompañia" class="form-fields"> Nombre Compañia </label>
                             <input type="text" class="form-control {{$errors->has('Categoria') ? 'is-invalid' : '' }}" 
-                            name="NombreCompañia" id="NombreCompañia">
+                            name="NombreCompañia" id="NombreCompañia" value="{{old('NombreCompañia')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('NombreCompañia'))
                                     <span class="text-danger">{{ $errors->first('NombreCompañia') }}</span>
                             @endif
@@ -28,7 +28,7 @@
                         <div>
                             <label for="NombreContacto" class="form-fields"> Nombre Contacto</label>
                             <input type="text" class="form-control {{$errors->has('NombreContacto') ? 'is-invalid' : '' }}"
-                             name="NombreContacto" id="NombreContacto">
+                             name="NombreContacto" id="NombreContacto" value="{{old('NombreContacto')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('NombreContacto'))
                                     <span class="text-danger">{{ $errors->first('NombreContacto') }}</span>
                             @endif
@@ -39,7 +39,7 @@
                         <div>
                             <label for="Telefono" class="form-fields">Teléfono</label>
                             <input type="text" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}"
-                             name="Telefono" id="Telefono">
+                             name="Telefono" id="Telefono" value="{{old('Telefono')}}" placeholder='Iniciar con 2,3,7,8 o 9'>
                             @if ($errors->has('Telefono'))
                                     <span class="text-danger">{{ $errors->first('Telefono') }}</span>
                             @endif
@@ -50,7 +50,7 @@
                         <div>
                             <label for="SitioWeb" class="form-fields"> Sitio Web</label>
                             <input type="text" class="form-control {{$errors->has('SitioWeb') ? 'is-invalid' : '' }}"
-                             name="SitioWeb" id="SitioWeb">
+                             name="SitioWeb" id="SitioWeb" value="{{old('SitioWeb')}}" placeholder='ejm.co' >
                             @if ($errors->has('SitioWeb'))
                                     <span class="text-danger">{{ $errors->first('SitioWeb') }}</span>
                             @endif
@@ -61,7 +61,7 @@
                         <div>
                             <label for="Direccion" class="form-fields">Direccción</label>
                             <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}"
-                             name="Direccion" id="Direccion">
+                             name="Direccion" id="Direccion" value="{{old('Direccion')}}" >
                             @if ($errors->has('Direccion'))
                                     <span class="text-danger">{{ $errors->first('Direccion') }}</span>
                             @endif
