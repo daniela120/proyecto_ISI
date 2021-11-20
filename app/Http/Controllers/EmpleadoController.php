@@ -8,6 +8,7 @@ use App\Models\cargoempleados;
 use App\Models\tipodocumentos;
 use App\Models\turnos;
 use App\Models\User;
+use App\HTTP\Requests\EmpleadoRequest;
 
 
 class EmpleadoController extends Controller
@@ -26,7 +27,7 @@ class EmpleadoController extends Controller
 
         $cargos=cargoempleados::all();
         
-        $empleados=Empleado::paginate(10);
+        $empleados=Empleado::paginate(15);
 
         $documentos=tipodocumentos::all();
         return view('empleado.Empleadoindex')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
@@ -51,7 +52,7 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpleadoRequest $request)
     {
         $empleado=request()->except('_token');
         Empleado::insert($empleado);
@@ -93,7 +94,7 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update(EmpleadoRequest $request,  $id)
     {
 
         $users=User::all();   
