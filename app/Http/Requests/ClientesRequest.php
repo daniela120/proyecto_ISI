@@ -25,8 +25,8 @@ class ClientesRequest extends FormRequest
     {
         return [
             //
-            'Nombre' =>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
-            'Apellido' =>['required', 'alpha', 'min:3', 'max:10' , 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
+            'Nombre' =>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[A-Z][a-z]+)(?:([\w\d*?!:;])\1?(?!\1))+$/'],
+            'Apellido' =>['required', 'alpha', 'min:3', 'max:10' , 'regex:/^(?=[A-Z][a-z]+)(?:([\w\d*?!:;])\1?(?!\1))+$/'],
             'Usuario' =>['required', 'string','min:5', 'max:25' ],
             'Correo' =>['required', 'string', 'email', 'regex:/[\w._%+-]{3,}+@[\w.-]+\.[a-zA-Z]{2,4}/' ],
             'Contraseña' =>['required', 'string','regex:/^[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*/'],
