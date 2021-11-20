@@ -25,6 +25,7 @@ class Estadoenvios extends FormRequest
     {
         return [
             //
+            'Nombre_Estado' =>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/']
         ];
     }
 }
