@@ -17,7 +17,7 @@
                         <div>
                             <label for="Categoria" class="form-fields"> Categoría </label>
                             <input type="text" class="form-control {{$errors->has('Categoria') ? 'is-invalid' : '' }}" 
-                            name="Categoria" id="Categoria">
+                            name="Categoria" id="Categoria" value="{{old('Categoria')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('Categoria'))
                                     <span class="text-danger">{{ $errors->first('Categoria') }}</span>
                             @endif
@@ -28,7 +28,7 @@
                         <div>
                             <label for="Descripcion" class="form-fields"> Descripción</label>
                             <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
-                             name="Descripcion" id="Descripcion">
+                             name="Descripcion" id="Descripcion" value="{{old('Descripcion')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('Descripcion'))
                                     <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
                             @endif
