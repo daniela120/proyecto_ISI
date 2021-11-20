@@ -133,7 +133,7 @@ Route::resource('empleado',EmpleadoController::class);
 Route::get('/login', function () {
     return view('auth.login');
 });
-/** 
+/*
 Route::resource('empleado', EmpleadoController::class)->middleware('auth');
 Auth::routes(['reset'=>false]);
 
