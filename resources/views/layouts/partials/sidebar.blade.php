@@ -51,7 +51,7 @@
                 <a class="collapse-item" href="/clientes">
                     <i class="fas fa-id-card-alt"></i> Clientes
                 </a>
-                <a class="collapse-item" href="/empleado">
+                <a class="collapse-item" href="/proveedores">
                      <i class="fas fa-people-carry"></i> Proveedores
                 </a>
                 <a class="collapse-item" href="/documentos">

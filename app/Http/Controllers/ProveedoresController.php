@@ -77,9 +77,12 @@ class ProveedoresController extends Controller
      * @param  \App\Models\proveedores  $proveedores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, proveedores $proveedores)
+    public function update(ProveedoresRequest $request, $id)
     {
-        //
+        $Proveedores= request()->except(['_token','_method']);
+        Proveedores::where('id','=',$id)->update($Proveedores);
+        alert()->success('Proveedor Actualizado correctamente');
+        return redirect()->route('proveedores.index');
     }
 
     /**
