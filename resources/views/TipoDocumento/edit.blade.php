@@ -17,15 +17,22 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Tipo Documento" class="form-fields"> Tipo de  Documento</label>
-                            <input type="text" value="{{old('TipoDocumento')}}" class="form-control" rows="3" name="TipoDocumento" id="TipoDocumento">
-                            
+                            <input type="text" value="{{old('TipoDocumento')}}" class="form-control {{$errors->has('TipoDocumento') ? 'is-invalid' : '' }}"
+                             rows="3" name="TipoDocumento" id="TipoDocumento" >
+                            @if ($errors->has('Descripcion'))
+                                    <span class="text-danger">{{ $errors->first('TipoDocumento') }}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Descripcion" class="form-fields"> Descripcion</label>
-                            <input type="text" value="{{old('Descripcion')}}" class="form-control" rows="3" name="Descripcion" id="Descripcion">
+                            <input type="text" value="{{old('Descripcion')}}" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
+                            rows="3" name="Descripcion" id="Descripcion">
+                            @if ($errors->has('Descripcion'))
+                                    <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
+                            @endif
                             
                         </div>
                     </div>
