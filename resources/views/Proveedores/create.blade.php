@@ -16,7 +16,7 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="NombreCompañia" class="form-fields"> Nombre Compañia </label>
-                            <input type="text" class="form-control {{$errors->has('Categoria') ? 'is-invalid' : '' }}" 
+                            <input type="text" class="form-control {{$errors->has('NombreCompañia') ? 'is-invalid' : '' }}" 
                             name="NombreCompañia" id="NombreCompañia" value="{{old('NombreCompañia')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('NombreCompañia'))
                                     <span class="text-danger">{{ $errors->first('NombreCompañia') }}</span>
