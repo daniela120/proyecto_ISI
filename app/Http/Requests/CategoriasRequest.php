@@ -24,8 +24,8 @@ class CategoriasRequest extends FormRequest
     public function rules()
     {
         return [
-            'Categoria'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+[ ](?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
-            'Descripcion'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+[ ](?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+$/']
+            'Categoria'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
+            'Descripcion'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:;])\1?(?!\1))+$/']
         ];
     }
 
