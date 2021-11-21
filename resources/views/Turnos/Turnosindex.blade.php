@@ -22,7 +22,7 @@
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Tipo de Turno</th> 
-                            <th class="text-center">Descripcion</th>  
+                            <th class="text-center">Descripción</th>  
                             <th class="text-center">Hora de entrada</th> 
                             <th class="text-center">Hora de salida</th>  
 

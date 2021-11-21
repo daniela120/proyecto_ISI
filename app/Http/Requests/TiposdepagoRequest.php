@@ -24,7 +24,7 @@ class TiposdepagoRequest extends FormRequest
     public function rules()
     {
         return [
-            'Nombre_Tipo_Pago'=>['required','string','max:255','min:3','regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/']
+            'Nombre_Tipo_Pago'=>['required','string','max:15','min:3','regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/']
         ];
     }
 

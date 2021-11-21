@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="NombreContacto" class="form-fields"> NombreContacto</label>
+                                <label for="NombreContacto" class="form-fields"> Nombre Contacto</label>
                                 <input type="text" value="{{old('NombreContacto')}}" class="form-control {{$errors->has('NombreContacto') ? 'is-invalid' : '' }}" 
                                 rows="3"  name="NombreContacto" id="NombreContacto">     
                                 @if ($errors->has('NombreContacto'))
@@ -43,7 +43,7 @@
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Telefono" class="form-fields">Teléfono</label>
-                            <input type="text" value="{{old('Telefono')}}" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}"
+                            <input type="text" value="{{old('Telefono')}}" pattern='[2,3,7,8,9]\d{3}\d{4}'  placeholder='Iniciar con 2,3,7,8 o 9' class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}"
                              name="Telefono" id="Telefono">
                             @if ($errors->has('Telefono'))
                                     <span class="text-danger">{{ $errors->first('Telefono') }}</span>

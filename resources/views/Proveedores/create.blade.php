@@ -39,7 +39,7 @@
                         <div>
                             <label for="Telefono" class="form-fields">Teléfono</label>
                             <input type="text" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}"
-                             name="Telefono" id="Telefono" value="{{old('Telefono')}}" placeholder='Iniciar con 2,3,7,8 o 9'>
+                             name="Telefono" id="Telefono" value="{{old('Telefono')}}" pattern='[2,3,7,8,9]\d{3}\d{4}' placeholder='Iniciar con 2,3,7,8 o 9'>
                             @if ($errors->has('Telefono'))
                                     <span class="text-danger">{{ $errors->first('Telefono') }}</span>
                             @endif
@@ -59,7 +59,7 @@
 
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Direccion" class="form-fields">Direccción</label>
+                            <label for="Direccion" class="form-fields">Dirección</label>
                             <input type="text" class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}"
                              name="Direccion" id="Direccion" value="{{old('Direccion')}}" >
                             @if ($errors->has('Direccion'))
