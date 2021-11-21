@@ -16,16 +16,20 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Tipo Turno" class="form-fields"> Tipo de  Turno</label>
-                            <input type="text" class="form-control" rows="3" name="TipoTurno" id="TipoTurno">
-                            
+                            <input type="text" class="form-control" rows="3" value="{{old('TipoTurno')}}" name="TipoTurno" id="TipoTurno">
+                            @if($errors->has('TipoTurno'))
+                            <span class="text-danger">{{$errors->first('TipoTurno')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Descripcion" class="form-fields"> Descripcion</label>
-                            <input type="text" class="form-control" rows="3" name="Descripcion" id="Descripcion">
-                            
+                            <input type="text" class="form-control" rows="3" value="{{old('Descripcion')}}" name="Descripcion" id="Descripcion">
+                            @if($errors->has('Descripcion'))
+                            <span class="text-danger">{{$errors->first('Descripcion')}}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -33,16 +37,20 @@
                 <div class="col-lg-12 form-group">
                         <div>
                             <label for="Hora Entrada" class="form-fields"> Hora de entrada</label>
-                            <input type="time" class="form-control" rows="3" name="HoraEntrada" id="HoraEntrada">
-                            
+                            <input type="time" class="form-control" rows="3" value="{{old('HoraEntrada')}}" name="HoraEntrada" id="HoraEntrada">
+                            @if($errors->has('HoraEntrada'))
+                            <span class="text-danger">{{$errors->first('HoraEntrada')}}</span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Hora Salida" class="form-fields"> Hora de salida</label>
-                            <input type="time" class="form-control" rows="3" name="HoraSalida" id="HoraSalida">
-                            
+                            <input type="time" class="form-control" rows="3" value="{{old('HoraSalida')}}" name="HoraSalida" id="HoraSalida">
+                            @if($errors->has('HoraSalida'))
+                            <span class="text-danger">{{$errors->first('HoraSalida')}}</span>
+                            @endif
                         </div>
                     </div>
                 

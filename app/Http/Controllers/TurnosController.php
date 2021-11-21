@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HTTP\Requests\TurnoRequest;
 use App\Models\turnos;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class TurnosController extends Controller
     public function create()
     {
         //
+        return view('turnos.create');
     }
 
     /**
@@ -35,7 +37,7 @@ class TurnosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TurnoRequest $request)
     {
         //
         $turnos = request()->except('_token');
@@ -74,7 +76,7 @@ class TurnosController extends Controller
      * @param  \App\Models\turnos  $turnos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TurnoRequest $request, $id)
     {
         //
         $turnos= request()->except(['_token','_method']);

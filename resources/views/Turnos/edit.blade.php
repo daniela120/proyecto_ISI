@@ -18,7 +18,9 @@
                         <div>
                             <label for="Tipo Turno" class="form-fields"> Tipo de  Turno</label>
                             <input type="text" value="{{old('TipoTurno')}}" class="form-control" rows="3" name="TipoTurno" id="TipoTurno">
-                            
+                            @if($errors->has('TipoTurno'))
+                            <span class="text-danger">{{$errors->first('TipoTurno')}}</span>
+                            @endif
                         </div>
                     </div>
 
@@ -26,7 +28,9 @@
                         <div>
                             <label for="Descripcion" class="form-fields"> Descripcion</label>
                             <input type="text" value="{{old('Descripcion')}}" class="form-control" rows="3" name="Descripcion" id="Descripcion">
-                            
+                            @if($errors->has('Descripcion'))
+                            <span class="text-danger">{{$errors->first('Descripcion')}}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -35,7 +39,9 @@
                         <div>
                             <label for="Hora Entrada" class="form-fields"> Hora de entrada</label>
                             <input type="time" value="{{old('HoraEntrada')}}"  class="form-control" rows="3" name="HoraEntrada" id="HoraEntrada">
-                            
+                            @if($errors->has('HoraEntrada'))
+                            <span class="text-danger">{{$errors->first('HoraEntrada')}}</span>
+                            @endif
                         </div>
                     </div>
 
@@ -43,7 +49,9 @@
                         <div>
                             <label for="Hora Salida" class="form-fields"> Hora de salida</label>
                             <input type="time" value="{{old('HoraSalida')}}" class="form-control" rows="3" name="HoraSalida" id="HoraSalida">
-                            
+                            @if($errors->has('HoraSalida'))
+                            <span class="text-danger">{{$errors->first('HoraSalida')}}</span>
+                            @endif
                         </div>
                     </div>
                 
