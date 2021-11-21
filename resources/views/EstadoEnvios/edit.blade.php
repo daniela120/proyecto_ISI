@@ -21,6 +21,9 @@
                             <div>
                                 <label for="Estado de envio"> Estado de envio </label>
                                 <input type="text" value="{{old('Nombre_Estado')}}" class="form-control" rows="3" name="Nombre_Estado" id="Nombre_Estado">   
+                                @if($errors->has('Nombre_Estado'))
+                                <span class="text-danger">{{$errors->first('Nombre_Estado')}}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

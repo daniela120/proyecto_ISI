@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','alpha'],
-            'email' =>['required','string']
+            'name' =>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[A-Z][a-z,á,é,í,ó,ú,ñ]+)(?:([\w\d*?!:;])\1?(?!\1))+$/'],
+            'email'  =>['required', 'string','unique:users', 'email', 'regex:/[\w._%+-]{3,}+@[\w.-]+\.[a-zA-Z]{2,4}/' ]
         ];
     }
     public function withvalidator($validator)

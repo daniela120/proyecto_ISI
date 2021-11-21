@@ -13,11 +13,13 @@
     <form action="{{ url('/estadoenvios') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                    <div class="col-lg-6 form-group">
+                    <div class="col-lg-12 form-group">
                         <div>
                             <label for="Estado de Envio" class="form-fields"> Estado de Envio </label>
                             <input type="text" class="form-control" name="Nombre_Estado" id="Nombre_Estado">
-                            
+                            @if($errors->has('Nombre_Estado'))
+                                <span class="text-danger">{{$errors->first('Nombre_Estado')}}</span>
+                                @endif
                         </div>
                     </div>
                     

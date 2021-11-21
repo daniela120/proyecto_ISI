@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\estadoenvios;
 use Illuminate\Http\Request;
+use App\HTTP\Requests\EstadoenviosRequest;
 
 class EstadoenviosController extends Controller
 {
@@ -36,7 +37,7 @@ class EstadoenviosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstadoenviosRequest $request)
     {
         //
         $estadoenvios= request()->except('_token');
@@ -74,7 +75,7 @@ class EstadoenviosController extends Controller
      * @param  \App\Models\estadoenvios  $estadoenvios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EstadoenviosRequest $request, $id)
     {
         //
         $Estadoenvios= request()->except(['_token','_method']);
