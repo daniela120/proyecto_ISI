@@ -26,7 +26,7 @@ class DescuentosRequest extends FormRequest
         return [
             //
             'Descripcion'=>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:; ])\1?(?!\1))+$/'],
-            'ValorDescuento' =>['required','min:2', 'max:5', 'regex:/^[0][.][0-9]/']
+            'ValorDescuento' =>['required','min:2', 'max:4', 'regex:/^[0][.][0-9]/']
         ];
     }
     public function withValidator($validator)

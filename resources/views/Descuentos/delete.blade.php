@@ -12,9 +12,11 @@
 
              <!-- campos(labels y textbox)-->
             <div class="modal-body">
-                <form action="" role="form" method="POST" id="deleteDescuentoFrm" enctype="multipart/form-data">
+            @foreach($Descuentos as $Descuentos)
+                <form action="{{url('/descuentos/'.$Descuentos->id)}}" role="form" method="POST" id="deleteDescuentoFrm" enctype="multipart/form-data">
                 @method('DELETE')
                     {{csrf_field()}}
+            @endforeach        
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
