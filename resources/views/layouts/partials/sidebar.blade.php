@@ -60,6 +60,7 @@
                 <a class="collapse-item" href="/cargoempleados">
                      <i class="fas fa-align-justify"></i> Cargo
                 </a>
+                
             </div>
         </div>
     </li>
@@ -87,7 +88,9 @@
                 <a class="collapse-item" href="/empleado">
                     <i class="fas fa-boxes"></i> Productos
                 </a>
-            
+                <a class="collapse-item" href="/descuentos">
+                     <i class="fas fa-align-justify"></i> Descuento
+                </a>
             </div>
         </div>
     </li>

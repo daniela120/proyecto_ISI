@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\descuentos;
 use Illuminate\Http\Request;
+use App\Http\Requests\DescuentosRequest;
 
 class DescuentosController extends Controller
 {
@@ -15,6 +16,8 @@ class DescuentosController extends Controller
     public function index()
     {
         //
+        $datos['Descuentos']=Descuentos::paginate(10);
+        return view('descuentos.index',$datos);
     }
 
     /**
@@ -33,9 +36,14 @@ class DescuentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DescuentosRequest $request)
     {
         //
+        $Descuentos = request()->except('_token');
+        Descuentos::insert($Descuentos);
+        alert()->success('Descuento guardado correctamente');
+        
+        return redirect()->route('descuentos.index');
     }
 
     /**
@@ -67,9 +75,13 @@ class DescuentosController extends Controller
      * @param  \App\Models\descuentos  $descuentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, descuentos $descuentos)
+    public function update(DescuentosRequest $request, $id)
     {
         //
+        $Descuentos= request()->except(['_token','_method']);
+        Descuentos::where('id','=',$id)->update($Descuentos);
+        alert()->success('Descuento Actualizado correctamente');
+        return redirect()->route('descuentos.index');
     }
 
     /**
@@ -78,8 +90,11 @@ class DescuentosController extends Controller
      * @param  \App\Models\descuentos  $descuentos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(descuentos $descuentos)
+    public function destroy($id)
     {
         //
+        Descuentos::destroy($id);
+        alert()->success('Descuento Eliminado correctamente');
+        return redirect('descuentos');
     }
 }
