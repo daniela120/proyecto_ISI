@@ -85,7 +85,7 @@
                 <a class="collapse-item" href="/categorias">
                      <i class="fas fa-project-diagram"></i> Categorias
                 </a>
-                <a class="collapse-item" href="/empleado">
+                <a class="collapse-item" href="/inventarios">
                     <i class="fas fa-boxes"></i> Productos
                 </a>
                 <a class="collapse-item" href="/descuentos">
