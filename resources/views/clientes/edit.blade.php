@@ -87,7 +87,7 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Direccion"> Direccion </label>
+                                <label for="Direccion"> Dirección </label>
                                 <input type="text" value="{{old('Direccion')}}" 
                                 class="form-control {{$errors->has('Direccion') ? 'is-invalid' : '' }}" 
                                 rows="3" name="Direccion" id="Direccion">
@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Telefono" > Telefono </label>
+                                <label for="Telefono" > Teléfono </label>
                                 <input type="numeric" value="{{old('Telefono')}}" 
                                 class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}" 
                                 rows="3"  name="Telefono" id="Telefono" pattern='[2,3,7,8,9]\d{3}\d{4}'

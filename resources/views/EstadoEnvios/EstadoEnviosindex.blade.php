@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Estados de Envio </span>
+    <span>Estados de Envío </span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>

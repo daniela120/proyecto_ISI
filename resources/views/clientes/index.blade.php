@@ -28,8 +28,8 @@
                             <th class="text-center">Usuario</th>   
                             <th class="text-center">Correo</th>   
                             <th class="text-center">Contraseña</th>  
-                            <th class="text-center">Direccion</th>   
-                            <th class="text-center">Telefono</th>   
+                            <th class="text-center">Dirección</th>   
+                            <th class="text-center">Teléfono</th>   
                             <th class="text-center">Fecha Nacimiento</th>      
                         </tr>
                     </thead>
