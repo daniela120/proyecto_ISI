@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\inventarios;
+use App\Models\proveedores;
+use App\Models\categorias;
 use Illuminate\Http\Request;
+use App\HTTP\Requests\InventarioRequestt;
 
 class InventariosController extends Controller
 {
@@ -14,6 +17,11 @@ class InventariosController extends Controller
      */
     public function index()
     {
+
+        $inventarios=inventarios::paginate(15);
+        $proveedores=proveedores::all();
+        $categorias=categorias::all();
+        return view('inventarios.Inventariosindex')->withInventarios($inventarios)->withProveedores($proveedores)->withCategorias($categorias);
         //
     }
 
@@ -25,6 +33,7 @@ class InventariosController extends Controller
     public function create()
     {
         //
+        return view('inventarios.create');
     }
 
     /**
@@ -33,9 +42,13 @@ class InventariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InventarioRequestt $request)
     {
         //
+        $inventarios=request()->except('_token');
+        inventarios::insert($inventarios);
+        alert()->success('Guardado correctamente en inventario');
+        return redirect()->route('inventarios.index');
     }
 
     /**
@@ -58,6 +71,7 @@ class InventariosController extends Controller
     public function edit(inventarios $inventarios)
     {
         //
+       
     }
 
     /**
@@ -67,8 +81,16 @@ class InventariosController extends Controller
      * @param  \App\Models\inventarios  $inventarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, inventarios $inventarios)
+    public function update(InventarioRequestt $request, $id)
     {
+        //
+        $proveedores=proveedores::all();
+        $categorias=categorias::all();
+        $inventarios= request()->except(['_token','_method']);
+        
+        inventarios::where('id','=',$id )->update($inventarios);
+        alert()->success('Inventario Actualizado correctamente');
+        return redirect()->route('inventarios.index')->withProveedores($proveedores)->withInventarios($inventarios)->withCategorias($categorias);
         //
     }
 
@@ -78,8 +100,11 @@ class InventariosController extends Controller
      * @param  \App\Models\inventarios  $inventarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventarios $inventarios)
+    public function destroy($id)
     {
         //
+        inventarios::destroy($id);
+        alert()->success('Producto Eliminado correctamente de inventario');
+        return redirect('inventarios');
     }
 }

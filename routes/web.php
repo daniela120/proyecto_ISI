@@ -12,6 +12,8 @@ use App\Http\Controllers\CargoempleadosController;
 use App\Http\Controllers\EstadoenviosController;
 use App\Http\Controllers\TipodocumentosController;
 use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\InventariosController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -124,6 +126,7 @@ Route::resource('estadoenvios', EstadoenviosController::class);
 //Route::resource('empleado', EmpleadoController::class);
 Route::resource('proveedores', ProveedoresController::class);
 Route::resource('empleado',EmpleadoController::class);
+Route::resource('inventarios',InventariosController::class);
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
 
