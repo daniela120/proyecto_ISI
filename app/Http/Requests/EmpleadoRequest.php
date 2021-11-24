@@ -33,7 +33,7 @@ class EmpleadoRequest extends FormRequest
             
             'Nombre'=>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
             'Apellido'=>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
-            'FechaNacimiento'=>['required', 'before: -18 year '],
+            'FechaNacimiento'=>['required', 'before: -18 years '],
             'FechaContratacion'=>['required','before: tomorrow','after: 01-01-2015' ],
             'Direccion'=>['required', 'string', 'min:7'],
             'Id_Cargo'=>['required'],

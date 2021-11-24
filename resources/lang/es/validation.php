@@ -129,9 +129,12 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+    'values' => [
+        'FechaContratacion' => [
+            'tomorrow' => ' mañana',
+        ],
+        'FechaNacimiento' => [
+            'years' => 'años',
         ],
     ],
     
