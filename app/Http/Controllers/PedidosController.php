@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\tiposdepago;
 use App\Models\clientes;
+use App\HTTP\Requests\PedidosRequest;
 
 use DB;
 
@@ -38,7 +39,7 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pedidos.create');
     }
 
     /**
@@ -47,9 +48,12 @@ class PedidosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PedidosRequest $request)
     {
-        //
+        $pedidos=request()->except('_token');
+        pedidos::insert($pedidos);
+        alert()->success('Pedido guardado correctamente');
+        return redirect()->route('pedidos.index');
     }
 
     /**

@@ -4,7 +4,7 @@
 
     <span>Pedidos </span>
     
-    <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
+    <a href="/pedidos/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
     </a>
 
@@ -30,6 +30,12 @@
                         @foreach($pedidos as $pedidos)
                         <tr>
                         <td>
+                            
+                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
+                                onclick="">
+                                     <i class="fas fa-eye"></i>
+                                </a>
+
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="">
                                     <i class="far fa-edit"></i>

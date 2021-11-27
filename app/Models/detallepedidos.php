@@ -11,11 +11,11 @@ class detallepedidos extends Model
 
     protected $table = "detallepedidos";
 
-    protected $primaryKey='id_pedido';
+  
 
     protected $fillable = [
 
-        'id_detallepedido',
+      
         'id_pedido',
         'id_producto',
         'Cantidad',
