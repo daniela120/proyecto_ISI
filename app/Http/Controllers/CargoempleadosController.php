@@ -16,6 +16,14 @@ class CargoempleadosController extends Controller
     public function index()
     {
         //
+        try {
+            //code...
+            $datos['cargoempleados']=cargoempleados::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
         $datos['cargoempleados']=cargoempleados::paginate(10);
         return view('cargoempleados.cargoempleadosindex',$datos);
     }
@@ -42,8 +50,16 @@ class CargoempleadosController extends Controller
     public function store(CargosRequest $request)
     {
         //
-        $cargoempleados = request()->except('_token');
-        cargoempleados::insert($cargoempleados);
+        try {
+            //code...
+            $cargoempleados = request()->except('_token');
+            cargoempleados::insert($cargoempleados);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Cargo guardada correctamente');
         
         return redirect()->route('cargoempleados.index');
@@ -81,8 +97,16 @@ class CargoempleadosController extends Controller
     public function update(CargosRequest $request, $id)
     {
         //
-        $cargoempleados= request()->except(['_token','_method']);
-        cargoempleados::where('id','=',$id)->update($cargoempleados);
+        try {
+            //code...
+            $cargoempleados= request()->except(['_token','_method']);
+            cargoempleados::where('id','=',$id)->update($cargoempleados);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Cargo Actualizada correctamente');
         return redirect()->route('cargoempleados.index');
     }
@@ -96,7 +120,14 @@ class CargoempleadosController extends Controller
     public function destroy($id)
     {
         //
-        cargoempleados::destroy($id);
+        try {
+            //code...
+            cargoempleados::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+       
         alert()->success('Cargo Eliminada correctamente');
         return redirect('cargoempleados');
     }

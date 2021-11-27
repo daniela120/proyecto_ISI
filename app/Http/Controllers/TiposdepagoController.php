@@ -14,7 +14,15 @@ class TiposdepagoController extends Controller
      */
     public function index()
     {
-        $datos['tiposdepago']=tiposdepago::paginate(10);
+        try {
+            //code...
+            $datos['tiposdepago']=tiposdepago::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         return view('TipoPagos.pagosindex',$datos);
     }
 
@@ -36,8 +44,16 @@ class TiposdepagoController extends Controller
      */
     public function store(TiposdepagoRequest $request)
     {
-        $tiposdepago = request()->except('_token');
-        tiposdepago::insert($tiposdepago);
+        try {
+            //code...
+            $tiposdepago = request()->except('_token');
+            tiposdepago::insert($tiposdepago);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Tipo de Pago guardado correctamente');
         
         return redirect()->route('pagos.index');
@@ -74,8 +90,16 @@ class TiposdepagoController extends Controller
      */
     public function update(TiposdepagoRequest $request, $id)
     {
-        $tiposdepago= request()->except(['_token','_method']);
-        tiposdepago::where('id','=',$id)->update($tiposdepago);
+        try {
+            //code...
+            $tiposdepago= request()->except(['_token','_method']);
+            tiposdepago::where('id','=',$id)->update($tiposdepago);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Tipo de Pagos Actualizada correctamente');
         return redirect()->route('pagos.index');
     }
@@ -88,7 +112,15 @@ class TiposdepagoController extends Controller
      */
     public function destroy($id)
     {
-        tiposdepago::destroy($id);
+        try {
+            //code...
+            tiposdepago::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+      
         alert()->success('Tipo de Pago Eliminado correctamente');
         return redirect('pagos');
     }

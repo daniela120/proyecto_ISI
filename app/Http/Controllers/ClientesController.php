@@ -16,7 +16,15 @@ class ClientesController extends Controller
     public function index()
     {
         //
-        $datos['cliente']= clientes::paginate(10);
+        try {
+            //code...
+            $datos['cliente']= clientes::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         return view('clientes.index',$datos);
     }
 
@@ -40,10 +48,17 @@ class ClientesController extends Controller
     public function store(ClientesRequest $request)
     {
         //
+        try {
+            //code...
+            $Clientes = request()->except('_token');
+            clientes::insert($Clientes);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
         
-        
-        $Clientes = request()->except('_token');
-        clientes::insert($Clientes);
+       
         alert()->success('Cargo guardada correctamente');
         return redirect()->route('clientes.index');
     }
@@ -86,8 +101,16 @@ class ClientesController extends Controller
     {
             
         //
-        $Clientes = request()->except(['_token','_method']);
-        clientes::where('id','=',$id)->update($Clientes);
+        try {
+            //code...
+            $Clientes = request()->except(['_token','_method']);
+            clientes::where('id','=',$id)->update($Clientes);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Cliente Actualizada correctamente');
         return redirect()->route('clientes.index');
     }
@@ -101,7 +124,15 @@ class ClientesController extends Controller
     public function destroy($id)
     {
         //
-        clientes::destroy($id);
+        try {
+            //code...
+            clientes::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Categoria Eliminada correctamente');
         return redirect('clientes');
     }

@@ -21,15 +21,24 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $users=User::all();   
 
-        $turnos=turnos::all();
+        try {
+            //code...
+            $users=User::all();   
 
-        $cargos=cargoempleados::all();
-        
-        $empleados=Empleado::paginate(15);
+            $turnos=turnos::all();
+    
+            $cargos=cargoempleados::all();
+            
+            $empleados=Empleado::paginate(15);
+    
+            $documentos=tipodocumentos::all();
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
 
-        $documentos=tipodocumentos::all();
+        }
+       
         return view('empleado.Empleadoindex')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
     }
 
@@ -54,8 +63,17 @@ class EmpleadoController extends Controller
      */
     public function store(EmpleadoRequest $request)
     {
-        $empleado=request()->except('_token');
-        Empleado::insert($empleado);
+
+        try {
+            //code...
+            $empleado=request()->except('_token');
+            Empleado::insert($empleado);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Empleado guardado correctamente');
         return redirect()->route('empleado.index');
       
@@ -81,7 +99,16 @@ class EmpleadoController extends Controller
     public function edit( Empleado $empleado)
     {
         //
-        $empleados=Empleado::findOrFail( $id);
+
+        try {
+            //code...
+            $empleados=Empleado::findOrFail( $id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
 
         return view('empleado.edit',compact('empleados'));
         
@@ -97,15 +124,24 @@ class EmpleadoController extends Controller
     public function update(EmpleadoRequest $request,  $id)
     {
 
-        $users=User::all();   
+        try {
+            //code...
+            $users=User::all();   
 
-        $turnos=turnos::all();
+            $turnos=turnos::all();
+    
+            $cargos=cargoempleados::all();
+            $documentos=tipodocumentos::all();
+            
+            $empleados= request()->except(['_token','_method']);
+            Empleado::where('id','=',$id)->update($empleados);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
 
-        $cargos=cargoempleados::all();
-        $documentos=tipodocumentos::all();
-        
-        $empleados= request()->except(['_token','_method']);
-        Empleado::where('id','=',$id)->update($empleados);
+        }
+
+       
         alert()->success('Empleado Actualizado correctamente');
         
       //  $empleados=Empleado::findOrFail( $id);
@@ -123,7 +159,16 @@ class EmpleadoController extends Controller
     public function destroy( $id)
     {
         //
-        Empleado::destroy($id);
+
+        try {
+            //code...
+            Empleado::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         alert()->success('Empleado Eliminado correctamente');
         return redirect('empleado');
     }

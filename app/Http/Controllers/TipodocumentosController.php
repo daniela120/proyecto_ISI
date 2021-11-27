@@ -16,7 +16,15 @@ class TipodocumentosController extends Controller
     public function index()
     {
         //tipodocumentos
-        $datos['tipodocumentos']=tipodocumentos::paginate(10);
+        try {
+            //code...
+            $datos['tipodocumentos']=tipodocumentos::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         return view('TipoDocumento.documentosindex',$datos);
     }
 
@@ -39,8 +47,16 @@ class TipodocumentosController extends Controller
     public function store(TipodocumentosRequest $request)
     {
         //
-        $tipodocumentos = request()->except('_token');
+        try {
+            //code...
+            $tipodocumentos = request()->except('_token');
         tipodocumentos::insert($tipodocumentos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         alert()->success('tipo documento guardado correctamente');
         
         return redirect()->route('documentos.index');
@@ -78,8 +94,16 @@ class TipodocumentosController extends Controller
     public function update(TipodocumentosRequest $request, $id)
     {
         //
-        $tipodocumentos= request()->except(['_token','_method']);
-        tipodocumentos::where('id','=',$id)->update($tipodocumentos);
+        try {
+            //code...
+            $tipodocumentos= request()->except(['_token','_method']);
+            tipodocumentos::where('id','=',$id)->update($tipodocumentos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Tipo de documento Actualizado correctamente');
         return redirect()->route('documentos.index');
     }
@@ -93,7 +117,15 @@ class TipodocumentosController extends Controller
     public function destroy($id)
     {
         //
-        tipodocumentos::destroy($id);
+        try {
+            //code...
+            tipodocumentos::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Tipo de documento Eliminado correctamente');
         return redirect('documentos');
     }

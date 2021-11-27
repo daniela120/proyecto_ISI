@@ -16,7 +16,15 @@ class DescuentosController extends Controller
     public function index()
     {
         //
-        $datos['Descuentos']=Descuentos::paginate(10);
+        try {
+            //code...
+            $datos['Descuentos']=Descuentos::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         return view('descuentos.index',$datos);
     }
 
@@ -39,8 +47,16 @@ class DescuentosController extends Controller
     public function store(DescuentosRequest $request)
     {
         //
-        $Descuentos = request()->except('_token');
-        Descuentos::insert($Descuentos);
+        try {
+            //code...
+            $Descuentos = request()->except('_token');
+            Descuentos::insert($Descuentos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Descuento guardado correctamente');
         
         return redirect()->route('descuentos.index');
@@ -78,8 +94,16 @@ class DescuentosController extends Controller
     public function update(DescuentosRequest $request, $id)
     {
         //
-        $Descuentos= request()->except(['_token','_method']);
-        Descuentos::where('id','=',$id)->update($Descuentos);
+        try {
+            //code...
+            $Descuentos= request()->except(['_token','_method']);
+            Descuentos::where('id','=',$id)->update($Descuentos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Descuento Actualizado correctamente');
         return redirect()->route('descuentos.index');
     }
@@ -93,7 +117,15 @@ class DescuentosController extends Controller
     public function destroy($id)
     {
         //
-        Descuentos::destroy($id);
+        try {
+            //code...
+            Descuentos::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Descuento Eliminado correctamente');
         return redirect('descuentos');
     }
