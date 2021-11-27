@@ -14,7 +14,7 @@ class CreateDescuentosTable extends Migration
     public function up()
     {
         Schema::create('descuentos', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_descuento');
             $table->string('Descripcion');
             $table->string('ValorDescuento');
             

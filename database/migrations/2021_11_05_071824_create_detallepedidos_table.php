@@ -14,10 +14,11 @@ class CreateDetallepedidosTable extends Migration
     public function up()
     {
         Schema::create('detallepedidos', function (Blueprint $table) {
-            $table->id();
-            $table->string('Id_Producto');
+            $table->id('id_detallepedido');
+            $table->integer('id_pedido');
+            $table->integer('id_producto');
             $table->integer('Cantidad');
-            $table->string('Id_Descuento');
+            $table->integer('descuento');
             $table->double('Total');
             
             $table->timestamps();
