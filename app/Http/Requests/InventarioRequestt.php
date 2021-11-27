@@ -26,6 +26,7 @@ class InventarioRequestt extends FormRequest
         return [
            'NombreInventario'=>['required','string','max:25','min:3','regex:/^(?=[A-Z ][ a-z,á,é,í,ó,ú ])(?:([ \w\d*?!:; ])\1?(?!\1))+$/'],
            'Id_Categoria'=>['required'],
+           'PrecioUnitario'=>['required','max:6','min:4'],
            'CantidadStock'=>['required','string','max:15','min:3','regex:/^(?=[A-Z ][ a-z,á,é,í,ó,ú ])(?:([  \w\d*?!:; ])\1?(?!\1))+$/'],
            'StockMin'=>['required','gte:10','lte:20'],
            'StockMax'=>['required','gte:20','lte:60'],
