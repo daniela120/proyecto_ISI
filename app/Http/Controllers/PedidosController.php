@@ -24,11 +24,11 @@ class PedidosController extends Controller
 
         $tiposdepago=tiposdepago::all();
 
-        $Clientes=clientes::all();
+        $clientes=clientes::all();
         
         $pedidos=pedidos::paginate(15);
 
-        return view('Pedidos.pedidosindex')->withEmpleado($empleados)->withTipoPagos($tiposdepago)->withClientes($Clientes)->withPedidos($pedidos);
+        return view('Pedidos.pedidosindex')->withEmpleado($empleados)->withTiposdepago($tiposdepago)->withClientes($clientes)->withPedidos($pedidos);
    
     }
 
@@ -39,7 +39,13 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        return view('Pedidos.create');
+        $empleados=Empleado::all();   
+
+        $tiposdepago=tiposdepago::all();
+
+        $clientes=clientes::all();
+
+        return view('Pedidos.create')->withEmpleado($empleados)->withTiposdepago($tiposdepago)->withClientes($clientes);
     }
 
     /**
