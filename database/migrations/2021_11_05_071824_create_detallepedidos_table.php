@@ -18,7 +18,7 @@ class CreateDetallepedidosTable extends Migration
             $table->integer('id_pedido');
             $table->string('Id_Producto');
             $table->integer('Cantidad');
-            $table->string('Id_Descuento');
+            $table->integer('descuento');
             $table->double('Total');
             
             $table->timestamps();

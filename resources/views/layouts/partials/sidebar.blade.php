@@ -113,7 +113,10 @@
         <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/pagos">
-                     <i class="fas fa-credit-card"></i>Tipo Pago
+                     <i class="fas fa-credit-card"></i> Tipo Pago
+                </a>
+                <a class="collapse-item" href="/pedidos">
+                     <i class="fas fa-cash-register"></i> Pedidos
                 </a>
             </div>
         </div>

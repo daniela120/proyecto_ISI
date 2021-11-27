@@ -14,7 +14,7 @@ class CreateComprasTable extends Migration
     public function up()
     {
         Schema::create('compras', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_compra');
             $table->date('Fecha');
             $table->string('HoraPedido');
             $table->string('HoraRecibido');

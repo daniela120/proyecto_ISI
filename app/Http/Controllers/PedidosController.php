@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\pedidos;
 use Illuminate\Http\Request;
+use App\Models\Empleado;
+use App\Models\tiposdepago;
+use App\Models\clientes;
+
+use DB;
 
 class PedidosController extends Controller
 {
@@ -14,7 +19,16 @@ class PedidosController extends Controller
      */
     public function index()
     {
-        //
+        $empleados=Empleado::all();   
+
+        $tiposdepago=tiposdepago::all();
+
+        $Clientes=clientes::all();
+        
+        $pedidos=pedidos::paginate(15);
+
+        return view('Pedidos.pedidosindex')->withEmpleado($empleados)->withTipoPagos($tiposdepago)->withClientes($Clientes)->withPedidos($pedidos);
+   
     }
 
     /**
