@@ -16,7 +16,15 @@ class EstadoenviosController extends Controller
     public function index()
     {
         //
-        $datos['Estadoenvios']=Estadoenvios::paginate(10);
+        try {
+            //code...
+            $datos['Estadoenvios']=Estadoenvios::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         return view('Estadoenvios.Estadoenviosindex',$datos);
     }
 
@@ -40,8 +48,16 @@ class EstadoenviosController extends Controller
     public function store(EstadoenviosRequest $request)
     {
         //
-        $estadoenvios= request()->except('_token');
+        try {
+            //code...
+            $estadoenvios= request()->except('_token');
         Estadoenvios::insert($estadoenvios);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         alert()->success('Estado de envio guardado correctamente');
         return redirect()->route('estadoenvios.index');
     }
@@ -78,8 +94,16 @@ class EstadoenviosController extends Controller
     public function update(EstadoenviosRequest $request, $id)
     {
         //
-        $Estadoenvios= request()->except(['_token','_method']);
-        Estadoenvios::where('id','=',$id)->update($Estadoenvios);
+        try {
+            //code...
+            $Estadoenvios= request()->except(['_token','_method']);
+            Estadoenvios::where('id','=',$id)->update($Estadoenvios);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Estado de envio Actualizado correctamente');
         return redirect()->route('estadoenvios.index');
     }
@@ -93,7 +117,15 @@ class EstadoenviosController extends Controller
     public function destroy($id)
     {
         //
-        Estadoenvios::destroy($id);
+        try {
+            //code...
+            Estadoenvios::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Estadoenvio Eliminado correctamente');
         return redirect('estadoenvios');
     }

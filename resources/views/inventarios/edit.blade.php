@@ -50,6 +50,16 @@
 
                         <div class="col-lg-6 form-group">
                             <div>
+                                <label for="PrecioUnitario" class="form-fields"> Precio Unitario </label>
+                                <input type="text" class="form-control"value="{{old('PrecioUnitario')}}" name="PrecioUnitario" id="PrecioUnitario">
+                                @if($errors->has('PrecioUnitario'))
+                            <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
+                            @endif
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 form-group">
+                            <div>
                                 <label for="CantidadStock" class="form-fields"> Cantidad Stock </label>
                                 <input type="text" class="form-control"value="{{old('CantidadStock')}}" name="CantidadStock" id="CantidadStock">
                                 @if($errors->has('CantidadStock'))

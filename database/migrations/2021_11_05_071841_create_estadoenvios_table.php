@@ -15,7 +15,7 @@ class CreateEstadoenviosTable extends Migration
     {
         Schema::create('estadoenvios', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre_Estado');
+            $table->string('Nombre_Estado')->unique();
 
             $table->timestamps();
         });

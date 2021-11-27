@@ -16,7 +16,15 @@ class TurnosController extends Controller
     public function index()
     {
         //
-        $datos['turnos']=turnos::paginate(10);
+        try {
+            //code...
+            $datos['turnos']=turnos::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         return view('Turnos.Turnosindex',$datos);
     }
 
@@ -40,8 +48,16 @@ class TurnosController extends Controller
     public function store(TurnoRequest $request)
     {
         //
-        $turnos = request()->except('_token');
-        turnos::insert($turnos);
+        try {
+            //code...
+            $turnos = request()->except('_token');
+            turnos::insert($turnos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+      
         alert()->success('Turno guardado correctamente');
         
         return redirect()->route('turnos.index');
@@ -79,8 +95,16 @@ class TurnosController extends Controller
     public function update(TurnoRequest $request, $id)
     {
         //
-        $turnos= request()->except(['_token','_method']);
-        turnos::where('id','=',$id)->update($turnos);
+        try {
+            //code...
+            $turnos= request()->except(['_token','_method']);
+            turnos::where('id','=',$id)->update($turnos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Turno Actualizado correctamente');
         return redirect()->route('turnos.index');
     }
@@ -94,7 +118,15 @@ class TurnosController extends Controller
     public function destroy($id)
     {
         //
-        turnos::destroy($id);
+        try {
+            //code...
+            turnos::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Turno Eliminado correctamente');
         return redirect('turnos');
     }

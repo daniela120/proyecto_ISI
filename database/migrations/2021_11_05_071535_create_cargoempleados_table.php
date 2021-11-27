@@ -15,7 +15,7 @@ class CreateCargoempleadosTable extends Migration
     {
         Schema::create('cargoempleados', function (Blueprint $table) {
             $table->id();
-            $table->string('Cargo');
+            $table->string('Cargo')->unique();
             $table->string('Descripcion');
             
             $table->timestamps();

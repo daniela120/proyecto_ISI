@@ -18,8 +18,8 @@ class CreateComprasTable extends Migration
             $table->date('Fecha');
             $table->string('HoraPedido');
             $table->string('HoraRecibido');
-            $table->integer('id_proveedor');
-           
+            $table->integer('Id_Proveedor');
+            $table->string('Descripcion_Compra');
             $table->timestamps();
         });
     }

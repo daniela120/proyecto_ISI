@@ -14,7 +14,14 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $datos['Categorias']=Categorias::paginate(10);
+        try {
+            //code...
+            $datos['Categorias']=Categorias::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+       
         return view('Categorias.categoriasindex',$datos);
     }
 
@@ -36,8 +43,20 @@ class CategoriasController extends Controller
      */
     public function store(CategoriasRequest $request)
     {
-        $Categorias = request()->except('_token');
+
+
+        try {
+            //code...
+            $Categorias = request()->except('_token');
         Categorias::insert($Categorias);
+        
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
+        
         alert()->success('Categoria guardada correctamente');
         
         return redirect()->route('categorias.index');
@@ -75,8 +94,17 @@ class CategoriasController extends Controller
      */
     public function update(CategoriasRequest $request, $id)
     {
-        $Categorias= request()->except(['_token','_method']);
-        Categorias::where('id','=',$id)->update($Categorias);
+
+        try {
+            //code...
+            $Categorias= request()->except(['_token','_method']);
+            Categorias::where('id','=',$id)->update($Categorias);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Categoria Actualizada correctamente');
         return redirect()->route('categorias.index');
     }
@@ -89,7 +117,16 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        Categorias::destroy($id);
+
+        try {
+            //code...
+            Categorias::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Categoria Eliminada correctamente');
         return redirect('categorias');
     }

@@ -23,6 +23,7 @@
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre Inventario</th>
                             <th class="text-center">Id Categoría</th>
+                            <th class="text-center">Precio Unitario</th>
                             <th class="text-center">Cantidad Stock</th>
                             <th class="text-center">Stock Actual</th>
                             <th class="text-center">Stock Min</th>
@@ -50,6 +51,7 @@
                                 <td>{{$inventarios->id}}</td>
                                 <td>{{$inventarios->NombreInventario}}</td>
                                 <td>{{$inventarios->Id_Categoria}}</td>
+                                <td>{{$inventarios->PrecioUnitario}}</td>
                                 <td>{{$inventarios->CantidadStock}}</td>
                                 <td>{{$inventarios->StockActual}}</td>
                                 <td>{{$inventarios->StockMin}}</td>
@@ -83,7 +85,8 @@
         function editinventarios(inventarios){
             $("#editInventariosFrm").attr('action',`/inventarios/${inventarios.id}`);
             $("#editInventariosFrm #NombreInventario").val(inventarios.NombreInventario);              
-            $("#editInventariosFrm #Id_Categoria").val(inventarios.Id_Categoria);    
+            $("#editInventariosFrm #Id_Categoria").val(inventarios.Id_Categoria);  
+            $("#editInventariosFrm #PrecioUnitario").val(inventarios.PrecioUnitario);   
             $("#editInventariosFrm #CantidadStock").val(inventarios.CantidadStock);    
             $("#editInventariosFrm #StockActual").val(inventarios.StockActual);    
             $("#editInventariosFrm #StockMin").val(inventarios.StockMin);    

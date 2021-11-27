@@ -136,6 +136,12 @@ Route::resource('pedidos',PedidosController::class);
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
 
 
+/**Route::get('errors', function(){ 
+    abort(500);
+});
+**/
+
+
 //Rutas Creadas por Andres
 
 Route::get('/login', function () {
