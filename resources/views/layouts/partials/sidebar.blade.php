@@ -91,6 +91,9 @@
                 <a class="collapse-item" href="/descuentos">
                      <i class="fas fa-align-justify"></i> Descuento
                 </a>
+                <a class="collapse-item" href="/precioinventario">
+                     <i class="fas fa-align-justify"></i> Precio historico inventario
+                </a>
             </div>
         </div>
     </li>

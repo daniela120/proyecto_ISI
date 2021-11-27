@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\precio_his_inventario;
 use Illuminate\Http\Request;
+use App\Models\Inventarios;
 
 class PrecioHisInventarioController extends Controller
 {
@@ -15,6 +16,9 @@ class PrecioHisInventarioController extends Controller
     public function index()
     {
         //
+        $precio_his_inventario=precio_his_inventario::paginate(10);
+        $inventarios=inventarios::all();
+        return view('precioinventario.index')->withprecioinventario($precio_his_inventario)->withInventarios($inventarios);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\inventarios;
 use App\Models\proveedores;
 use App\Models\categorias;
 use Illuminate\Http\Request;
+use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
 
 class InventariosController extends Controller
@@ -49,6 +50,22 @@ class InventariosController extends Controller
         inventarios::insert($inventarios);
         alert()->success('Guardado correctamente en inventario');
         return redirect()->route('inventarios.index');
+
+
+
+        //$precio_his_inventario=request()->except('_token');
+        //$inventarios = new precio_his_inventario;
+        /*$precio_his_inventario->Precio->=$request->input($inventario 'Precio') 
+        $precio_his_inventario->id_inventario=$request->input('id');
+        $precio_his_inventario->Precio=$request->get($inventarios->PrecioUnitario);
+        */
+        //$inventarios->PrecioUnitario=$request->input('Precio');
+
+        /*$precio_his_inventario = new inventario;
+        'id' =>$request->get('id');
+        'Precio' =>$request->get('PrecioUnitario');
+        */
+
     }
 
     /**
