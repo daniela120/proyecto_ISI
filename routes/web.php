@@ -17,7 +17,7 @@ use App\Http\Controllers\DescuentosController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\DetallePedidosController;
 use App\Http\Controllers\PrecioHisInventarioController;
-
+use App\Http\Controllers\ProductosController;
 Route::get('/', function () {
     return view('index');
 });
@@ -133,6 +133,7 @@ Route::resource('descuentos',DescuentosController::class);
 Route::resource('inventarios',InventariosController::class);
 Route::resource('pedidos',PedidosController::class);
 Route::resource('precioinventario',PrecioHisInventarioController::class);
+Route::resource('productos',ProductosController::class);
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\productos;
 use Illuminate\Http\Request;
+use App\Models\categorias;
+use App\HTTP\Requests\ProductoRequest;
 
 class ProductosController extends Controller
 {
@@ -15,6 +17,18 @@ class ProductosController extends Controller
     public function index()
     {
         //
+        try {
+            //code...
+            $productos=productos::paginate(15);
+            $categorias=categorias::all();
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('productos.productosindex')->withProductos($productos)->withCategorias($categorias);
+        //
     }
 
     /**
@@ -25,6 +39,7 @@ class ProductosController extends Controller
     public function create()
     {
         //
+        return view('productos.create');
     }
 
     /**
@@ -33,9 +48,21 @@ class ProductosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
         //
+        try {
+            //code...
+            $productos=request()->except('_token');
+            productos::insert($productos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        alert()->success('Guardado correctamente en Productos');
+        return redirect()->route('productos.index');
     }
 
     /**
@@ -67,8 +94,24 @@ class ProductosController extends Controller
      * @param  \App\Models\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, productos $productos)
+    public function update(ProductoRequest $request, $id)
     {
+        //
+        try {
+            //code...
+            $categorias=categorias::all();
+            $productos= request()->except(['_token','_method']);
+            
+            productos::where('id','=',$id )->update($productos);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        alert()->success('Producto Actualizado Correctamente');
+        return redirect()->route('productos.index')->withProductos($productos)->withCategorias($categorias);
+        
         //
     }
 
@@ -78,8 +121,19 @@ class ProductosController extends Controller
      * @param  \App\Models\productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(productos $productos)
+    public function destroy($id)
     {
         //
+        try {
+            //code...
+            productos::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        alert()->success('Producto Eliminado Correctamente');
+        return redirect('productos');
     }
 }

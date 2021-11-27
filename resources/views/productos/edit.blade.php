@@ -4,64 +4,80 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Editar Producto</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Editar Inventario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" role="form" method="POST" id="editUserFrm" enctype="multipart/form-data">
-                @method('PATCH')
-                    {{csrf_field()}}
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
+
+
+
+            @foreach($productos as $productos)
+                <form   method="POST"  action= "{{url('/productos/.$productos->id' )}} " role="form" id="editProductosFrm" enctype="multipart/form-data">
+                   @method('PUT')
+                    @csrf
+              @endforeach
+            
+             <div class="row">
+            <div class="col-lg-6 form-group">
                             <div>
-                            <label for="email" class="form-fields"> Email </label>
-                            <input type="text" value="{{old('email')}}" class="form-control" rows="3"  name="email" id="email">
-                            @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                            @endif    
-                        </div>
-                         </div>
-                    </div>
-                    
-                   <!-- <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <div>
-                            <label for="password" class="form-fields"> Contraseña </label>
-                            <input type="text" value="{{old('password')}}" class="form-control" rows="3"  name="password" id="password">
-                            @if ($errors->has('password'))
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
-                        </div>
-                    </div>
-                </div>-->
-                    
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <div>
-                                <label for="nombre"> Nombre </label>
-                                <input type="text" value="{{old('name')}}" class="form-control" rows="3" name="name" id="name">
-                                @if ($errors->has('name'))
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                <label for="NombreProducto" class="form-fields"> Nombre Producto </label>
+                                <input type="text" class="form-control" value="{{old('NombreProducto')}}"name="NombreProducto" id="NombreProducto">
+                                @if($errors->has('NombreProducto'))
+                            <span class="text-danger">{{$errors->first('NombreProducto')}}</span>
                             @endif
                             </div>
-                         </div>
-                    </div>
-                    
-                    
-                    <div class="buttons-form-submit d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" href="#" class="btn btn-primary">
+                        </div>
+
+                        <div class="col-lg-6 form-group">
+                        
+                            <div>
+                                <label for="IdCategoria" class="form-fields"> Id Categoria</label>
+                                <select name="id_Categoria" value="{{old('Id_Categoria')}}"id="id_Categoria" class="form-control" >
+                                   <option value="">Seleccione la categoría</option>
+                                @foreach(  $categorias as $categorias)
+                                    <option value="{{ $categorias['id'] }}">{{$categorias['Categoria'] }}</option>
+
+                                    @endforeach
+                                </select>
+                                @if($errors->has('id_Categoria'))
+                            <span class="text-danger">{{$errors->first('id_Categoria')}}</span>
+                            @endif
+                            </div>
+                        
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <div>
+                            <label for="Descripcion" class="form-fields"> Descripción</label>
+                            <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
+                             name="Descripcion" id="Descripcion" value="{{old('Descripcion')}}" placeholder='Primer letra en Mayuscula'>
+                            @if ($errors->has('Descripcion'))
+                                    <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
+                            @endif
+                            </div>
+                        </div>
+
+
+
+                       
+                </div>   
+                
+                <div class="buttons-form-submit d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" href="#" class="btn btn-primary">
                                 Guardar
                                 <i class="fas fa-spinner fa-spin d-none"></i>
-                                </button>
-            </div>
-            
+                    </button>
+                 </div>
 
-</form>
-            
-</div>
-</div>
+                       
+              
+
+
+                </form>
+                
+            </div>
         </div>
     </div>
+</div>

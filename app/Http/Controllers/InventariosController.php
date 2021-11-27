@@ -57,6 +57,12 @@ class InventariosController extends Controller
             //code...
             $inventarios=request()->except('_token');
             inventarios::insert($inventarios);
+            
+            $precio_his_inventario = precio_his_inventario::create([
+                'PrecioStock'=> $request->precio_his_inventario,
+            ]);
+            $precio_his_inventario->inventario()->save($inventario);
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
@@ -66,7 +72,7 @@ class InventariosController extends Controller
         alert()->success('Guardado correctamente en inventario');
         return redirect()->route('inventarios.index');
 
-
+        
 
         //$precio_his_inventario=request()->except('_token');
         //$inventarios = new precio_his_inventario;
