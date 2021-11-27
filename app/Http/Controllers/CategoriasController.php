@@ -36,6 +36,8 @@ class CategoriasController extends Controller
      */
     public function store(CategoriasRequest $request)
     {
+
+        
         $Categorias = request()->except('_token');
         Categorias::insert($Categorias);
         alert()->success('Categoria guardada correctamente');

@@ -15,6 +15,7 @@ class CreatePrecioHisComprasTable extends Migration
     {
         Schema::create('precio_his_compras', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_compra');
             $table->date('FechaInicio');
             $table->date('FechaFinal');
             $table->double('Precio');

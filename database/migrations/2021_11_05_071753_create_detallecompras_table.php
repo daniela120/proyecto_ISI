@@ -15,10 +15,11 @@ class CreateDetallecomprasTable extends Migration
     {
         Schema::create('detallecompras', function (Blueprint $table) {
             $table->id();
-            $table->string('Id_Inventario');
+            $table->integer('id_compra');
+            $table->integer('Id_Inventario');
             $table->double('Precio');
-            $table->double('Cantidad');
-            $table->double('Descuento');
+            $table->integer('Cantidad');
+            $table->integer('Descuento');
             $table->double('Total');
             $table->timestamps();
         });

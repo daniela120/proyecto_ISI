@@ -15,7 +15,14 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        $datos['Proveedores']=Proveedores::paginate(10);
+        try {
+            //code...
+            $datos['Proveedores']=Proveedores::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+       
         return view('Proveedores.proveedoresindex',$datos);
     }
 
@@ -37,13 +44,31 @@ class ProveedoresController extends Controller
      */
     public function store(ProveedoresRequest $request)
     {
-        $Proveedores = request()->except('_token');
-        Proveedores::insert($Proveedores);
+
+
+
+        try {
+            //code...
+            $Proveedores = request()->except('_token');
+            Proveedores::insert($Proveedores);
+        } catch (\Exception $exception) {
+            //throw $th;
+            //dd(get_class($exception));
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+       
+
+       
+
         alert()->success('Proveedor guardado correctamente');
+
+      
         
         return redirect()->route('proveedores.index');
         
     }
+
+   
 
     /**
      * Display the specified resource.
@@ -79,8 +104,17 @@ class ProveedoresController extends Controller
      */
     public function update(ProveedoresRequest $request, $id)
     {
-        $Proveedores= request()->except(['_token','_method']);
+        try {
+            //code...
+            $Proveedores= request()->except(['_token','_method']);
         Proveedores::where('id','=',$id)->update($Proveedores);
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
         alert()->success('Proveedor Actualizado correctamente');
         return redirect()->route('proveedores.index');
     }

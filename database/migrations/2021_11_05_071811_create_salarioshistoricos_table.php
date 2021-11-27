@@ -15,6 +15,7 @@ class CreateSalarioshistoricosTable extends Migration
     {
         Schema::create('salarioshistoricos', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_cargo');
             $table->date('FechaInicio');
             $table->date('FechaFinal');
             $table->double('Sueldo');

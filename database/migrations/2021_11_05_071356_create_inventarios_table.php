@@ -15,14 +15,15 @@ class CreateInventariosTable extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
-            $table->string('NombreInventario');
-            $table->string('Id_Categoria');
-            $table->string('CanidadStock');
-            $table->string('Descontinuado');
-            $table->string('Id_Proveedor');
-            $table->string('StockMax');
-            $table->string('StockMin');
-            $table->string('StockActual');
+            $table->string('NombreInventario')->unique();
+            $table->integer('Id_Categoria');
+            $table->integer('CantidadStock');
+            $table->integer('Descontinuado');
+            $table->integer('Id_Proveedor');
+            $table->double('PrecioUnitario');
+            $table->integer('StockMax');
+            $table->integer('StockMin');
+            $table->integer('StockActual');
             
             $table->timestamps();
         });
