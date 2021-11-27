@@ -18,10 +18,17 @@ class InventariosController extends Controller
      */
     public function index()
     {
+        try {
+            //code...
+            $inventarios=inventarios::paginate(15);
+            $proveedores=proveedores::all();
+            $categorias=categorias::all();
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
 
-        $inventarios=inventarios::paginate(15);
-        $proveedores=proveedores::all();
-        $categorias=categorias::all();
+        }
+       
         return view('inventarios.Inventariosindex')->withInventarios($inventarios)->withProveedores($proveedores)->withCategorias($categorias);
         //
     }
@@ -46,8 +53,16 @@ class InventariosController extends Controller
     public function store(InventarioRequestt $request)
     {
         //
-        $inventarios=request()->except('_token');
-        inventarios::insert($inventarios);
+        try {
+            //code...
+            $inventarios=request()->except('_token');
+            inventarios::insert($inventarios);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Guardado correctamente en inventario');
         return redirect()->route('inventarios.index');
 
@@ -101,11 +116,19 @@ class InventariosController extends Controller
     public function update(InventarioRequestt $request, $id)
     {
         //
-        $proveedores=proveedores::all();
-        $categorias=categorias::all();
-        $inventarios= request()->except(['_token','_method']);
-        
-        inventarios::where('id','=',$id )->update($inventarios);
+        try {
+            //code...
+            $proveedores=proveedores::all();
+            $categorias=categorias::all();
+            $inventarios= request()->except(['_token','_method']);
+            
+            inventarios::where('id','=',$id )->update($inventarios);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Inventario Actualizado correctamente');
         return redirect()->route('inventarios.index')->withProveedores($proveedores)->withInventarios($inventarios)->withCategorias($categorias);
         //
@@ -120,7 +143,15 @@ class InventariosController extends Controller
     public function destroy($id)
     {
         //
-        inventarios::destroy($id);
+        try {
+            //code...
+            inventarios::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
         alert()->success('Producto Eliminado correctamente de inventario');
         return redirect('inventarios');
     }

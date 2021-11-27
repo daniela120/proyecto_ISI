@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Pedidos </span>
+    <span> Pedido </span>
     
     <a href="/pedidos/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
@@ -10,11 +10,11 @@
 
 @endsection 
     @section('contenido')
-    
+   
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
-                <table id="dt-pedidos" class="table table-stripped table-bordered dts">
+            <table id="dt-pedidos" class="table table-stripped table-bordered dts">
                     <thead>
                     <tr>
                         <th class="text-center">Acciones</th>
@@ -59,7 +59,9 @@
               
     @endsection
 
-  
+    <!-- librerias 
+
+    -->
 @push('styles')
     <link rel="stylesheet" href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" >
 @endpush  
@@ -69,19 +71,50 @@
 
     <!-- funcion editEstadoEnvio para pasar parametros y editar-->
 
-   <!---->
+   <!----
     <script>    
-        
+        function editinventarios(inventarios){
+            $("#editInventariosFrm").attr('action',`/inventarios/${inventarios.id}`);
+            $("#editInventariosFrm #NombreInventario").val(inventarios.NombreInventario);              
+            $("#editInventariosFrm #Id_Categoria").val(inventarios.Id_Categoria);  
+            $("#editInventariosFrm #PrecioUnitario").val(inventarios.PrecioUnitario);   
+            $("#editInventariosFrm #CantidadStock").val(inventarios.CantidadStock);    
+            $("#editInventariosFrm #StockActual").val(inventarios.StockActual);    
+            $("#editInventariosFrm #StockMin").val(inventarios.StockMin);    
+            $("#editInventariosFrm #StockMax").val(inventarios.StockMax);    
+            $("#editInventariosFrm #Id_Proveedor").val(inventarios.Id_Proveedor);    
+            $("#editInventariosFrm #Descontinuado").val(inventarios.Descontinuado);   
+              
              
 
         } 
     </script>
-   
+    -->
     
-     <!-- funcion deleteCategoria para pasar parametros y eliminar-->
+     <!-- funcion deleteCategoria para pasar parametros y eliminar
      <script>    
 
-
+function deleteinventarios(inventarios){
+    $("#deleteInventariosFrm").attr('action',`/inventarios/${inventarios.id}`);
            
 } 
 </script>
+-->
+<!-- para validaciones
+@if(!$errors->isEmpty())
+@if($errors->has('post'))
+    <script>
+        $(function () {
+            $('#createMdl').modal('show');
+        });
+    </script>   
+@else
+<script>
+        $(function () {
+            $('#editMdl').modal('show');
+        });
+    </script>
+@endif
+@endif
+-->
+@endpush
