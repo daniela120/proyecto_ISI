@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class isv extends Model
 {
     use HasFactory;
+    protected $table = "isvs";
+
+    protected $fillable = [
+
+        'Descripcion',
+        'isv'
+        
+    ];
 }
