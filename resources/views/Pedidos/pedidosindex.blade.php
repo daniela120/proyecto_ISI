@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span> Pedido </span>
+    <span> Pedidos </span>
     
     <a href="/pedidos/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
@@ -16,8 +16,8 @@
             <div class=card-body>
             <table id="dt-pedidos" class="table table-stripped table-bordered dts">
                     <thead>
-                    <tr>
-                        <th class="text-center">Acciones</th>
+                        <tr>
+                            <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Empleado</th>
                             <th class="text-center">Fecha de Nacimiento</th>
@@ -45,7 +45,7 @@
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{$pedidos->id_pedido}}</td>
+                                <td>{{$pedidos->id_pedido}}</td>
                                 <td>{{$pedidos->id_empleado}}</td>
                                 <td>{{$pedidos->Fecha}}</td>
                                 <td>{{$pedidos->id_tipo_de_pago}}</td>

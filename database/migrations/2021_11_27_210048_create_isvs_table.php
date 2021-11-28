@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProveedoresTable extends Migration
+class CreateIsvsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateProveedoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('proveedores', function (Blueprint $table) {
+        Schema::create('isvs', function (Blueprint $table) {
             $table->id();
-            $table->string('NombreCompania')->unique();
-            $table->string('NombreContacto');
-            $table->string('Telefono');
-            $table->string('SitioWeb');
-            $table->string('Direccion');
+            $table->string('Descripcion');
+            $table->string('isv');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateProveedoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proveedores');
+        Schema::dropIfExists('isvs');
     }
 }
