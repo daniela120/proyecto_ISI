@@ -43,10 +43,20 @@
                                 @foreach(  $categorias as $categorias)
                                     <option value="{{ $categorias['id'] }}">{{$categorias['Categoria'] }}</option>
 
-                                    @endforeach
+                                    @endforeach 
                                 </select>
                                 @if($errors->has('id_Categoria'))
                             <span class="text-danger">{{$errors->first('id_Categoria')}}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <div>
+                            <label for="Precio" class="form-fields"> Precio</label>
+                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' : '' }}"
+                             name="Precio" id="Precio" value="{{old('Precio')}}" placeholder=''>
+                            @if ($errors->has('Precio'))
+                                    <span class="text-danger">{{ $errors->first('Precio') }}</span>
                             @endif
                         </div>
                     </div>

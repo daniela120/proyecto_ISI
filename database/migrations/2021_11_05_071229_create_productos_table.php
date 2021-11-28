@@ -18,6 +18,7 @@ class CreateProductosTable extends Migration
             $table->string('NombreProducto')->unique();
             $table->string('Descripcion');
             $table->string('id_Categoria');
+            $table->double('Precio');
             
             $table->timestamps();
         });

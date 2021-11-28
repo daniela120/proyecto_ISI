@@ -23,7 +23,8 @@
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre Producto</th>                      
                             <th class="text-center">Descripcion</th>
-                            <th class="text-center">id_Categoria</th>      
+                            <th class="text-center">id_Categoria</th>
+                            <th class="text-center">Precio</th>    
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +44,8 @@
                             <td>{{$productos->id}}</td>
                             <td>{{$productos->NombreProducto}}</td>
                             <td>{{$productos->Descripcion}}</td>
-                            <td>{{$productos->id_Categoria}}</td> 
+                            <td>{{$productos->id_Categoria}}</td>
+                            <td>{{$productos->Precio}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -69,7 +71,7 @@
             $("#editProductosFrm #NombreProducto").val(productos.NombreProducto);  
             $("#editProductosFrm #Descripcion").val(productos.Descripcion);     
             $("#editProductosFrm #id_Categoria").val(productos.id_Categoria);
-            
+            $("#editProductosFrm #Precio").val(productos.Precio);
         } 
     </script>
     

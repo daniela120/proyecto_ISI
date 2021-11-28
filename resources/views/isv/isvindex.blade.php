@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Tipo de Documento</span>
+    <span>ISV</span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
@@ -10,9 +10,9 @@
 
 @endsection
     @section('contenido')
-    @include('TipoDocumento.create')
-    @include('TipoDocumento.edit')
-    @include('TipoDocumento.delete')
+    @include('isv.create')
+    @include('isv.edit')
+    @include('isv.delete')
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
@@ -20,28 +20,28 @@
                     <thead>
                         <tr>
                             <th class="text-center">Acciones</th>
-                            <th class="text-center">Id </th>
-                            <th class="text-center">Tipo de Documento</th> 
-                            <th class="text-center">Descripcion</th>                             
+                            <th class="text-center">id</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">isv</th>                             
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($tipodocumentos as $tipodocumentos)
+                        @foreach($isv as $isv)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick="edittipodocumentos({{$tipodocumentos}})">
+                                 onclick="editIsv({{$isv}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deletetipodocumentos({{$tipodocumentos}})">
+                                onclick="deleteIsv({{$isv}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{$tipodocumentos->id}}</td>
-                            <td>{{$tipodocumentos->TipoDocumento}}</td> 
-                            <td>{{$tipodocumentos->Descripcion}}</td>        
+                            <td>{{$isv->id}}</td>
+                            <td>{{$isv->Descripcion}}</td> 
+                            <td>{{$isv->isv}}</td>        
                         </tr>
                         @endforeach
                     </tbody>
@@ -61,17 +61,17 @@
 
     <!-- funcion editCategoria para pasar parametros y editar-->
     <script>    
-        function edittipodocumentos(tipodocumentos){
-            $("#editTipoDocumentoForm").attr('action',`/documentos/${tipodocumentos.id}`);
-            $("#editTipoDocumentoForm #TipoDocumento").val(tipodocumentos.TipoDocumento); 
-            $("#editTipoDocumentoForm #Descripcion").val(tipodocumentos.Descripcion);
+        function editIsv(isv){
+            $("#editIsvForm").attr('action',`/isv/${isv.id}`);
+            $("#editIsvForm #Descripcion").val(isv.Descripcion); 
+            $("#editIsvForm #isv").val(isv.isv);
         } 
     </script>
 
     <!--DELETE -->
     <script>    
-        function deletetipodocumentos(tipodocumentos){
-        $("#deleteTipoDocumentoFrm").attr('action',`/documentos/${tipodocumentos.id}`);      
+        function deleteIsv(isv){
+        $("#deleteIsvFrm").attr('action',`/isv/${isv.id}`);      
     } 
     </script>
     

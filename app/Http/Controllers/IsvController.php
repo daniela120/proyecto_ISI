@@ -15,6 +15,16 @@ class IsvController extends Controller
     public function index()
     {
         //
+        try {
+            //code...
+            $datos['isv']=isv::paginate(10);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('isv.isvindex',$datos);
     }
 
     /**
@@ -36,6 +46,19 @@ class IsvController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            //code...
+            $isv = request()->except('_token');
+        isv::insert($isv);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+        
+        alert()->success('isv guardado correctamente');
+        
+        return redirect()->route('isv.index');
     }
 
     /**
@@ -67,9 +90,21 @@ class IsvController extends Controller
      * @param  \App\Models\isv  $isv
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, isv $isv)
+    public function update(Request $request, $id)
     {
         //
+        try {
+            //code...
+            $isv= request()->except(['_token','_method']);
+            isv::where('id','=',$id)->update($isv);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        alert()->success('ISV Actualizado correctamente');
+        return redirect()->route('isv.index');
     }
 
     /**
@@ -78,8 +113,20 @@ class IsvController extends Controller
      * @param  \App\Models\isv  $isv
      * @return \Illuminate\Http\Response
      */
-    public function destroy(isv $isv)
+    public function destroy($id)
     {
         //
+        try {
+            //code...
+            isv::destroy($id);
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        alert()->success('ISV Eliminado correctamente');
+        return redirect('isv');
     }
+    
 }

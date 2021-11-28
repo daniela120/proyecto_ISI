@@ -18,6 +18,8 @@ use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\DetallePedidosController;
 use App\Http\Controllers\PrecioHisInventarioController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\IsvController;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -134,6 +136,8 @@ Route::resource('inventarios',InventariosController::class);
 Route::resource('pedidos',PedidosController::class);
 Route::resource('precioinventario',PrecioHisInventarioController::class);
 Route::resource('productos',ProductosController::class);
+Route::resource('isv',IsvController::class);
+
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
 

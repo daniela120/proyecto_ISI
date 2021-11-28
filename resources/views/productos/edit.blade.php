@@ -30,6 +30,18 @@
                             </div>
                         </div>
 
+
+                        <div class="col-lg-6 form-group">
+                            <div>
+                            <label for="Descripcion" class="form-fields"> Descripción</label>
+                            <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
+                             name="Descripcion" id="Descripcion" value="{{old('Descripcion')}}" placeholder='Primer letra en Mayuscula'>
+                            @if ($errors->has('Descripcion'))
+                                    <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
+                            @endif
+                            </div>
+                        </div>
+
                         <div class="col-lg-6 form-group">
                         
                             <div>
@@ -45,20 +57,18 @@
                             <span class="text-danger">{{$errors->first('id_Categoria')}}</span>
                             @endif
                             </div>
-                        
                         </div>
+
                         <div class="col-lg-6 form-group">
                             <div>
-                            <label for="Descripcion" class="form-fields"> Descripción</label>
-                            <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
-                             name="Descripcion" id="Descripcion" value="{{old('Descripcion')}}" placeholder='Primer letra en Mayuscula'>
-                            @if ($errors->has('Descripcion'))
-                                    <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
+                            <label for="Precio" class="form-fields"> Precio</label>
+                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' : '' }}"
+                             name="Precio" id="Precio" value="{{old('Precio')}}" placeholder=''>
+                            @if ($errors->has('Precio'))
+                                    <span class="text-danger">{{ $errors->first('Precio') }}</span>
                             @endif
                             </div>
                         </div>
-
-
 
                        
                 </div>   

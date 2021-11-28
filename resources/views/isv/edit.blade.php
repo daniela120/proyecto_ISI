@@ -10,28 +10,27 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/documentos') }}" method="post" id="editTipoDocumentoForm" enctype="multipart/form-data">
+    <form action="{{ url('/isv') }}" method="post" id="editIsvForm" enctype="multipart/form-data">
           @method('PUT')
             @csrf
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="TipoDocumento" class="form-fields"> Tipo de  Documento</label>
-                            <input type="text" value="{{old('TipoDocumento')}}" class="form-control {{$errors->has('TipoDocumento') ? 'is-invalid' : '' }}"
-                             rows="3" name="TipoDocumento" id="TipoDocumento" >
-                            @if ($errors->has('TipoDocumento'))
-                                    <span class="text-danger">{{ $errors->first('TipoDocumento') }}</span>
+                            <label for="Descripcion" class="form-fields"> Descripcion</label>
+                            <input type="text" value="{{old('Descripcion')}}" class="form-control" rows="3" name="Descripcion" id="Descripcion">
+                            @if($errors->has('Descripcion'))
+                            <span class="text-danger">{{$errors->first('Descripcion')}}</span>
                             @endif
                         </div>
                     </div>
 
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Descripcion" class="form-fields"> Descripcion</label>
-                            <input type="text" value="{{old('Descripcion')}}" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
-                            rows="3" name="Descripcion" id="Descripcion">
-                            @if ($errors->has('Descripcion'))
-                                    <span class="text-danger">{{ $errors->first('Descripcion') }}</span>
+                            <label for="isv" class="form-fields"> Isv</label>
+                            <input type="text" value="{{old('isv')}}" class="form-control {{$errors->has('isv') ? 'is-invalid' : '' }}"
+                            rows="3" name="isv" id="isv">
+                            @if ($errors->has('isv'))
+                                    <span class="text-danger">{{ $errors->first('isv') }}</span>
                             @endif
                             
                         </div>

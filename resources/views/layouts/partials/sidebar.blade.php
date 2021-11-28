@@ -124,6 +124,9 @@
                 <a class="collapse-item" href="/pedidos">
                      <i class="fas fa-cash-register"></i> Pedidos
                 </a>
+                <a class="collapse-item" href="/isv">
+                     <i class="fas fa-credit-card"></i> Isv
+                </a>
             </div>
         </div>
     </li>
