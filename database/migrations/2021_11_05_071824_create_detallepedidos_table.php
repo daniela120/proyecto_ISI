@@ -17,9 +17,11 @@ class CreateDetallepedidosTable extends Migration
             $table->id();
             $table->integer('id_pedido');
             $table->string('Id_Producto');
+            $table->double('PrecioUnitario');
             $table->integer('Cantidad');
-            $table->integer('descuento');
-            $table->double('Total');
+            $table->integer('id_descuento');
+            $table->integer('id_isv');
+            $table->double('SubTotal');
             
             $table->timestamps();
         });

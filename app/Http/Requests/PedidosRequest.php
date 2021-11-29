@@ -27,8 +27,14 @@ class PedidosRequest extends FormRequest
             
         'id_empleado'=>['required'],
         'Fecha'=>['required'],
-        'id_tipo_pago'=>['required'],
-        'id_cliente'=>['required']
+        'id_tipo_de_pago'=>['required'],
+        'id_cliente'=>['required'],
+        'Id_Producto'=>['required'],
+        'PrecioUnitario'=>['required'],
+        'Cantidad'=>['required'],
+        'id_descuento'=>['required'],
+        'id_isv'=>['required'],
+        
         ];
     }
 }

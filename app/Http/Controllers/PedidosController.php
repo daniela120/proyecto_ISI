@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\pedidos;
+use App\Models\detallepedidos;
 use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\tiposdepago;
 use App\Models\clientes;
+use App\Models\descuentos;
+use App\Models\productos;
+use App\Models\isv;
 use App\HTTP\Requests\PedidosRequest;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+
 use DB;
+
+use Carbon\Carbon;
+use Response;
+use Illuminate\Support\Collection;
 
 class PedidosController extends Controller
 {
@@ -20,15 +31,21 @@ class PedidosController extends Controller
      */
     public function index()
     {
-        $empleados=Empleado::all();   
+        $empleados=Empleado::all();  
+        
+        $productos=productos::all();
 
         $tiposdepago=tiposdepago::all();
 
         $clientes=clientes::all();
+
+        $descuentos=descuentos::all();
+
+        $isv=isv::all();
         
         $pedidos=pedidos::paginate(15);
 
-        return view('Pedidos.pedidosindex')->withEmpleado($empleados)->withTiposdepago($tiposdepago)->withClientes($clientes)->withPedidos($pedidos);
+        return view('Pedidos.pedidosindex')->withEmpleado($empleados)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    
     }
 
@@ -39,13 +56,19 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        $empleados=Empleado::all();   
+        $empleados=Empleado::all();  
+        
+        $productos=productos::all();
 
         $tiposdepago=tiposdepago::all();
 
         $clientes=clientes::all();
 
-        return view('Pedidos.create')->withEmpleado($empleados)->withTiposdepago($tiposdepago)->withClientes($clientes);
+        $descuentos=descuentos::all();
+
+        $isv=isv::all();
+
+        return view('Pedidos.create')->withEmpleado($empleados)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
     }
 
     /**

@@ -25,10 +25,12 @@ class DetallePedidosRequest extends FormRequest
     {
         return [
         'id_pedido'=>['required'],
-        'id_producto'=>['required'],
+        'Id_Producto'=>['required'],
+        'PrecioUnitario'=>['required'],
         'Cantidad'=>['required'],
-        'descuento'=>['required'],
-        'Total_producto'=>['required']
+        'id_descuento'=>['required'],
+        'id_isv'=>['required'],
+        'SubTotal'=>['required']
         ];
     }
 }
