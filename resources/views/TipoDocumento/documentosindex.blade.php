@@ -22,7 +22,7 @@
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Tipo de Documento</th> 
-                            <th class="text-center">Descripcion</th>                             
+                            <th class="text-center">Descripción</th>                             
                         </tr>
                     </thead>
                     <tbody>

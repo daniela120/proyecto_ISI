@@ -57,7 +57,7 @@ class TipodocumentosController extends Controller
 
         }
         
-        alert()->success('tipo documento guardado correctamente');
+        alert()->success('Tipo Documento Guardado Correctamente');
         
         return redirect()->route('documentos.index');
     }
@@ -104,7 +104,7 @@ class TipodocumentosController extends Controller
 
         }
        
-        alert()->success('Tipo de documento Actualizado correctamente');
+        alert()->success('Tipo de Documento Actualizado Correctamente');
         return redirect()->route('documentos.index');
     }
 
@@ -126,7 +126,7 @@ class TipodocumentosController extends Controller
 
         }
        
-        alert()->success('Tipo de documento Eliminado correctamente');
+        alert()->success('Tipo de Documento Eliminado Correctamente');
         return redirect('documentos');
     }
 }

@@ -28,7 +28,7 @@
 
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Descripcion" class="form-fields"> Descripcion</label>
+                            <label for="Descripcion" class="form-fields"> Descripción</label>
                             <input type="text" value="{{old('Descripcion')}}" class="form-control" rows="3" name="Descripcion" id="Descripcion">
                             @if($errors->has('Descripcion'))
                             <span class="text-danger">{{$errors->first('Descripcion')}}</span>

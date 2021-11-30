@@ -58,7 +58,7 @@ class TurnosController extends Controller
 
         }
       
-        alert()->success('Turno guardado correctamente');
+        alert()->success('Turno Guardado Correctamente');
         
         return redirect()->route('turnos.index');
     }
@@ -105,7 +105,7 @@ class TurnosController extends Controller
 
         }
        
-        alert()->success('Turno Actualizado correctamente');
+        alert()->success('Turno Actualizado Correctamente');
         return redirect()->route('turnos.index');
     }
 
@@ -127,7 +127,7 @@ class TurnosController extends Controller
 
         }
        
-        alert()->success('Turno Eliminado correctamente');
+        alert()->success('Turno Eliminado Correctamente');
         return redirect('turnos');
     }
 }

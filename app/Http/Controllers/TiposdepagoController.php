@@ -54,7 +54,7 @@ class TiposdepagoController extends Controller
 
         }
        
-        alert()->success('Tipo de Pago guardado correctamente');
+        alert()->success('Tipo de Pago Guardado Correctamente');
         
         return redirect()->route('pagos.index');
     }
@@ -100,7 +100,7 @@ class TiposdepagoController extends Controller
 
         }
        
-        alert()->success('Tipo de Pagos Actualizada correctamente');
+        alert()->success('Tipo de Pagos Actualizada Correctamente');
         return redirect()->route('pagos.index');
     }
 
@@ -121,7 +121,7 @@ class TiposdepagoController extends Controller
 
         }
       
-        alert()->success('Tipo de Pago Eliminado correctamente');
+        alert()->success('Tipo de Pago Eliminado Correctamente');
         return redirect('pagos');
     }
 }
