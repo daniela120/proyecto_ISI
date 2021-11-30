@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo de Descuento</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo Descuento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Descripcion" class="form-fields"> Descripcion</label>
+                            <label for="Descripcion" class="form-fields"> Descripción</label>
                             <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' : '' }}"
                              rows="3" name="Descripcion" id="Descripcion"
                             value="{{old('Descripcion')}}" placeholder=''>

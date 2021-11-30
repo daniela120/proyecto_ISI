@@ -58,7 +58,7 @@ class EstadoenviosController extends Controller
 
         }
         
-        alert()->success('Estado de envio guardado correctamente');
+        alert()->success('Estado de Envío Guardado Correctamente');
         return redirect()->route('estadoenvios.index');
     }
 
@@ -104,7 +104,7 @@ class EstadoenviosController extends Controller
 
         }
        
-        alert()->success('Estado de envio Actualizado correctamente');
+        alert()->success('Estado de Envío Actualizado Correctamente');
         return redirect()->route('estadoenvios.index');
     }
 
@@ -126,7 +126,7 @@ class EstadoenviosController extends Controller
 
         }
        
-        alert()->success('Estadoenvio Eliminado correctamente');
+        alert()->success('Estado de Envío Eliminado Correctamente');
         return redirect('estadoenvios');
     }
 }

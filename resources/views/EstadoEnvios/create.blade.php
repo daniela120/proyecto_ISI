@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo Estado de envio</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo Estado de envío</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Estado de Envio" class="form-fields"> Estado de Envio </label>
+                            <label for="Estado de Envio" class="form-fields"> Estado de Envío </label>
                             <input type="text" class="form-control" name="Nombre_Estado" id="Nombre_Estado">
                             @if($errors->has('Nombre_Estado'))
                                 <span class="text-danger">{{$errors->first('Nombre_Estado')}}</span>

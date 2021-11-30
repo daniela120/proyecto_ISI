@@ -59,7 +59,7 @@ class ClientesController extends Controller
         }
         
        
-        alert()->success('Cargo guardada correctamente');
+        alert()->success('Cargo Guardada Correctamente');
         return redirect()->route('clientes.index');
     }
 
@@ -111,7 +111,7 @@ class ClientesController extends Controller
 
         }
        
-        alert()->success('Cliente Actualizada correctamente');
+        alert()->success('Cliente Actualizada Correctamente');
         return redirect()->route('clientes.index');
     }
 
@@ -133,7 +133,7 @@ class ClientesController extends Controller
 
         }
        
-        alert()->success('Categoria Eliminada correctamente');
+        alert()->success('Cliente Eliminado Correctamente');
         return redirect('clientes');
     }
 }

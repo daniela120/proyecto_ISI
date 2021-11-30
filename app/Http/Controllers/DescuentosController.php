@@ -57,7 +57,7 @@ class DescuentosController extends Controller
 
         }
        
-        alert()->success('Descuento guardado correctamente');
+        alert()->success('Descuento Guardado Correctamente');
         
         return redirect()->route('descuentos.index');
     }
@@ -104,7 +104,7 @@ class DescuentosController extends Controller
 
         }
        
-        alert()->success('Descuento Actualizado correctamente');
+        alert()->success('Descuento Actualizado Correctamente');
         return redirect()->route('descuentos.index');
     }
 
@@ -126,7 +126,7 @@ class DescuentosController extends Controller
 
         }
        
-        alert()->success('Descuento Eliminado correctamente');
+        alert()->success('Descuento Eliminado Correctamente');
         return redirect('descuentos');
     }
 }
