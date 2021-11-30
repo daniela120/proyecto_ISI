@@ -3,10 +3,18 @@
 @section('titulo')
 
     <span>Empleados </span>
-    
+    <div>
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
+
+    <a href="/cargoempleadohistorico" class="btn btn-success btn-circle" >
+    <i class="fas fa-history"></i>
+    </a>
+
+
+    </div>
+   
 
 @endsection 
     @section('contenido')

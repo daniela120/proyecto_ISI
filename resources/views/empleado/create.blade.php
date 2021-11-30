@@ -13,11 +13,11 @@
             
             <form action="" method="post" enctype="multipart/form-data">
             @csrf
-        <div class="row">
+            <div class="row">
             <div class="col-lg-6 form-group">
                             <div>
                                 <label for="Nombre" class="form-fields"> Nombre </label>
-                                <input type="text" class="form-control" name="Nombre" id="Nombre">
+                                <input type="text"value="{{old('Nombre')}}"  class="form-control" name="Nombre" id="Nombre">
                                 @if($errors->has('Nombre'))
                             <span class="text-danger">{{$errors->first('Nombre')}}</span>
                             @endif
@@ -27,17 +27,17 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="Apellido" class="form-fields"> Apellido </label>
-                                <input type="text" class="form-control" name="Apellido" id="Apellido">
+                                <input type="text" value="{{old('Apellido')}}"  class="form-control" name="Apellido" id="Apellido">
                                 @if($errors->has('Apellido'))
                             <span class="text-danger">{{$errors->first('Apellido')}}</span>
-                            @endif
+                            @endif 
                             </div>
                         </div>
 
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="FechaNacimiento" class="form-fields"> Fecha de Nacimiento </label>
-                                <input type="date" class="form-control" name="FechaNacimiento" id="FechaNacimiento">
+                                <input type="date" value="{{old('FechaNacimiento')}}"  class="form-control" name="FechaNacimiento" id="FechaNacimiento">
                                 @if($errors->has('FechaNacimiento'))
                             <span class="text-danger">{{$errors->first('FechaNacimiento')}}</span>
                             @endif
@@ -47,7 +47,7 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="FechaContratacion" class="form-fields"> Fecha de Contratacion </label>
-                                <input type="date" class="form-control" name="FechaContratacion" id="FechaContratacion">
+                                <input type="date" value="{{old('FechaContratacion')}}"  class="form-control" name="FechaContratacion" id="FechaContratacion">
                                 @if($errors->has('FechaContratacion'))
                             <span class="text-danger">{{$errors->first('FechaContratacion')}}</span>
                             @endif
@@ -57,37 +57,37 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Direccion" class="form-fields"> Direccion</label>
-                                <input type="text" class="form-control" name="Direccion" id="Direccion">
+                                <input type="text" value="{{old('Direccion')}}"  class="form-control" name="Direccion" id="Direccion">
                                 @if($errors->has('Direccion'))
                             <span class="text-danger">{{$errors->first('Direccion')}}</span>
                             @endif
                             </div>
                         </div>
 
-                       
-
                         <div class="col-lg-6 form-group">
                         
-                            <div>
-                                <label for="IdCargo" class="form-fields"> Id Cargo</label>
-                                <select name="Id_Cargo" id="Id_Cargo" class="form-control" >
-                                   <option value="">Seleccione el cargo</option>
-                                @foreach(  $cargos as $cargoempleado)
-                                    <option value="{{ $cargoempleado['id'] }}">{{$cargoempleado['Cargo'] }}</option>
+                        <div>
+                            <label for="IdCargo" class="form-fields"> Id Cargo</label>
+                            <select name="Id_Cargo" id="Id_Cargo" class="form-control" >
+                            <option value="">Seleccione el cargo</option>
+                            @foreach(  $cargos as $cargoempleado)
+                                <option value="{{ $cargoempleado['id'] }}">{{$cargoempleado['Cargo'] }}</option>
 
-                                    @endforeach
-                                </select>
-                                @if($errors->has('Id_Cargo'))
+                                @endforeach
+                            </select>
+                            @if($errors->has('Id_Cargo'))
                             <span class="text-danger">{{$errors->first('Id_Cargo')}}</span>
                             @endif
-                            </div>
-                        
                         </div>
+                    
+                    </div>
+
+                       
 
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="Telefono" class="form-fields"> Telefono </label>
-                                <input type="text" class="form-control" name="Telefono" id="Telefono" pattern='[2,3,7,8,9]\d{3}\d{4}'  
+                                <input type="text" value="{{old('Telefono')}}"  class="form-control" name="Telefono" id="Telefono" pattern='[2,3,7,8,9]\d{3}\d{4}'  
                                 placeholder='debe iniciar con 2,3,7,8 o 9' >
                                 @if($errors->has('Telefono'))
                                 <span class="text-danger">{{$errors->first('Telefono')}}</span>
@@ -97,11 +97,12 @@
 
 
 
+
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="IdUsuario" class="form-fields"> Id Usuario</label>
-                                <select name="Id_Usuario" id="Id_Usuario" class="form-control" >
-                                <option value="">Seleccione el usuario</option>
+                                <select name="Id_Usuario" value="{{old('Id_Usuario')}}" id="Id_Usuario" class="form-control" >
+                                <option value="">Seleccione el usuario</option>   
                                 @foreach($users as $user)
 
                                 <option value="{{ $user['id'] }}">{{$user['name'] }}</option>
@@ -118,7 +119,7 @@
                             <div>
                                 <label for="IdDocumento" class="form-fields"> Id Documento</label>
                                 <select name="Id_Documento" id="Id_Documento" class="form-control" >
-                                <option value=""> Tipo de documento</option>
+                                <option value=""> Tipo de documento</option>   
                                 @foreach($documentos as $documento)
 
                                 <option value="{{ $documento['id'] }}">{{$documento['TipoDocumento'] }}</option>
@@ -153,7 +154,7 @@
                         <div class="col-lg-6 form-group">
                             <div>
                                 <label for="Documento" class="form-fields"> Documento</label>
-                                <input type="text" class="form-control" name="Documento" id="Documento">
+                                <input type="text" value="{{old('Documento')}}"  class="form-control" name="Documento" id="Documento">
                                 @if($errors->has('Documento'))
                             <span class="text-danger">{{$errors->first('Documento')}}</span>
                             @endif
@@ -162,14 +163,17 @@
 
                        
                 </div>   
-                
-                <div class="buttons-form-submit d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" href="#" class="btn btn-primary">
+                                    
+                    <div class="buttons-form-submit d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" href="#" class="btn btn-primary">
                                 Guardar
-                                <i class="fas fa-spinner fa-spin d-none"></i>
-                    </button>
-                 </div>
+                            <i class="fas fa-spinner fa-spin d-none"></i>
+                        </button>
+                    </div>
+
 
 
         

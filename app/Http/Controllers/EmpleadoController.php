@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Arr;
+
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use App\Models\cargoempleados;
 use App\Models\tipodocumentos;
 use App\Models\turnos;
+use App\Models\cargoempleadohistorico;
 use App\Models\User;
 use App\HTTP\Requests\EmpleadoRequest;
 
@@ -68,6 +72,23 @@ class EmpleadoController extends Controller
             //code...
             $empleado=request()->except('_token');
             Empleado::insert($empleado);
+            $arreglo=Empleado::all();
+
+            foreach($arreglo as $i){
+
+                if ($i->Nombre==$request->Nombre and $i->documento==$request->documento and $i->Apellido==$request->Apellido) {
+                    $id=$i->id;
+                    DB::insert('insert into cargoempleadohistoricos (id_empleado,id_cargo,FechaInicio) values (?, ?, ?)', [$id, $request->Id_Cargo,$request->FechaContratacion]);
+           
+                }
+
+            }
+
+           
+            
+            //$id=$ultimo->id;
+
+           
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
@@ -132,9 +153,52 @@ class EmpleadoController extends Controller
     
             $cargos=cargoempleados::all();
             $documentos=tipodocumentos::all();
-            
+            $hoy=date('Y-m-d');
+            $values=[$id,$request->Id_Cargo,$request->FechaContratacion];
+            $valuesupdate=[$id,$request->Id_Cargo,$request->FechaContratacion,$hoy];
+            $prueba=Empleado::all();
             $empleados= request()->except(['_token','_method']);
             Empleado::where('id','=',$id)->update($empleados);
+            $cargoempleadohistorico=cargoempleadohistorico::all();
+
+            foreach ($prueba as $i ) {
+                # code...
+                if ($i->id==$id and $i->Id_Cargo!=$request->Id_Cargo) {
+                    # code...
+                    
+                   foreach($cargoempleadohistorico as $valorhistorico){
+
+                    if($valorhistorico->id_empleado==$id and empty($valorhistorico->FechaFinal)==true ){
+
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('cargoempleadohistoricos')
+                        ->where('id', $idcorrecto )
+                        ->update(['FechaFinal' =>  $hoy]);
+
+                    }
+
+                   }
+                        
+                       
+
+                    
+                   
+
+                   
+               
+               
+               // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
+                    
+                    //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
+                    DB::insert('insert into cargoempleadohistoricos (id_empleado,id_cargo,FechaInicio) values (?, ?, ?)', [$id, $request->Id_Cargo,$hoy]);
+                
+            }
+        }
+           
+            
+            //cargoempleadohistorico::insert('insert into cargoempleadohistorico (id_empleado,id_cargo,FechaInicio) Values("$id","$request->Id_Cargo","$request->FechaContratacion")');
+            //cargoempleadohistoricoDB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
