@@ -57,7 +57,7 @@ class CategoriasController extends Controller
         }
         
         
-        alert()->success('Categoria guardada correctamente');
+        alert()->success('Categoría Guardada Correctamente');
         
         return redirect()->route('categorias.index');
         
@@ -105,7 +105,7 @@ class CategoriasController extends Controller
 
         }
        
-        alert()->success('Categoria Actualizada correctamente');
+        alert()->success('Categoría Actualizada Correctamente');
         return redirect()->route('categorias.index');
     }
 
@@ -127,7 +127,7 @@ class CategoriasController extends Controller
 
         }
        
-        alert()->success('Categoria Eliminada correctamente');
+        alert()->success('Categoría Eliminada Correctamente');
         return redirect('categorias');
     }
 }

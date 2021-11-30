@@ -60,7 +60,7 @@ class CargoempleadosController extends Controller
 
         }
        
-        alert()->success('Cargo guardada correctamente');
+        alert()->success('Cargo Guardado Correctamente');
         
         return redirect()->route('cargoempleados.index');
     }
@@ -107,7 +107,7 @@ class CargoempleadosController extends Controller
 
         }
        
-        alert()->success('Cargo Actualizada correctamente');
+        alert()->success('Cargo Actualizado Correctamente');
         return redirect()->route('cargoempleados.index');
     }
 
@@ -128,7 +128,7 @@ class CargoempleadosController extends Controller
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        
-        alert()->success('Cargo Eliminada correctamente');
+        alert()->success('Cargo Eliminado Correctamente');
         return redirect('cargoempleados');
     }
 }

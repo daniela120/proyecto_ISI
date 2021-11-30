@@ -17,7 +17,7 @@ class CreateInventariosTable extends Migration
             $table->id();
             $table->string('NombreInventario')->unique();
             $table->integer('Id_Categoria');
-            $table->integer('CantidadStock');
+            $table->String('CantidadStock');
             $table->integer('Descontinuado');
             $table->integer('Id_Proveedor');
             $table->double('PrecioUnitario');
