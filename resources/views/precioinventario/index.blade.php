@@ -27,7 +27,7 @@
                     <tr>
                        
                             <th class="text-center">Id </th>
-                            <th class="text-center">Id_Inventario</th>
+                            <th class="text-center">Inventario</th>
                             <th class="text-center">Precio</th> 
                             <th class="text-center">FechaInicio</th>
                             <th class="text-center">FechaFinal</th>
@@ -36,10 +36,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($precioinventario as $precioinventario)
+                    @foreach($probando as $precioinventario)
                         <tr>
                             <td>{{$precioinventario->id}}</td>
-                            <td>{{$precioinventario->id_inventario}}</td>
+                            <td>{{$precioinventario->NombreInventario}}</td>
                             <td>{{$precioinventario->Precio}}</td>     
                             <td>{{$precioinventario->FechaInicio}}</td>
                             <td>{{$precioinventario->FechaFinal}}</td>
