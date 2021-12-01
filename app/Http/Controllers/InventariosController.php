@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\inventarios;
 use App\Models\proveedores;
 use App\Models\categorias;
 use Illuminate\Http\Request;
 use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
+
 
 class InventariosController extends Controller
 {
@@ -57,11 +60,18 @@ class InventariosController extends Controller
             //code...
             $inventarios=request()->except('_token');
             inventarios::insert($inventarios);
-            
-            $precio_his_inventario = precio_his_inventario::create([
-                'PrecioStock'=> $request->precio_his_inventario,
-            ]);
-            $precio_his_inventario->inventario()->save($inventario);
+            $arreglo=inventarios::all();
+            $hoy=date('Y-m-d');
+
+            foreach($arreglo as $i){
+
+                if ($i->NombreInventario==$request->NombreInventario and $i->PrecioUnitario==$request->PrecioUnitario ) {
+                    $id=$i->id;
+                    DB::insert('insert into precio_his_inventarios (id_inventario,FechaInicio,Precio) values (?, ?, ?)', [$id, $hoy,$request->PrecioUnitario]);
+           
+                }
+
+            }
 
         } catch (\Exception $exception) {
             //throw $th;
@@ -127,8 +137,50 @@ class InventariosController extends Controller
             $proveedores=proveedores::all();
             $categorias=categorias::all();
             $inventarios= request()->except(['_token','_method']);
-            
+            $prueba=inventarios::all();
             inventarios::where('id','=',$id )->update($inventarios);
+            $precio_his_inventario=precio_his_inventario::all();
+            $hoy=date('Y-m-d');
+
+            foreach ($prueba as $i ) {
+                # code...
+                if ($i->id==$id and $i->PrecioUnitario!=$request->PrecioUnitario) {
+                    # code...
+                    
+                   foreach($precio_his_inventario as $valorhistorico){
+
+                    if($valorhistorico->id_inventario==$id and empty($valorhistorico->FechaFinal)==true ){
+
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('precio_his_inventarios')
+                        ->where('id', $idcorrecto )
+                        ->update(['FechaFinal' =>  $hoy]);
+
+                    }
+
+                   }
+                        
+                       
+
+                    
+                   
+
+                   
+               
+               
+               // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
+                    
+                    //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
+                    DB::insert('insert into precio_his_inventarios (id_inventario,FechaInicio,Precio) values (?, ?, ?)', [$id, $hoy,$request->PrecioUnitario]);
+                
+            }
+        }
+
+
+
+
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);

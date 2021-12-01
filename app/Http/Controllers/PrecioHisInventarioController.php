@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\precio_his_inventario;
 use Illuminate\Http\Request;
 use App\Models\Inventarios;
+use Illuminate\Support\Facades\DB;
 
 class PrecioHisInventarioController extends Controller
 {
@@ -16,8 +17,16 @@ class PrecioHisInventarioController extends Controller
     public function index()
     {
         //
-        $precio_his_inventario=precio_his_inventario::paginate(10);
-        $inventarios=inventarios::all();
+
+        try {
+            //code...
+            $precio_his_inventario=precio_his_inventario::paginate(15);
+            $inventarios=inventarios::all();
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+    
         return view('precioinventario.index')->withprecioinventario($precio_his_inventario)->withInventarios($inventarios);
     }
 

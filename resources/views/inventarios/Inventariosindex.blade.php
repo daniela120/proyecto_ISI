@@ -4,8 +4,14 @@
 
     <span> Inventario </span>
     
+
+
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
+    </a>
+
+    <a href="/precioinventario" class="btn btn-success btn-circle" >
+    <i class="fas fa-history"></i>
     </a>
 
 @endsection 

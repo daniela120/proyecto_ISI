@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Arr;
+
 
 use App\Models\Empleado;
 use Illuminate\Http\Request;
