@@ -18,7 +18,7 @@ class pedidos extends Model
         'id_pedido',
         'id_empleado',
         'Fecha',
-        'id_tipo_pago',
+        'id_tipo_de_pago',
         'id_cliente'
         
     ];

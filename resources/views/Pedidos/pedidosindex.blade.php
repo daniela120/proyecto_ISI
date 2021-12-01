@@ -31,8 +31,7 @@
                         <tr>
                         <td>
                             
-                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="">
+                                <a href="" class="delete-form-data" onclick="">
                                      <i class="fas fa-eye"></i>
                                 </a>
 
@@ -116,5 +115,8 @@ function deleteinventarios(inventarios){
     </script>
 @endif
 @endif
+
+
+
 -->
 @endpush

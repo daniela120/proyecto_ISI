@@ -13,7 +13,7 @@ class CreateCargoempleadohistorico extends Migration
      */
     public function up()
     {
-        Schema::create('cargoempleadohistorico', function (Blueprint $table) {
+        Schema::create('cargoempleadohistoricos', function (Blueprint $table) {
             $table->id();
             $table->integer('id_empleado');
             $table->integer('id_cargo');

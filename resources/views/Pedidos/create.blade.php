@@ -15,8 +15,9 @@
                    
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="FechaContratacion" class="form-fields"> Fecha </label>
-                            <input type="date" class="form-control" name="Fecha" id="Fecha">
+                            <label for="Fecha" class="form-fields"> Fecha </label>
+                            <input type="date" class="form-control {{$errors->has('Fecha') ? 'is-invalid' : '' }}" name="Fecha" id="Fecha" 
+                            value="{{old('Fecha')}}" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Fecha'))
                                 <span class="text-danger">{{$errors->first('Fecha')}}</span>
                             @endif
@@ -26,10 +27,11 @@
                     <div class="col-lg-4 form-group">
                         <div>
                             <label for="id_cliente" class="form-fields"> Cliente</label>
-                            <select name="id_cliente" id="id_cliente" class="form-control" >
+                            <select name="id_cliente" id="id_cliente" class="form-control {{$errors->has('id_cliente') ? 'is-invalid' : '' }}"
+                            value="">
                             <option value="">Seleccione el Cliente</option>
                             @foreach($clientes as $clientes)
-                                <option value="{{ $clientes['id'] }}">{{$clientes['Nombre'] }}</option>
+                                <option value="{{ $clientes['id'] }}" {{ old('id_cliente') == $clientes->id ? 'selected' : '' }}>{{$clientes['Nombre'] }}</option>
                             @endforeach
                             </select>
                                 @if($errors->has('id_cliente'))
@@ -41,30 +43,30 @@
                     <div class="col-lg-4 form-group">    
                         <div>
                             <label for="id_tipo_de_pago" class="form-fields"> Tipo Pago</label>
-                                <select name="tiposdepago" id="tiposdepago" class="form-control" >
-                                   <option value="">Seleccione el tipo de pago</option>
+                                <select name="id_tipo_de_pago" id="id_tipo_de_pago" class="form-control {{$errors->has('id_tipo_de_pago') ? 'is-invalid' : '' }}" >
+                                   <option value="" >Seleccione el tipo de pago</option>
                                 @foreach($tiposdepago as $tiposdepago)
-                                    <option value="{{ $tiposdepago['id'] }}">{{$tiposdepago['Nombre_Tipo_Pago'] }}</option>
+                                    <option value="{{ $tiposdepago['id'] }}" {{ old('id_tipo_de_pago') == $tiposdepago->id ? 'selected' : '' }}>{{$tiposdepago['Nombre_Tipo_Pago'] }}</option>
                                 @endforeach
                                 </select>
-                                @if($errors->has('id_tipo_pago'))
-                            <span class="text-danger">{{$errors->first('id_tipo_pago')}}</span>
-                            @endif
+                                @if($errors->has('id_de_tipo_pago'))
+                                     <span class="text-danger">{{$errors->first('id_de_tipo_pago')}}</span>
+                                @endif
                         </div>         
                     </div>
 
                     <div class="col-lg-4 form-group">           
                         <div>
-                            <label for="id_mpleado" class="form-fields"> Empleado </label>
-                            <select name="empleados" id="empleados" class="form-control" >
+                            <label for="id_empleado" class="form-fields"> Empleado </label>
+                            <select name="id_empleado" id="id_empleado" class="form-control {{$errors->has('id_empleado') ? 'is-invalid' : '' }}" >
                                    <option value="">Seleccione el empleado</option>
-                                @foreach($empleado as $empleados)
-                                    <option value="{{ $empleados['id'] }}">{{$empleados['Nombre'] }}</option>
+                                @foreach($empleado as $empleado)
+                                    <option value="{{ $empleado['id'] }}" {{ old('id_empleado') == $empleado->id ? 'selected' : '' }}>{{$empleado['Nombre'] }}</option>
                                 @endforeach
                                 </select>
                                 @if($errors->has('id_empleado'))
-                            <span class="text-danger">{{$errors->first('id_empleado')}}</span>
-                            @endif
+                                    <span class="text-danger">{{$errors->first('id_empleado')}}</span>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -75,26 +77,29 @@
                             
                         <div class="col-lg-3 form-group">           
                             <div>
-                                <label for="Id_producto" class="form-fields"> Producto </label>
-                                <select name="txt_producto" id="txt_producto" class="form-control" >
+                                <label for="Id_Producto" class="form-fields"> Producto </label>
+                                <select name="Id_Producto" id="Id_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione el Producto</option>
                                     @foreach($productos as $productos)
-                                        <option value="{{ $productos['id'] }}">{{$productos['NombreProducto'] }}</option>
+                                        <option value="{{ $productos['id'] }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('Id_Producto'))
-                                <span class="text-danger">{{$errors->first('Id_Producto')}}</span>
-                                @endif
+                                        <span class="text-danger">{{$errors->first('Id_Producto')}}</span>
+                                    @endif
                             </div>
                         </div>
 
                         <div class="col-lg-2 form-group">
                             <div>
                                 <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
-                                <input type="text" class="form-control" name="txt_PrecioUnitario" id="txt_PrecioUnitario">
-                                @if($errors->has('PrecioUnitario'))
+                                
+                                    <input type="text" class="form-control" name="PrecioUnitario" id="PrecioUnitario" 
+                                    value="{{old('PrecioUnitario')}}">
+                                     
+                               <!-- @if($errors->has('PrecioUnitario'))
                                     <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
-                                    @endif
+                                @endif-->
                             </div>
                         </div>
 
@@ -102,35 +107,37 @@
                         <div class="col-lg-1 form-group">
                             <div>
                                 <label for="Cantidad" class="form-fields"> Cantidad </label>
-                                <input type="text" class="form-control" name="txt_cantidad" id="txt_cantidad">
-                                @if($errors->has('Nombre_Estado'))
-                                    <span class="text-danger">{{$errors->first('Nombre_Estado')}}</span>
-                                    @endif
+                                <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
+                                name="Cantidad" id="Cantidad" value="{{old('Cantidad')}}" >
+                                @if($errors->has('Cantidad'))
+                                    <span class="text-danger">{{$errors->first('Cantidad')}}</span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="col-lg-2 form-group">           
                             <div>
                                 <label for="id_descuento" class="form-fields"> Descuento </label>
-                                <select name="txt_descuentos" id="txt_descuentos" class="form-control" >
+                                <select name="id_descuento" id="id_descuento" class="form-control {{$errors->has('id_descuento') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione </option>
                                     @foreach($descuentos as $descuentos)
-                                        <option value="{{ $descuentos['id'] }}">{{$descuentos['ValorDescuento'] }}</option>
+                                        <option value="{{ $descuentos['id'] }}" {{ old('id_descuento') == $descuentos->id ? 'selected' : '' }}>{{$descuentos['ValorDescuento'] }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('id_descuento'))
-                                <span class="text-danger">{{$errors->first('id_descuento')}}</span>
-                                @endif
+                                        <span class="text-danger">{{$errors->first('id_descuento')}}</span>
+                                    @endif
                             </div>
                         </div>
+
                         
                         <div class="col-lg-2 form-group">           
                             <div>
                                 <label for="id_isv" class="form-fields"> ISV </label>
-                                <select name="txt_isv" id="txt_isv" class="form-control" >
+                                <select name="id_isv" id="id_isv" class="form-control {{$errors->has('id_isv') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione </option>
                                     @foreach($isv as $isv)
-                                        <option value="{{ $isv['id'] }}">{{$isv['isv'] }}</option>
+                                        <option value="{{ $isv['id'] }}" {{ old('id_isv') == $isv->id ? 'selected' : '' }}>{{$isv['isv'] }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('id_isv'))
@@ -220,12 +227,12 @@
 
         function agregar()
         {
-            idProducto=$("#txt_producto").val();
-            Producto=$("#txt_producto option:selected").text();
-            PrecioUnitario=$("#txt_PrecioUnitario").val();
-            Cantidad=$("#txt_cantidad").val();
-            id_descuento=$("#txt_descuentos option:selected").text();
-            id_isv=$("#txt_isv option:selected").text();
+            idProducto=$("#Id_Producto").val();
+            Producto=$("#Id_Producto option:selected").text();
+            PrecioUnitario=$("#PrecioUnitario").val();
+            Cantidad=$("#Cantidad").val();
+            id_descuento=$("#id_descuento option:selected").text();
+            id_isv=$("#id_isv option:selected").text();
 
             if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 id_descuento!="" && id_isv!="")
             {
@@ -244,11 +251,11 @@
         }
 
         function limpiar(){
-            $("#txt_producto").val("");
-            $("#txt_PrecioUnitario").val("");
-            $("#txt_cantidad").val("");
-            $("#txt_descuentos").val("");
-            $("#txt_isv").val("");
+            $("#Id_Producto").val("");
+            $("#PrecioUnitario").val("");
+            $("#Cantidad").val("");
+            $("#id_descuento").val("");
+            $("#id_isv").val("");
             
         } 
 
