@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Editar Inventario</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Editar Producto </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -45,7 +45,7 @@
                         <div class="col-lg-6 form-group">
                         
                             <div>
-                                <label for="IdCategoria" class="form-fields"> Id Categoria</label>
+                                <label for="IdCategoria" class="form-fields"> Categoría</label>
                                 <select name="id_Categoria" value="{{old('Id_Categoria')}}"id="id_Categoria" class="form-control" >
                                    <option value="">Seleccione la categoría</option>
                                 @foreach(  $categorias as $categorias)

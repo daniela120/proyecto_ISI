@@ -8,6 +8,13 @@
         <i class="fas fa-plus"></i>
     </a>
 
+    <a href="/historicopreciomenu" class="btn btn-primary btn-circle">
+    <i class="fas fa-history"></i>
+        
+    </a>
+
+    
+
 @endsection
     @section('contenido')
     @include('productos.create')
@@ -22,8 +29,8 @@
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre Producto</th>                      
-                            <th class="text-center">Descripcion</th>
-                            <th class="text-center">id_Categoria</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Categoría</th>
                             <th class="text-center">Precio</th>    
                         </tr>
                     </thead>

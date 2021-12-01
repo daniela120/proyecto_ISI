@@ -37,7 +37,7 @@
 
                     <div class="col-lg-6 form-group">
                         <div>
-                        <label for="idCategoria" class="form-fields"> Id Categoria</label>
+                        <label for="idCategoria" class="form-fields"> Categoría</label>
                                 <select name="id_Categoria" value="{{old('id_Categoria')}}"id="id_Categoria" class="form-control" >
                                    <option value="">Seleccione la categoría</option>
                                 @foreach(  $categorias as $categorias)

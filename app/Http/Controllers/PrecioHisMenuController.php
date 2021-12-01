@@ -15,6 +15,17 @@ class PrecioHisMenuController extends Controller
     public function index()
     {
         //
+        try {
+            //code...
+            $preciomenu=precio_his_menu::all();
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+
+        return view('preciohistoricomenu.index')->withPreciomenu($preciomenu);
     }
 
     /**

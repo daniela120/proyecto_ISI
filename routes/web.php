@@ -20,6 +20,7 @@ use App\Http\Controllers\PrecioHisInventarioController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\IsvController;
 use App\Http\Controllers\cargoempleadohistoricoController;
+use App\Http\Controllers\PrecioHisMenuController;
 
 Route::get('/', function () {
     return view('index');
@@ -120,7 +121,7 @@ Route::get('/persona', function () {
 //
 
 
-
+Route::resource('historicopreciomenu', PrecioHisMenuController::class);
 Route::resource('usuarios', UserController::class);
 Route::resource('cargoempleados',CargoempleadosController::class);
 Route::resource('clientes', ClientesController::class);

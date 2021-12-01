@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\productos;
+use App\Models\precio_his_menu;
 use Illuminate\Http\Request;
 use App\Models\categorias;
 use App\HTTP\Requests\ProductoRequest;
@@ -55,6 +58,18 @@ class ProductosController extends Controller
             //code...
             $productos=request()->except('_token');
             productos::insert($productos);
+            $arreglo=productos::all();
+            $hoy=date('Y-m-d');
+            foreach($arreglo as $i){
+
+                if ($i->NombreProducto==$request->NombreProducto and $i->Precio==$request->Precio) {
+                    $id=$i->id;
+                    DB::insert('insert into precio_his_menus (id_producto,Precio,FechaInicio) values (?, ?, ?)', [$id, $request->Precio,$hoy]);
+           
+                }
+
+            }
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
@@ -101,8 +116,49 @@ class ProductosController extends Controller
             //code...
             $categorias=categorias::all();
             $productos= request()->except(['_token','_method']);
-            
+            $hoy=date('Y-m-d');
+            $prueba=productos::all();
             productos::where('id','=',$id )->update($productos);
+            $preciomenuhistorico=precio_his_menu::all();
+
+
+            foreach ($prueba as $i ) {
+                # code...
+                if ($i->id==$id and $i->Precio!=$request->Precio) {
+                    # code...
+                    
+                   foreach($preciomenuhistorico as $valorhistorico){
+
+                    if($valorhistorico->id_producto==$id and empty($valorhistorico->FechaFinal)==true ){
+
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('precio_his_menus')
+                        ->where('id', $idcorrecto )
+                        ->update(['FechaFinal' =>  $hoy]);
+
+                    }
+
+                   }
+                        
+                       
+
+                    
+                   
+
+                   
+               
+               
+               // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
+                    
+                    //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
+                    DB::insert('insert into precio_his_menus (id_producto,Precio,FechaInicio) values (?, ?, ?)', [$id, $request->Precio,$hoy]);
+           
+            }
+        }
+
+       
+       
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
