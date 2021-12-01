@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cargoempleadohistorico;
+use Illuminate\Support\Facades\DB;
 
 class cargoempleadohistoricoController extends Controller
 {
@@ -16,7 +17,15 @@ class cargoempleadohistoricoController extends Controller
             //code...
             
             
-            $cargoempleadoshistorico=cargoempleadohistorico::paginate(15);
+           // $cargoempleadoshistorico=cargoempleadohistorico::paginate(15);
+
+            $probando=DB::table('cargoempleadohistoricos as c')
+            ->join('empleados as e','c.id_empleado','=','e.id')
+            ->join('cargoempleados as w','c.id_cargo','=','w.id')
+            ->select('c.id','c.id_empleado','e.Nombre','w.Cargo','c.FechaInicio','c.FechaFinal')
+            ->orderby('c.id')
+            ->groupBy('c.id','c.id_empleado','e.Nombre','w.Cargo','c.FechaInicio','c.FechaFinal')
+            ->paginate(25);
     
             
         } catch (\Exception $exception) {
@@ -25,7 +34,7 @@ class cargoempleadohistoricoController extends Controller
 
         }
        
-        return view('cargoempleadohistorico.index')->withCargoempleadoshistorico($cargoempleadoshistorico);
+        return view('cargoempleadohistorico.index')->withProbando($probando);
     }
 
 

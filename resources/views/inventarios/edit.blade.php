@@ -13,7 +13,7 @@
 
 
 
-            @foreach($inventarios as $inventarios)
+            @foreach($inventarios as $inventario)
                 <form   method="POST"  action= "{{url('/inventarios/.$inventarios->id' )}} " role="form" id="editInventariosFrm" enctype="multipart/form-data">
                    @method('PUT')
                     @csrf

@@ -31,11 +31,11 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($preciomenu as $preciomenu)
+                        @foreach($probando as $preciomenu)
                         <tr>
                            
                             <td>{{$preciomenu->id}}</td>
-                            <td>{{$preciomenu->id_producto}}</td>
+                            <td>{{$preciomenu->NombreProducto}}</td>
                             <td>{{$preciomenu->Precio}}</td>
                             <td>{{$preciomenu->FechaInicio}}</td>
                             <td>{{$preciomenu->FechaFinal}}</td>

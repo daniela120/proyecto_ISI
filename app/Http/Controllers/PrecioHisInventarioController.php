@@ -20,14 +20,22 @@ class PrecioHisInventarioController extends Controller
 
         try {
             //code...
-            $precio_his_inventario=precio_his_inventario::paginate(15);
-            $inventarios=inventarios::all();
+            //$precio_his_inventario=precio_his_inventario::paginate(15);
+           // $inventarios=inventarios::all();
+
+            $probando=DB::table('precio_his_inventarios as h')
+            ->join('inventarios as i','h.id_inventario','=','i.id')
+            ->select('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->orderby('h.id')
+            ->groupBy('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->paginate(15);
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
     
-        return view('precioinventario.index')->withprecioinventario($precio_his_inventario)->withInventarios($inventarios);
+        return view('precioinventario.index')->withProbando($probando);
     }
 
     /**

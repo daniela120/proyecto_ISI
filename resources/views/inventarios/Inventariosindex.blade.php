@@ -28,20 +28,22 @@
                         <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre Inventario</th>
-                            <th class="text-center">Id Categoría</th>
+                            <th class="text-center">Categoría</th>
                             <th class="text-center">Precio Unitario</th>
                             <th class="text-center">Cantidad Stock</th>
                             <th class="text-center">Stock Actual</th>
                             <th class="text-center">Stock Min</th>
                             <th class="text-center">Stock Max</th>
-                            <th class="text-center"> Id Proveedor</th>
+                            <th class="text-center">Proveedor</th>
                             <th class="text-center">Descontinuado</th>
+                            
                             
                             
                         </tr>
                     </thead>
                     <tbody>
                         
+                    
                     @foreach($inventarios as $inventarios)
                         <tr>
                         <td>
@@ -54,6 +56,7 @@
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
+
                                 <td>{{$inventarios->id}}</td>
                                 <td>{{$inventarios->NombreInventario}}</td>
                                 <td>{{$inventarios->Id_Categoria}}</td>
@@ -64,8 +67,10 @@
                                 <td>{{$inventarios->StockMax}}</td>
                                 <td>{{$inventarios->Id_Proveedor}}</td>
                                 <td>{{$inventarios->Descontinuado}}</td>
+                               
                                     
                         </tr>
+                        
                         @endforeach
                     </tbody>
                 </table>

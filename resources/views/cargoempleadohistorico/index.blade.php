@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             
+                            <th class="text-center">Secuencial </th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Empleado</th>     
                             <th class="text-center">Cargo</th>  
@@ -29,12 +30,13 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($cargoempleadoshistorico as $cargoempleadoshistorico)
+                        @foreach($probando as $cargoempleadoshistorico)
                         <tr>
                            
                             <td>{{$cargoempleadoshistorico->id}}</td>
                             <td>{{$cargoempleadoshistorico->id_empleado}}</td>
-                            <td>{{$cargoempleadoshistorico->id_cargo}}</td>
+                            <td>{{$cargoempleadoshistorico->Nombre}}</td>
+                            <td>{{$cargoempleadoshistorico->Cargo}}</td>
                             <td>{{$cargoempleadoshistorico->FechaInicio}}</td>
                             <td>{{$cargoempleadoshistorico->FechaFinal}}</td>
                             
