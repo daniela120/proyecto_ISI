@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\precio_his_menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PrecioHisMenuController extends Controller
 {
@@ -17,7 +18,13 @@ class PrecioHisMenuController extends Controller
         //
         try {
             //code...
-            $preciomenu=precio_his_menu::all();
+            //$preciomenu=precio_his_menu::all();
+            $probando=DB::table('precio_his_menus as h')
+            ->join('productos as p','h.id_producto','=','p.id')
+            ->select('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->orderby('h.id')
+            ->groupBy('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->paginate(15);
 
         } catch (\Exception $exception) {
             //throw $th;
@@ -25,7 +32,7 @@ class PrecioHisMenuController extends Controller
 
         }
 
-        return view('preciohistoricomenu.index')->withPreciomenu($preciomenu);
+        return view('preciohistoricomenu.index')->withProbando($probando);
     }
 
     /**
