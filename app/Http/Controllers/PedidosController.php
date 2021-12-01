@@ -86,7 +86,7 @@ class PedidosController extends Controller
     public function store(PedidosRequest $request)
     {
         //
-        try {
+       // try {
             //code...
                 DB::beginTransaction();
                 $pedidos=new pedidos;
@@ -104,26 +104,28 @@ class PedidosController extends Controller
                 $id_isv=$request->get('id_isv');
                 
                 $cont=0;
+                $id_pedido=1;
 
-                while($cont<5){
+                while($cont < 2){
                     $detalles= new detallepedidos(); 
-                    $detalles->id_pedido=$pedidos->$id_pedido; 
-                    $detalles->Id_Producto=$Id_Producto[$cont];
-                    $detalles->PrecioUnitario=$PrecioUnitario[$cont];
-                    $detalles->Cantidad=$Cantidad[$cont];
-                    $detalles->id_descuento=$id_descuento[$cont];
-                    $detalles->id_isv=$id_isv[$cont];
+                    $detalles->id_pedido=$id_pedido;
+                    $detalles->Id_Producto=$Id_Producto;
+                    $detalles->PrecioUnitario=$PrecioUnitario;
+                    $detalles->Cantidad=$Cantidad;
+                    $detalles->id_descuento=$id_descuento;
+                    $detalles->id_isv=$id_isv;
+                    $detalles->Total=$detalles->PrecioUnitario * $detalles->Cantidad;
                     $detalles->save();
                     $cont=$cont+1;
                 } 
                 DB::commit();
 
-            } catch (\Exception $exception) {
+            //} catch (\Exception $exception) {
                 //throw $th;
                 DB::rollback();
-               return view('errores.errors',['errors'=>$exception->getMessage()]);
+             //  return view('errores.errors',['errors'=>$exception->getMessage()]);
     
-            }
+           // }
 
         alert()->success('Pedido guardado correctamente');
         return redirect()->route('pedidos.index');
