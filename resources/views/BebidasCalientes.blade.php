@@ -18,8 +18,8 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
         <body id="page-top">
-        @extends('layoutmenu')
-    @section('content')
+    @extends('layouts.adminlogin')
+    @section('contenido')
 
     <!-- entre section y stop colocar el codigo de la pagina para que asi se añada por debajo de la barra de menu(layoutmenu) fijarse en pagina 
 bebidas heladas-->

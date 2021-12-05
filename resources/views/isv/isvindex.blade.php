@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>ISV</span>
+    <span>Valor Impuesto</span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Clientes;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home.index');
+        $request->user()->authorizeRoles(['user','admin']);
+        //return view('home.index');
+
+       if(auth()->user()->email = 'miguel@gg.com' ){
+            return view('home.index');
+       }
+       
+        return view('/BebidasHeladas');
+        
     }
 }
