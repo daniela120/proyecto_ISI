@@ -13,6 +13,7 @@ use App\Models\turnos;
 use App\Models\cargoempleadohistorico;
 use App\Models\User;
 use App\HTTP\Requests\EmpleadoRequest;
+use Carbon\Carbon;
 
 
 class EmpleadoController extends Controller
@@ -152,14 +153,18 @@ class EmpleadoController extends Controller
             $turnos=turnos::all();
     
             $cargos=cargoempleados::all();
-            $documentos=tipodocumentos::all();
-            $hoy=date('Y-m-d');
+            $documentos=tipodocumentos::all();   
+            $hoy= Carbon::now();
+            $hoy = $hoy->format('Y-m-d');
+            $ayer = new Carbon('yesterday');
+            $ayer=$ayer->format('Y-m-d');         
             $values=[$id,$request->Id_Cargo,$request->FechaContratacion];
             $valuesupdate=[$id,$request->Id_Cargo,$request->FechaContratacion,$hoy];
             $prueba=Empleado::all();
             $empleados= request()->except(['_token','_method']);
             Empleado::where('id','=',$id)->update($empleados);
             $cargoempleadohistorico=cargoempleadohistorico::all();
+           
 
             foreach ($prueba as $i ) {
                 # code...
@@ -168,15 +173,38 @@ class EmpleadoController extends Controller
                     
                    foreach($cargoempleadohistorico as $valorhistorico){
 
-                    if($valorhistorico->id_empleado==$id and empty($valorhistorico->FechaFinal)==true ){
+
+
+                    if ($valorhistorico->id_empleado==$id and $valorhistorico->FechaInicio==$hoy) {
+                        # code...
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('cargoempleadohistoricos')
+                        ->where('id', $idcorrecto )
+                        ->update(['id_cargo' =>  $request->Id_Cargo]);
+
+                       
+                    }
+
+                    elseif($valorhistorico->id_empleado==$id and $valorhistorico->FechaInicio!=$hoy and empty($valorhistorico->FechaFinal)==true ) {
 
                         $idcorrecto=$valorhistorico->id;
 
                         DB::table('cargoempleadohistoricos')
                         ->where('id', $idcorrecto )
-                        ->update(['FechaFinal' =>  $hoy]);
+                        ->update(['FechaFinal' =>  $ayer]);
 
+                        DB::insert('insert into cargoempleadohistoricos (id_empleado,id_cargo,FechaInicio) values (?, ?, ?)', [$id, $request->Id_Cargo,$hoy]);
+                   
                     }
+
+
+
+
+
+
+                   
+                    
 
                    }
                         
@@ -191,8 +219,7 @@ class EmpleadoController extends Controller
                // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
                     
                     //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
-                    DB::insert('insert into cargoempleadohistoricos (id_empleado,id_cargo,FechaInicio) values (?, ?, ?)', [$id, $request->Id_Cargo,$hoy]);
-                
+                   
             }
         }
            

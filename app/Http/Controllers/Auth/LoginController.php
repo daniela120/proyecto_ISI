@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     public function redirectPath(){
 
-        if (auth()->user()->email == 'miguel@gg.com'){
+        if (auth()->user()->email == 'amoisessc@gmail.com'){
 
         return '/home';
         }
