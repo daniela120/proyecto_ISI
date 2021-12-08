@@ -28,14 +28,14 @@ class InventariosController extends Controller
             $proveedores=proveedores::all();
             $categorias=categorias::all();
 
-           /**  $probando=DB::table('inventarios as i')
+             $probando=DB::table('inventarios as i')
             ->join('categorias as c','i.Id_Categoria','=','c.id')
             ->join('proveedores as p','i.Id_Proveedor','=','p.id')
             ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompañia','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->orderby('i.id')
             ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompañia','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->paginate(25);
-            */
+            
 
 
 
@@ -45,6 +45,7 @@ class InventariosController extends Controller
 
         }
         //dd($probando);
+        
         return view('inventarios.Inventariosindex')->withInventarios($inventarios)->withProveedores($proveedores)->withCategorias($categorias);
         //
     }

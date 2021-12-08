@@ -10,9 +10,16 @@
         <i class="fas fa-plus"></i>
     </a>
 
+
     <a href="/precioinventario" class="btn btn-success btn-circle" >
     <i class="fas fa-history"></i>
     </a>
+
+    <a href="/mostrarinventario" class="btn btn-success btn-circle" >
+    <i class="fas fa-history"></i>
+    </a>
+
+    
 
 @endsection 
     @section('contenido')
