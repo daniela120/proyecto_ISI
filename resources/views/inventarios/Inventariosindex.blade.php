@@ -16,7 +16,7 @@
     </a>
 
     <a href="/mostrarinventario" class="btn btn-success btn-circle" >
-    <i class="fas fa-history"></i>
+    <i class="far fa-eye"></i>
     </a>
 
     
