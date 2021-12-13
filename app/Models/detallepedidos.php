@@ -17,10 +17,12 @@ class detallepedidos extends Model
 
       
         'id_pedido',
-        'id_producto',
+        'Id_Producto',
+        'PrecioUnitario',
         'Cantidad',
-        'descuento',	
-        'Total_producto'
+        'id_descuento',	
+        'id_isv',
+        'Total'
         
     ];
 }

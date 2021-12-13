@@ -29,11 +29,11 @@ class PedidosRequest extends FormRequest
         'Fecha'=>['required'],
         'id_tipo_de_pago'=>['required'],
         'id_cliente'=>['required'],
-        'Id_Producto'=>['required'],
-        'PrecioUnitario'=>['required'],
-        'Cantidad'=>['required'],
-        'id_descuento'=>['required'],
-        'id_isv'=>['required'],
+        'Id_Producto'=>['max:20'],
+        'PrecioUnitario'=>['max:20'],
+        'Cantidad'=>['max:20'],
+        'id_descuento'=>['max:20'],
+        'id_isv'=>['max:20'],
         
         ];
     }

@@ -1,3 +1,5 @@
+
+
 @extends('layouts.admin')
 
 @section('titulo')
@@ -17,7 +19,7 @@
                         <div>
                             <label for="Fecha" class="form-fields"> Fecha </label>
                             <input type="date" class="form-control {{$errors->has('Fecha') ? 'is-invalid' : '' }}" name="Fecha" id="Fecha" 
-                            value="{{old('Fecha')}}" placeholder='Primer letra en Mayuscula'>
+                            value="" placeholder='Primer letra en Mayuscula'>
                             @if($errors->has('Fecha'))
                                 <span class="text-danger">{{$errors->first('Fecha')}}</span>
                             @endif
@@ -78,10 +80,10 @@
                         <div class="col-lg-3 form-group">           
                             <div>
                                 <label for="Id_Producto" class="form-fields"> Producto </label>
-                                <select name="Id_Producto" id="Id_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
+                                <select name="pId_Producto" id="pId_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione el Producto</option>
                                     @foreach($productos as $productos)
-                                        <option value="{{ $productos['id'] }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
+                                        <option value="{{ json_encode($productos['id'],TRUE) }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('Id_Producto'))
@@ -94,7 +96,7 @@
                             <div>
                                 <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
                                 
-                                    <input type="text" class="form-control" name="PrecioUnitario" id="PrecioUnitario" 
+                                    <input type="text" class="form-control" name="pPrecioUnitario" id="pPrecioUnitario" 
                                     value="{{old('PrecioUnitario')}}">
                                      
                                <!-- @if($errors->has('PrecioUnitario'))
@@ -108,7 +110,7 @@
                             <div>
                                 <label for="Cantidad" class="form-fields"> Cantidad </label>
                                 <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
-                                name="Cantidad" id="Cantidad" value="{{old('Cantidad')}}" >
+                                name="pCantidad" id="pCantidad" value="{{old('Cantidad')}}" >
                                 @if($errors->has('Cantidad'))
                                     <span class="text-danger">{{$errors->first('Cantidad')}}</span>
                                 @endif
@@ -118,7 +120,7 @@
                         <div class="col-lg-2 form-group">           
                             <div>
                                 <label for="id_descuento" class="form-fields"> Descuento </label>
-                                <select name="id_descuento" id="id_descuento" class="form-control {{$errors->has('id_descuento') ? 'is-invalid' : '' }}" >
+                                <select name="pid_descuento" id="pid_descuento" class="form-control {{$errors->has('id_descuento') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione </option>
                                     @foreach($descuentos as $descuentos)
                                         <option value="{{ $descuentos['id'] }}" {{ old('id_descuento') == $descuentos->id ? 'selected' : '' }}>{{$descuentos['ValorDescuento'] }}</option>
@@ -134,7 +136,7 @@
                         <div class="col-lg-2 form-group">           
                             <div>
                                 <label for="id_isv" class="form-fields"> ISV </label>
-                                <select name="id_isv" id="id_isv" class="form-control {{$errors->has('id_isv') ? 'is-invalid' : '' }}" >
+                                <select name="pid_isv" id="pid_isv" class="form-control {{$errors->has('id_isv') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione </option>
                                     @foreach($isv as $isv)
                                         <option value="{{ $isv['id'] }}" {{ old('id_isv') == $isv->id ? 'selected' : '' }}>{{$isv['isv'] }}</option>
@@ -149,9 +151,9 @@
                         
                         <div class="col-lg-1 form-group">
                             <div>
-                            <button type="submit" id="bt_add" href="#" class="btn btn-primary">
+                            <button type="button" id="bt_add" href="#" class="btn btn-primary">
                                 Agregar
-                                <i class="fas fa-spinner fa-spin d-none"></i>
+                                
                                 </button>
                             </div>
                         </div>
@@ -170,10 +172,12 @@
                                                             
                                     </tr>
                                 </thead>
-                                <tbody>
-                        
-                       
-                                    <tr>
+                               
+                                
+
+                                
+                                <tbody >
+                                <tr>
                                         <td>TOTAL</td>
                                         <td></td>
                                         <td></td>
@@ -182,33 +186,30 @@
                                         <td></td>
                                         <td><h5 id="total">0.00</h5></td>
                                     </tr>
-                        
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                                 
 
                         </div>
-
-                        </div>
                     </div>
                 </div>
+            
 
-                <div class="col-lg-4 form-group"> 
+                    
 
-                </div>
-
-                    <div class="buttons-form-submit d-flex justify-content-end" id="bt_guardar">
-                    <br>
-                        <div class="form-group">
-                            <input class="btn btn-primary" type="submit" class="form-control" value=" Guardar ">
-                            <input class="btn btn-danger" type="reset" class="form-control" value=" Cancelar">
-                            <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
+
+                    <div class="col-lg-4 form-group " id="bt_guardar"> 
+                        <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
+                        <button class="btn btn-primary" type="submit">Guardar</button>
+                        <button class="btn btn-danger" type="reset">Cancelar</button>
+                        <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
+                    </div>
                 <br>
             </form>
+
 
     @push('scripts')
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
@@ -216,6 +217,7 @@
     
     <script> 
        $(document).ready(function(){
+           evaluar();
            $('#bt_add').click(function(){
                agregar();
            });
@@ -223,48 +225,59 @@
         var cont=0;
         total=0;
         subtotal=[];
-        $(#bt_guardar).hide();
-
+        
+       
         function agregar()
         {
-            idProducto=$("#Id_Producto").val();
-            Producto=$("#Id_Producto option:selected").text();
-            PrecioUnitario=$("#PrecioUnitario").val();
-            Cantidad=$("#Cantidad").val();
-            id_descuento=$("#id_descuento option:selected").text();
-            id_isv=$("#id_isv option:selected").text();
+            //limpiar();
+            
+            idProducto=$("#pId_Producto").val();
+            Producto=$("#pId_Producto option:selected").text();
+            PrecioUnitario=$("#pPrecioUnitario").val();
+            Cantidad=$("#pCantidad").val();
+            id_descuento=$("#pid_descuento").val();
+            id_descuentoval=$("#pid_descuento option:selected").text();
+            id_isv=$("#pid_isv").val();
+            id_isvval=$("#pid_isv option:selected").text();
 
-            if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 id_descuento!="" && id_isv!="")
+            if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 && id_descuento!="" && id_isv!="")
             {
                 subtotal[cont]=(Cantidad*PrecioUnitario);
                 total=total+subtotal[cont];
-""
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick"eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="Cantidad[]" value="'+Cantidad+'"></td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="id_descuento[]" value="'+id_descuento+'"></td><td><input type="number" name="id_isv[]" value="'+id_isv+'"></td><td>'+subtotal[cont]+'</td></tr>';
+
+                                                                                                                        
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick"eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
+               // var fila='<tr class="selected" id="fila'+cont+'"><input type="number" name="idProductos[]" value="'+idProducto+'">'+Producto+'</td></tr>';
+                
                 cont++;
                 limpiar();
                 $("#total").html("L. " +total);
                 evaluar();
                 $('#detalles').append(fila);
-            }else
+                
+            }else{
                 alert("Error al Ingresar el detalle del pedido");    
+                }
+                
             }
-        }
+        
+        
 
         function limpiar(){
-            $("#Id_Producto").val("");
-            $("#PrecioUnitario").val("");
-            $("#Cantidad").val("");
-            $("#id_descuento").val("");
-            $("#id_isv").val("");
+            $("#pId_Producto").val("");
+            $("#pPrecioUnitario").val("");
+            $("#pCantidad").val("");
+            $("#pid_descuento").val("");
+            $("#pid_isv").val("");
             
         } 
 
         function evaluar(){
             if(total>0)
             {
-                $(#bt_guardar).show();
+                $("#bt_guardar").show();
             }else{
-                $(#bt_guardar).hide();
+                $("#bt_guardar").hide();
             }
 
         }
@@ -272,7 +285,7 @@
         function eliminar(index) {
             total=total-subtotal[index];
             $("#total").html("L. "+total);
-            $("#fila" + index).remove());
+            $("#fila" + index).remove();
             evaluar();
         }
     </script>

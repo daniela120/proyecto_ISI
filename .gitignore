@@ -1,3 +1,4 @@
+/Http/Controllers/Auth/LoginController
 /node_modules
 /public/hot
 /public/storage

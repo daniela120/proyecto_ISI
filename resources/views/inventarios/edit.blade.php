@@ -33,7 +33,7 @@
                         <div class="col-lg-6 form-group">
                         
                             <div>
-                                <label for="IdCategoria" class="form-fields"> Id Categoria</label>
+                                <label for="IdCategoria" class="form-fields"> Categoría</label>
                                 <select name="Id_Categoria" value="{{old('Id_Categoria')}}"id="Id_Categoria" class="form-control" >
                                    <option value="">Seleccione la categoría</option>
                                 @foreach(  $categorias as $categorias)
@@ -101,7 +101,7 @@
                         <div class="col-lg-6 form-group">
                         
                         <div>
-                            <label for="IdProveedor" class="form-fields"> Id Proveedor</label>
+                            <label for="IdProveedor" class="form-fields"> Proveedor</label>
                             <select name="Id_Proveedor" id="Id_Proveedor"  value="{{old('Id_Proveedor')}}" class="form-control" >
                                <option value="">Seleccione el proveedor</option>
                             @foreach(  $proveedores as $proveedores)

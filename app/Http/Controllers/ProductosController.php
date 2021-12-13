@@ -9,6 +9,7 @@ use App\Models\precio_his_menu;
 use Illuminate\Http\Request;
 use App\Models\categorias;
 use App\HTTP\Requests\ProductoRequest;
+use Carbon\Carbon;
 
 class ProductosController extends Controller
 {
@@ -116,10 +117,13 @@ class ProductosController extends Controller
             //code...
             $categorias=categorias::all();
             $productos= request()->except(['_token','_method']);
-            $hoy=date('Y-m-d');
+            $hoy= Carbon::now();
+            $hoy = $hoy->format('Y-m-d');
             $prueba=productos::all();
             productos::where('id','=',$id )->update($productos);
             $preciomenuhistorico=precio_his_menu::all();
+            $ayer = new Carbon('yesterday');
+            $ayer=$ayer->format('Y-m-d');
 
 
             foreach ($prueba as $i ) {
@@ -129,15 +133,31 @@ class ProductosController extends Controller
                     
                    foreach($preciomenuhistorico as $valorhistorico){
 
-                    if($valorhistorico->id_producto==$id and empty($valorhistorico->FechaFinal)==true ){
+                    if($valorhistorico->id_producto==$id and $valorhistorico->FechaInicio==$hoy ){
 
                         $idcorrecto=$valorhistorico->id;
 
                         DB::table('precio_his_menus')
                         ->where('id', $idcorrecto )
-                        ->update(['FechaFinal' =>  $hoy]);
+                        ->update(['Precio' =>$request->Precio]);
+
+                    }elseif ($valorhistorico->id_producto==$id and empty($valorhistorico->FechaFinal)==true ) {
+                        # code...
+                        
+
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('precio_his_menus')
+                        ->where('id', $idcorrecto )
+                        ->update(['FechaFinal' =>  $ayer]);
+
+                        DB::insert('insert into precio_his_menus (id_producto,Precio,FechaInicio) values (?, ?, ?)', [$id, $request->Precio,$hoy]);
+           
+
 
                     }
+
+                    
 
                    }
                         
@@ -152,8 +172,7 @@ class ProductosController extends Controller
                // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
                     
                     //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
-                    DB::insert('insert into precio_his_menus (id_producto,Precio,FechaInicio) values (?, ?, ?)', [$id, $request->Precio,$hoy]);
-           
+                   
             }
         }
 
