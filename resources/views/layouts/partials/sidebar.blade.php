@@ -1,4 +1,8 @@
 <!-- Sidebar -->
+<?php 
+    if(!auth()->user()->hasRole('Cocinero')){
+        ?>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -160,3 +164,6 @@
     </div>
 </ul>
 <!-- End of Sidebar -->
+<?php
+    }
+?>

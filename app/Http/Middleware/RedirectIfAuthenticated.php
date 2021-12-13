@@ -27,6 +27,8 @@ class RedirectIfAuthenticated
             }
         }
 
+        //Auth::logout();
+
         return $next($request);
     }
 }

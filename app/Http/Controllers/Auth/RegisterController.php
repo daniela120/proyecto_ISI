@@ -74,4 +74,13 @@ class RegisterController extends Controller
         $user->roles()->attach(Role::where('name', 'user')->first());
         return $user;
     }    
+
+    public function redirectPath(){
+
+        if (auth()->user()->email == 'miguel@gg.com'){
+
+        return '/home';
+        }
+        return '/BebidasCalientes';
+    }
 }

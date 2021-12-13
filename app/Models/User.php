@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -66,6 +67,7 @@ class User extends Authenticatable
                  return true; 
             }   
         }
+        Auth::logout();
         return false;
     }
     

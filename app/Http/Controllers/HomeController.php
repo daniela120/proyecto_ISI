@@ -24,14 +24,26 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['user','admin']);
-        //return view('home.index');
+        $request->user()->authorizeRoles(['Cocinero','user','admin']);
 
-       if(auth()->user()->email = 'miguel@gg.com' ){
+        if($request->user()->hasRole('Cocinero')){
+            return redirect('/pedidos');
+        }else if($request->user()->hasRole('user')){
+            return redirect('/BebidasCalientes');
+        }
+        else
+            {
+            return view('home.index');
+        }
+
+        
+        
+
+       /*if(auth()->user()->email = 'miguel@gg.com' ){
             return view('home.index');
        }
        
         return view('/BebidasHeladas');
-        
+        */
     }
 }

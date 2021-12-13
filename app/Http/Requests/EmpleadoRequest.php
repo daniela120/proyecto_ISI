@@ -25,10 +25,10 @@ class EmpleadoRequest extends FormRequest
 
     public function rules()
     {
-
+        //var_dump($this);
         
-
-        return [
+        $rule = 
+        [
             //
             
             'Nombre'=>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
@@ -42,11 +42,29 @@ class EmpleadoRequest extends FormRequest
             'Id_Usuario'=>['required'],
             'Telefono'=>['required', 'digits:8'],
         
-            'Documento' =>['required', 'string','min:13', 'max:20' ],
+            'Documento' => $this['Id_Documento'] == '2' ? 'required|digits:13' : 'required|digits:14'
 
 
+        ];        
+        return $rule;
+    }
 
-        ];
+    function val($request){
+        if($request->input('Id_Documento')-> value == '1'){
+            $Campos=[
+                'Documento' => 'required', 'digits:14'
+            ];
+            $mensaje=[
+                
+            ];
+        }else{
+            $Campos=[
+                'Documento' => 'required', 'digits:13'
+            ];
+            $mensaje=[
+
+            ];
+        }
     }
 
 
