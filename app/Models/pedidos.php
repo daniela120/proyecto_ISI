@@ -25,5 +25,17 @@ class pedidos extends Model
         
         
     ];
+
+    public function detallepedidos(){
+        return $this->hasMany(detallepedidos::class);
+    }
+
+    public function clientes(){
+        return $this->belongsTo(clientes::class);
+    }
+
+    public function tiposdepago(){
+        return $this->belongsTo(tiposdepago::class);
+    }
 }
 

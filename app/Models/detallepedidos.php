@@ -25,4 +25,8 @@ class detallepedidos extends Model
         'Total'
         
     ];
+
+    public function pedidos(){
+        return $this->belongsTo(pedidos::class);
+    }
 }

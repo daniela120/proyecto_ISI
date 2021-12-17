@@ -16,7 +16,9 @@
             <div class=card-body>
             <table id="dt-pedidos" class="table table-stripped table-bordered dts">
                     <thead>
+                    
                         <tr>
+                        
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Empleado</th>
@@ -27,12 +29,14 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($pedidos as $pedidos)
+                    @foreach($pedidos as $pedidos)
                         <tr>
                         <td>
                             
-                                <a href="" class="delete-form-data" onclick="">
-                                     <i class="fas fa-eye"></i>
+                        <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
+                        <a href="{{route('pedidos.show',$pedidos->id)}}"  >
+
+                        <i class="fas fa-eye"></i>
                                 </a>
 
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
@@ -44,7 +48,7 @@
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                                <td>{{$pedidos->id_pedido}}</td>
+                                <td>{{$pedidos->id}}</td>
                                 <td>{{$pedidos->id_empleado}}</td>
                                 <td>{{$pedidos->Fecha}}</td>
                                 <td>{{$pedidos->id_tipo_de_pago}}</td>
@@ -68,7 +72,16 @@
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-    <!-- funcion editEstadoEnvio para pasar parametros y editar-->
+   <!-- 
+     <script>    
+
+        function show(pedidos){
+            $("#deleteInventariosFrm").attr('action',`/inventarios/${inventarios.id}`);
+                
+        } 
+        </script>
+
+     funcion editEstadoEnvio para pasar parametros y editar-->
 
    <!----
     <script>    

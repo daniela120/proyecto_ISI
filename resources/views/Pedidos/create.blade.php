@@ -1,5 +1,4 @@
 
-
 @extends('layouts.admin')
 
 @section('titulo')
@@ -293,7 +292,3 @@
     @endpush
 
     @endsection
-
-    
-
-    
