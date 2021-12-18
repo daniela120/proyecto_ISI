@@ -2,9 +2,9 @@
 
 @section('titulo')
 
-    <span> Pedidos </span>
+    <span> Facturas </span>
     
-    <a href="/pedidos/create" class="btn btn-primary btn-circle" >
+    <a href="/factura/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
     </a>
 
@@ -34,7 +34,7 @@
                         <td>
                             
                         <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
-                        <a href="{{route('pedidos.show',$pedidos->id)}}"  >
+                        <a href="{{route('factura.show',$pedidos->id)}}"  >
 
                         <i class="fas fa-eye"></i>
                                 </a>

@@ -3,29 +3,110 @@
 
 @section('titulo')
 
-    <span> Nuevo Pedido </span>
+    <span> Nueva Factura </span>
 @endsection 
 
 @section('contenido')
             
-<form action="{{ url('/pedidos') }}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/factura') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
             <div class=card-body>
                 <div class="row">
                    
-                    <div class="col-lg-12 form-group">
-                        <div>
-                            <label for="Fecha" class="form-fields"> Fecha </label>
-                            <input type="date" class="form-control {{$errors->has('Fecha') ? 'is-invalid' : '' }}" name="Fecha" id="Fecha" 
-                            value="" placeholder='Primer letra en Mayuscula'>
-                            @if($errors->has('Fecha'))
-                                <span class="text-danger">{{$errors->first('Fecha')}}</span>
-                            @endif
-                        </div>
+                <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="fecha" class="form-fields">Fecha</label>
+                                <p>{{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</p> 
+                            </div>
                     </div>
 
-                    <div class="col-lg-4 form-group">
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="Direccion" class="form-fields">Dirección</label>
+                                <p>Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101</p> 
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="idpedido" class="form-fields">Num Pedido</label>
+                                
+                                <p>{{($datopedido)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="impuesto" class="form-fields">Impuesto</label>
+                                
+                                <p>{{($acumimpuesto)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="subtotal" class="form-fields">Subtotal</label>
+                                
+                                <p>{{($subtotalpedido)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="descuento" class="form-fields">Descuento</label>
+                                
+                                <p>{{($acumdescuento)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="total" class="form-fields">Total</label>
+                                
+                                <p>{{($valortotal)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="empleadoatendio" class="form-fields">Atendido por:</label>
+                                
+                                <p>{{($empleadonombre)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="clientedepedido" class="form-fields">Cliente:</label>
+                                
+                                <p>{{($clientenombre)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+
+                    <!-- <div class="col-lg-4 form-group">
                         <div>
                             <label for="id_cliente" class="form-fields"> Cliente</label>
                             <select name="id_cliente" id="id_cliente" class="form-control {{$errors->has('id_cliente') ? 'is-invalid' : '' }}"
@@ -39,13 +120,13 @@
                             <span class="text-danger">{{$errors->first('id_cliente')}}</span>
                             @endif
                             </div>    
-                    </div>
+                    </div>-->
     
                     <div class="col-lg-4 form-group">    
                         <div>
                             <label for="id_tipo_de_pago" class="form-fields"> Tipo Pago</label>
                                 <select name="id_tipo_de_pago" id="id_tipo_de_pago" class="form-control {{$errors->has('id_tipo_de_pago') ? 'is-invalid' : '' }}" >
-                                   <option value="" >Seleccione el tipo de pago</option>
+                                   
                                 @foreach($tiposdepago as $tiposdepago)
                                     <option value="{{ $tiposdepago['id'] }}" {{ old('id_tipo_de_pago') == $tiposdepago->id ? 'selected' : '' }}>{{$tiposdepago['Nombre_Tipo_Pago'] }}</option>
                                 @endforeach
@@ -56,7 +137,42 @@
                         </div>         
                     </div>
 
-                    <div class="col-lg-4 form-group">           
+
+                    <div class="row">
+
+                            <div class="col-lg-6 form-group" id="mostrartarjeta">
+                                <label for="tarjeta">Num Tarjeta</label>
+                               <p> <input type="number" name="tarjeta" id="tarjeta"></p>
+                                <label for="tarjetamonto">Monto</label>
+                                <input type="text" name="tarjetamonto" id="tarjetamonto">
+                            </div>
+
+                    </div>
+
+                    <div class="col-lg-4 form-group" id="mostrarefectivo">
+                        <label for="efectivo">Monto en Efectivo</label>
+                        <p><input type="number" name="efectivo" id="efectivo"> </p>
+                        
+                    </div>
+
+                    <div class="col-lg-1 form-group">
+                            <div>
+                            <button type="button" id="bt_monto" href="#" class="btn btn-primary">
+                                Ingresar monto
+                                
+                                </button>
+                            </div>
+                        </div>
+
+                        </div>
+
+
+
+
+
+
+
+                   <!-- <div class="col-lg-4 form-group">           
                         <div>
                             <label for="id_empleado" class="form-fields"> Empleado </label>
                             <select name="id_empleado" id="id_empleado" class="form-control {{$errors->has('id_empleado') ? 'is-invalid' : '' }}" >
@@ -69,10 +185,10 @@
                                     <span class="text-danger">{{$errors->first('id_empleado')}}</span>
                                 @endif
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                
-                <div class="card border-primary">
+                <!--<div class="card border-primary">
                     <div class=card-body>
                         <div class="row">
                             
@@ -98,9 +214,7 @@
                                     <input type="text" class="form-control" name="pPrecioUnitario" id="pPrecioUnitario" 
                                     value="{{old('PrecioUnitario')}}">
                                      
-                               <!-- @if($errors->has('PrecioUnitario'))
-                                    <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
-                                @endif-->
+                               
                             </div>
                         </div>
 
@@ -198,7 +312,7 @@
 
                    
                 </div>
-            </div>
+            </div>-->
 
                     <div class="col-lg-4 form-group " id="bt_guardar"> 
                         <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
@@ -220,10 +334,14 @@
            $('#bt_add').click(function(){
                agregar();
            });
+           $('#bt_monto').click(function(){
+               mostrarmontos();
+           });
        });
         var cont=0;
         total=0;
         subtotal=[];
+        TipoPago=$("#id_tipo_de_pago option:selected").text();
         
        
         function agregar()
@@ -272,12 +390,20 @@
         } 
 
         function evaluar(){
-            if(total>0)
+            TipoPago=$("#id_tipo_de_pago option:selected").text();
+            if(TipoPago=="Tarjeta")
             {
                 $("#bt_guardar").show();
+                $("#mostrartarjeta").show();
             }else{
                 $("#bt_guardar").hide();
+                $("#mostrartarjeta").hide();
             }
+
+        }
+
+        function mostrarmontos(){
+            evaluar();
 
         }
 

@@ -193,3 +193,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/pedidos/{pedidos}', [App\Http\Controllers\PedidosController::class, 'show'])->name('pedidos.show');
+Route::get('/factura/{pedidos}', [App\Http\Controllers\FacturaController::class, 'show'])->name('factura.show');

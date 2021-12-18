@@ -18,7 +18,7 @@ class CreateParametrizacionFacturasTable extends Migration
             $table->engine="InnoDB";
             $table->id('id_parametro');
             $table->string('descripcion');
-            $table->integer('rtn');
+            $table->string('rtn');
             $table->date('fechavencimiento');
             $table->string('CAI');
             $table->integer('rangoinicial');

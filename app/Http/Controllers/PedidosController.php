@@ -81,9 +81,9 @@ class PedidosController extends Controller
 
        $isv=isv::all();
 
-            $mytime= Carbon::now("America/Lima");
+        $mytime= Carbon::now("America/Lima");
                 
-           $Hoy=$mytime->toDateTimeString();
+        $Hoy=$mytime->toDateTimeString();
 
        // $mytime = Carbon::now();
          //      echo $mytime->toDateTimeString();
@@ -95,7 +95,9 @@ class PedidosController extends Controller
             //->get(); 
 
         return view('Pedidos.create')->withEmpleado($empleado)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
-    }
+   
+   
+      }
 
     /**
      * Store a newly created resource in storage.
