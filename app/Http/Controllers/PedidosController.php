@@ -56,7 +56,7 @@ class PedidosController extends Controller
 
         $isv=isv::all();
         
-        $pedidos=pedidos::paginate(15);
+        $pedidos=pedidos::paginate(50);
 
         return view('Pedidos.pedidosindex')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    

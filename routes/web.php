@@ -22,6 +22,8 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\IsvController;
 use App\Http\Controllers\cargoempleadohistoricoController;
 use App\Http\Controllers\PrecioHisMenuController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\ParametrizacionFacturaController;
 
 Route::get('/', function () {
     return view('index');
@@ -142,6 +144,9 @@ Route::resource('precioinventario',PrecioHisInventarioController::class);
 Route::resource('productos',ProductosController::class);
 Route::resource('isv',IsvController::class);
 Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
+Route::resource('factura',FacturaController::class);
+Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
+
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
