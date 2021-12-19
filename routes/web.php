@@ -25,6 +25,7 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\SalarioshistoricosController;
 
 Route::get('/', function () {
     return view('index');
@@ -154,7 +155,7 @@ Route::resource('compras',ComprasController::class);
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
-
+Route::resource('salario',SalarioshistoricosController::class);
 
 /**Route::get('errors', function(){ 
     abort(500);

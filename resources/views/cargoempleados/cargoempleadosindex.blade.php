@@ -9,6 +9,11 @@
     
     </a>
 
+    <a href="/salario" class="btn btn-primary btn-circle">
+    <i class="fas fa-users"></i>
+        
+    </a>
+
 @endsection
     @section('contenido')
     @include('cargoempleados.create')
@@ -23,7 +28,7 @@
                             <th class="text-center">Id </th>
                             <th class="text-center">Cargo</th>        
                             <th class="text-center">Salario</th>               
-                            <th class="text-center">Descripcion</th>        
+                            <th class="text-center">Descripción</th>        
                         </tr>
                     </thead>
                     <tbody>

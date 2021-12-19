@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\HTTP\Requests\CargosRequest;
+use App\Models\salarioshistoricos;
 use App\Models\cargoempleados;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CargoempleadosController extends Controller
 {
@@ -54,6 +57,18 @@ class CargoempleadosController extends Controller
             //code...
             $cargoempleados = request()->except('_token');
             cargoempleados::insert($cargoempleados);
+            $arreglo=cargoempleados::all();
+            $hoy=date('Y-m-d');
+
+           
+            foreach ($arreglo as $i ) {
+                if ($i->Cargo==$request->Cargo and $i->Salario==$request->Salario ) {
+                    $id=$i->id;
+                    DB::insert('insert into salarioshistoricos (id_cargo,FechaInicio,Sueldo) values (?, ?, ?)', [$id, $hoy,$request->Salario]);
+               
+                }
+            }
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
@@ -99,16 +114,82 @@ class CargoempleadosController extends Controller
         //
         try {
             //code...
-            $cargoempleados= request()->except(['_token','_method']);
-            cargoempleados::where('id','=',$id)->update($cargoempleados);
+            
+            $cargodatos= request()->except(['_token','_method']);
+            $prueba=cargoempleados::all();
+            cargoempleados::where('id','=',$id )->update($cargodatos);
+            $salarioshistoricos=salarioshistoricos::all();
+            $hoy= Carbon::now();
+            $hoy = $hoy->format('Y-m-d');
+            $ayer = new Carbon('yesterday');
+            $ayer=$ayer->format('Y-m-d');
+
+
+            foreach ($prueba as $i ) {
+                # code...
+                if ($i->id==$id and $i->Salario!=$request->Salario) {
+                    # code...
+                    
+                   foreach($salarioshistoricos as $valorhistorico){
+
+                    if($valorhistorico->id_cargo==$id and $valorhistorico->FechaInicio==$hoy ){
+
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('salarioshistoricos')
+                        ->where('id', $idcorrecto )
+                        ->update(['Sueldo' => $request->Salario]);
+
+                    }elseif ($valorhistorico->id_cargo==$id and empty($valorhistorico->FechaFinal)==true ) {
+                        # code...
+                        $idcorrecto=$valorhistorico->id;
+
+                        DB::table('salarioshistoricos')
+                        ->where('id', $idcorrecto )
+                        ->update(['FechaFinal' =>  $ayer]);
+
+                        DB::insert('insert into salarioshistoricos (id_cargo,FechaInicio,Sueldo) values (?, ?, ?)', [$id, $hoy,$request->Salario]);
+                
+
+
+                    } 
+
+                    
+                    
+
+
+
+
+                   }
+                        
+                       
+
+                    
+                   
+
+                   
+               
+               
+               // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
+                    
+                    //DB::update('update cargoempleadohistoricos set FechaFinal = $request->FechaContratacion where id = ?', [$idcorrecto]);
+                   
+            }
+        }
+
+
+
+
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
        
-        alert()->success('Cargo Actualizado Correctamente');
-        return redirect()->route('cargoempleados.index');
+        alert()->success('Cargo Actualizado correctamente');
+        return redirect()->route('cargoempleados.index')->withCargodatos($cargodatos)->withSalarioshistoricos($salarioshistoricos);
+        //
     }
 
     /**
