@@ -105,7 +105,7 @@
                             <select name="Id_Proveedor" id="Id_Proveedor"  value="{{old('Id_Proveedor')}}" class="form-control" >
                                <option value="">Seleccione el proveedor</option>
                             @foreach(  $proveedores as $proveedores)
-                                <option value="{{$proveedores['id'] }}">{{$proveedores['NombreCompania'] }}</option>
+                                <option value="{{$proveedores['id'] }}" {{ old('Id_Proveedor') == $proveedores->id ? 'selected' : '' }}>{{$proveedores['NombreCompania'] }}</option>
 
                                 @endforeach
                             </select>
