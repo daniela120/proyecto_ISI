@@ -44,10 +44,10 @@
                     <i class="fas fa-users fa-fw"></i> Usuarios
                 </a>
                 <a class="collapse-item" href="/estadoenvios">
-                    <i class="fas fa-users fa-fw"></i> Estado Envios
+                    <i class="fas fa-car-side"></i> Estado Envios
                 </a>
                 <a class="collapse-item" href="/turnos">
-                    <i class="fas fa-users fa-fw"></i> Turnos
+                      <i class="fas fa-list"></i> Turnos
                 </a>
                 <a class="collapse-item" href="/empleado">
                     <i class="fas fa-id-card fa-fw"></i> Empleados
@@ -64,6 +64,11 @@
                 <a class="collapse-item" href="/cargoempleados">
                      <i class="fas fa-align-justify"></i> Cargo
                 </a>
+
+                <a class="collapse-item" href="/cargoempleadohistorico">
+                         <i class="fas fa-history"></i></i>Histórico Cargo 
+                     
+                     </a>
       <!--          <a class="collapse-item" href="/role_user">
                      <i class="fas fa-align-justify"></i> Rol
                 </a>
@@ -100,11 +105,16 @@
                     <i class="fas fa-boxes"></i> Productos
                 </a>
                 <a class="collapse-item" href="/descuentos">
-                     <i class="fas fa-align-justify"></i> Descuento
+                     <i class="fas fa-percent"></i> Descuento
                 </a>
+                <a class="collapse-item" href="/historicopreciomenu">
+                      <i class="fas fa-history"></i>Histórico Precio inventario
+                </a>
+
                 <a class="collapse-item" href="/precioinventario">
-                     <i class="fas fa-align-justify"></i> Precio historico inventario
+                     <i class="fas fa-history"></i> Histórico Precio Menú
                 </a>
+
 
             </div>
         </div>
@@ -138,6 +148,10 @@
                 </a>
                 <a class="collapse-item" href="/isv">
                      <i class="fas fa-credit-card"></i> Isv
+                </a>
+
+                <a class="collapse-item" href="/factura">
+                 <i class="fas fa-file-invoice-dollar"></i> Factura
                 </a>
             </div>
         </div>
