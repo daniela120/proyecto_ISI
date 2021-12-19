@@ -51,7 +51,7 @@ class ComprasController extends Controller
         $isv=isv::all();
         $descuentos=descuentos::all();
         $proveedores=proveedores::all();
-        return view('Compras.create',$datos)->withInventario($inventarios)->withProveedores($proveedores)->withDescuentos($descuentos)->withIsv($isv);
+        return view('compras.create')->withProveedores($proveedores)->withInventario($inventarios)->withDescuentos($descuentos)->withIsv($isv);
     }
 
     /**
@@ -67,37 +67,38 @@ class ComprasController extends Controller
 
         $mytime= Carbon::now("America/Lima");
         
-        DB::insert('insert into compras (Fecha,HoraPedido,HoraRecibido,Id_Proveedor, Descripcion_Compra) values (?, ?, ?, ?, ?)', [$request->get('Id_Proveedor')]);
+        DB::insert('insert into compras (Fecha,HoraPedido,HoraRecibido, Descripcion_Compra) values (?, ?, ?, ?)', [$mytime,$request->get('HoraPedido'),$request->get('HoraRecibido'),$request->get('Descripcion_Compra')]);
                 $data=DB::table('compras')->get();
                 $last=$data->last();
 
-        $proveedores->$request->get(Id_Proveedor);
+        
 
         //Detalle
-        $Id_Inventario=$request->get('Id_Inventario');
-        $Precio=$request->get('Precio');
+        $idProducto=$request->get('idProducto');
+        $PrecioUnitario=$request->get('PrecioUnitario');
         $Cantidad=$request->get('CantidadDetalles');
         $id_descuento=$request->get('id_descuento');
         $id_isv=$request->get('id_isv');
 
-        $iteraciones=count($Id_Inventario);
+        $iteraciones=count($idProducto);
         for ($i=0; $i < $iteraciones; $i++) { 
             # code...
             $detalles= new detallecompras(); 
-            $detalles->compras_id=$last->id;
-            $detalles->IdInventario=$Id_Inventario[$i];
-            $detalles->Precio=$Precio[$i];
+            $detalles->id_compra=$last->id;
+            $detalles->Id_Inventario=$idProducto[$i];
+            $detalles->Precio=$PrecioUnitario[$i];
             $detalles->Cantidad=$Cantidad[$i];
-            $detalles->id_descuento=$id_descuento[$i];
+            $detalles->Descuento=$id_descuento[$i];
             $detalles->id_isv=$id_isv[$i];
             //$detalles->Total=$detalles->PrecioUnitario[$cont] * $detalles->Cantidad[$cont];
-            $detalles->Total=$Precio[$i] * $Cantidad[$i] - $id_descuento[$i];
+            $detalles->Total=$Precio[$i] * $Cantidad[$i] ;
             $detalles->save();
             //$cont=$cont+1;
         }
         DB::commit();
 
-        return view('Compras.create')->withHoy($Hoy)->withProveedores($proveedores)->withDescuentos($descuentos)->withIsv($isv);
+        alert()->success('Pedido guardado correctamente');
+        return redirect()->route('compras.index');
 
 
     }
