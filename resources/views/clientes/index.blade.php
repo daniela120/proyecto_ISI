@@ -9,7 +9,7 @@
         <i class="fas fa-plus"></i>
     </a>
 
-@endsection}
+@endsection
     @section('contenido')
     @include('clientes.create')
     @include('clientes.edit')
