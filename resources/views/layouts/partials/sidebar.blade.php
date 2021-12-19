@@ -146,22 +146,22 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Divider -->
+    <!-- Divider 
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
+     Heading
     <div class="sidebar-heading">
         Complementos
     </div>
 
 
-    <!-- Nav Item - Tables -->
+     Nav Item - Tables 
     <li class="nav-item">
         <a class="nav-link" href="/product">
             <i class="fas fa-boxes"></i>
             <span>Productos</span></a>
         
-    </li>
+    </li>-->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
