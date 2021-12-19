@@ -47,6 +47,9 @@ class EmpleadoController extends Controller
         return view('empleado.Empleadoindex')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
     }
 
+
+    
+
     /**
      * Show the form for creating a new resource.
      *
