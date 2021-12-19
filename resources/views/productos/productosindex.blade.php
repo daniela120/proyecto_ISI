@@ -13,6 +13,11 @@
         
     </a>
 
+    <a href="/productos/indexjoin" class="btn btn-primary btn-circle">
+    <i class="fas fa-eye"></i>
+        
+    </a>
+
     
 
 @endsection

@@ -25,10 +25,7 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\RoleUserController;
->>>>>>> 56c7327d2e66e532257a191dbde9b31eef5e0702
 use App\Http\Controllers\SalarioshistoricosController;
 
 Route::get('/', function () {
@@ -128,10 +125,7 @@ Route::get('/servicios', function () {
 
 Route::get('factura/pdf',[App\Http\Controllers\FacturaController::class, 'pdf'])->name('factura.pdf');
 Route::get('empleado/indexjoin', [App\Http\Controllers\EmpleadoController::class, 'indexjoin'])->name('empleado.indexjoin');
-/*
-Route::get('/persona', function () {
-    return view('persona.indexper');
-});*/
+Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::class, 'indexjoin'])->name('productos.indexjoin');
 
 
 //
