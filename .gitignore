@@ -14,3 +14,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+resources/views/Roleuser/create.blade.php
+resources/views/Roleuser/delete.blade.php
+resources/views/Roleuser/edit.blade.php
+resources/views/Roleuser/index.blade.php
+app/Models/role_user.php
+app/Http/Controllers/RoleuserController.php

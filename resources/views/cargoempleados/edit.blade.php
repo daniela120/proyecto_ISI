@@ -33,6 +33,20 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
+                                <label for="Salario" class="form-fields"> Salario </label>
+                                <input type="text" value="{{old('Salario')}}" 
+                                class="form-control {{$errors->has('Salario') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Salario" id="Salario">
+                                @if($errors->has('Salario'))
+                                    <span class="text-danger">{{$errors->first('Salario')}}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <div>
                                 <label for="Descripcion"> Descripción </label>
                                 <input type="text" value="{{old('Descripcion')}}" 
                                 class="form-control form-control {{$errors->has('Descripcion') ? 'is-invalid' : ''}}" 

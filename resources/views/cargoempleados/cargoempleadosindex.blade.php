@@ -21,7 +21,8 @@
                         <tr>
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
-                            <th class="text-center">Cargo</th>                      
+                            <th class="text-center">Cargo</th>        
+                            <th class="text-center">Salario</th>               
                             <th class="text-center">Descripcion</th>        
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             </td>
                             <td>{{$cargoempleados->id}}</td>
                             <td>{{$cargoempleados->Cargo}}</td>
+                            <td>{{$cargoempleados->Salario}}</td>
                             <td>{{$cargoempleados->Descripcion}}</td>
                             
                         </tr>

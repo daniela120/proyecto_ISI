@@ -26,7 +26,8 @@ class CargosRequest extends FormRequest
         return [
             //
             'Cargo'=> ['required', 'string', 'min:3', 'max:50','regex:/^(?=[^A-Za-z]*[A-Za-z])(?:([\w\d*?!:;])\1?(?!\1))+$/'],
-            'Descripcion' => ['required', 'string','min:5', 'max:110']
+            'Salario' => ['required', 'numeric'],
+            'Descripcion' =>['required','string','max:25','min:3','regex:/^(?=[A-Z ][ a-z,á,é,í,ó,ú ])(?:([ \w\d*?!:; ])\1?(?!\1))+$/'],
         ];
     }
 
