@@ -4,9 +4,7 @@
 
     <span> Facturas </span>
     
-    <a href="/factura/create" class="btn btn-primary btn-circle" >
-        <i class="fas fa-plus"></i>
-    </a>
+    
 
 @endsection 
     @section('contenido')

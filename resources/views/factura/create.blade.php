@@ -193,14 +193,7 @@
                             </div>
                     </div>
 
-                    <div class="col-lg-2 form-group">
-                            <div>
-                            <button type="button" id="bt_guardarmonto" href="#" class="btn btn-primary">
-                                Guardar monto
-                                
-                                </button>
-                            </div>
-                    </div>
+                   
 
                     </div>
                     </div>
@@ -220,10 +213,7 @@
                         <button class="btn btn-primary" id="bt_save" type="submit">Guardar</button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                         <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
-                        <a href="{{route('factura.pdf',$pedidos->id)}}" class="btn btn-primary btn-sm" >
-
-                                    <i class="fas fa-file-pdf"></i>
-                                </a>
+                        
                     </div>
 
                     
