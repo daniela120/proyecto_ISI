@@ -46,20 +46,7 @@
                         </div>         
                     </div>
 
-                    <div class="col-lg-4 form-group">           
-                        <div>
-                            <label for="Id_Proveedor" class="form-fields"> Proveedor </label>
-                            <select name="Id_Proveedor" id="Id_Proveedor" class="form-control {{$errors->has('Id_Proveedor') ? 'is-invalid' : '' }}" >
-                                   <option value="">Seleccione el proveedor</option>
-                                @foreach($proveedores as $proveedores)
-                                    <option value="{{ $proveedores['id'] }}" {{ old('Id_Proveedor') == $proveedores->id ? 'selected' : '' }}>{{$proveedores['NombreCompañia'] }}</option>
-                                @endforeach
-                                </select>
-                                @if($errors->has('Id_Proveedor'))
-                                    <span class="text-danger">{{$errors->first('Id_Proveedor')}}</span>
-                                @endif
-                        </div>
-                    </div>
+                   
                     <div class="col-lg-6 form-group">    
                         <div>
                             <label for="Descripcion_Compra" class="form-fields"> Descripción Compra </label>
@@ -82,7 +69,7 @@
                                 <select name="pId_Inventario" id="pId_Inventario" class="form-control {{$errors->has('Id_Inventario') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione el Inventario</option>
                                     @foreach($inventario as $inventario)
-                                        <option value="{{ json_encode($inventario['id'],TRUE) }}" {{ old('Id_Inventario') == $inventario->id ? 'selected' : '' }}>{{$inventario->NombreInventario}}</option>
+                                        <option value="{{ json_encode($inventario['id'],TRUE) }}_{{ $inventario->PrecioUnitario }}"  {{ old('Id_Inventario') == $inventario->id ? 'selected' : '' }}>{{$inventario->NombreInventario }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('Id_Inventario'))
@@ -93,10 +80,10 @@
 
                         <div class="col-lg-2 form-group">
                             <div>
-                                <label for="Precio" class="form-fields">Precio</label>
+                                <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
                                 
                                     <input type="text" class="form-control" name="pPrecio" id="pPrecio" 
-                                    value="{{old('Precio')}}">
+                                     value="" disabled>
                                      
                                <!-- @if($errors->has('PrecioUnitario'))
                                     <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
@@ -224,30 +211,39 @@
         var cont=0;
         total=0;
         subtotal=[];
+
+        $("#guardar").hide();
+
+$("#pId_Inventario").change(mostrarValores);
+
+function mostrarValores() {
+   datosProducto = document.getElementById('pId_Inventario').value.split('_');
+   $("#pPrecio").val(datosProducto[1]);
+   
+}
         
        
         function agregar()
         {
             //limpiar();
             
-            idInventario=$("#pId_Inventario").val();
-            Inventario=$("#pId_Inventario option:selected").text();
-            Precio=$("#pPrecio").val();
+            idProducto=$("#pId_Inventario").val();
+            Producto=$("#pId_Inventario option:selected").text();
+            PrecioUnitario=$("#pPrecio").val();
             Cantidad=$("#pCantidad").val();
             id_descuento=$("#pid_descuento").val();
             id_descuentoval=$("#pid_descuento option:selected").text();
             id_isv=$("#pid_isv").val();
             id_isvval=$("#pid_isv option:selected").text();
 
-            if(idInventario!="" && Precio!="" && Cantidad!="" && Cantidad>0 && id_descuento!="" && id_isv!="")
+            if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 && id_descuento!="" && id_isv!="")
             {
                 subtotal[cont]=(Cantidad*PrecioUnitario);
                 total=total+subtotal[cont];
 
-                                                                                                                        
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick"eliminar('+cont+');">X</button></td><td><input type="hidden" name="id[]" value="'+idInventario+'">'+Inventario+'</td><td><input type="number" name="Precio[]" value="'+Precio+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
-               // var fila='<tr class="selected" id="fila'+cont+'"><input type="number" name="idProductos[]" value="'+idProducto+'">'+Producto+'</td></tr>';
-                
+                                                                                                                  
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
+               
                 cont++;
                 limpiar();
                 $("#total").html("L. " +total);
@@ -264,7 +260,7 @@
 
         function limpiar(){
             $("#pId_Inventario").val("");
-            $("#pPrecioUnitario").val("");
+            $("#pPrecio").val("");
             $("#pCantidad").val("");
             $("#pid_descuento").val("");
             $("#pid_isv").val("");
