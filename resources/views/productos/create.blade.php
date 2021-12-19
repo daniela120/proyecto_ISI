@@ -41,7 +41,7 @@
                                 <select name="id_Categoria" value="{{old('id_Categoria')}}"id="id_Categoria" class="form-control" >
                                    <option value="">Seleccione la categoría</option>
                                 @foreach(  $categorias as $categorias)
-                                    <option value="{{ $categorias['id'] }}">{{$categorias['Categoria'] }}</option>
+                                    <option value="{{ $categorias['id'] }}" {{ old('id_Categoria') == $categorias->id ? 'selected' : '' }}>{{$categorias['Categoria'] }}</option>
 
                                     @endforeach 
                                 </select>

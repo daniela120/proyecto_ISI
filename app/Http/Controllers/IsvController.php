@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\isv;
 use Illuminate\Http\Request;
+use App\HTTP\Requests\IsvRequest;
 
 class IsvController extends Controller
 {
@@ -43,7 +44,7 @@ class IsvController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(IsvRequest $request)
     {
         //
         try {
@@ -90,7 +91,7 @@ class IsvController extends Controller
      * @param  \App\Models\isv  $isv
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(IsvRequest $request, $id)
     {
         //
         try {

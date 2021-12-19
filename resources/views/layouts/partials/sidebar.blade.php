@@ -52,6 +52,10 @@
                 <a class="collapse-item" href="/empleado">
                     <i class="fas fa-id-card fa-fw"></i> Empleados
                 </a>
+                <a class="collapse-item" href="/salario">
+                         <i class="fas fa-history"></i></i> Salarios Histórico
+                     
+                     </a>
                 <a class="collapse-item" href="/clientes">
                     <i class="fas fa-id-card-alt"></i> Clientes
                 </a>
@@ -66,7 +70,7 @@
                 </a>
 
                 <a class="collapse-item" href="/cargoempleadohistorico">
-                         <i class="fas fa-history"></i></i>Histórico Cargo 
+                         <i class="fas fa-history"></i></i> Histórico Cargo 
                      
                      </a>
       <!--          <a class="collapse-item" href="/role_user">
@@ -101,15 +105,18 @@
                 <a class="collapse-item" href="/inventarios">
                     <i class="fas fa-boxes"></i> Inventario
                 </a>
+
+                <a class="collapse-item" href="/historicopreciomenu">
+                      <i class="fas fa-history"></i> Histórico Precio <br>inventario</br>
+                </a>
+
                 <a class="collapse-item" href="/productos">
                     <i class="fas fa-boxes"></i> Productos
                 </a>
                 <a class="collapse-item" href="/descuentos">
                      <i class="fas fa-percent"></i> Descuento
                 </a>
-                <a class="collapse-item" href="/historicopreciomenu">
-                      <i class="fas fa-history"></i>Histórico Precio inventario
-                </a>
+               
 
                 <a class="collapse-item" href="/precioinventario">
                      <i class="fas fa-history"></i> Histórico Precio Menú
@@ -133,7 +140,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
            aria-expanded="true" aria-controls="collapseTwo">
            <i class="fas fa-receipt"></i>
-            <span>Pedidos y Compras</span>
+            <span>Pedidos </span>
         </a>
         <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -143,9 +150,9 @@
                 <a class="collapse-item" href="/pedidos">
                      <i class="fas fa-cash-register"></i> Pedidos
                 </a>
-                <a class="collapse-item" href="/compras">
+               <!-- <a class="collapse-item" href="/compras">
                      <i class="fas fa-align-justify"></i> Compras
-                </a>
+                </a>-->
                 <a class="collapse-item" href="/isv">
                      <i class="fas fa-credit-card"></i> Isv
                 </a>
