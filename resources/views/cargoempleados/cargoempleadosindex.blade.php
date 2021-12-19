@@ -68,7 +68,7 @@
         function editcargoempleados(Cargoempleados){
             $("#editCargoempleadoFrm").attr('action',`/cargoempleados/${Cargoempleados.id}`);
             $("#editCargoempleadoFrm #Cargo").val(Cargoempleados.Cargo); 
-             
+            $("#editCargoempleadoFrm #Salario").val(Cargoempleados.Salario); 
             $("#editCargoempleadoFrm #Descripcion").val(Cargoempleados.Descripcion);
         } 
     </script>
