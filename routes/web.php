@@ -25,6 +25,7 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\RoleUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -96,6 +97,10 @@ Route::get('/empleadosindex', function () {
 
 Route::get('/usuariosindex', function () {
     return view('Usuarios.usuariosindex');
+});
+
+Route::get('/roleuser', function () {
+    return view('Roleuser.roleuserindex');
 });
 
 

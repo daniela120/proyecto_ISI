@@ -79,7 +79,7 @@
                             <select name="Id_Cargo" id="Id_Cargo" class="form-control" >
                             <option value="">Seleccione el cargo</option>
                             @foreach(  $cargos as $cargoempleado)
-                                <option value="{{ $cargoempleado['id'] }}">{{$cargoempleado['Cargo'] }}</option>
+                                <option value="{{ $cargoempleado['id'] }}" {{ old('Id_Cargo') == $cargoempleado->id ? 'selected' : '' }}>{{$cargoempleado['Cargo'] }}</option>
 
                                 @endforeach
                             </select>
@@ -113,7 +113,7 @@
                                 <option value="">Seleccione el usuario</option>   
                                 @foreach($users as $user)
 
-                                <option value="{{ $user['id'] }}">{{$user['name'] }}</option>
+                                <option value="{{ $user['id'] }}" {{ old('Id_Usuario') == $user->id ? 'selected' : '' }}>{{$user['name'] }}</option>
 
                                 @endforeach
                                 </select>
@@ -130,7 +130,7 @@
                                 <option value=""> Tipo de documento</option>   
                                 @foreach($documentos as $documento)
 
-                                <option value="{{ $documento['id'] }}">{{$documento['TipoDocumento'] }}</option>
+                                <option value="{{ $documento['id'] }}" {{ old('Id_Documento') == $documento->id ? 'selected' : '' }}>{{$documento['TipoDocumento'] }}</option>
 
                                 @endforeach
                                 </select>
@@ -147,7 +147,7 @@
                                 <option value="">Seleccione el turno</option>
                                 @foreach($turnos as $turno)
 
-                                <option value="{{ $turno['id'] }}">{{$turno['TipoTurno'] }}</option>
+                                <option value="{{ $turno['id'] }}" {{ old('Id_Turno') == $turno->id ? 'selected' : '' }}>{{$turno['TipoTurno'] }}</option>
 
                                 @endforeach
                                 </select>

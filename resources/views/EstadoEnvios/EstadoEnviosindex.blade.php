@@ -83,7 +83,7 @@ function deleteEstadoenvios(Estadoenvios){
         @if($errors->has('post'))
             <script>
                 $(function () {
-                    $('#editeMdl').modal('show');
+                    $('#createMdl').modal('show');
                 });
             </script>
         @else

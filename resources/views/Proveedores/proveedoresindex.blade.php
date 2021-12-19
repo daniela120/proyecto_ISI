@@ -43,7 +43,7 @@
                                 </a>
                             </td>
                             <td>{{$Proveedores->id}}</td>
-                            <td>{{$Proveedores->NombreCompañia}}</td>
+                            <td>{{$Proveedores->NombreCompania}}</td>
                             <td>{{$Proveedores->NombreContacto}}</td> 
                             <td>{{$Proveedores->Telefono}}</td> 
                             <td>{{$Proveedores->SitioWeb}}</td>   
