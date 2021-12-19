@@ -70,7 +70,7 @@
 
 function editProveedor(Proveedores){
     $("#editProveedorFrm").attr('action',`/proveedores/${Proveedores.id}`);
-    $("#editProveedorFrm #NombreCompañia").val(Proveedores.NombreCompañia);  
+    $("#editProveedorFrm #NombreCompania").val(Proveedores.NombreCompania);  
     $("#editProveedorFrm #NombreContacto").val(Proveedores.NombreContacto);     
     $("#editProveedorFrm #Telefono").val(Proveedores.Telefono);
     $("#editProveedorFrm #SitioWeb").val(Proveedores.SitioWeb);

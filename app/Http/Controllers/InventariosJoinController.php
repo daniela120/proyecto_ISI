@@ -28,9 +28,9 @@ class InventariosJoinController extends Controller
              $probando=DB::table('inventarios as i')
             ->join('categorias as c','i.Id_Categoria','=','c.id')
             ->join('proveedores as p','i.Id_Proveedor','=','p.id')
-            ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompañia','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+            ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->orderby('i.id')
-            ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompañia','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+            ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->paginate(25);
             
 

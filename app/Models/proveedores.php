@@ -12,7 +12,7 @@ class proveedores extends Model
 
     protected $fillable = [
 
-        'NombreCompañia',
+        'NombreCompania',
         'NombreContacto',
         'Telefono',
         'SitioWeb',
