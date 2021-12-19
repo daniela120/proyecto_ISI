@@ -124,7 +124,7 @@ Route::get('/servicios', function () {
 });
 
 Route::get('factura/pdf',[App\Http\Controllers\FacturaController::class, 'pdf'])->name('factura.pdf');
-
+Route::get('empleado/indexjoin', [App\Http\Controllers\EmpleadoController::class, 'indexjoin'])->name('empleado.indexjoin');
 /*
 Route::get('/persona', function () {
     return view('persona.indexper');

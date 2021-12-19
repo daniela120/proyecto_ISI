@@ -12,6 +12,10 @@
     <i class="fas fa-history"></i>
     </a>
 
+    <a href="/empleado/indexjoin" class="btn btn-success btn-circle" >
+    <i class="fas fa-eye"></i>
+    </a>
+
 
     </div>
    
@@ -34,7 +38,7 @@
                             <th class="text-center"><font size=2>Fecha de Nacimiento</th>
                             <th class="text-center"><font size=2>Fecha de Contratación</th>
                             <th class="text-center"><font size=2>Dirección</th>
-                            <th class="text-center"><font size=2>Id Cargo</th>
+                            <th class="text-center"><font size=2>Cargo</th>
                             <th class="text-center"><font size=2> Teléfono</th>
                             <th class="text-center"><font size=2>Id Usuario</th>
                            <!-- <th class="text-center"><font size=2>Id Documento</th>-->
@@ -53,7 +57,7 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deleteEmpleado({{$empleados}})">
+                                onclick="deleteEmpleado({{$empleado}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -118,8 +122,8 @@ onclick="editempleados({{$empleados}})"-->
      <!-- funcion deleteCategoria para pasar parametros y eliminar-->
      <script>    
 
-function deleteEmpleado(empleados){
-    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleados.id}`);
+function deleteEmpleado(empleado){
+    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleado.id}`);
            
 } 
 </script>
