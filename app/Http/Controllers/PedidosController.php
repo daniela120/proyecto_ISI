@@ -57,7 +57,7 @@ class PedidosController extends Controller
 
         $isv=isv::all();
         
-        $pedidos=pedidos::paginate(15);
+        $pedidos=pedidos::paginate(50);
 
         return view('Pedidos.pedidosindex')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    
@@ -97,8 +97,15 @@ class PedidosController extends Controller
             //->where('dp.id_pedido','=',$id)
             //->get(); 
 
+<<<<<<< HEAD
         return view('Pedidos.create')->withEmpleado($empleado)->withUser($user)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
     }
+=======
+        return view('Pedidos.create')->withEmpleado($empleado)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
+   
+   
+      }
+>>>>>>> fe2d27f49d817ae755866831acf0d5f21cb5af49
 
     /**
      * Store a newly created resource in storage.
