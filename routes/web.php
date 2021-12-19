@@ -25,10 +25,8 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
-<<<<<<< HEAD
-=======
+
 use App\Http\Controllers\RoleUserController;
->>>>>>> 56c7327d2e66e532257a191dbde9b31eef5e0702
 use App\Http\Controllers\SalarioshistoricosController;
 
 Route::get('/', function () {
