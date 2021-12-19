@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Empleados </span>
+    <span>Ver Empleados </span>
     <div>
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
@@ -53,7 +53,7 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deleteEmpleado({{$empleado}})">
+                                onclick="deleteEmpleado({{$empleados}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -94,35 +94,7 @@ onclick="editempleados({{$empleados}})"-->
     <!-- funcion editEstadoEnvio para pasar parametros y editar-->
 
    <!---->
-    <script>    
-        function editempleados(empleado){
-            $("#editEmpleadoFrm").attr('action',`/empleado/${empleado.id}`);
-            $("#editEmpleadoFrm #Nombre").val(empleado.Nombre);              
-            $("#editEmpleadoFrm #Apellido").val(empleado.Apellido);    
-            $("#editEmpleadoFrm #FechaNacimiento").val(empleado.FechaNacimiento);    
-            $("#editEmpleadoFrm #FechaContratacion").val(empleado.FechaContratacion);    
-            $("#editEmpleadoFrm #Direccion").val(empleado.Direccion);    
-            $("#editEmpleadoFrm #Id_Cargo").val(empleado.Id_Cargo);    
-            $("#editEmpleadoFrm #Telefono").val(empleado.Telefono);    
-            $("#editEmpleadoFrm #Id_Usuario").val(empleado.Id_Usuario);    
-            $("#editEmpleadoFrm #Id_Documento").val(empleado.Id_Documento);    
-            $("#editEmpleadoFrm #Id_Turno").val(empleado.Id_Turno);    
-            $("#editEmpleadoFrm #Documento").val(empleado.Documento);    
-              
-             
-
-        } 
-    </script>
-   
     
-     <!-- funcion deleteCategoria para pasar parametros y eliminar-->
-     <script>    
-
-function deleteEmpleado(empleado){
-    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleado.id}`);
-           
-} 
-</script>
 
 <!-- para validaciones-->
 @if(!$errors->isEmpty())
