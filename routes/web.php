@@ -116,6 +116,9 @@ Route::get('/Postres', function () {
 Route::get('/servicios', function () {
     return view('servicios');
 });
+
+Route::get('factura/pdf',[App\Http\Controllers\FacturaController::class, 'pdf'])->name('factura.pdf');
+
 /*
 Route::get('/persona', function () {
     return view('persona.indexper');

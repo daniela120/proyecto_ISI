@@ -39,14 +39,8 @@
                         <i class="fas fa-eye"></i>
                                 </a>
 
-                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick="">
-                                    <i class="far fa-edit"></i>
-                                </a>
-                                <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
+                               
+                               
                             </td>
                                 <td>{{$pedidos->id}}</td>
                                 <td>{{$pedidos->id_empleado}}</td>
