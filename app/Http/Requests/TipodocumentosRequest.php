@@ -29,17 +29,6 @@ class TipodocumentosRequest extends FormRequest
         ];
     }
 
-public function withValidator($validator)
-    {
-        $validator->after(function($validator) {
-            if($validator->errors()->count()) {
-                if(!in_array($this->method(), ['PUT'])) {
-                    $validator->errors()->add('post', true);
-                }
-                
-            }
-        });
-    }
 
     
     

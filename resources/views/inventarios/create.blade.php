@@ -31,7 +31,7 @@
                                 <select name="Id_Categoria" value="{{old('Id_Categoria')}}"id="Id_Categoria" class="form-control" >
                                    <option value="">Seleccione la categoría</option>
                                 @foreach(  $categorias as $categorias)
-                                    <option value="{{ $categorias['id'] }}">{{$categorias['Categoria'] }}</option>
+                                    <option value="{{ $categorias['id'] }}" {{ old('Id_Categoria') == $categorias->id ? 'selected' : '' }}>{{$categorias['Categoria'] }}</option>
 
                                     @endforeach
                                 </select>
@@ -99,7 +99,7 @@
                             <select name="Id_Proveedor" id="Id_Proveedor"  value="{{old('Id_Proveedor')}}" class="form-control" >
                                <option value="">Seleccione el proveedor</option>
                             @foreach(  $proveedores as $proveedores)
-                                <option value="{{$proveedores['id'] }}">{{$proveedores['NombreCompañia'] }}</option>
+                                <option value="{{$proveedores['id'] }}" {{ old('Id_Proveedor') == $proveedores->id ? 'selected' : '' }}>{{$proveedores['NombreCompania'] }}</option>
 
                                 @endforeach
                             </select>
@@ -108,10 +108,10 @@
                         @endif
                         </div>
                     
-                    </div>
+                        </div>
 
 
-                        <div class="col-lg-6 form-group">
+                        <div class="col-lg-12 form-group">
                             <div>
                                 <label for="Descontinuado" class="form-fields"> Descontinuado </label>
                                 <input type="text" class="form-control"value="{{old('Descontinuado')}}" name="Descontinuado" id="Descontinuado" pattern='[0,1]'  

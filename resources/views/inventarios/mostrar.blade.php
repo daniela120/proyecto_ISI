@@ -54,7 +54,7 @@
                                 <td>{{$inventario->StockActual}}</td>
                                 <td>{{$inventario->StockMin}}</td>
                                 <td>{{$inventario->StockMax}}</td>
-                                <td>{{$inventario->NombreCompañia}}</td>
+                                <td>{{$inventario->NombreCompania}}</td>
                                 <td>{{$inventario->Descontinuado}}</td>
                                
                                     
