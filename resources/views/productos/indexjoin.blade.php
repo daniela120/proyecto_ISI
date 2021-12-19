@@ -2,13 +2,13 @@
 
 @section('titulo')
 
-    <span>Ver Empleados </span>
+    <span>Ver Productos </span>
     <div>
-    <a href="/empleado" class="btn btn-success btn-circle" >
+    <a href="/productos" class="btn btn-success btn-circle" >
     <i class="fas fa-users"></i>
     </a>
 
-    <a href="/cargoempleadohistorico" class="btn btn-success btn-circle" >
+    <a href="/historicopreciomenu" class="btn btn-success btn-circle" >
     <i class="fas fa-history"></i>
     </a>
 
@@ -28,15 +28,9 @@
                         
                             <th class="text-center">Id </th>
                             <th class="text-center">Nombre</th>
-                            <th class="text-center">Apellido</th>
-                            <th class="text-center">Fecha de Nacimiento</th>
-                            <th class="text-center">Fecha de Contratación</th>                            
-                            <th class="text-center">Cargo</th>
-                            <th class="text-center"> Teléfono</th>
-                            <th class="text-center">Usuario</th>
-                            <th class="text-center">Turno</th>                                                     
-                            <th class="text-center">Documento</th>
-                            <th class="text-center">Tipo Doc</th>  
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Categoría</th>
+                            <th class="text-center">Precio</th>   
                             
                         </tr>
                     </thead>
@@ -46,19 +40,10 @@
                         <tr>
                         
                             <td>{{$empleado->id}}</td>
-                                <td>{{$empleado->Nombre}}</td>
-                                <td>{{$empleado->Apellido}}</td>
-                                <td>{{$empleado->FechaNacimiento}}</td>
-                                <td>{{$empleado->FechaContratacion}}</td>
-                                
-                                <td>{{$empleado->Cargo}}</td>
-                                <td>{{$empleado->Telefono}}</td>
-                                <td>{{$empleado->name}}</td>
-                                <td>{{$empleado->TipoTurno}}</td>
-                                                               
-                                <td>{{$empleado->Documento}}</td>
-                                <td>{{$empleado->TipoDocumento}}</td>
-                                    
+                                <td>{{$empleado->NombreProducto}}</td>                                
+                                <td>{{$empleado->Descripcion}}</td>
+                                <td>{{$empleado->Categoria}}</td>                                
+                                <td>{{$empleado->Precio}}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -35,6 +35,31 @@ class ProductosController extends Controller
         //
     }
 
+    public function indexjoin()
+    {
+        //
+        try {
+            //code...
+            $productos=productos::paginate(15);
+            $categorias=categorias::all();
+
+            $probando=DB::table('productos as p')
+            ->join('categorias as c','p.id_Categoria','=','c.id')            
+            ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->orderby('p.id')
+            ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->paginate(25);
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('productos.indexjoin')->withProbando($probando);
+        //
+    }
+
     /**
      * Show the form for creating a new resource.
      *

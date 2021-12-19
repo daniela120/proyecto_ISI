@@ -62,13 +62,24 @@ class EmpleadoController extends Controller
             $empleados=Empleado::paginate(15);
     
             $documentos=tipodocumentos::all();
+
+            $probando=DB::table('empleados as e')
+            ->join('users as u','e.Id_Usuario','=','u.id')
+            ->join('turnos as t','e.Id_Turno','=','t.id')
+            ->join('cargoempleados as c','e.Id_Cargo','=','c.id')
+            ->join('tipodocumentos as d','e.Id_Documento','=','d.id')
+            ->select('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+            ->orderby('e.id')
+            ->groupBy('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+            ->paginate(25);
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
        
-        return view('empleado.indexjoin')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
+        return view('empleado.indexjoin')->withProbando($probando);
     }
 
 
