@@ -10,9 +10,12 @@
                 </button>
             </div>
             <div class="modal-body">
-    <form action="{{ url('/isv') }}" method="post" id="editIsvForm" enctype="multipart/form-data">
+            @foreach($isv as $isv)
+            
+    <form action="{{url('/isv/.$isv->id' )}}" method="post" id="editIsvForm" enctype="multipart/form-data">
           @method('PUT')
             @csrf
+            @endforeach
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
