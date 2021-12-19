@@ -16,7 +16,7 @@ class pedidos extends Model
     protected $fillable = [
 
         'id_pedido',
-        'id_empleado',
+        'id_usuario',
         'Fecha',
         'id_tipo_de_pago',
         'id_cliente',
@@ -36,6 +36,10 @@ class pedidos extends Model
 
     public function tiposdepago(){
         return $this->belongsTo(tiposdepago::class);
+    }
+
+    public function productos(){
+        return $this->belongsTo(productos::class);
     }
 }
 

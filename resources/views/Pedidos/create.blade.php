@@ -15,6 +15,7 @@
                 <div class="row">
                    
                     
+                
 
                     <div class="col-lg-4 form-group">
                         <div>
@@ -49,31 +50,30 @@
 
                     <div class="col-lg-4 form-group">           
                         <div>
-                            <label for="id_empleado" class="form-fields"> Empleado </label>
-                            <select name="id_empleado" id="id_empleado" class="form-control {{$errors->has('id_empleado') ? 'is-invalid' : '' }}" >
-                                   <option value="">Seleccione el empleado</option>
-                                @foreach($empleado as $empleado)
-                                    <option value="{{ $empleado['id'] }}" {{ old('id_empleado') == $empleado->id ? 'selected' : '' }}>{{$empleado['Nombre'] }}</option>
-                                @endforeach
+                            <label for="id_usuario" class="form-fields"> Empleado </label>
+                            <select name="id_usuario" id="id_usuario" class="form-control {{$errors->has('id_usuario') ? 'is-invalid' : '' }}" >
+                                   <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>    
                                 </select>
-                                @if($errors->has('id_empleado'))
-                                    <span class="text-danger">{{$errors->first('id_empleado')}}</span>
+                                @if($errors->has('id_usuario'))
+                                    <span class="text-danger">{{$errors->first('id_usuario')}}</span>
                                 @endif
                         </div>
                     </div>
                 </div>
+
+
                
                 <div class="card border-primary">
                     <div class=card-body>
                         <div class="row">
                             
-                        <div class="col-lg-3 form-group">           
+                        <div class="col-lg-4 form-group">           
                             <div>
                                 <label for="Id_Producto" class="form-fields"> Producto </label>
                                 <select name="pId_Producto" id="pId_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione el Producto</option>
                                     @foreach($productos as $productos)
-                                        <option value="{{ json_encode($productos['id'],TRUE) }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
+                                        <option value="{{ json_encode($productos['id'],TRUE) }}_{{ $productos->Precio }}"  {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('Id_Producto'))
@@ -87,7 +87,7 @@
                                 <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
                                 
                                     <input type="text" class="form-control" name="pPrecioUnitario" id="pPrecioUnitario" 
-                                    value="{{old('PrecioUnitario')}}">
+                                     value="" disabled>
                                      
                                <!-- @if($errors->has('PrecioUnitario'))
                                     <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
@@ -96,10 +96,10 @@
                         </div>
 
 
-                        <div class="col-lg-1 form-group">
+                        <div class="col-lg-2 form-group">
                             <div>
                                 <label for="Cantidad" class="form-fields"> Cantidad </label>
-                                <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
+                                <input type="number" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
                                 name="pCantidad" id="pCantidad" value="{{old('Cantidad')}}" >
                                 @if($errors->has('Cantidad'))
                                     <span class="text-danger">{{$errors->first('Cantidad')}}</span>
@@ -132,14 +132,15 @@
                                         <option value="{{ $isv['id'] }}" {{ old('id_isv') == $isv->id ? 'selected' : '' }}>{{$isv['isv'] }}</option>
                                     @endforeach
                                 </select>
-                                    @if($errors->has('id_isv'))
-                                <span class="text-danger">{{$errors->first('id_isv')}}</span>
+                                @if($errors->has('id_isv'))
+                                     <span class="text-danger">{{$errors->first('id_isv')}}</span>
                                 @endif
                             </div>
                         </div>
 
+                           
                         
-                        <div class="col-lg-1 form-group">
+                        <div class="col-lg-2 form-group">
                             <div>
                             <button type="button" id="bt_add" href="#" class="btn btn-primary">
                                 Agregar
@@ -158,7 +159,7 @@
                                         <th class="text-center">Cantidad </th>
                                         <th class="text-center">Descuento</th>
                                         <th class="text-center">ISV</th>
-                                        <th class="text-center">Importe</th>
+                                        <th class="text-center">Subtotal</th>
                                                             
                                     </tr>
                                 </thead>
@@ -174,7 +175,8 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><h5 id="total">0.00</h5></td>
+                                        <td>
+                                        <span align="right" id="total">0.00</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -194,7 +196,12 @@
                     <div class="col-lg-4 form-group " id="bt_guardar"> 
                         <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
                         <button class="btn btn-primary" type="submit">Guardar</button>
-                        <button class="btn btn-danger" type="reset">Cancelar</button>
+                      <!--  <button class="btn btn-danger" type="reset" href="{{url('/pedidos') }}">Cancelar</button>
+-->     
+                    </div>
+
+                    <div class="col-lg-4 form-group " id="bt_guardar"> 
+                        
                         <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
                     </div>
                 <br>
@@ -202,8 +209,7 @@
 
 
     @push('scripts')
-    <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>   
+     
     
     <script> 
        $(document).ready(function(){
@@ -215,8 +221,22 @@
         var cont=0;
         total=0;
         subtotal=[];
-        
+        $("#guardar").hide();
+
+ $("#pId_Producto").change(mostrarValores);
+
+function mostrarValores() {
+    datosProducto = document.getElementById('pId_Producto').value.split('_');
+    $("#pPrecioUnitario").val(datosProducto[1]);
+    
+}
+
+
+
        
+
+   
+   
         function agregar()
         {
             //limpiar();
@@ -232,11 +252,11 @@
 
             if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 && id_descuento!="" && id_isv!="")
             {
-                subtotal[cont]=(Cantidad*PrecioUnitario);
-                total=total+subtotal[cont];
-
+                
+                subtotal[cont] = (Cantidad*PrecioUnitario);
+                 total = total + subtotal[cont];
                                                                                                                         
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick"eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
                // var fila='<tr class="selected" id="fila'+cont+'"><input type="number" name="idProductos[]" value="'+idProducto+'">'+Producto+'</td></tr>';
                 
                 cont++;
@@ -277,6 +297,9 @@
             $("#total").html("L. "+total);
             $("#fila" + index).remove();
             evaluar();
+
+
+
         }
     </script>
 
