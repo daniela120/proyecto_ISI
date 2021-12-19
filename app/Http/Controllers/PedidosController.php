@@ -112,16 +112,20 @@ class PedidosController extends Controller
                 
                 
                 
-                $mytime= Carbon::now("America/Lima");
+               // $mytime= Carbon::now("America/Lima");
                 
-               $Hoy=$mytime->toDateTimeString();
-               //$mytime = Carbon\Carbon::now();
+               // $Hoy=$mytime->toDateTimeString();
+               $mytime = Carbon\Carbon::now();
                echo $mytime->toDateTimeString();
                 
                 DB::insert('insert into pedidos (id_empleado,Fecha,id_tipo_de_pago,id_cliente) values (?, ?, ?, ?)', [$request->get('id_empleado'), $Hoy,$request->get('id_tipo_de_pago'),$request->get('id_cliente')]);
                 $data=DB::table('pedidos')->get();
                 $last=$data->last();
-         
+
+
+                
+                
+                
                 
                 //detalles
                 $idProducto=$request->get('idProducto');
@@ -135,14 +139,14 @@ class PedidosController extends Controller
                         for ($i=0; $i < $iteraciones; $i++) { 
                             # code...
                             $detalles= new detallepedidos(); 
-                            $detalles->pedidos_id=$last->id;
+                            $detalles->id=$last->pedidos_id;
                             $detalles->Id_Producto=$idProducto[$i];
                             $detalles->PrecioUnitario=$PrecioUnitario[$i];
                             $detalles->Cantidad=$Cantidad[$i];
                             $detalles->id_descuento=$id_descuento[$i];
                             $detalles->id_isv=$id_isv[$i];
                             //$detalles->Total=$detalles->PrecioUnitario[$cont] * $detalles->Cantidad[$cont];
-                            $detalles->Total=$PrecioUnitario[$i] * $Cantidad[$i] - $id_descuento[$i];
+                            $detalles->Total=$PrecioUnitario[$i] * $Cantidad[$i];
                             $detalles->save();
                             //$cont=$cont+1;
                         }
@@ -212,48 +216,43 @@ class PedidosController extends Controller
      */
     public function show($id)
     {
-
-       
         $pedidos=DB::table('pedidos as p')
            ->join('tiposdepagos as tp','tp.id','=','p.id_tipo_de_pago')
-         ->join('empleados as e','e.id','=','p.id_empleado')
+           ->join('empleados as e','e.id','=','p.id_empleado')
           ->join('clientes as c','c.id','=','p.id_cliente')
-          ->join('detallepedidos as dp','dp.pedidos_id','=','p.id')
-          ->select('p.id','p.Fecha','e.Nombre as NombreE','c.Nombre','tp.Nombre_Tipo_Pago',DB::raw('sum(dp.Cantidad*PrecioUnitario) as total'))
-         ->where('p.id','=',$id)     
-          ->orderby('p.id')
-            ->groupBy('p.id','p.Fecha','NombreE','c.Nombre','tp.Nombre_Tipo_Pago','total')
-            ->first();
+           ->join('detallepedidos as dp','dp.id_pedido','=','p.id_pedido')
+          ->select('p.id_pedido','p.Fecha','e.Nombre','c.Nombre','tp.Nombre_Tipo_Pago',DB::raw('sum(dp.Cantidad*PrecioUnitario) as total'))
+          ->where('p.id_pedido','=',$id)
+          ->first();
 
-       
-
-      $detallepedidos=DB::table('detallepedidos as dp')
+       $detalles=DB::table('detallepedidos as dp')
             ->join('productos as pr','pr.id','=','dp.Id_Producto')
           ->join('descuentos as desc','desc.id','=','dp.id_descuento')
             ->join('isvs as i','i.id','=','dp.id_isv')
-           ->select('dp.pedidos_id','pr.NombreProducto', 'pr.Precio', 'dp.Cantidad','desc.ValorDescuento','i.isv')
-           ->where('dp.pedidos_id','=',$id)
+           ->select('dp.id_pedido','pr.NombreProducto', 'dp.Cantidad','desc.ValorDescuento','i.isv')
+           ->where('dp.id_pedido','=',$id)
            ->get();    
         
-     
-     return view('pedidos.show')->withPedidos($pedidos)->withDetallepedidos($detallepedidos);
+     //  $empleado=Empleado::all();  
+        
+     //  $productos=productos::all();
 
+     //  $tiposdepago=tiposdepago::all();
+
+     //  $clientes=clientes::all();
+
+     // $descuentos=descuentos::all();
+
+    //  $isv=isv::all();
+
+    //      $pedidos=pedidos::all();
+
+      // return view('Pedidos.show')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv)->withPedidos($pedidos);
+  
 
       // return view("Pedidos.show"); 
-      //------------------------------------------
-     // $subtotal = 0 ;
-     // $pedidos=pedidos::find($id);
-
-     // $detallepedidos = $pedidos->detallepedidos;
-      
-      // foreach ($detallepedidos as $detallepedidos) {
-      //     $subtotal += $detallepedidos->PrecioUnitario * $detallepedidos->Cantidad;
-      //}
-      //return view('Pedidos.show', compact('pedidos','detallepedidos'));
-      //-----------------------------------------------------
-
-      // return view("Pedidos.show",["pedidos"=>$pedidos,"detalles"=>$detalles]);
-       
+       return view("Pedidos.show",["pedidos"=>$pedidos,"detalles"=>$detalles]);
+      // return view('Pedidos.show', compact('pedidos', 'detalles'));
     }
 
     /**

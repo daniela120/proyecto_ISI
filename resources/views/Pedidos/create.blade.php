@@ -14,16 +14,7 @@
             <div class=card-body>
                 <div class="row">
                    
-                    <div class="col-lg-12 form-group">
-                        <div>
-                            <label for="Fecha" class="form-fields"> Fecha </label>
-                            <input type="date" class="form-control {{$errors->has('Fecha') ? 'is-invalid' : '' }}" name="Fecha" id="Fecha" 
-                            value="" placeholder='Primer letra en Mayuscula'>
-                            @if($errors->has('Fecha'))
-                                <span class="text-danger">{{$errors->first('Fecha')}}</span>
-                            @endif
-                        </div>
-                    </div>
+                    
 
                     <div class="col-lg-4 form-group">
                         <div>
