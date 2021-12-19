@@ -21,16 +21,16 @@
                 <table id="dt-cliente" class="table table-stripped table-bordered dts">
                     <thead>
                         <tr>
-                            <th class="text-center">Acciones</th>
-                            <th class="text-center">Id </th>
-                            <th class="text-center">Nombre</th>                      
-                            <th class="text-center">Apellido</th>
-                            <th class="text-center">Usuario</th>   
-                            <th class="text-center">Correo</th>   
-                            <th class="text-center">Contraseña</th>  
-                            <th class="text-center">Dirección</th>   
-                            <th class="text-center">Teléfono</th>   
-                            <th class="text-center">Fecha Nacimiento</th>      
+                            <th class="text-center"><font size=2>Acciones</th>
+                            <th class="text-center"><font size=2>Id </th>
+                            <th class="text-center"><font size=2>Nombre</th>                      
+                            <th class="text-center"><font size=2>Apellido</th>
+                            <th class="text-center"><font size=2>Usuario</th>   
+                            <th class="text-center"><font size=2>Correo</th>   
+                         <!--   <th class="text-center"><font size=2>Contraseña</th>  -->
+                            <th class="text-center"><font size=2>Dirección</th>   
+                            <th class="text-center"><font size=2>Teléfono</th>   
+                            <th class="text-center"><font size=2>Fecha Nacimiento</th>      
                         </tr>
                     </thead>
                     
@@ -47,15 +47,15 @@
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{ $cliente->id }}</td>
-                            <td>{{ $cliente->Nombre }}</td>
-                            <td>{{ $cliente->Apellido }}</td>
-                            <td>{{ $cliente->Usuario }}</td>
-                            <td>{{ $cliente->Correo }}</td>
-                            <td>{{ $cliente->Contraseña }}</td>
-                            <td>{{ $cliente->Direccion }}</td>
-                            <td>{{ $cliente->Telefono }}</td>
-                            <td>{{ $cliente->FechaNacimiento }}</td>      
+                            <td><font size=2>{{ $cliente->id }}</td>
+                            <td><font size=2>{{ $cliente->Nombre }}</td>
+                            <td><font size=2>{{ $cliente->Apellido }}</td>
+                            <td><font size=2>{{ $cliente->Usuario }}</td>
+                            <td><font size=2>{{ $cliente->Correo }}</td>
+                         <!--   <td ><font size=2>{{ $cliente->Contraseña }}</td>-->
+                            <td><font size=2>{{ $cliente->Direccion }}</td>
+                            <td><font size=2>{{ $cliente->Telefono }}</td>
+                            <td><font size=2>{{ $cliente->FechaNacimiento }}</td>      
                         </tr>
                         @endforeach
                     </tbody>

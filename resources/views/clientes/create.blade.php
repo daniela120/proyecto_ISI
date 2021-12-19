@@ -46,16 +46,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-lg-6 form-group">
-                        <div>
-                            <label for="Correo" class="form-fields"> Correo </label>
-                            <input type="email" class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
-                            name="Correo" id="Correo" value="{{old('Correo')}}" placeholder='ejm@gg.co'>
-                            @if($errors->has('Correo'))
-                            <span class="text-danger">{{$errors->first('Correo')}}</span>
-                            @endif
-                        </div>
-                    </div>
+                   
 
                     <div class="col-lg-6 form-group">
                         <div>
@@ -64,6 +55,17 @@
                             name="Contraseña" id="Contraseña" value="{{old('Contraseña')}}" placeholder='contraseña01'>
                             @if($errors->has('Contraseña'))
                             <span class="text-danger">{{$errors->first('Contraseña')}}</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 form-group">
+                        <div>
+                            <label for="Correo" class="form-fields"> Correo </label>
+                            <input type="email" class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
+                            name="Correo" id="Correo" value="{{old('Correo')}}" placeholder='ejm@gg.co'>
+                            @if($errors->has('Correo'))
+                            <span class="text-danger">{{$errors->first('Correo')}}</span>
                             @endif
                         </div>
                     </div>

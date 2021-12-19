@@ -16,7 +16,8 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Estado de Envio" class="form-fields"> Estado de Envío </label>
-                            <input type="text" class="form-control" name="Nombre_Estado" id="Nombre_Estado">
+                            <input type="text" class="form-control" name="Nombre_Estado" id="Nombre_Estado"
+                            value="{{old('Nombre_Estado')}}">
                             @if($errors->has('Nombre_Estado'))
                                 <span class="text-danger">{{$errors->first('Nombre_Estado')}}</span>
                                 @endif

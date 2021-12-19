@@ -24,22 +24,22 @@
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
-                <table id="dt-Empleados" class="table table-stripped table-bordered dts">
+                <table id="dt-Empleados" class="table table-stripped table-bordered dts"  >
                     <thead>
                     <tr>
-                        <th class="text-center">Acciones</th>
-                            <th class="text-center">Id </th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Apellido</th>
-                            <th class="text-center">Fecha de Nacimiento</th>
-                            <th class="text-center">Fecha de Contratación</th>
-                            <th class="text-center">Dirección</th>
-                            <th class="text-center">Id Cargo</th>
-                            <th class="text-center"> Teléfono</th>
-                            <th class="text-center">Id Usuario</th>
-                            <th class="text-center">Id Documento</th>
-                            <th class="text-center">Id Turno</th>
-                            <th class="text-center">Documento</th>
+                            <th class="text-center"><font size=2>Acciones</th>
+                            <th class="text-center"><font size=2>Id </th>
+                            <th class="text-center"><font size=2>Nombre</th>
+                            <th class="text-center"><font size=2>Apellido</th>
+                            <th class="text-center"><font size=2>Fecha de Nacimiento</th>
+                            <th class="text-center"><font size=2>Fecha de Contratación</th>
+                            <th class="text-center"><font size=2>Dirección</th>
+                            <th class="text-center"><font size=2>Id Cargo</th>
+                            <th class="text-center"><font size=2> Teléfono</th>
+                            <th class="text-center"><font size=2>Id Usuario</th>
+                           <!-- <th class="text-center"><font size=2>Id Documento</th>-->
+                            <th class="text-center"><font size=2>Id Turno</th>
+                           <!-- <th class="text-center"><font size=2>Documento</th>-->
                             
                         </tr>
                     </thead>
@@ -53,22 +53,22 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deleteEmpleado({{$empleado}})">
+                                onclick="deleteEmpleado({{$empleados}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
-                            <td>{{$empleado->id}}</td>
-                                <td>{{$empleado->Nombre}}</td>
-                                <td>{{$empleado->Apellido}}</td>
-                                <td>{{$empleado->FechaNacimiento}}</td>
-                                <td>{{$empleado->FechaContratacion}}</td>
-                                <td>{{$empleado->Direccion}}</td>
-                                <td>{{$empleado->Id_Cargo}}</td>
-                                <td>{{$empleado->Telefono}}</td>
-                                <td>{{$empleado->Id_Usuario}}</td>
-                                <td>{{$empleado->Id_Documento}}</td>
-                                <td>{{$empleado->Id_Turno}}</td>
-                                <td>{{$empleado->Documento}}</td>
+                               <td ><font size=1>{{$empleado->id}}</td>
+                                <td><font size=1>{{$empleado->Nombre}}</td>
+                                <td><font size=1>{{$empleado->Apellido}}</td>
+                                <td><font size=1>{{$empleado->FechaNacimiento}}</td>
+                                <td><font size=1>{{$empleado->FechaContratacion}}</td>
+                                <td><font size=1>{{$empleado->Direccion}}</td>
+                              <td><font size=1>{{$empleado->Id_Cargo}}</td>
+                                <td><font size=1>{{$empleado->Telefono}}</td>
+                                <td><font size=1>{{$empleado->Id_Usuario}}</td>
+                              <!--  <td><font size=1>{{$empleado->Id_Documento}}</td>-->
+                                <td><font size=1>{{$empleado->Id_Turno}}</td>
+                              <!-- <td><font size=1>{{$empleado->Documento}}</td>-->
                                     
                         </tr>
                         @endforeach
@@ -118,8 +118,8 @@ onclick="editempleados({{$empleados}})"-->
      <!-- funcion deleteCategoria para pasar parametros y eliminar-->
      <script>    
 
-function deleteEmpleado(empleado){
-    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleado.id}`);
+function deleteEmpleado(empleados){
+    $("#deleteEmpleadosFrm").attr('action',`/empleado/${empleados.id}`);
            
 } 
 </script>

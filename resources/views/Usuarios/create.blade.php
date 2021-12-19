@@ -16,7 +16,8 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="email" class="form-fields"> Email </label>
-                            <input type="text" class="form-control" rows="3" name="email" id="email">
+                            <input type="text" class="form-control" rows="3" name="email" id="email"
+                            value="{{old('email')}}">
                             @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
@@ -28,7 +29,8 @@
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="nombre"> Nombre </label>
-                                <input type="text" class="form-control" rows="3" name="name" id="name">
+                                <input type="text" class="form-control" rows="3" name="name" id="name"
+                                value="{{old('name')}}">
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif

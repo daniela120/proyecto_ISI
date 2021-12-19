@@ -19,7 +19,7 @@
                         <div class="col-lg-12 form-group">
                             <div>
                                 <label for="NombreCompañia" class="form-fields"> Nombre Compañia</label>
-                                <input type="text" value="{{old('NombreCompañia')}}" class="form-control {{$errors->has('NombreCompañia') ? 'is-invalid' : '' }}" 
+                                <input type="text" value="{{old('NombreCompania')}}" class="form-control {{$errors->has('NombreCompañia') ? 'is-invalid' : '' }}" 
                                 rows="3"  name="NombreCompañia" id="NombreCompañia">     
                                 @if ($errors->has('NombreCompañia'))
                                     <span class="text-danger">{{ $errors->first('NombreCompañia') }}</span>

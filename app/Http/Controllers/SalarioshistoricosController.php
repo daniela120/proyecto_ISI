@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargoempleados;
 use App\Models\salarioshistoricos;
 use Illuminate\Http\Request;
-use DB;
 
 class SalarioshistoricosController extends Controller
 {
@@ -17,25 +15,6 @@ class SalarioshistoricosController extends Controller
     public function index()
     {
         //
-
-        try {
-            //code...
-            //$precio_his_inventario=precio_his_inventario::paginate(15);
-           // $inventarios=inventarios::all();
-
-            $probando=DB::table('salarioshistoricos as h')
-            ->join('cargoempleados as i','h.id_cargo','=','i.id')
-            ->select('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
-            ->orderby('h.id')
-            ->groupBy('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
-            ->paginate(25);
-
-        } catch (\Exception $exception) {
-            //throw $th;
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-        }
-    
-        return view('salarioshistoricos.index')->withProbando($probando);
     }
 
     /**

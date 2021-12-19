@@ -25,7 +25,11 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
+<<<<<<< HEAD
+use App\Http\Controllers\RoleUserController;
+=======
 use App\Http\Controllers\SalarioshistoricosController;
+>>>>>>> c19dbaf1abb65b96153dcc774d1765bb81779f62
 
 Route::get('/', function () {
     return view('index');
@@ -97,6 +101,10 @@ Route::get('/empleadosindex', function () {
 
 Route::get('/usuariosindex', function () {
     return view('Usuarios.usuariosindex');
+});
+
+Route::get('/roleuser', function () {
+    return view('Roleuser.roleuserindex');
 });
 
 
