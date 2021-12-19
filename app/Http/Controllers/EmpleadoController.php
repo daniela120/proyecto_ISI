@@ -48,7 +48,29 @@ class EmpleadoController extends Controller
     }
 
 
+    public function indexjoin()
+    {
+
+        try {
+            //code...
+            $users=User::all();   
+
+            $turnos=turnos::all();
     
+            $cargos=cargoempleados::all();
+            
+            $empleados=Empleado::paginate(15);
+    
+            $documentos=tipodocumentos::all();
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('empleado.indexjoin')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
+    }
+
 
     /**
      * Show the form for creating a new resource.
