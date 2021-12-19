@@ -64,6 +64,10 @@
                 <a class="collapse-item" href="/cargoempleados">
                      <i class="fas fa-align-justify"></i> Cargo
                 </a>
+      <!--          <a class="collapse-item" href="/role_user">
+                     <i class="fas fa-align-justify"></i> Rol
+                </a>
+    -->
                 
             </div>
         </div>
@@ -101,6 +105,7 @@
                 <a class="collapse-item" href="/precioinventario">
                      <i class="fas fa-align-justify"></i> Precio historico inventario
                 </a>
+
             </div>
         </div>
     </li>
@@ -127,6 +132,9 @@
                 </a>
                 <a class="collapse-item" href="/pedidos">
                      <i class="fas fa-cash-register"></i> Pedidos
+                </a>
+                <a class="collapse-item" href="/compras">
+                     <i class="fas fa-align-justify"></i> Compras
                 </a>
                 <a class="collapse-item" href="/isv">
                      <i class="fas fa-credit-card"></i> Isv

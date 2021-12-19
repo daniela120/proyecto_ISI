@@ -4,6 +4,9 @@
 @section('titulo')
 
     <span> Nueva Factura </span>
+
+    
+        
 @endsection 
 
 @section('contenido')
@@ -33,6 +36,7 @@
                                 <label for="idpedido" class="form-fields">Num Pedido</label>
                                 
                                 <p>{{($datopedido)}}</p> 
+                                <input type="hidden" name="inputpedido" id="inputpedido" value="{{($datopedido)}}">
                                 
                                 
                                
@@ -77,7 +81,7 @@
                                 <label for="total" class="form-fields">Total</label>
                                 
                                 <p>{{($valortotal)}}</p> 
-                                
+                                <input type="hidden" name="inputtotal" id="inputtotal" value="{{($valortotal)}}">
                                 
                                
                             </div>
@@ -137,189 +141,92 @@
                         </div>         
                     </div>
 
-
-                    <div class="row">
-
-                            <div class="col-lg-6 form-group" id="mostrartarjeta">
-                                <label for="tarjeta">Num Tarjeta</label>
-                               <p> <input type="number" name="tarjeta" id="tarjeta"></p>
-                                <label for="tarjetamonto">Monto</label>
-                                <input type="text" name="tarjetamonto" id="tarjetamonto">
-                            </div>
-
                     </div>
 
-                    <div class="col-lg-4 form-group" id="mostrarefectivo">
-                        <label for="efectivo">Monto en Efectivo</label>
-                        <p><input type="number" name="efectivo" id="efectivo"> </p>
-                        
-                    </div>
-
-                    <div class="col-lg-1 form-group">
-                            <div>
-                            <button type="button" id="bt_monto" href="#" class="btn btn-primary">
-                                Ingresar monto
-                                
-                                </button>
-                            </div>
-                        </div>
-
-                        </div>
-
-
-
-
-
-
-
-                   <!-- <div class="col-lg-4 form-group">           
-                        <div>
-                            <label for="id_empleado" class="form-fields"> Empleado </label>
-                            <select name="id_empleado" id="id_empleado" class="form-control {{$errors->has('id_empleado') ? 'is-invalid' : '' }}" >
-                                   <option value="">Seleccione el empleado</option>
-                                @foreach($empleado as $empleado)
-                                    <option value="{{ $empleado['id'] }}" {{ old('id_empleado') == $empleado->id ? 'selected' : '' }}>{{$empleado['Nombre'] }}</option>
-                                @endforeach
-                                </select>
-                                @if($errors->has('id_empleado'))
-                                    <span class="text-danger">{{$errors->first('id_empleado')}}</span>
-                                @endif
-                        </div>
-                    </div>-->
-                </div>
-               
-                <!--<div class="card border-primary">
-                    <div class=card-body>
+                    <div class="card border-primary">
+                        <div class=card-body>
                         <div class="row">
+
+
+                        @if(count($errors)>0)
+
+                            <div class="alert alert-primary" role="alert">
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                  <li>{{$error}}</li>  
+                                @endforeach
+                                </ul>
                             
-                        <div class="col-lg-3 form-group">           
-                            <div>
-                                <label for="Id_Producto" class="form-fields"> Producto </label>
-                                <select name="pId_Producto" id="pId_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
-                                    <option value="">Seleccione el Producto</option>
-                                    @foreach($productos as $productos)
-                                        <option value="{{ json_encode($productos['id'],TRUE) }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
-                                    @endforeach
-                                </select>
-                                    @if($errors->has('Id_Producto'))
-                                        <span class="text-danger">{{$errors->first('Id_Producto')}}</span>
-                                    @endif
                             </div>
-                        </div>
 
-                        <div class="col-lg-2 form-group">
-                            <div>
-                                <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
-                                
-                                    <input type="text" class="form-control" name="pPrecioUnitario" id="pPrecioUnitario" 
-                                    value="{{old('PrecioUnitario')}}">
-                                     
-                               
+                            
+
+                        @endif
+
+                    <div class="col-lg-8 form-group">
+                            <div class="col-lg-6 form-group" id="mostrartarjeta">
+                                <label for="labeltarjeta">Num Tarjeta</label>
+                               <p> <input type="text" name="tarjeta" id="tarjeta"  placeholder='Ingrese num de tarjeta'></p>
                             </div>
-                        </div>
-
-
-                        <div class="col-lg-1 form-group">
-                            <div>
-                                <label for="Cantidad" class="form-fields"> Cantidad </label>
-                                <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
-                                name="pCantidad" id="pCantidad" value="{{old('Cantidad')}}" >
-                                @if($errors->has('Cantidad'))
-                                    <span class="text-danger">{{$errors->first('Cantidad')}}</span>
-                                @endif
+                            <div class="col-lg-6 form-group" id="mostrarmontotarjeta">
+                                <p><label for="labeltarjetamonto">Monto</label></p>
+                                <input type="text" name="montodetarjeta" id="montodetarjeta" placeholder='Ingrese el monto'>
                             </div>
-                        </div>
-
-                        <div class="col-lg-2 form-group">           
-                            <div>
-                                <label for="id_descuento" class="form-fields"> Descuento </label>
-                                <select name="pid_descuento" id="pid_descuento" class="form-control {{$errors->has('id_descuento') ? 'is-invalid' : '' }}" >
-                                    <option value="">Seleccione </option>
-                                    @foreach($descuentos as $descuentos)
-                                        <option value="{{ $descuentos['id'] }}" {{ old('id_descuento') == $descuentos->id ? 'selected' : '' }}>{{$descuentos['ValorDescuento'] }}</option>
-                                    @endforeach
-                                </select>
-                                    @if($errors->has('id_descuento'))
-                                        <span class="text-danger">{{$errors->first('id_descuento')}}</span>
-                                    @endif
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-lg-2 form-group">           
-                            <div>
-                                <label for="id_isv" class="form-fields"> ISV </label>
-                                <select name="pid_isv" id="pid_isv" class="form-control {{$errors->has('id_isv') ? 'is-invalid' : '' }}" >
-                                    <option value="">Seleccione </option>
-                                    @foreach($isv as $isv)
-                                        <option value="{{ $isv['id'] }}" {{ old('id_isv') == $isv->id ? 'selected' : '' }}>{{$isv['isv'] }}</option>
-                                    @endforeach
-                                </select>
-                                    @if($errors->has('id_isv'))
-                                <span class="text-danger">{{$errors->first('id_isv')}}</span>
-                                @endif
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-lg-1 form-group">
-                            <div>
-                            <button type="button" id="bt_add" href="#" class="btn btn-primary">
-                                Agregar
-                                
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 form-group">
-                            <table id="detalles" class="table table-stripped table-bordered dts">
-                                <thead style="background-color:#A9D0F5">
-                                    <tr>
-                                        <th class="text-center">Opciones </th>
-                                        <th class="text-center">Producto </th>
-                                        <th class="text-center">Precio Unitario</th>
-                                        <th class="text-center">Cantidad </th>
-                                        <th class="text-center">Descuento</th>
-                                        <th class="text-center">ISV</th>
-                                        <th class="text-center">Importe</th>
-                                                            
-                                    </tr>
-                                </thead>
-                               
-                                
-
-                                
-                                <tbody >
-                                <tr>
-                                        <td>SUBTOTAL</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><h5 id="total">0.00</h5></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                                
-
-                        </div>
+                            
                     </div>
-                </div>
-            
+                    
+
+                            <div class="col-lg-4 form-group" id="mostrarefectivo">
+                                <label for="labelefectivo">Monto en Efectivo</label>
+                                <p><input type="text" name="efectivo" id="efectivo"> </p>
+                                
+                            </div>
 
                     
 
+                    <div class="col-lg-3 form-group">
+                            <div>
+                            <button type="button" id="bt_monto" href="#" class="btn btn-primary">
+                                Cambiar Tipo de Pago
+                                
+                                </button>
+                            </div>
+                    </div>
+
+                    <div class="col-lg-2 form-group">
+                            <div>
+                            <button type="button" id="bt_guardarmonto" href="#" class="btn btn-primary">
+                                Guardar monto
+                                
+                                </button>
+                            </div>
+                    </div>
+
+                    </div>
+                    </div>
+                    
+                        </div>
+
+
+
+
+
+
+
                    
-                </div>
-            </div>-->
 
                     <div class="col-lg-4 form-group " id="bt_guardar"> 
                         <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
-                        <button class="btn btn-primary" type="submit">Guardar</button>
+                        <button class="btn btn-primary" id="bt_save" type="submit">Guardar</button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                         <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
+                        <a href="{{route('factura.pdf',$pedidos->id)}}" class="btn btn-primary btn-sm" >
+
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
                     </div>
+
+                    
                 <br>
             </form>
 
@@ -334,14 +241,36 @@
            $('#bt_add').click(function(){
                agregar();
            });
+           /**$('#bt_save').click(function(){
+               calcular();
+           });**/
            $('#bt_monto').click(function(){
                mostrarmontos();
            });
+           
        });
+
+
+       
         var cont=0;
         total=0;
         subtotal=[];
         TipoPago=$("#id_tipo_de_pago option:selected").text();
+        valortarjeta=0;
+        valorpago=$("#inputtotal").val(); 
+        
+        
+        Efectivo=$("#efectivo").val();
+
+
+        /**function calcular() {
+            if (Efectivo<valorpago) {
+                alert("El monto debe ser igual al total");
+            }
+            
+        }**/
+
+        
         
        
         function agregar()
@@ -386,21 +315,45 @@
             $("#pCantidad").val("");
             $("#pid_descuento").val("");
             $("#pid_isv").val("");
+            $("#efectivo").val("");
+            $("#monto de tarjeta").val("");
+            
+            
             
         } 
 
         function evaluar(){
             TipoPago=$("#id_tipo_de_pago option:selected").text();
+            //$("#bt_guardar").hide();
+            limpiar();
+
             if(TipoPago=="Tarjeta")
             {
-                $("#bt_guardar").show();
+                
                 $("#mostrartarjeta").show();
+                $("#mostrarmontotarjeta").hide();
+                
+                $("#mostrarefectivo").hide();
             }else{
-                $("#bt_guardar").hide();
-                $("#mostrartarjeta").hide();
+                if (TipoPago=="Mixto") {
+                    $("#mostrartarjeta").show();
+                    $("#mostrarmontotarjeta").show();
+                    $("#mostrarefectivo").show();                    
+                }else{
+                    if (TipoPago=="Efectivo"){
+                        $("#mostrarefectivo").show(); 
+                        $("#mostrartarjeta").hide();
+                        $("#mostrarmontotarjeta").hide();
+                    }
+                }
+               
             }
+            
 
         }
+
+
+        
 
         function mostrarmontos(){
             evaluar();

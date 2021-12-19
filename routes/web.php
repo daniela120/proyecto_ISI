@@ -24,6 +24,7 @@ use App\Http\Controllers\cargoempleadohistoricoController;
 use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
+use App\Http\Controllers\ComprasController;
 
 Route::get('/', function () {
     return view('index');
@@ -115,6 +116,9 @@ Route::get('/Postres', function () {
 Route::get('/servicios', function () {
     return view('servicios');
 });
+
+Route::get('factura/pdf',[App\Http\Controllers\FacturaController::class, 'pdf'])->name('factura.pdf');
+
 /*
 Route::get('/persona', function () {
     return view('persona.indexper');
@@ -146,7 +150,7 @@ Route::resource('isv',IsvController::class);
 Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
 Route::resource('factura',FacturaController::class);
 Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
-
+Route::resource('compras',ComprasController::class);
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
