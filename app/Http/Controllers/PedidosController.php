@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\tiposdepago;
 use App\Models\clientes;
+use App\Models\User;
 use App\Models\descuentos;
 use App\Models\productos;
 use App\Models\isv;
@@ -56,7 +57,7 @@ class PedidosController extends Controller
 
         $isv=isv::all();
         
-        $pedidos=pedidos::paginate(15);
+        $pedidos=pedidos::paginate(50);
 
         return view('Pedidos.pedidosindex')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    
@@ -70,6 +71,8 @@ class PedidosController extends Controller
     public function create()
     {
         $empleado=Empleado::all();  
+
+        $user=User::all();
         
         $productos=productos::all();
 
@@ -77,13 +80,13 @@ class PedidosController extends Controller
 
         $clientes=clientes::all();
 
-       $descuentos=descuentos::all();
+        $descuentos=descuentos::all();
 
-       $isv=isv::all();
+        $isv=isv::all();
 
-            $mytime= Carbon::now("America/Lima");
+        $mytime= Carbon::now("America/Lima");
                 
-           $Hoy=$mytime->toDateTimeString();
+        $Hoy=$mytime->toDateTimeString();
 
        // $mytime = Carbon::now();
          //      echo $mytime->toDateTimeString();
@@ -94,8 +97,12 @@ class PedidosController extends Controller
             //->where('dp.id_pedido','=',$id)
             //->get(); 
 
-        return view('Pedidos.create')->withEmpleado($empleado)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
+        return view('Pedidos.create')->withEmpleado($empleado)->withUser($user)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
     }
+
+   
+      
+
 
     /**
      * Store a newly created resource in storage.
@@ -118,7 +125,7 @@ class PedidosController extends Controller
                //$mytime = Carbon\Carbon::now();
                echo $mytime->toDateTimeString();
                 
-                DB::insert('insert into pedidos (id_empleado,Fecha,id_tipo_de_pago,id_cliente) values (?, ?, ?, ?)', [$request->get('id_empleado'), $Hoy,$request->get('id_tipo_de_pago'),$request->get('id_cliente')]);
+                DB::insert('insert into pedidos (id_usuario,Fecha,id_tipo_de_pago,id_cliente) values (?, ?, ?, ?)', [$request->get('id_usuario'), $Hoy,$request->get('id_tipo_de_pago'),$request->get('id_cliente')]);
                 $data=DB::table('pedidos')->get();
                 $last=$data->last();
          
@@ -162,7 +169,6 @@ class PedidosController extends Controller
                 //throw $th;
                 return view('errores.errors',['errors'=>$exception->getMessage()]);
                // DB::rollback();
-             //  return view('errores.errors',['errors'=>$exception->getMessage()]);
     
            }
           
@@ -177,7 +183,6 @@ class PedidosController extends Controller
            //$detalles->save();
           
          
-
            $idProducto=$request->get('idProducto');
            $PrecioUnitario=$request->get('PrecioUnitario');
                 $Cantidad=$request->get('CantidadDetalles');
@@ -185,7 +190,6 @@ class PedidosController extends Controller
                 $id_isv=$request->get('id_isv');
                 
                 $cont = 0;
-
            while($cont< count($idProducto)){
             $detalles= new detallepedidos(); 
             $detalles->id_pedido=$pedidos->id_pedido;
@@ -216,13 +220,14 @@ class PedidosController extends Controller
        
         $pedidos=DB::table('pedidos as p')
            ->join('tiposdepagos as tp','tp.id','=','p.id_tipo_de_pago')
-         ->join('empleados as e','e.id','=','p.id_empleado')
+         
+         ->join('users as u','u.id','=','p.id_usuario')
           ->join('clientes as c','c.id','=','p.id_cliente')
           ->join('detallepedidos as dp','dp.pedidos_id','=','p.id')
-          ->select('p.id','p.Fecha','e.Nombre as NombreE','c.Nombre','tp.Nombre_Tipo_Pago',DB::raw('sum(dp.Cantidad*PrecioUnitario) as total'))
+          ->select('p.id','p.Fecha','u.name as NombreU','c.Nombre','tp.Nombre_Tipo_Pago',DB::raw('sum(dp.Cantidad*PrecioUnitario) as total'))
          ->where('p.id','=',$id)     
           ->orderby('p.id')
-            ->groupBy('p.id','p.Fecha','NombreE','c.Nombre','tp.Nombre_Tipo_Pago','total')
+            ->groupBy('p.id','p.Fecha','NombreU','c.Nombre','tp.Nombre_Tipo_Pago','total')
             ->first();
 
        
@@ -237,23 +242,27 @@ class PedidosController extends Controller
         
      
      return view('pedidos.show')->withPedidos($pedidos)->withDetallepedidos($detallepedidos);
+        
+     //  $empleado=Empleado::all();  
+        
+     //  $productos=productos::all();
 
+     //  $tiposdepago=tiposdepago::all();
+
+     //  $clientes=clientes::all();
+
+     // $descuentos=descuentos::all();
+
+    //  $isv=isv::all();
+
+    //      $pedidos=pedidos::all();
+
+      // return view('Pedidos.show')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv)->withPedidos($pedidos);
+  
 
       // return view("Pedidos.show"); 
-      //------------------------------------------
-     // $subtotal = 0 ;
-     // $pedidos=pedidos::find($id);
-
-     // $detallepedidos = $pedidos->detallepedidos;
-      
-      // foreach ($detallepedidos as $detallepedidos) {
-      //     $subtotal += $detallepedidos->PrecioUnitario * $detallepedidos->Cantidad;
-      //}
-      //return view('Pedidos.show', compact('pedidos','detallepedidos'));
-      //-----------------------------------------------------
-
-      // return view("Pedidos.show",["pedidos"=>$pedidos,"detalles"=>$detalles]);
-       
+       //return view("Pedidos.show",["pedidos"=>$pedidos,"detalles"=>$detalles]);
+      // return view('Pedidos.show', compact('pedidos', 'detalles'));
     }
 
     /**

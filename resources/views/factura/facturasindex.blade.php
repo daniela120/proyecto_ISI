@@ -2,9 +2,9 @@
 
 @section('titulo')
 
-    <span> Pedidos </span>
+    <span> Facturas </span>
     
-    <a href="/pedidos/create" class="btn btn-primary btn-circle" >
+    <a href="/factura/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
     </a>
 
@@ -20,11 +20,11 @@
                         <tr>
                         
                             <th class="text-center">Acciones</th>
-                            <th class="text-center">No. Pedido</th>
-                            <th class="text-center">Fecha </th>
-                           <!-- <th class="text-center">Empleado</th>        
+                            <th class="text-center">Id </th>
+                            <th class="text-center">Empleado</th>
+                            <th class="text-center">Fecha de Nacimiento</th>
                             <th class="text-center">Tipo Pago</th>
-                            <th class="text-center">Cliente</th>     -->                
+                            <th class="text-center">Cliente</th>                     
                         </tr>
                     </thead>
                     <tbody>
@@ -34,25 +34,25 @@
                         <td>
                             
                         <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
-                        <a href="{{route('pedidos.show',$pedidos->id)}}"  >
+                        <a href="{{route('factura.show',$pedidos->id)}}"  >
 
                         <i class="fas fa-eye"></i>
                                 </a>
 
-                            <!--    <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
+                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="">
                                     <i class="far fa-trash-alt"></i>
-                                </a>-->
+                                </a>
                             </td>
                                 <td>{{$pedidos->id}}</td>
-                                <td>{{\Carbon\Carbon::parse($pedidos->Fecha)->format('d M y h:i a')}}</td>                              
-                               <!-- <td>{{$pedidos->id_empleado}}</td>
+                                <td>{{$pedidos->id_empleado}}</td>
+                                <td>{{$pedidos->Fecha}}</td>
                                 <td>{{$pedidos->id_tipo_de_pago}}</td>
-                                <td>{{$pedidos->id_cliente}}</td>-->
+                                <td>{{$pedidos->id_cliente}}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -29,4 +29,8 @@ class detallepedidos extends Model
     public function pedidos(){
         return $this->belongsTo(pedidos::class);
     }
+
+    public function productos(){
+        return $this->belongsTo(productos::class);
+    }
 }

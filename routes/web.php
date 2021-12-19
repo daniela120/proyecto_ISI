@@ -22,8 +22,8 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\IsvController;
 use App\Http\Controllers\cargoempleadohistoricoController;
 use App\Http\Controllers\PrecioHisMenuController;
-use App\Http\Controllers\RoleuserController;
-use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\ParametrizacionFacturaController;
 
 Route::get('/', function () {
     return view('index');
@@ -144,8 +144,9 @@ Route::resource('precioinventario',PrecioHisInventarioController::class);
 Route::resource('productos',ProductosController::class);
 Route::resource('isv',IsvController::class);
 Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
-Route::resource('role_user',RoleuserController::class);
-Route::resource('compras',ComprasController::class);
+Route::resource('factura',FacturaController::class);
+Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
+
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
@@ -192,3 +193,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/pedidos/{pedidos}', [App\Http\Controllers\PedidosController::class, 'show'])->name('pedidos.show');
+Route::get('/factura/{pedidos}', [App\Http\Controllers\FacturaController::class, 'show'])->name('factura.show');

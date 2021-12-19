@@ -40,7 +40,7 @@
                     <div class="col-lg-3 form-group">
                             <div>
                                 <label for="id_cliente" class="form-fields"> Empleado</label>
-                                <p>{{$pedidos->NombreU}}</p> 
+                                <p>{{$pedidos->NombreE}}</p> 
                             </div>
                     </div>
                 

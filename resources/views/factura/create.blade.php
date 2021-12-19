@@ -3,21 +3,110 @@
 
 @section('titulo')
 
-    <span> Nuevo Pedido </span>
+    <span> Nueva Factura </span>
 @endsection 
 
 @section('contenido')
             
-<form action="{{ url('/pedidos') }}" method="post" enctype="multipart/form-data">
+<form action="{{ url('/factura') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
             <div class=card-body>
                 <div class="row">
                    
-                    
-                
+                <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="fecha" class="form-fields">Fecha</label>
+                                <p>{{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</p> 
+                            </div>
+                    </div>
 
-                    <div class="col-lg-4 form-group">
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="Direccion" class="form-fields">Dirección</label>
+                                <p>Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101</p> 
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="idpedido" class="form-fields">Num Pedido</label>
+                                
+                                <p>{{($datopedido)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="impuesto" class="form-fields">Impuesto</label>
+                                
+                                <p>{{($acumimpuesto)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="subtotal" class="form-fields">Subtotal</label>
+                                
+                                <p>{{($subtotalpedido)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="descuento" class="form-fields">Descuento</label>
+                                
+                                <p>{{($acumdescuento)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="total" class="form-fields">Total</label>
+                                
+                                <p>{{($valortotal)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="empleadoatendio" class="form-fields">Atendido por:</label>
+                                
+                                <p>{{($empleadonombre)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+                    <div class="col-lg-3 form-group">
+                            <div>
+                                <label for="clientedepedido" class="form-fields">Cliente:</label>
+                                
+                                <p>{{($clientenombre)}}</p> 
+                                
+                                
+                               
+                            </div>
+                    </div>
+
+
+                    <!-- <div class="col-lg-4 form-group">
                         <div>
                             <label for="id_cliente" class="form-fields"> Cliente</label>
                             <select name="id_cliente" id="id_cliente" class="form-control {{$errors->has('id_cliente') ? 'is-invalid' : '' }}"
@@ -31,13 +120,13 @@
                             <span class="text-danger">{{$errors->first('id_cliente')}}</span>
                             @endif
                             </div>    
-                    </div>
+                    </div>-->
     
                     <div class="col-lg-4 form-group">    
                         <div>
                             <label for="id_tipo_de_pago" class="form-fields"> Tipo Pago</label>
                                 <select name="id_tipo_de_pago" id="id_tipo_de_pago" class="form-control {{$errors->has('id_tipo_de_pago') ? 'is-invalid' : '' }}" >
-                                   <option value="" >Seleccione el tipo de pago</option>
+                                   
                                 @foreach($tiposdepago as $tiposdepago)
                                     <option value="{{ $tiposdepago['id'] }}" {{ old('id_tipo_de_pago') == $tiposdepago->id ? 'selected' : '' }}>{{$tiposdepago['Nombre_Tipo_Pago'] }}</option>
                                 @endforeach
@@ -48,32 +137,68 @@
                         </div>         
                     </div>
 
-                    <div class="col-lg-4 form-group">           
+
+                    <div class="row">
+
+                            <div class="col-lg-6 form-group" id="mostrartarjeta">
+                                <label for="tarjeta">Num Tarjeta</label>
+                               <p> <input type="number" name="tarjeta" id="tarjeta"></p>
+                                <label for="tarjetamonto">Monto</label>
+                                <input type="text" name="tarjetamonto" id="tarjetamonto">
+                            </div>
+
+                    </div>
+
+                    <div class="col-lg-4 form-group" id="mostrarefectivo">
+                        <label for="efectivo">Monto en Efectivo</label>
+                        <p><input type="number" name="efectivo" id="efectivo"> </p>
+                        
+                    </div>
+
+                    <div class="col-lg-1 form-group">
+                            <div>
+                            <button type="button" id="bt_monto" href="#" class="btn btn-primary">
+                                Ingresar monto
+                                
+                                </button>
+                            </div>
+                        </div>
+
+                        </div>
+
+
+
+
+
+
+
+                   <!-- <div class="col-lg-4 form-group">           
                         <div>
-                            <label for="id_usuario" class="form-fields"> Empleado </label>
-                            <select name="id_usuario" id="id_usuario" class="form-control {{$errors->has('id_usuario') ? 'is-invalid' : '' }}" >
-                                   <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>    
+                            <label for="id_empleado" class="form-fields"> Empleado </label>
+                            <select name="id_empleado" id="id_empleado" class="form-control {{$errors->has('id_empleado') ? 'is-invalid' : '' }}" >
+                                   <option value="">Seleccione el empleado</option>
+                                @foreach($empleado as $empleado)
+                                    <option value="{{ $empleado['id'] }}" {{ old('id_empleado') == $empleado->id ? 'selected' : '' }}>{{$empleado['Nombre'] }}</option>
+                                @endforeach
                                 </select>
-                                @if($errors->has('id_usuario'))
-                                    <span class="text-danger">{{$errors->first('id_usuario')}}</span>
+                                @if($errors->has('id_empleado'))
+                                    <span class="text-danger">{{$errors->first('id_empleado')}}</span>
                                 @endif
                         </div>
-                    </div>
+                    </div>-->
                 </div>
-
-
                
-                <div class="card border-primary">
+                <!--<div class="card border-primary">
                     <div class=card-body>
                         <div class="row">
                             
-                        <div class="col-lg-4 form-group">           
+                        <div class="col-lg-3 form-group">           
                             <div>
                                 <label for="Id_Producto" class="form-fields"> Producto </label>
                                 <select name="pId_Producto" id="pId_Producto" class="form-control {{$errors->has('Id_Producto') ? 'is-invalid' : '' }}" >
                                     <option value="">Seleccione el Producto</option>
                                     @foreach($productos as $productos)
-                                        <option value="{{ json_encode($productos['id'],TRUE) }}_{{ $productos->Precio }}"  {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
+                                        <option value="{{ json_encode($productos['id'],TRUE) }}" {{ old('Id_Producto') == $productos->id ? 'selected' : '' }}>{{$productos->NombreProducto }}</option>
                                     @endforeach
                                 </select>
                                     @if($errors->has('Id_Producto'))
@@ -87,19 +212,17 @@
                                 <label for="PrecioUnitario" class="form-fields">Precio Unitario </label>
                                 
                                     <input type="text" class="form-control" name="pPrecioUnitario" id="pPrecioUnitario" 
-                                     value="" disabled>
+                                    value="{{old('PrecioUnitario')}}">
                                      
-                               <!-- @if($errors->has('PrecioUnitario'))
-                                    <span class="text-danger">{{$errors->first('PrecioUnitario')}}</span>
-                                @endif-->
+                               
                             </div>
                         </div>
 
 
-                        <div class="col-lg-2 form-group">
+                        <div class="col-lg-1 form-group">
                             <div>
                                 <label for="Cantidad" class="form-fields"> Cantidad </label>
-                                <input type="number" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
+                                <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' : '' }}" 
                                 name="pCantidad" id="pCantidad" value="{{old('Cantidad')}}" >
                                 @if($errors->has('Cantidad'))
                                     <span class="text-danger">{{$errors->first('Cantidad')}}</span>
@@ -132,15 +255,14 @@
                                         <option value="{{ $isv['id'] }}" {{ old('id_isv') == $isv->id ? 'selected' : '' }}>{{$isv['isv'] }}</option>
                                     @endforeach
                                 </select>
-                                @if($errors->has('id_isv'))
-                                     <span class="text-danger">{{$errors->first('id_isv')}}</span>
+                                    @if($errors->has('id_isv'))
+                                <span class="text-danger">{{$errors->first('id_isv')}}</span>
                                 @endif
                             </div>
                         </div>
 
-                           
                         
-                        <div class="col-lg-2 form-group">
+                        <div class="col-lg-1 form-group">
                             <div>
                             <button type="button" id="bt_add" href="#" class="btn btn-primary">
                                 Agregar
@@ -159,7 +281,7 @@
                                         <th class="text-center">Cantidad </th>
                                         <th class="text-center">Descuento</th>
                                         <th class="text-center">ISV</th>
-                                        <th class="text-center">Subtotal</th>
+                                        <th class="text-center">Importe</th>
                                                             
                                     </tr>
                                 </thead>
@@ -169,14 +291,13 @@
                                 
                                 <tbody >
                                 <tr>
-                                        <td>TOTAL</td>
+                                        <td>SUBTOTAL</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>
-                                        <span align="right" id="total">0.00</span></td>
+                                        <td><h5 id="total">0.00</h5></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -191,17 +312,12 @@
 
                    
                 </div>
-            </div>
+            </div>-->
 
                     <div class="col-lg-4 form-group " id="bt_guardar"> 
                         <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
                         <button class="btn btn-primary" type="submit">Guardar</button>
-                      <!--  <button class="btn btn-danger" type="reset" href="{{url('/pedidos') }}">Cancelar</button>
--->     
-                    </div>
-
-                    <div class="col-lg-4 form-group " id="bt_guardar"> 
-                        
+                        <button class="btn btn-danger" type="reset">Cancelar</button>
                         <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
                     </div>
                 <br>
@@ -209,7 +325,8 @@
 
 
     @push('scripts')
-     
+    <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>   
     
     <script> 
        $(document).ready(function(){
@@ -217,26 +334,16 @@
            $('#bt_add').click(function(){
                agregar();
            });
+           $('#bt_monto').click(function(){
+               mostrarmontos();
+           });
        });
         var cont=0;
         total=0;
         subtotal=[];
-        $("#guardar").hide();
-
- $("#pId_Producto").change(mostrarValores);
-
-function mostrarValores() {
-    datosProducto = document.getElementById('pId_Producto').value.split('_');
-    $("#pPrecioUnitario").val(datosProducto[1]);
-    
-}
-
-
-
+        TipoPago=$("#id_tipo_de_pago option:selected").text();
+        
        
-
-   
-   
         function agregar()
         {
             //limpiar();
@@ -252,11 +359,11 @@ function mostrarValores() {
 
             if(idProducto!="" && PrecioUnitario!="" && Cantidad!="" && Cantidad>0 && id_descuento!="" && id_isv!="")
             {
-                
-                subtotal[cont] = (Cantidad*PrecioUnitario);
-                 total = total + subtotal[cont];
+                subtotal[cont]=(Cantidad*PrecioUnitario);
+                total=total+subtotal[cont];
+
                                                                                                                         
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick"eliminar('+cont+');">X</button></td><td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+Producto+'</td><td><input type="number" name="PrecioUnitario[]" value="'+PrecioUnitario+'"></td><td><input type="number" name="CantidadDetalles[]" value="'+Cantidad+'"></td><td><input type="hidden" name="id_descuento[]" value="'+id_descuento+'">'+id_descuentoval+'</td><td><input type="hidden" name="id_isv[]" value="'+id_isv+'">'+id_isvval+'</td><td>'+subtotal[cont]+'</td></tr>';
                // var fila='<tr class="selected" id="fila'+cont+'"><input type="number" name="idProductos[]" value="'+idProducto+'">'+Producto+'</td></tr>';
                 
                 cont++;
@@ -283,12 +390,20 @@ function mostrarValores() {
         } 
 
         function evaluar(){
-            if(total>0)
+            TipoPago=$("#id_tipo_de_pago option:selected").text();
+            if(TipoPago=="Tarjeta")
             {
                 $("#bt_guardar").show();
+                $("#mostrartarjeta").show();
             }else{
                 $("#bt_guardar").hide();
+                $("#mostrartarjeta").hide();
             }
+
+        }
+
+        function mostrarmontos(){
+            evaluar();
 
         }
 
@@ -297,9 +412,6 @@ function mostrarValores() {
             $("#total").html("L. "+total);
             $("#fila" + index).remove();
             evaluar();
-
-
-
         }
     </script>
 

@@ -15,7 +15,7 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id('id_pedido');
-            $table->integer('id_empleado');
+            $table->integer('id_usuario');
             $table->date('Fecha');
             $table->integer('id_tipo_de_pago');
             $table->integer('id_cliente');

@@ -25,8 +25,8 @@ class PedidosRequest extends FormRequest
     {
         return [
             
-        'id_empleado'=>['required'],
-        'Fecha'=>['required'],
+        'id_usuario'=>['required'],
+        
         'id_tipo_de_pago'=>['required'],
         'id_cliente'=>['required'],
         'Id_Producto'=>['max:20'],
