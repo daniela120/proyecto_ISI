@@ -27,8 +27,8 @@ class TurnoRequest extends FormRequest
             //
             'TipoTurno' =>['required', 'alpha', 'min:3', 'max:10', 'regex:/^(?=[A-Z][a-z,á,é,í,ó,ú,]+)(?:([\ñ\w\d*?!:;])\1?(?!\1))+$/'],
             'Descripcion' =>['required', 'min:3', 'max:50'],
-            'HoraEntrada' =>['required'],
-            'HoraSalida' =>['required']
+            'HoraEntrada' =>['required', 'date_format:H:i'],
+            'HoraSalida' =>['required', 'date_format:H:i', 'after:HoraEntrada']
 
         ];
     }

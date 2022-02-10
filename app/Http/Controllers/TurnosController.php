@@ -57,6 +57,10 @@ class TurnosController extends Controller
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
+        /*$this->validate($request, [
+            'HoraEntrada' => 'date_format:H:i',
+            'HoraSalida' => 'date_format:H:i|after:HoraEntrada',
+        ]);*/
       
         alert()->success('Turno Guardado Correctamente');
         
@@ -117,17 +121,8 @@ class TurnosController extends Controller
      */
     public function destroy($id)
     {
-        //
-        try {
-            //code...
-            turnos::destroy($id);
-        } catch (\Exception $exception) {
-            //throw $th;
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-
-        }
-       
-        alert()->success('Turno Eliminado Correctamente');
+        turnos::destroy($id);
+        alert()->success(' Turno Eliminado correctamente');
         return redirect('turnos');
     }
 }
