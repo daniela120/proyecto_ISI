@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
             @foreach($turnos as $turnos)
-    <form action="{{url('/turnos/'.$turnos->id)}}" method="post" id="editturnosForm" enctype="multipart/form-data">
+    <form action="{{url('/turnos/'.$turnos->id)}}" method="post" id="editturnosFrm" enctype="multipart/form-data">
           @method('PUT')
             @csrf
             @endforeach
