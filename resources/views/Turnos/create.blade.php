@@ -37,7 +37,8 @@
                 <div class="col-lg-12 form-group">
                         <div>
                             <label for="Hora Entrada" class="form-fields"> Hora de entrada</label>
-                            <input type="time" class="form-control" rows="3" value="{{old('HoraEntrada')}}" name="HoraEntrada" id="HoraEntrada">
+                            <input type="time" class="form-control" rows="3" value="{{old('HoraEntrada')}}" name="HoraEntrada" id="HoraEntrada"
+                            min="06:00" max="HoraSalida">
                             @if($errors->has('HoraEntrada'))
                             <span class="text-danger">{{$errors->first('HoraEntrada')}}</span>
                             @endif

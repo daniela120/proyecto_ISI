@@ -15,18 +15,18 @@
             <div class="row">
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="NombreCompañia" class="form-fields"> Nombre Compañia </label>
-                            <input type="text" class="form-control {{$errors->has('NombreCompañia') ? 'is-invalid' : '' }}" 
-                            name="NombreCompañia" id="NombreCompañia" value="{{old('NombreCompañia')}}" placeholder='Primer letra en Mayuscula'>
-                            @if ($errors->has('NombreCompañia'))
-                                    <span class="text-danger">{{ $errors->first('NombreCompañia') }}</span>
+                        <label for="NombreCompañia" class="form-fields"> Nombre Compañia </label>
+                            <input type="text" class="form-control {{$errors->has('NombreCompania') ? 'is-invalid' : '' }}" 
+                            name="NombreCompania" id="NombreCompania" value="{{old('NombreCompania')}}" placeholder='Primer letra en Mayuscula'>
+                            @if ($errors->has('NombreCompania'))
+                                    <span class="text-danger">{{ $errors->first('NombreCompania') }}</span>
                             @endif
                         </div>
                     </div>
-                    
-                    <div class="col-lg-6 form-group">
+
+                    <div class="col-lg-12 form-group">
                         <div>
-                            <label for="NombreContacto" class="form-fields"> Nombre Contacto</label>
+                        <label for="NombreContacto" class="form-fields"> Nombre Contacto</label>
                             <input type="text" class="form-control {{$errors->has('NombreContacto') ? 'is-invalid' : '' }}"
                              name="NombreContacto" id="NombreContacto" value="{{old('NombreContacto')}}" placeholder='Primer letra en Mayuscula'>
                             @if ($errors->has('NombreContacto'))
@@ -34,10 +34,11 @@
                             @endif
                         </div>
                     </div>
+                
 
-                    <div class="col-lg-6 form-group">
+                <div class="col-lg-12 form-group">
                         <div>
-                            <label for="Telefono" class="form-fields">Teléfono</label>
+                        <label for="Telefono" class="form-fields">Teléfono</label>
                             <input type="text" class="form-control {{$errors->has('Telefono') ? 'is-invalid' : '' }}"
                              name="Telefono" id="Telefono" value="{{old('Telefono')}}" pattern='[2,3,7,8,9]\d{3}\d{4}' placeholder='Iniciar con 2,3,7,8 o 9'>
                             @if ($errors->has('Telefono'))
@@ -48,7 +49,7 @@
 
                     <div class="col-lg-12 form-group">
                         <div>
-                            <label for="SitioWeb" class="form-fields"> Sitio Web</label>
+                        <label for="SitioWeb" class="form-fields"> Sitio Web</label>
                             <input type="text" class="form-control {{$errors->has('SitioWeb') ? 'is-invalid' : '' }}"
                              name="SitioWeb" id="SitioWeb" value="{{old('SitioWeb')}}" placeholder='ejm.co' >
                             @if ($errors->has('SitioWeb'))
@@ -56,7 +57,6 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Direccion" class="form-fields">Dirección</label>
@@ -67,8 +67,7 @@
                             @endif
                         </div>
                     </div>
-
-                </div>
+                    </div>
                 <div class="buttons-form-submit d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
                     <button type="submit" href="#" class="btn btn-primary">

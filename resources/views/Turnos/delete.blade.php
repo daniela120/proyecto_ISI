@@ -11,19 +11,16 @@
             </div>
 
              <!-- campos(labels y textbox)-->
-             <div class="modal-body">
-             @foreach($turnos as $turnos)
-                <form action="{{url('/turnos/'.$turnos->id)}}" role="form" method="POST" id="deleteTurnoFrm" enctype="multipart/form-data">
+            <div class="modal-body">
+            @foreach($turnos as $turnos)
+                <form action="{{url('/turnos/'.$turnos->id)}}" role="form" method="POST" id="deleteturnosFrm" enctype="multipart/form-data">
                 @method('DELETE')
                     {{csrf_field()}}
                     @endforeach
-                    
-
-
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Turno" class="form-fields"> ¿Esta seguro de eliminar el turno?</label>
+                                <label for="Proveedor" class="form-fields"> ¿Esta seguro de eliminar este Turno?</label>
                             </div>
                         </div>
                     </div>
@@ -42,9 +39,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-

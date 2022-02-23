@@ -16,16 +16,15 @@
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
-                <table id="dt-turno" class="table table-stripped table-bordered dts">
+                <table id="dt-turnos" class="table table-stripped table-bordered dts">
                     <thead>
                         <tr>
                             <th class="text-center">Acciones</th>
                             <th class="text-center">Id </th>
                             <th class="text-center">Tipo de Turno</th> 
-                            <th class="text-center">Descripción</th>  
-                            <th class="text-center">Hora de entrada</th> 
-                            <th class="text-center">Hora de salida</th>  
-
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Hora de Entrada</th>
+                            <th class="text-center">Hora de Salida</th>                             
                         </tr>
                     </thead>
                     <tbody>
@@ -38,14 +37,14 @@
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deleteturnos({{$turnos}})" >
+                                onclick="deleteturnos({{$turnos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
                             <td>{{$turnos->id}}</td>
                             <td>{{$turnos->TipoTurno}}</td> 
-                            <td>{{$turnos->Descripcion}}</td> 
-                            <td>{{$turnos->HoraEntrada}}</td>  
+                            <td>{{$turnos->Descripcion}}</td>
+                            <td>{{$turnos->HoraEntrada}}</td>
                             <td>{{$turnos->HoraSalida}}</td>     
                         </tr>
                         @endforeach
@@ -65,29 +64,24 @@
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- funcion editCategoria para pasar parametros y editar-->
-    
-
     <script>    
         function editturnos(turnos){
-            $("#editturnosForm").attr('action',`/turnos/${turnos.id}`);
-            $("#editturnosForm #TipoTurno").val(turnos.TipoTurno);  
-            $("#editturnosForm #Descripcion").val(turnos.Descripcion);            
-            $("#editturnosForm #HoraEntrada").val(turnos.HoraEntrada);
-            $("#editturnosForm #HoraSalida").val(turnos.HoraSalida);
-
+            $("#editturnosFrm").attr('action',`/turnos/${turnos.id}`);
+            $("#editturnosFrm #TipoTurno").val(turnos.TipoTurno); 
+            $("#editturnosFrm #Descripcion").val(turnos.Descripcion);
+            $("#editturnosFrm #HoraEntrada").val(turnos.HoraEntrada);
+            $("#editturnosFrm #HoraSalida").val(turnos.HoraSalida);
         } 
     </script>
 
     <!--DELETE -->
-   
-   <script>    
-        function deleteTurnos(turnos){
-        $("#deleteTurnoFrm").attr('action',`/turnos/${turnos.id}`);      
+    <script>    
+        function deleteturnos(turnos){
+        $("#deleteturnosFrm").attr('action',`/turnos/${turnos.id}`);      
     } 
     </script>
-    
-       <!-- para validaciones-->
-    @if(!$errors->isEmpty())
+ <!-- para validaciones-->
+ @if(!$errors->isEmpty())
         @if($errors->has('post'))
             <script>
                 $(function () {
@@ -102,6 +96,5 @@
             </script>
         @endif
     @endif
-    
-@endpush
 
+@endpush

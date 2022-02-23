@@ -57,18 +57,10 @@ class ProveedoresController extends Controller
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        
-
-       
-
         alert()->success('Proveedor guardado correctamente');
-
-      
-        
         return redirect()->route('proveedores.index');
-        
     }
 
-   
 
     /**
      * Display the specified resource.
