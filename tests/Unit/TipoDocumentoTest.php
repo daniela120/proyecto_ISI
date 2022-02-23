@@ -5,11 +5,10 @@ namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Support\Arr;
 
-
-class ExampleTest extends TestCase
+class TipoDocumentoTest extends TestCase
 {
     /**
-     * A basic test example.
+     * A basic unit test example.
      *
      * @return void
      */
@@ -36,9 +35,8 @@ class ExampleTest extends TestCase
         
         //$this->assertEmpty($array1,'el array no esta vacio');
         $this->assertContains($name,$TipoDocumentos,"testArray doesn't contains value as value");
-    }  
-    
-    
+    } 
+
     public function test_exampleStore()
     {
 
@@ -62,26 +60,21 @@ class ExampleTest extends TestCase
         $this->assertContains($name,$Tipodocumento,"testArray doesn't contains value as value");
     } 
 
-
-
     public function test_exampleUpdate()
     {
 
-        //$array1=Arr::add(['' => ''], '', '');
-        //$array1=Arr::add(['name' => 'Php'], 'Laravel', 100);
-        //$array1=Arr::add(['name' => 'Python'], 'Laravel', 60);
+        
         $TipoDocumentos=array(
         $Tipodocumento=array(['Tipo de documento' => ['RTN' => ['Descripcion' => 'Registro Tributario']]]),
 
         );
 
-        //$arreglo1=array("Tipo documento"=>"Identificacion", "Descripcion"=> "documento de identificacion");
-        //$name = "documento de identificacion";
+       
         Arr::set($Tipodocumento,'Tipo de documento',"Identidad");
 
         $name="Identidad";
         
-        //$this->assertEmpty($array1,'el array no esta vacio');
+        
         $this->assertContains($name,$Tipodocumento,"testArray doesn't contains value as value");
     } 
 
@@ -101,6 +94,7 @@ class ExampleTest extends TestCase
         
 
     }
+
 
 
 }
