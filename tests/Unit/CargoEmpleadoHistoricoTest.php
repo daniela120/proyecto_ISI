@@ -18,7 +18,7 @@ class CargoEmpleadoHistoricoTest extends TestCase
             $Cargos=array('Admin','Cocinero','Aseador'),
             $FechaInicio=array('2019-07-08','2019-07-08','2019-07-08'),
             $FechaFinal=array("","",''),
-            $Salario=array(15000,12000,9000)
+            $NombreEmpleado=array('Andres','Miguel','Daniela')
             
         
         );
