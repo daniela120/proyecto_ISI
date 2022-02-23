@@ -66,14 +66,20 @@ class ClienteTest extends TestCase
 
     }
 
-    /*public function test_clientesDelete()
+    public function test_Cliente_Delete()
     {
-        $clientes = 'test data';
+         $clientes=array(
+            $info=[ 'Nombre'=>'Nombre3', 'Apellido'=>'Apellido3','Id_Usuario' =>'Miguel','Direccion' => 'Centroamerica', 'Telefono' =>'87462311','FechaNacimiento'=>'01/07/1989'],
+         ); 
+ 
+         Arr::pull($info, 'Nombre');
+         Arr::pull($info, 'Apellido');
+         Arr::pull($info, 'Id_Usuario');
+         Arr::pull($info, 'Direccion');
+         Arr::pull($info, 'Telefono');
+         Arr::pull($info, 'FechaNacimiento');
 
-        $this->assertEmpty(
-            $clientes,
-            "data holder is not empty"
-        );
-    }*/
+         $this->assertEmpty($info,"Array is not empty");
+    }
 
 }
