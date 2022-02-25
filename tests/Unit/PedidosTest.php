@@ -26,6 +26,26 @@ class PedidosTest extends TestCase
         $this->assertContains($name,$Pedidos,"testArray doesn't contains value as value");
     }
 
+    public function test_ShowPedidos()
+    {
+        $Pedidos=array(
+            $id_usuario=array('12','13'),
+            $Fecha=array('2022-09-01','2022-02-03'),
+            $id_tipo_de_pago=array('02','04'),
+            $id_cliente=array('11','09'),
+            $NombreProducto=array('1','2'),
+            $PrecioUnitario=array('50','70'),
+            $Cantidad=array('3','4'),
+            $Descuento=array('2','1'),
+            $Isv=array('3','1'),
+            $Total=array('150','280')
+        );
+        $datos=$Pedidos;
+        $name=$id_usuario;
+
+        $this->assertContains($name,$Pedidos,"testArray doesn't contains value as value");
+    }
+
     public function test_StorePedidos()
     {
         $Pedidos=array(
