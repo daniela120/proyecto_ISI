@@ -50,4 +50,17 @@ class DescuentosTest extends TestCase
 
             $this->assertContains($name, $Descuentos,"testArray doesn't contains value as value");
         }
+
+        public function test_Descuento_Delete()
+    {
+         $Descuentos=array(
+             $info=[ 'Descripcion'=>'Diez por ciento', 'ValorDescuento'=>'0.10'],
+         ); 
+ 
+         Arr::pull($info, 'Descripcion');
+         Arr::pull($info, 'ValorDescuento');
+
+
+         $this->assertEmpty($info,"Array is not empty");
+    }
 }

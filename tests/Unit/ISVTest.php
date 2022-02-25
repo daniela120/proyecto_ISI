@@ -49,4 +49,16 @@ class ISVTest extends TestCase
 
         $this->assertContains($name, $Isv,"testArray doesn't contains value as value");
     }
+    public function test_Isv_Delete()
+    {
+         $Isv=array(
+             $info=[ 'Descripcion'=>'Diez por ciento', 'Isv'=>'0.10'],
+         ); 
+ 
+         Arr::pull($info, 'Descripcion');
+         Arr::pull($info, 'Isv');
+
+
+         $this->assertEmpty($info,"Array is not empty");
+    }
 }

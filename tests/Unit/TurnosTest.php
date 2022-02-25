@@ -52,4 +52,16 @@ class TurnosTest extends TestCase
 
         $this->assertContains($name, $Turnos, "testArray doesn't contains value as value");
     }
+    public function test_Turnos_Delete()
+    {
+         $Turnos=array(
+             $info=[ 'TipoTurno'=>'Noche', 'Descripcion'=>'De noche', 'HoraEntrada'=>'5.50', 'HoraSalida'=>'8:30'],
+         ); 
+         Arr::pull($info, 'TipoTurno'); 
+         Arr::pull($info, 'Descripcion');
+         Arr::pull($info, 'HoraEntrada');
+         Arr::pull($info, 'HoraSalida');
+
+         $this->assertEmpty($info,"Array is not empty");
+    }
 }

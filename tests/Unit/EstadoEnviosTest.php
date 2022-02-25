@@ -46,4 +46,16 @@ class EstadoEnviosTest extends TestCase
 
         $this->assertContains($name, $EstadoEnvios, "testArray doesn't contains value as value");
     }
+    public function test_EstadoEnvios_Delete()
+    {
+         $EstadoEnvios=array(
+             $info=[ 'Descripcion'=>'Pendiente'],
+         ); 
+ 
+         Arr::pull($info, 'Descripcion');
+
+
+
+         $this->assertEmpty($info,"Array is not empty");
+    }
 }

@@ -37,4 +37,16 @@ class UserTest extends TestCase
 
         $this->assertContains($name, $Users,"testArray doesn't contains value as value");
     }
+    public function test_User_Delete()
+    {
+         $User=array(
+             $info=[ 'email'=>'eduar@gg.com', 'Nombre'=>'Eduar'],
+         ); 
+ 
+         Arr::pull($info, 'email');
+         Arr::pull($info, 'Nombre');
+
+
+         $this->assertEmpty($info,"Array is not empty");
+    }
 }
