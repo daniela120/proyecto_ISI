@@ -9,7 +9,7 @@
     </a>-->
     &nbsp;
 
-    <a href="{{ route('Usuarios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    <a href="{{ route('usuarios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
     {{ __('PDF') }}
     </a>
 

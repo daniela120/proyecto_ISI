@@ -10,7 +10,7 @@
     
     &nbsp;
 
-    <a href="{{ route('descuentos.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    <a href="{{ route('descuentos.pdf') }}" class="btn btn-primary btn-sm" data-placement="left">
     {{ __('PDF') }}
     </a>
 
