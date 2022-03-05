@@ -8,7 +8,7 @@
         <i class="fas fa-plus"></i>
     </a>
     &nbsp;
-    <a href="{{ route('Categorias.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    <a href="{{ route('categorias.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
     {{ __('PDF') }}
     </a>
 
