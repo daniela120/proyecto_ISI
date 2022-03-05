@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\productos;
 use App\Models\precio_his_menu;
@@ -11,6 +12,8 @@ use App\Models\categorias;
 use App\HTTP\Requests\ProductoRequest;
 use Carbon\Carbon;
 
+use App\Exports\ProductosExport;
+
 class ProductosController extends Controller
 {
     /**
@@ -18,6 +21,10 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new ProductosExport, 'productos.xlsx');
+    }
     public function index()
     {
         //
