@@ -47,6 +47,14 @@ class EmpleadoController extends Controller
         return view('empleado.Empleadoindex')->withCargos($cargos)->withDocumentos($documentos)->withEmpleados($empleados)->withTurnos($turnos)->withUsers($users);
     }
 
+    public function pdf()
+    {
+        
+        $empleados = Empleado::paginate();
+        
+        return view('empleado.pdf');
+    }
+
 
     public function indexjoin()
     {

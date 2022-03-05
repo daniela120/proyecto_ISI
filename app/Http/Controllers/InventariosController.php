@@ -49,6 +49,13 @@ class InventariosController extends Controller
         return view('inventarios.Inventariosindex')->withInventarios($inventarios)->withProveedores($proveedores)->withCategorias($categorias);
         //
     }
+    public function pdf()
+    {
+        
+        $inventarios = inventarios::paginate();
+        
+        return view('inventarios.pdf');
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -26,6 +26,14 @@ class TiposdepagoController extends Controller
         return view('TipoPagos.pagosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $tiposdepago = tipopagos::paginate();
+        
+        return view('TipoPagos.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

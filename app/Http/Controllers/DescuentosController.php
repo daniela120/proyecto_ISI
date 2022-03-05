@@ -27,6 +27,14 @@ class DescuentosController extends Controller
         
         return view('descuentos.index',$datos);
     }
+    
+    public function pdf()
+    {
+        
+        $Descuentos = Descuentos::paginate();
+        
+        return view('descuentos.pdf');
+    }
 
     /**
      * Show the form for creating a new resource.

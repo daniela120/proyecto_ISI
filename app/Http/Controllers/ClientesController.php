@@ -28,6 +28,14 @@ class ClientesController extends Controller
         return view('clientes.index',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $clientes = cliente::paginate();
+        
+        return view('clientes.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,8 +66,8 @@ class ClientesController extends Controller
 
         }
         
-       
-        alert()->success('Cargo Guardada Correctamente');
+
+        alert()->success('Cliente Guardada Correctamente');
         return redirect()->route('clientes.index');
     }
 

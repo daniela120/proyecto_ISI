@@ -26,6 +26,14 @@ class ProveedoresController extends Controller
         return view('Proveedores.proveedoresindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $Proveedores = Proveedores::paginate();
+        
+        return view('Proveedores.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -16,7 +16,9 @@
     <i class="fas fa-eye"></i>
     </a>
 
-
+    <a href="{{ route('empleado.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
     </div>
    
 

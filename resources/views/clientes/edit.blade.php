@@ -45,17 +45,17 @@
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
-                                <label for="Usuario"> Usuario </label>
-                                <input type="text" value="{{old('Usuario')}}" 
-                                class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Usuario" id="Usuario">     
-                                @if($errors->has('Usuario'))
-                                    <span class="text-danger">{{$errors->first('Usuario')}}</span>
+                                <label for="Id_Usuario"> Id_Usuario </label>
+                                <input type="text" value="{{old('Id_Usuario')}}" 
+                                class="form-control {{$errors->has('Id_Usuario') ? 'is-invalid' : '' }}" 
+                                rows="3"  name="Id_Usuario" id="Id_Usuario">     
+                                @if($errors->has('Id_Usuario'))
+                                    <span class="text-danger">{{$errors->first('Id_Usuario')}}</span>
                                 @endif
                             </div>
                         </div>
                     </div>
-
+<!--
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>
@@ -69,21 +69,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-12 form-group">
-                            <div>
-                                <label for="Contraseña" > Contraseña </label>
-                                <input type="password" value="{{old('Contraseña')}}" 
-                                class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
-                                rows="3"  name="Contraseña" id="Contraseña">
-                                @if($errors->has('Contraseña'))
-                                    <span class="text-danger">{{$errors->first('Contraseña')}}</span>
-                                @endif  
-                            </div>
-                        </div>
-                    </div>
-                             
+-->
                     <div class="row">
                         <div class="col-lg-12 form-group">
                             <div>

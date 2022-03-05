@@ -31,6 +31,14 @@ class CargoempleadosController extends Controller
         return view('cargoempleados.cargoempleadosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $cargoempleados = cargoempleados::paginate();
+        
+        return view('cargoempleados.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -8,6 +8,12 @@
         <i class="fas fa-plus"></i>
     </a>
 
+   &nbsp;
+
+    <a href="{{ route('EstadoEnvios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
+
 @endsection
     @section('contenido')
     @include('EstadoEnvios.create')

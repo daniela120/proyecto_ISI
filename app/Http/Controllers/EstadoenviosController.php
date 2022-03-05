@@ -28,6 +28,14 @@ class EstadoenviosController extends Controller
         return view('Estadoenvios.Estadoenviosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $estadoenvios = Estadoenvios::paginate();
+        
+        return view('Estadoenvios.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

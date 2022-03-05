@@ -8,6 +8,12 @@
         <i class="fas fa-plus"></i>
     </a>
 
+    &nbsp;
+
+    <a href="{{ route('TipoPagos.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
+
 @endsection
     @section('contenido')
     @include('TipoPagos.create')
