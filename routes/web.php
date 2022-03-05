@@ -129,7 +129,8 @@ Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::cla
 
 
 //
-
+Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
+//Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
 
 Route::resource('historicopreciomenu', PrecioHisMenuController::class);
 Route::resource('usuarios', UserController::class);
