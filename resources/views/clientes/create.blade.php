@@ -37,28 +37,15 @@
 
                     <div class="col-lg-6 form-group">
                         <div>
-                            <label for="Usuario" class="form-fields"> Usuario </label>
-                            <input type="text" class="form-control {{$errors->has('Usuario') ? 'is-invalid' : '' }}" 
-                            name="Usuario" id="Usuario" value="{{old('Usuario')}}" placeholder='user01'>
-                            @if($errors->has('Usuario'))
-                            <span class="text-danger">{{$errors->first('Usuario')}}</span>
+                            <label for="Id_Usuario" class="form-fields"> Id_Usuario </label>
+                            <input type="text" class="form-control {{$errors->has('Id_Usuario') ? 'is-invalid' : '' }}" 
+                            name="Id_Usuario" id="Id_Usuario" value="{{old('Id_Usuario')}}" placeholder='user01'>
+                            @if($errors->has('Id_Usuario'))
+                            <span class="text-danger">{{$errors->first('Id_Usuario')}}</span>
                             @endif
                         </div>
                     </div>
-                    
-                   
-
-                    <div class="col-lg-6 form-group">
-                        <div>
-                            <label for="Contraseña" class="form-fields"> Contraseña </label>
-                            <input type="password" class="form-control {{$errors->has('Contraseña') ? 'is-invalid' : '' }}" 
-                            name="Contraseña" id="Contraseña" value="{{old('Contraseña')}}" placeholder='contraseña01'>
-                            @if($errors->has('Contraseña'))
-                            <span class="text-danger">{{$errors->first('Contraseña')}}</span>
-                            @endif
-                        </div>
-                    </div>
-
+<!--
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Correo" class="form-fields"> Correo </label>
@@ -69,7 +56,7 @@
                             @endif
                         </div>
                     </div>
-
+-->
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Direccion" class="form-field"> Dirección </label>

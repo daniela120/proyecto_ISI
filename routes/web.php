@@ -154,7 +154,7 @@ Route::resource('isv',IsvController::class);
 Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
 Route::resource('factura',FacturaController::class);
 Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
-Route::resource('compras',ComprasController::class);
+
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');
@@ -164,6 +164,22 @@ Route::resource('salario',SalarioshistoricosController::class);
     abort(500);
 });
 **/
+Route::get('clientes/pdf',[App\Http\Controllers\ClientesController::class, 'pdf'])->name('clientes.pdf');
+    /*return view('BebidasCalientes');
+});*/
+Route::get('descuentos/pdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.pdf');
+Route::get('cargoempleados/pdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.pdf');
+Route::get('categorias/pdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.pdf');
+Route::get('empleado/pdf',[App\Http\Controllers\EmpleadoController::class, 'pdf'])->name('empleado.pdf');
+Route::get('estadoenvios/pdf',[App\Http\Controllers\EstadoenviosController::class, 'pdf'])->name('estadoenvios.pdf');
+Route::get('inventarios/pdf',[App\Http\Controllers\InventariosController::class, 'pdf'])->name('inventarios.pdf');
+Route::get('isv/pdf',[App\Http\Controllers\IsvController::class, 'pdf'])->name('isv.pdf');
+Route::get('productos/pdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.pdf');
+Route::get('proveedores/pdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.pdf');
+Route::get('documentos/pdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.pdf');
+Route::get('pagos/pdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pdf');
+Route::get('turnos/pdf',[App\Http\Controllers\TurnosController::class, 'pdf'])->name('turnos.pdf');
+Route::get('usuarios/pdf',[App\Http\Controllers\UserController::class, 'pdf'])->name('usuarios.pdf');
 
 
 //Rutas Creadas por Andres

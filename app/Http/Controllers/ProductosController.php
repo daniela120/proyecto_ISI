@@ -42,6 +42,14 @@ class ProductosController extends Controller
         //
     }
 
+    public function pdf()
+    {
+        
+        $productos = productos::paginate();
+        
+        return view('productos.pdf');
+    }
+
     public function indexjoin()
     {
         //

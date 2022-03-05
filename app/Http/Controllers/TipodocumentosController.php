@@ -28,6 +28,14 @@ class TipodocumentosController extends Controller
         return view('TipoDocumento.documentosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $tipodocumentos = tipodocumentos::paginate();
+        
+        return view('TipoDocumento.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

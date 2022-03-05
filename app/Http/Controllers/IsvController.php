@@ -28,6 +28,14 @@ class IsvController extends Controller
         return view('isv.isvindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $isv = isv::paginate();
+        
+        return view('isv.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

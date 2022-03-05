@@ -18,6 +18,11 @@
     <a href="/mostrarinventario" class="btn btn-success btn-circle" >
     <i class="far fa-eye"></i>
     </a>
+    &nbsp;
+
+    <a href="{{ route('inventarios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
 
     
 

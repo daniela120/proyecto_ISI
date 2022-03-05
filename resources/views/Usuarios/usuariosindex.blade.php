@@ -7,6 +7,11 @@
   <!--  <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i> 
     </a>-->
+    &nbsp;
+
+    <a href="{{ route('Usuarios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
 
 @endsection
     @section('contenido')

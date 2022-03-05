@@ -9,11 +9,18 @@
         <i class="fas fa-plus"></i>
     </a>
 
+    &nbsp;
+    
+    <a href="{{ route('clientes.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
+
 @endsection
     @section('contenido')
     @include('clientes.create')
     @include('clientes.edit')
     @include('clientes.delete')    
+     
 
     <!-- tabla -->
     <div class="card">
@@ -25,12 +32,10 @@
                             <th class="text-center"><font size=2>Id </th>
                             <th class="text-center"><font size=2>Nombre</th>                      
                             <th class="text-center"><font size=2>Apellido</th>
-                            <th class="text-center"><font size=2>Usuario</th>   
-                            <th class="text-center"><font size=2>Correo</th>   
-                         <!--   <th class="text-center"><font size=2>Contraseña</th>  -->
-                            <th class="text-center"><font size=2>Dirección</th>   
-                            <th class="text-center"><font size=2>Teléfono</th>   
-                            <th class="text-center"><font size=2>Fecha Nacimiento</th>      
+                            <th class="text-center"><font size=2>Id_Usuario</th>   
+                            <th class="text-center">Dirección</th>   
+                            <th class="text-center">Teléfono</th>   
+                            <th class="text-center">Fecha Nacimiento</th>      
                         </tr>
                     </thead>
                     
@@ -50,9 +55,7 @@
                             <td><font size=2>{{ $cliente->id }}</td>
                             <td><font size=2>{{ $cliente->Nombre }}</td>
                             <td><font size=2>{{ $cliente->Apellido }}</td>
-                            <td><font size=2>{{ $cliente->Usuario }}</td>
-                            <td><font size=2>{{ $cliente->Correo }}</td>
-                         <!--   <td ><font size=2>{{ $cliente->Contraseña }}</td>-->
+                            <td><font size=2>{{ $cliente->Id_Usuario }}</td>
                             <td><font size=2>{{ $cliente->Direccion }}</td>
                             <td><font size=2>{{ $cliente->Telefono }}</td>
                             <td><font size=2>{{ $cliente->FechaNacimiento }}</td>      
@@ -76,16 +79,14 @@
     <!-- funcion editCliente para pasar parametros y editar-->
     <script>    
 
-        function editClientes(Clientes){
-            $("#editClientesFrm").attr('action',`/clientes/${Clientes.id}`);
-            $("#editClientesFrm #Nombre").val(Clientes.Nombre);     
-            $("#editClientesFrm #Apellido").val(Clientes.Apellido);
-            $("#editClientesFrm #Usuario").val(Clientes.Usuario);
-            $("#editClientesFrm #Correo").val(Clientes.Correo);
-            $("#editClientesFrm #Contraseña").val(Clientes.Contraseña);
-            $("#editClientesFrm #Direccion").val(Clientes.Direccion);
-            $("#editClientesFrm #Telefono").val(Clientes.Telefono);
-            $("#editClientesFrm #FechaNacimiento").val(Clientes.FechaNacimiento);
+        function editClientes(cliente){
+            $("#editClientesFrm").attr('action',`/clientes/${cliente.id}`);
+            $("#editClientesFrm #Nombre").val(cliente.Nombre);     
+            $("#editClientesFrm #Apellido").val(cliente.Apellido);
+            $("#editClientesFrm #Id_Usuario").val(cliente.Id_Usuario);
+            $("#editClientesFrm #Direccion").val(cliente.Direccion);
+            $("#editClientesFrm #Telefono").val(cliente.Telefono);
+            $("#editClientesFrm #FechaNacimiento").val(cliente.FechaNacimiento);
             
         } 
     </script>
@@ -93,31 +94,31 @@
      <!-- funcion deleteCategoria para pasar parametros y eliminar-->
     <script>    
 
-        function deleteClientes(Clientes){
-            $("#deleteClientesFrm").attr('action',`/clientes/${Clientes.id}`);
+        function deleteClientes(cliente){
+            $("#deleteClientesFrm").attr('action',`/clientes/${cliente.id}`);
                    
         } 
     </script>
 
-    <!-- para validaciones-->
-    @if(!$errors->isEmpty())
-        @if($errors->has('post'))
-            <script>
-                $(function () {
-                    $('#createMdl').modal('show');
-                });
-            </script>   
-        @else
-        <script>
-                $(function () {
-                    $('#editMdl').modal('show');
-                });
-            </script>
-        @endif
-    @endif
-    
-@endpush
+<!-- para validaciones-->
+@if(!$errors->isEmpty())
+@if($errors->has('post'))
+    <script>
+        $(function () {
+            $('#createMdl').modal('show');
+        });
+    </script>
+  
+@else
+    <script>
+        $(function () {
+            $('#editMdl').modal('show');
+        });
+    </script>
 
+@endif
+@endif
+@endpush
 
 
 

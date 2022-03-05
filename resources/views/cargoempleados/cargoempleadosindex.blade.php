@@ -14,6 +14,11 @@
         
     </a>
 
+    &nbsp;
+    <a href="{{ route('cargoempleados.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
+    {{ __('PDF') }}
+    </a>
+
 @endsection
     @section('contenido')
     @include('cargoempleados.create')

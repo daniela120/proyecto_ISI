@@ -18,6 +18,14 @@ class UserController extends Controller
         return view('Usuarios.usuariosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $User = User::paginate();
+        
+        return view('Usuario.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

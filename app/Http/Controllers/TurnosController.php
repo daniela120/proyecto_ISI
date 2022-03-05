@@ -28,6 +28,14 @@ class TurnosController extends Controller
         return view('Turnos.Turnosindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $urnos = turnos::paginate();
+        
+        return view('Turnos.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

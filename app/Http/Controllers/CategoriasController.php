@@ -25,6 +25,14 @@ class CategoriasController extends Controller
         return view('Categorias.categoriasindex',$datos);
     }
 
+    public function pdf()
+    {
+        
+        $Categorias = Categorias::paginate();
+        
+        return view('Categorias.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
