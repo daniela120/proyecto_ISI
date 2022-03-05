@@ -19,9 +19,13 @@
     </a>
     &nbsp;
 
-    <a href="{{ route('productos.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
-    {{ __('PDF') }}
+    <a href="{{ route('productos.pdf') }}'" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
     </a>
+
+    <a href="{{route('productos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i>
+    </a>
+
 
     
 

@@ -12,9 +12,11 @@
     <i class="fas fa-history"></i>
     </a>
 
+   <a href="{{route('productos.excel') }}" class="btn btn-success btn-circle"><i class="fas fa-file-excel"></i></a>
 
     </div>
-   
+
+
 
 @endsection 
     @section('contenido')
