@@ -9,7 +9,7 @@
     </a>
     &nbsp;
 
-    <a href="{{ route('isv.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <a href="isvs/isvpdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 

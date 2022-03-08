@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\categorias;
 use App\HTTP\Requests\ProductoRequest;
 use Carbon\Carbon;
+use PDF;
 
 use App\Exports\ProductosExport;
 
@@ -83,9 +84,21 @@ class ProductosController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+
         $productos = productos::paginate();
-        $pdf = PDF::loadView('productos.pdf',['productos'=>$productos]);
+
+        $probando=DB::table('productos as p')
+        ->join('categorias as c','p.id_Categoria','=','c.id')            
+        ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+        ->orderby('p.id')
+        ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+        ->paginate(25);
+
+        $pdf = PDF::loadView('productos.productopdf',compact('productos','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

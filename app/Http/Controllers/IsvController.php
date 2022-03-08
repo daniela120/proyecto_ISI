@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\isv;
 use Illuminate\Http\Request;
 use App\HTTP\Requests\IsvRequest;
+use Carbon\Carbon;
+use PDF;
 
 class IsvController extends Controller
 {
@@ -30,9 +32,12 @@ class IsvController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $isv = isv::paginate();
-        $pdf = PDF::loadView('isv.pdf',['isv'=>$isv]);
+        $pdf = PDF::loadView('isv.isvpdf',compact('isv','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

@@ -183,8 +183,8 @@ Route::get('categoria/categoriapdf',[App\Http\Controllers\CategoriasController::
 Route::get('empleados/empleadopdf',[App\Http\Controllers\EmpleadoController::class, 'pdf'])->name('empleado.empleadopdf');
 Route::get('estadoenvio/estadoenviopdf',[App\Http\Controllers\EstadoenviosController::class, 'pdf'])->name('estadoenvios.estadoenviopdf');
 Route::get('inventario/inventariopdf',[App\Http\Controllers\InventariosController::class, 'pdf'])->name('inventarios.inventariopdf');
-Route::get('isv/pdf',[App\Http\Controllers\IsvController::class, 'pdf'])->name('isv.pdf');
-Route::get('productos/pdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.pdf');
+Route::get('isvs/isvpdf',[App\Http\Controllers\IsvController::class, 'pdf'])->name('isv.isvpdf');
+Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.productopdf');
 Route::get('proveedores/pdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.pdf');
 Route::get('documentos/pdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.pdf');
 Route::get('pagos/pdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pdf');
