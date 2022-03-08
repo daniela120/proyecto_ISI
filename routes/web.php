@@ -172,7 +172,7 @@ Route::get('cliente/clientepdf',[App\Http\Controllers\ClientesController::class,
 });*/
 Route::get('descuento/descuentopdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.descuentopdf');
 Route::get('cargoempleados/pdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.pdf');
-Route::get('categorias/pdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.pdf');
+Route::get('categoria/categoriapdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.categoriapdf');
 Route::get('empleado/pdf',[App\Http\Controllers\EmpleadoController::class, 'pdf'])->name('empleado.pdf');
 Route::get('estadoenvios/pdf',[App\Http\Controllers\EstadoenviosController::class, 'pdf'])->name('estadoenvios.pdf');
 Route::get('inventarios/pdf',[App\Http\Controllers\InventariosController::class, 'pdf'])->name('inventarios.pdf');

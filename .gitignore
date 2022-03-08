@@ -20,11 +20,3 @@ resources/views/Roleuser/edit.blade.php
 resources/views/Roleuser/index.blade.php
 app/Models/role_user.php
 app/Http/Controllers/RoleuserController.php
-app/Http/Controllers/EmpleadoController.php
-app/Http/Controllers/DescuentosController.php
-app/Http/Controllers/ProductosController.php
-app/Http/Controllers/ProveedoresController.php
-resources/views/productos/productosindex.blade.php
-resources/views/empleado/Empleadoindex.blade.php
-resources/views/Descuentos/index.blade.php
-resources/views/Proveedores/proveedoresindex.blade.php

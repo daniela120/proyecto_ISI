@@ -6,6 +6,8 @@ use App\Models\categorias;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoriasRequest;
 use Carbon\Carbon;
+use PDF;
+
 class CategoriasController extends Controller
 {
     /**
@@ -28,10 +30,13 @@ class CategoriasController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $Categorias = Categorias::paginate();
 
-        $pdf = PDF::loadView('Categorias.pdf',['Categorias'=>$Categorias]);
+        $pdf = PDF::loadView('categorias.categoriapdf',compact('Categorias','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
