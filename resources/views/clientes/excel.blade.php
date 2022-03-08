@@ -17,20 +17,23 @@
                     <tr>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
+                        <th style="background-color:#A9D0F5"></th>
                         <th class="text-center" style="background-color:#A9D0F5"><b><h1>MR. COFFEE</h1></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        
+                        <th style="background-color:#A9D0F5"></th>
                     </tr>
                     </thead>
 
                     <tr>
                          <th style="background-color:#ffffff"> </th>
-                         <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</th> 
                         <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
                         
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
                    </tr> 
 
                     <tr>
@@ -38,46 +41,58 @@
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
-                         <th style="background-color:#ffffff"> </th>                       
+                         <th style="background-color:#ffffff"> </th> 
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>                      
                     </tr>
 
                     <tr>
-                         <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff"><p>Dirección:  <br>Colonia Humuya, Avenida Altiplano, <br> Calle Poseidón, 11101</p> </th>  
                         <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th> 
                     </tr>
 
                     <tr>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th> 
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>                       
                     </tr>
 
                     <tr>
-                        <th style="background-color:#ffffff"> </th>
+                        
                         <th style="background-color:#ffffff"> </th>  
                         <th style="background-color:#ffffff"> Reporte generado por:</th>  
                         <th style="background-color:#ffffff"> </th> 
                         <th style="background-color:#ffffff"> </th>
-                         
+                        <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th> 
+                         <th style="background-color:#ffffff"> </th>
                     </tr>
 
                     <tr>
-                        <th style="background-color:#ffffff"> </th>
-                        <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff"> <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>  </th>
                         <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff"> </th>
+
+                        <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th> 
                     </tr>
 
                     <tr>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th>
+                         <th style="background-color:#ffffff"> </th> 
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>                       
                     </tr>
@@ -85,30 +100,34 @@
                     <tr>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>DESCUENTOS</h4></b> </th>
+                        <th style="background-color:#A9D0F5"></th>
+                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>CLIENTES</h4></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        
+                        <th style="background-color:#A9D0F5"></th>
                     </tr>
                     <tr>
-                        
-                            <th class="text-center" style="background-color:#ffe599"></th>
-                            <th class="text-center" style="background-color:#ffe599">Id</th>
-                            <th class="text-center" style="background-color:#ffe599">Descripción</th>
-                            <th class="text-center" style="background-color:#ffe599">ValorDescuento</th>
-                            <th class="text-center" style="background-color:#ffe599"></th>   
-                            
+                            <th class="text-center" style="background-color:#ffe599">Id </th>
+                            <th class="text-center" style="background-color:#ffe599">Nombre</th>                      
+                            <th class="text-center" style="background-color:#ffe599">Apellido</th>
+                            <th class="text-center" style="background-color:#ffe599">Id_Usuario</th>   
+                            <th class="text-center" style="background-color:#ffe599">Dirección</th>   
+                            <th class="text-center" style="background-color:#ffe599">Teléfono</th>   
+                            <th class="text-center" style="background-color:#ffe599">Fecha Nacimiento</th> 
                         </tr>
                     </thead>
                     <tbody>
                         
-                    @foreach($Descuentos as $Des)
+                    @foreach($probando as $cliente)
                         <tr>
-                                 <td style="background-color:#ffffff"></td>
-                                <td style="background-color:#ffffff">{{$Des->id}}</td>
-                                <td style="background-color:#ffffff">{{$Des->Descripcion}}</td>                                
-                                <td style="background-color:#ffffff">{{$Des->ValorDescuento}}</td>
-                                <td style="background-color:#ffffff"></td>
+                            <td style="background-color:#ffffff">{{ $cliente->id }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->Nombre }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->Apellido }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->name }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->Direccion }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->Telefono }}</td>
+                            <td style="background-color:#ffffff">{{ $cliente->FechaNacimiento }}</td> 
+                                    
                         </tr>
                         @endforeach
                     </tbody>

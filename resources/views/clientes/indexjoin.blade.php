@@ -8,6 +8,7 @@
     <i class="fas fa-users"></i>
     </a>
 
+    <a href="{{route('clientes.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
 
     </div>
    

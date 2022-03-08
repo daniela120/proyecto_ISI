@@ -6,6 +6,8 @@ use App\Models\estadoenvios;
 use Illuminate\Http\Request;
 use App\HTTP\Requests\EstadoenviosRequest;
 use Carbon\Carbon;
+use App\Exports\EstadoenviosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EstadoenviosController extends Controller
 {
@@ -14,6 +16,11 @@ class EstadoenviosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new EstadoenviosExport, 'Estadoenvios.xlsx');
+    }
+
     public function index()
     {
         //

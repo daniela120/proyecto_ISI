@@ -132,6 +132,10 @@ Route::get('clientes/indexjoin', [App\Http\Controllers\ClientesController::class
 Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
 Route::get('proveedores/excel',[App\Http\Controllers\ProveedoresController::class, 'excel'])->name('proveedores.excel');
 Route::get('descuentos/excel',[App\Http\Controllers\DescuentosController::class, 'excel'])->name('descuentos.excel');
+Route::get('categorias/excel',[App\Http\Controllers\CategoriasController::class, 'excel'])->name('categorias.excel');
+Route::get('inventarios/excel',[App\Http\Controllers\InventariosController::class, 'excel'])->name('inventarios.excel');
+Route::get('clientes/excel',[App\Http\Controllers\ClientesController::class, 'excel'])->name('clientes.excel');
+Route::get('estadoenvios/excel',[App\Http\Controllers\EstadoenviosController::class, 'excel'])->name('estadoenvios.excel');
 
 //Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
 
