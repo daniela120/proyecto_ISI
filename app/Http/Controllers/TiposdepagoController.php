@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\tiposdepago;
 use Illuminate\Http\Request;
 use App\Http\Requests\TiposdepagoRequest;
+use App\Exports\TiposDePagoExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class TiposdepagoController extends Controller
 {
     /**
@@ -12,6 +15,11 @@ class TiposdepagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new TiposdepagoExport, 'tiposdepago.xlsx');
+    }
+
     public function index()
     {
         try {

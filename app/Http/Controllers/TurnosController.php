@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\HTTP\Requests\TurnoRequest;
 use App\Models\turnos;
 use Illuminate\Http\Request;
+use App\Exports\TurnosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TurnosController extends Controller
 {
@@ -13,6 +15,11 @@ class TurnosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new TurnosExport, 'turnos.xlsx');
+    }
+
     public function index()
     {
         //

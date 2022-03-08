@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\tipodocumentos;
 use Illuminate\Http\Request;
 use App\Http\Requests\TipodocumentosRequest;
+use App\Exports\TipoDocumentosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TipodocumentosController extends Controller
 {
@@ -13,6 +15,11 @@ class TipodocumentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new TipoDocumentosExport, 'tipodocumentos.xlsx');
+    }
+
     public function index()
     {
         //tipodocumentos
