@@ -18,8 +18,7 @@
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        <th class="text-center" style="background-color:#A9D0F5"><b><h1>MR. COFFEE</h1></b> </th>
-                       
+                        <th class="text-center" style="background-color:#A9D0F5"><b><h1>MR. COFFEE</h1></b> </th>                  
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
