@@ -7,6 +7,8 @@ use App\Models\turnos;
 use Illuminate\Http\Request;
 use App\Exports\TurnosExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use PDF;
 
 class TurnosController extends Controller
 {
@@ -37,9 +39,13 @@ class TurnosController extends Controller
 
     public function pdf()
     {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         
         $turnos = turnos::paginate();
-        $pdf = PDF::loadView('turnos.pdf',['turnos'=>$turnos]);
+        $pdf = PDF::loadView('turnos.turnopdf',compact('turnos','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

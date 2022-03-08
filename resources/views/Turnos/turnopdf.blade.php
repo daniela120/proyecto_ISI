@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte Descuentos</title>
+    <title>Reporte Turnos</title>
     <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{public_path('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
     <style>
@@ -35,7 +34,7 @@
 
         </div>
         <div>
-            <h5>Reporte Descuento</h5>
+            <h5>Reporte Turnos</h5>
 
         </div>
         <div>
@@ -57,19 +56,23 @@
                     <thead>
                         <tr>
                             
-                            <th class="text-center">Id </th>
+                        <th class="text-center">Id </th>
+                            <th class="text-center">Tipo de Turno</th> 
                             <th class="text-center">Descripción</th>
-                            <th class="text-center">Valor Descuento</th> 
+                            <th class="text-center">Hora de Entrada</th>
+                            <th class="text-center">Hora de Salida</th>                           
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($descuentos as $descuentos)
+                        @foreach($turnos as $turnos)
                         <tr>
                            
-                            <td>{{$descuentos->id}}</td>
-                            <td>{{$descuentos->Descripcion}}</td> 
-                            <td>{{$descuentos->ValorDescuento}}</td>        
+                        <td>{{$turnos->id}}</td>
+                            <td>{{$turnos->TipoTurno}}</td> 
+                            <td>{{$turnos->Descripcion}}</td>
+                            <td>{{$turnos->HoraEntrada}}</td>
+                            <td>{{$turnos->HoraSalida}}</td>      
                         </tr>
                         @endforeach
                     </tbody>

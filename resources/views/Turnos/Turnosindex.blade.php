@@ -10,7 +10,7 @@
 
     &nbsp;
 
-    <a href="{{ route('turnos.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <a href="/turno/turnopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     <a href="{{route('turnos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
