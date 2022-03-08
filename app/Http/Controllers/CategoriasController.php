@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriasRequest;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\CategoriasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoriasController extends Controller
 {
@@ -15,6 +17,12 @@ class CategoriasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new CategoriasExport, 'categorias.xlsx');
+    }
+
     public function index()
     {
         try {

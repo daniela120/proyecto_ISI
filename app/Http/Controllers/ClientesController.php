@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
 use PDF;
+use App\Exports\CategoriasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientesController extends Controller
 {
@@ -18,6 +20,12 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new ClientesExport, 'clientes.xlsx');
+    }
+
     public function index()
     {
         //

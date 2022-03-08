@@ -15,6 +15,8 @@
     <a href="{{ route('clientes/clientepdf') }}" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
+    <a href="{{route('clientes.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+
 
 @endsection
     @section('contenido')
