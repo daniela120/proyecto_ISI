@@ -22,8 +22,11 @@ class UserController extends Controller
     {
         
         $User = User::paginate();
-        
-        return view('Usuario.pdf');
+        $pdf = PDF::loadView('user.pdf',['user'=>$User]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('Usuario.pdf');
     }
 
     /**

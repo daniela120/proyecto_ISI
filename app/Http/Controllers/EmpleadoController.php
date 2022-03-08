@@ -51,8 +51,12 @@ class EmpleadoController extends Controller
     {
         
         $empleados = Empleado::paginate();
-        
-        return view('empleado.pdf');
+
+        $pdf = PDF::loadView('empleados.pdf',['empleados'=>$empleados]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('empleado.pdf');
     }
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\estadoenvios;
 use Illuminate\Http\Request;
 use App\HTTP\Requests\EstadoenviosRequest;
+use Carbon\Carbon;
 
 class EstadoenviosController extends Controller
 {
@@ -32,8 +33,12 @@ class EstadoenviosController extends Controller
     {
         
         $estadoenvios = Estadoenvios::paginate();
-        
-        return view('Estadoenvios.pdf');
+
+        $pdf = PDF::loadView('estadoenvios.pdf',['estadoenvios'=>$estadoenvios]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('Estadoenvios.pdf');
     }
 
     /**

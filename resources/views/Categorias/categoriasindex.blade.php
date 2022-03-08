@@ -8,8 +8,8 @@
         <i class="fas fa-plus"></i>
     </a>
     &nbsp;
-    <a href="{{ route('categorias.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
-    {{ __('PDF') }}
+    <a href="{{ route('categorias.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
     </a>
 
 @endsection

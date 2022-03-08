@@ -53,8 +53,11 @@ class InventariosController extends Controller
     {
         
         $inventarios = inventarios::paginate();
-        
-        return view('inventarios.pdf');
+        $pdf = PDF::loadView('inventarios.pdf',['inventarios'=>$inventarios]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('inventarios.pdf');
     }
 
     /**

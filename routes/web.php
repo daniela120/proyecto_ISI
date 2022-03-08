@@ -126,7 +126,7 @@ Route::get('/servicios', function () {
 Route::get('factura/pdf',[App\Http\Controllers\FacturaController::class, 'pdf'])->name('factura.pdf');
 Route::get('empleado/indexjoin', [App\Http\Controllers\EmpleadoController::class, 'indexjoin'])->name('empleado.indexjoin');
 Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::class, 'indexjoin'])->name('productos.indexjoin');
-
+Route::get('clientes/indexjoin', [App\Http\Controllers\ClientesController::class, 'indexjoin'])->name('clientes.indexjoin');
 
 //
 Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
@@ -167,10 +167,10 @@ Route::resource('salario',SalarioshistoricosController::class);
     abort(500);
 });
 **/
-Route::get('clientes/pdf',[App\Http\Controllers\ClientesController::class, 'pdf'])->name('clientes.pdf');
+Route::get('cliente/clientepdf',[App\Http\Controllers\ClientesController::class, 'pdf'])->name('clientes/clientepdf');
     /*return view('BebidasCalientes');
 });*/
-Route::get('descuentos/pdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.pdf');
+Route::get('descuento/descuentopdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.descuentopdf');
 Route::get('cargoempleados/pdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.pdf');
 Route::get('categorias/pdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.pdf');
 Route::get('empleado/pdf',[App\Http\Controllers\EmpleadoController::class, 'pdf'])->name('empleado.pdf');
@@ -183,6 +183,15 @@ Route::get('documentos/pdf',[App\Http\Controllers\TipodocumentosController::clas
 Route::get('pagos/pdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pdf');
 Route::get('turnos/pdf',[App\Http\Controllers\TurnosController::class, 'pdf'])->name('turnos.pdf');
 Route::get('usuarios/pdf',[App\Http\Controllers\UserController::class, 'pdf'])->name('usuarios.pdf');
+
+
+
+//borrar despues
+/*Route::get('cliente/clientepdf', function () {
+    return view('clientes/clientepdf');
+});*/
+
+
 
 
 //Rutas Creadas por Andres

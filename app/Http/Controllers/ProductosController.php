@@ -81,6 +81,18 @@ class ProductosController extends Controller
         //
     }
 
+    public function pdf()
+    {
+        
+        $productos = productos::paginate();
+        $pdf = PDF::loadView('productos.pdf',['productos'=>$productos]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('isv.pdf');
+    }
+
+
     public function indexjoin()
     {
         //

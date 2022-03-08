@@ -31,9 +31,12 @@ class TurnosController extends Controller
     public function pdf()
     {
         
-        $urnos = turnos::paginate();
-        
-        return view('Turnos.pdf');
+        $turnos = turnos::paginate();
+        $pdf = PDF::loadView('turnos.pdf',['turnos'=>$turnos]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('Turnos.pdf');
     }
 
     /**

@@ -9,8 +9,8 @@
     </a>-->
     &nbsp;
 
-    <a href="{{ route('usuarios.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
-    {{ __('PDF') }}
+    <a href="{{ route('usuarios.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
     </a>
 
 @endsection

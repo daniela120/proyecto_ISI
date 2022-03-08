@@ -25,7 +25,7 @@ class IsvRequest extends FormRequest
     {
         return [
             //
-            'Descripcion' =>['required','string','max:255','min:3','regex:/^(?=[A-Z][a-z,á,é,í,ó,ú])(?:([\w\d*?!:; ])\1?(?!\1))+$/'],
+            'Descripcion' =>['required','string','max:255','min:3','regex:/^(?=[0-9, A-Z, a-z,á,é,í,ó,ú])(?:([\ñ\w\d*?!:; ])\1?(?!\1))+$/'],
             'isv'=>['required','min:2', 'max:5', 'regex:/^[0][.][0-9][0-9]/']
         ];
     }

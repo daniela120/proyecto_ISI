@@ -40,7 +40,12 @@ class ProveedoresController extends Controller
         
         $Proveedores = Proveedores::paginate();
         
-        return view('Proveedores.pdf');
+        $pdf = PDF::loadView('proveedores.pdf',['proveedores'=>$Proveedores]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
     }
 
     /**

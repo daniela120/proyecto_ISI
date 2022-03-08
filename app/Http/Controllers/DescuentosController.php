@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\descuentos;
 use Illuminate\Http\Request;
 use App\Http\Requests\DescuentosRequest;
+
 use App\Exports\DescuentosExport;
 use Maatwebsite\Excel\Facades\Excel;
+
+use Carbon\Carbon;
+use PDF;
 
 class DescuentosController extends Controller
 {
@@ -39,10 +43,20 @@ class DescuentosController extends Controller
     
     public function pdf()
     {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $descuentos = Descuentos::paginate();
+
+        $pdf = PDF::loadView('descuentos.descuentopdf',compact('descuentos','hoy'));
         
-        $Descuentos = Descuentos::paginate();
+
         
-        return view('descuentos.pdf');
+        return $pdf->stream();
+        //return $pdf->download('___descuentos.pdf');
+        
+        //return view('descuentos.pdf', compact( 'descuentos'));
     }
 
     /**
@@ -85,9 +99,10 @@ class DescuentosController extends Controller
      * @param  \App\Models\descuentos  $descuentos
      * @return \Illuminate\Http\Response
      */
-    public function show(descuentos $descuentos)
+    public function show()
     {
         //
+
     }
 
     /**

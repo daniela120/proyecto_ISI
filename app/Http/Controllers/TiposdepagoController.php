@@ -30,8 +30,11 @@ class TiposdepagoController extends Controller
     {
         
         $tiposdepago = tipopagos::paginate();
-        
-        return view('TipoPagos.pdf');
+        $pdf = PDF::loadView('tiposdepago.pdf',['tiposdepago'=>$tiposdepago]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('TipoPagos.pdf');
     }
 
     /**

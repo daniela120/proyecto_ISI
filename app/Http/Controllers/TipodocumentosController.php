@@ -32,8 +32,11 @@ class TipodocumentosController extends Controller
     {
         
         $tipodocumentos = tipodocumentos::paginate();
-        
-        return view('TipoDocumento.pdf');
+        $pdf = PDF::loadView('tipodocumentos.pdf',['tipodocumentos'=>$tipodocumentos]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('TipoDocumento.pdf');
     }
 
     /**

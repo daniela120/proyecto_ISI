@@ -10,8 +10,8 @@
     
     &nbsp;
 
-    <a href="{{ route('descuentos.pdf') }}" class="btn btn-primary btn-sm" data-placement="left">
-    {{ __('PDF') }}
+    <a href="/descuento/descuentopdf" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="{{route('descuentos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
@@ -22,6 +22,7 @@
     @include('Descuentos.create')
     @include('Descuentos.edit')
     @include('Descuentos.delete')
+
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
