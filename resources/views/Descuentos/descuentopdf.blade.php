@@ -35,7 +35,7 @@
 
         </div>
         <div>
-            <h5>Reporte Clientes</h5>
+            <h5>Reporte Descuento</h5>
 
         </div>
         <div>

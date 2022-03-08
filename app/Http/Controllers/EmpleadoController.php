@@ -14,6 +14,7 @@ use App\Models\cargoempleadohistorico;
 use App\Models\User;
 use App\HTTP\Requests\EmpleadoRequest;
 use Carbon\Carbon;
+use PDF;
 
 
 class EmpleadoController extends Controller
@@ -49,10 +50,30 @@ class EmpleadoController extends Controller
 
     public function pdf()
     {
-        
-        $empleados = Empleado::paginate();
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $pdf = PDF::loadView('empleados.pdf',['empleados'=>$empleados]);
+        $empleados = Empleado::all();
+        $users=User::all();   
+
+        $turnos=turnos::all();
+
+        $cargos=cargoempleados::all();
+
+        $documentos=tipodocumentos::all();
+
+        $probando=DB::table('empleados as e')
+        ->join('users as u','e.Id_Usuario','=','u.id')
+        ->join('turnos as t','e.Id_Turno','=','t.id')
+        ->join('cargoempleados as c','e.Id_Cargo','=','c.id')
+        ->join('tipodocumentos as d','e.Id_Documento','=','d.id')
+        ->select('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+        ->orderby('e.id')
+        ->groupBy('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+        ->paginate(25);
+
+        $pdf = PDF::loadView('empleado.empleadopdf',compact('empleados','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
