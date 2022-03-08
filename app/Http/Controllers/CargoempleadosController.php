@@ -7,6 +7,7 @@ use App\Models\salarioshistoricos;
 use App\Models\cargoempleados;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use PDF;
 use Illuminate\Support\Facades\DB;
 
 class CargoempleadosController extends Controller
@@ -34,12 +35,14 @@ class CargoempleadosController extends Controller
     public function pdf()
     {
         
-        $cargoempleados = cargoempleados::paginate();
-        $pdf = PDF::loadView('cargoempleados.pdf',['cargoempleados'=>$cargoempleados]);
-        //$pdf->loadHTML ('<h1>Test</h1>');
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
+        $cargoempleados = cargoempleados::paginate();
+
+        $pdf = PDF::loadView('cargoempleados.cargopdf',compact('cargoempleados','hoy'));
         return $pdf->stream();
-        //return view('cargoempleados.pdf');
     }
 
     /**
