@@ -15,7 +15,7 @@
     </a>
 
     &nbsp;
-    <a href="{{ route('cargoempleados.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <a href="/cargoempleado/cargopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 

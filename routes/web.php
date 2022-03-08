@@ -171,7 +171,7 @@ Route::get('cliente/clientepdf',[App\Http\Controllers\ClientesController::class,
     /*return view('BebidasCalientes');
 });*/
 Route::get('descuento/descuentopdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.descuentopdf');
-Route::get('cargoempleados/pdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.pdf');
+Route::get('cargoempleado/cargopdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.cargopdf');
 Route::get('categoria/categoriapdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.categoriapdf');
 Route::get('empleado/pdf',[App\Http\Controllers\EmpleadoController::class, 'pdf'])->name('empleado.pdf');
 Route::get('estadoenvios/pdf',[App\Http\Controllers\EstadoenviosController::class, 'pdf'])->name('estadoenvios.pdf');
