@@ -8,6 +8,7 @@ use App\HTTP\Requests\EstadoenviosRequest;
 use Carbon\Carbon;
 use App\Exports\EstadoenviosExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class EstadoenviosController extends Controller
 {
@@ -38,10 +39,13 @@ class EstadoenviosController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $estadoenvios = Estadoenvios::paginate();
 
-        $pdf = PDF::loadView('estadoenvios.pdf',['estadoenvios'=>$estadoenvios]);
+        $pdf = PDF::loadView('estadoenvios.estadoenviopdf',compact('estadoenvios','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
