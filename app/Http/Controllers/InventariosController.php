@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
 use Carbon\Carbon;
+use PDF;
 
 use App\Exports\InventariosExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -36,7 +37,7 @@ class InventariosController extends Controller
             $proveedores=proveedores::all();
             $categorias=categorias::all();
 
-             $probando=DB::table('inventarios as i')
+            $probando=DB::table('inventarios as i')
             ->join('categorias as c','i.Id_Categoria','=','c.id')
             ->join('proveedores as p','i.Id_Proveedor','=','p.id')
             ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
@@ -59,9 +60,22 @@ class InventariosController extends Controller
     }
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $inventarios = inventarios::paginate();
-        $pdf = PDF::loadView('inventarios.pdf',['inventarios'=>$inventarios]);
+        $proveedores=proveedores::all();
+        $categorias=categorias::all();
+
+        $probando=DB::table('inventarios as i')
+        ->join('categorias as c','i.Id_Categoria','=','c.id')
+        ->join('proveedores as p','i.Id_Proveedor','=','p.id')
+        ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+        ->orderby('i.id')
+        ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+        ->paginate(25);
+        $pdf = PDF::loadView('inventarios.inventariopdf',compact('inventarios','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
