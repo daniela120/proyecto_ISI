@@ -25,45 +25,60 @@
                     </thead>
 
                     <tr>
-                         <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</th> 
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
+                         <th style="background-color:#ffffff"> </th>
+                        <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</th> 
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#ffffff"> </th>  
                         
                    </tr> 
 
                     <tr>
-                       <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"> </th>                        
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>  
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>                         
                     </tr>
 
                     <tr>
-                         <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"><p>Dirección:  <br>Colonia Humuya, Avenida Altiplano, <br> Calle Poseidón, 11101</p> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>
-                    </tr>
-<!--
-                    <tr>
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> Reporte generado por:</th>  
-                        <th style="background-color:#eeeeee"> </th>  
-                        <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"> </th>
+                         <th style="background-color:#ffffff"> </th>
+                        <th style="background-color:#ffffff"><p>Dirección:  <br>Colonia Humuya, Avenida Altiplano, <br> Calle Poseidón, 11101</p> </th>  
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#ffffff"> </th>
                     </tr>
 
                     <tr>
-                        <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"> <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>  </th>
-                        <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"> </th>
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>  
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>                         
                     </tr>
--->
+
+                    <tr>
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#fffffff"> Reporte generado por:</th>  
+                        <th style="background-color:#ffffff"> </th>  
+                        <th style="background-color:#ffffff"> </th>
+                        <th style="background-color:#ffffff"> </th>
+                    </tr>
+
+                    <tr>
+                        <th style="background-color:#ffffff"> </th>
+                        <th style="background-color:#ffffff"> <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>  </th>
+                        <th style="background-color:#ffffff"> </th>
+                        <th style="background-color:#ffffff"> </th>
+                    </tr>
+
+                    <tr>
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>  
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th> 
+                       <th style="background-color:#ffffff"> </th>                         
+                    </tr>
 <thead>
                     <tr>
                         <th style="background-color:#A9D0F5"></th>
@@ -88,11 +103,11 @@
                         @foreach($probando as $empleado)
                         <tr>
                         
-                                <td style="background-color:#eeeeee">{{$empleado->id}}</td>
-                                <td style="background-color:#eeeeee">{{$empleado->NombreProducto}}</td>                                
-                                <td style="background-color:#eeeeee">{{$empleado->Descripcion}}</td>
-                                <td style="background-color:#eeeeee">{{$empleado->Categoria}}</td>                                
-                                <td style="background-color:#eeeeee">{{$empleado->Precio}}</td>
+                                <td style="background-color:##f3f6f4">{{$empleado->id}}</td>
+                                <td style="background-color:##f3f6f4">{{$empleado->NombreProducto}}</td>                                
+                                <td style="background-color:##f3f6f4">{{$empleado->Descripcion}}</td>
+                                <td style="background-color:##f3f6f4">{{$empleado->Categoria}}</td>                                
+                                <td style="background-color:##f3f6f4">{{$empleado->Precio}}</td>
                         </tr>
                         @endforeach
                     </tbody>
