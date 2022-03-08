@@ -2,11 +2,8 @@
 
 namespace App\Exports;
 
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Productos;
+use App\Models\Descuentos;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use App\Models\categorias;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
@@ -17,7 +14,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ProductosExport implements FromView, ShouldAutoSize, WithDrawings
+class DescuentosExport implements FromView, ShouldAutoSize, WithDrawings
 //, WithHeadings
 {
   use Exportable;
@@ -40,37 +37,13 @@ class ProductosExport implements FromView, ShouldAutoSize, WithDrawings
 
     public function view(): View
    {
-
-    $probando=DB::table('productos as p')
-    ->join('categorias as c','p.id_Categoria','=','c.id')            
-    ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
-    ->orderby('p.id')
-    ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
-    ->paginate(25);
+       
     $mytime= Carbon::now("America/Lima");
                 
     $Hoy=$mytime->toDateTimeString();
   
-       return view('productos.excel',[
-        'products'=>productos::all(), 'categorias'=>categorias::all(), 
-        'probando'=> $probando, 'hoy'=> $Hoy
-        ]);
-    }
-
-  //  public function view(): array
-    //{
-      //return[
-        //'',
-   //   ]
-
-// }
-      }
-
-
-//class ProductosExport implements FromView
-//{
-  //  use Exportable;
-    
-    
-//}
-
+       return view('descuentos.excel',[
+           'Descuentos'=> Descuentos::all(),'hoy'=> $Hoy
+       ]);
+   }
+}

@@ -13,6 +13,8 @@
     <a href="{{ route('proveedores.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
     {{ __('PDF') }}
     </a>
+    <a href="{{route('proveedores.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+
 
 @endsection
     @section('contenido')

@@ -14,6 +14,9 @@
     {{ __('PDF') }}
     </a>
 
+    <a href="{{route('descuentos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+    
+
 @endsection
     @section('contenido')
     @include('Descuentos.create')

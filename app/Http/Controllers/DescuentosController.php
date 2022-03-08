@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\descuentos;
 use Illuminate\Http\Request;
 use App\Http\Requests\DescuentosRequest;
+use App\Exports\DescuentosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DescuentosController extends Controller
 {
@@ -13,6 +15,13 @@ class DescuentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+       
+        return Excel::download(new DescuentosExport, 'descuentos.xlsx');
+    }
+
     public function index()
     {
         //

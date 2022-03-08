@@ -20,7 +20,7 @@
                         <th class="text-center" style="background-color:#A9D0F5"><b><h1>MR. COFFEE</h1></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        
+                        <th style="background-color:#A9D0F5"></th>
                     </tr>
                     </thead>
 
@@ -30,7 +30,7 @@
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>  
-                        
+                        <th style="background-color:#eeeeee"> </th> 
                    </tr> 
 
                     <tr>
@@ -38,7 +38,8 @@
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>
-                        <th style="background-color:#eeeeee"> </th>                        
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>                         
                     </tr>
 
                     <tr>
@@ -47,52 +48,79 @@
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th> 
                     </tr>
-<!--
+
                     <tr>
+                       <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>                         
+                    </tr>
+
+
+                    <tr>
+                    
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> Reporte generado por:</th>  
                         <th style="background-color:#eeeeee"> </th>  
                         <th style="background-color:#eeeeee"> </th>
                         <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>
                     </tr>
 
                     <tr>
+                          
                         <th style="background-color:#eeeeee"> </th>
                         <th style="background-color:#eeeeee"> <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>  </th>
                         <th style="background-color:#eeeeee"> </th>
                         <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>
                     </tr>
--->
+                    <tr>
+                       <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>  
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>
+                        <th style="background-color:#eeeeee"> </th>                         
+                    </tr>
+
+
 <thead>
                     <tr>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>PRODUCTOS</h4></b> </th>
+                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>PROVEEDORES</h4></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        
+                        <th style="background-color:#A9D0F5"></th>
                     </tr>
                     <tr>
                         
-                            <th class="text-center" style="background-color:#ffe599">Id </th>
-                            <th class="text-center" style="background-color:#ffe599">Nombre</th>
-                            <th class="text-center" style="background-color:#ffe599">Descripción</th>
-                            <th class="text-center" style="background-color:#ffe599">Categoría</th>
-                            <th class="text-center" style="background-color:#ffe599">Precio</th>   
+                            <th class="text-center"  style="background-color:#ffe599">Id </th>
+                            <th class="text-center"  style="background-color:#ffe599">Nombre Compañia</th>                      
+                            <th class="text-center"  style="background-color:#ffe599">Nombre Contacto</th>  
+                            <th class="text-center"  style="background-color:#ffe599">Teléfono</th>  
+                            <th class="text-center"  style="background-color:#ffe599">Sitio Web</th>  
+                            <th class="text-center"  style="background-color:#ffe599">Dirección</th>   
                             
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($probando as $empleado)
+                        @foreach($proveedores as $Proveedores)
                         <tr>
                         
-                                <td style="background-color:#eeeeee">{{$empleado->id}}</td>
-                                <td style="background-color:#eeeeee">{{$empleado->NombreProducto}}</td>                                
-                                <td style="background-color:#eeeeee">{{$empleado->Descripcion}}</td>
-                                <td style="background-color:#eeeeee">{{$empleado->Categoria}}</td>                                
-                                <td style="background-color:#eeeeee">{{$empleado->Precio}}</td>
+                            <td style="background-color:#eeeeee">{{$Proveedores->id}}</td>
+                            <td style="background-color:#eeeeee">{{$Proveedores->NombreCompania}}</td>
+                            <td style="background-color:#eeeeee">{{$Proveedores->NombreContacto}}</td> 
+                            <td style="background-color:#eeeeee">{{$Proveedores->Telefono}}</td> 
+                            <td style="background-color:#eeeeee">{{$Proveedores->SitioWeb}}</td>   
+                            <td style="background-color:#eeeeee">{{$Proveedores->Direccion}}</td>     
                         </tr>
                         @endforeach
                     </tbody>

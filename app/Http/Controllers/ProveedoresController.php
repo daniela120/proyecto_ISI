@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\proveedores;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProveedoresRequest;
+use App\Exports\ProveedoresExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ProveedoresController extends Controller
 {
@@ -13,6 +16,12 @@ class ProveedoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new ProveedoresExport, 'proveedores.xlsx');
+    }
+
     public function index()
     {
         try {

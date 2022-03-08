@@ -14,6 +14,7 @@ use Carbon\Carbon;
 
 use App\Exports\ProductosExport;
 
+
 class ProductosController extends Controller
 {
     /**
@@ -23,7 +24,16 @@ class ProductosController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new ProductosExport, 'productos.xlsx');
+        
+        
+      
+     // $excel= Excel::loadView('productos.excel',compact('productos','categorias','probando','hoy'));
+       //return $excel->download(new ProductosExport,'__productos.xlsx');
+     return Excel::download(new ProductosExport, 'productos.xlsx');
+       // return view('productos.excel')->withProbando($probando);
+
+       
+        
     }
     public function index()
     {
@@ -32,13 +42,42 @@ class ProductosController extends Controller
             //code...
             $productos=productos::paginate(15);
             $categorias=categorias::all();
+            
+            $mytime= Carbon::now("America/Lima");
+                
+        $hoy=$mytime->toDateTimeString();
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
        
-        return view('productos.productosindex')->withProductos($productos)->withCategorias($categorias);
+        return view('productos.productosindex')->withProductos($productos)->withCategorias($categorias)->withHoy($hoy);
+        //
+    }
+
+    public function exceljoin()
+    {
+        //
+        try {
+            //code...
+            $productos=productos::paginate(15);
+            $categorias=categorias::all();
+
+            $probando=DB::table('productos as p')
+            ->join('categorias as c','p.id_Categoria','=','c.id')            
+            ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->orderby('p.id')
+            ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->paginate(25);
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('productos.excel')->withProbando($probando);
         //
     }
 

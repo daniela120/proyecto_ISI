@@ -14,8 +14,16 @@ class productos extends Model
 
         'NombreProducto',
         'Descripcion',
-        'id_Categoria',
+        'Categoria_id',
         'Precio'
         
     ];
+
+    //public function categorias(){
+      //  return $this-> hasOne(categorias::class);
+    //}
+    public function categorias(){
+        return $this->belongsTo(categorias::class);
+    }
+    
 }

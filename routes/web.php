@@ -130,6 +130,9 @@ Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::cla
 
 //
 Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
+Route::get('proveedores/excel',[App\Http\Controllers\ProveedoresController::class, 'excel'])->name('proveedores.excel');
+Route::get('descuentos/excel',[App\Http\Controllers\DescuentosController::class, 'excel'])->name('descuentos.excel');
+
 //Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
 
 Route::resource('historicopreciomenu', PrecioHisMenuController::class);
