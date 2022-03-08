@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
 use PDF;
-use App\Exports\CategoriasExport;
+use App\Exports\ClientesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClientesController extends Controller

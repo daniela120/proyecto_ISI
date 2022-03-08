@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -37,13 +39,18 @@ class ClientesExport implements FromView, ShouldAutoSize, WithDrawings
 
     public function view(): View
     {
-        
+        $probando=DB::table('clientes as c')
+            ->join('users as u','c.Id_Usuario','=','u.id')
+            ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->orderby('c.id')
+            ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->paginate(25);
      $mytime= Carbon::now("America/Lima");
                  
      $Hoy=$mytime->toDateTimeString();
    
-        return view('proveedores.excel',[
-            'proveedores'=> Proveedores::all(),'hoy'=> $Hoy
+        return view('clientes.excel',[
+            'clientes'=>clientes::all(), 'users'=>User::all(), 'hoy'=> $Hoy, 'probando'=> $probando
         ]);
     }
 }
