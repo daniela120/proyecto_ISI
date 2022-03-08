@@ -18,7 +18,6 @@
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        <th style="background-color:#A9D0F5"></th>
                         <th class="text-center" style="background-color:#A9D0F5"><b><h1>MR. COFFEE</h1></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
@@ -80,10 +79,10 @@
 
                     <tr>
                          <th style="background-color:#ffffff"> </th>
-                        <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff"> <option value="{{ Auth::user()->id }}">{{ Auth::user()->name }}</option>  </th>
                         <th style="background-color:#ffffff"> </th>
                         <th style="background-color:#ffffff"> </th>
+
                         <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th> 
                     </tr>
@@ -103,7 +102,6 @@
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th class="text-center" style="background-color:#A9D0F5"><b><h4>CLIENTES</h4></b> </th>
-                        <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>

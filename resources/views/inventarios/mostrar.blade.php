@@ -14,6 +14,9 @@
     <i class="fas fa-history"></i>
     </a>
 
+    <a href="{{route('inventarios.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+
+
 @endsection 
     @section('contenido')
    

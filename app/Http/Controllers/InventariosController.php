@@ -12,6 +12,8 @@ use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
 use Carbon\Carbon;
 
+use App\Exports\InventariosExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InventariosController extends Controller
 {
@@ -20,6 +22,12 @@ class InventariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+       
+        return Excel::download(new InventariosExport, 'Inventarios.xlsx');
+    }
+
     public function index()
     {
         try {
