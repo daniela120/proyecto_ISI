@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo Cliente</h5>
+                <h5 class="modal-title text-inspinia text-primary" id="exampleModalLabel">Nuevo cliente</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
     <form action="{{ url('/clientes') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                    <div class="col-lg-6 form-group">
+            <div class="col-lg-6 form-group">
                         <div>
                             <label for="Nombre" class="form-fields"> Nombre </label>
                             <input type="text" class="form-control {{$errors->has('Nombre') ? 'is-invalid' : '' }}" 
@@ -23,7 +23,7 @@
                             @endif
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Apellido" class="form-fields"> Apellido </label>
@@ -38,25 +38,23 @@
                     <div class="col-lg-6 form-group">
                         <div>
                             <label for="Id_Usuario" class="form-fields"> Id_Usuario </label>
-                            <input type="text" class="form-control {{$errors->has('Id_Usuario') ? 'is-invalid' : '' }}" 
-                            name="Id_Usuario" id="Id_Usuario" value="{{old('Id_Usuario')}}" placeholder='user01'>
+
+                            <select name="Id_Usuario" value="{{old('Id_Usuario')}}" id="Id_Usuario" class="form-control" >
+                                <option value="">Seleccione el usuario</option>   
+                                @foreach($users as $user)
+
+                                <option value="{{ $user['id'] }}" {{ old('Id_Usuario') == $user->id ? 'selected' : '' }}>{{$user['name'] }}</option>
+
+                                @endforeach
+                                </select>
+                            
                             @if($errors->has('Id_Usuario'))
                             <span class="text-danger">{{$errors->first('Id_Usuario')}}</span>
                             @endif
                         </div>
                     </div>
-<!--
-                    <div class="col-lg-12 form-group">
-                        <div>
-                            <label for="Correo" class="form-fields"> Correo </label>
-                            <input type="email" class="form-control {{$errors->has('Correo') ? 'is-invalid' : '' }}" 
-                            name="Correo" id="Correo" value="{{old('Correo')}}" placeholder='ejm@gg.co'>
-                            @if($errors->has('Correo'))
-                            <span class="text-danger">{{$errors->first('Correo')}}</span>
-                            @endif
-                        </div>
-                    </div>
--->
+
+
                     <div class="col-lg-12 form-group">
                         <div>
                             <label for="Direccion" class="form-field"> Dirección </label>
@@ -68,6 +66,7 @@
                            
                         </div>
                     </div>
+
 
                     <div class="col-lg-6 form-group">
                         <div>
@@ -93,6 +92,7 @@
                     </div>
 
                 </div>
+                
                 <div class="buttons-form-submit d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
                     <button type="submit" href="#" class="btn btn-primary">
@@ -105,3 +105,5 @@
         </div>
     </div>
 </div>
+
+

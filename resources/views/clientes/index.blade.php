@@ -1,31 +1,31 @@
 @extends('layouts.admin')
 
-
 @section('titulo')
 
     <span>Clientes</span>
     
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
+    
+    </a>
+    <a href="/clientes/indexjoin" class="btn btn-success btn-circle" >
+    <i class="fas fa-eye"></i>
     </a>
 
-    &nbsp;
-    
-    <a href="{{ route('clientes.pdf') }}'" class="btn btn-primary btn-sm" data-placement="left">
-    {{ __('PDF') }}
+    <a href="{{ route('clientes/clientepdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
     </a>
 
 @endsection
     @section('contenido')
     @include('clientes.create')
     @include('clientes.edit')
-    @include('clientes.delete')    
-     
+    @include('clientes.delete')
 
-    <!-- tabla -->
+
     <div class="card">
             <div class=card-body>
-                <table id="dt-cliente" class="table table-stripped table-bordered dts">
+                <table id="dt-cargoempleados" class="table table-stripped table-bordered dts">
                     <thead>
                         <tr>
                             <th class="text-center"><font size=2>Acciones</th>
@@ -33,14 +33,14 @@
                             <th class="text-center"><font size=2>Nombre</th>                      
                             <th class="text-center"><font size=2>Apellido</th>
                             <th class="text-center"><font size=2>Id_Usuario</th>   
-                            <th class="text-center">Dirección</th>   
-                            <th class="text-center">Teléfono</th>   
-                            <th class="text-center">Fecha Nacimiento</th>      
+                            <th class="text-center"><font size=2>Dirección</th>   
+                            <th class="text-center"><font size=2>Teléfono</th>   
+                            <th class="text-center"><font size=2>Fecha Nacimiento</th>       
                         </tr>
                     </thead>
-                    
                     <tbody>
-                        @foreach($cliente as $cliente)
+                        
+                        @foreach($clientes as $cliente)
                         <tr>
                             <td>
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
@@ -64,10 +64,12 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
-              
+           
+        
     @endsection
-<!-- librerias -->
+<!--Librerias -->
 @push('styles')
     <link rel="stylesheet" href="{{asset('libs/datatables/dataTables.bootstrap4.min.css')}}" >
 @endpush  
@@ -75,51 +77,39 @@
     <script src="{{asset('/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-
-    <!-- funcion editCliente para pasar parametros y editar-->
+    <!--EDIT -->
     <script>    
-
         function editClientes(cliente){
             $("#editClientesFrm").attr('action',`/clientes/${cliente.id}`);
-            $("#editClientesFrm #Nombre").val(cliente.Nombre);     
-            $("#editClientesFrm #Apellido").val(cliente.Apellido);
+            $("#editClientesFrm #Nombre").val(cliente.Nombre); 
+            $("#editClientesFrm #Apellido").val(cliente.Apellido); 
             $("#editClientesFrm #Id_Usuario").val(cliente.Id_Usuario);
             $("#editClientesFrm #Direccion").val(cliente.Direccion);
             $("#editClientesFrm #Telefono").val(cliente.Telefono);
             $("#editClientesFrm #FechaNacimiento").val(cliente.FechaNacimiento);
-            
         } 
     </script>
-    
-     <!-- funcion deleteCategoria para pasar parametros y eliminar-->
+
+    <!--DELETE -->
     <script>    
-
         function deleteClientes(cliente){
-            $("#deleteClientesFrm").attr('action',`/clientes/${cliente.id}`);
-                   
-        } 
+        $("#deleteClientesFrm").attr('action',`/clientes/${cliente.id}`);      
+    } 
     </script>
-
-<!-- para validaciones-->
-@if(!$errors->isEmpty())
-@if($errors->has('post'))
-    <script>
-        $(function () {
-            $('#createMdl').modal('show');
-        });
-    </script>
-  
-@else
-    <script>
-        $(function () {
-            $('#editMdl').modal('show');
-        });
-    </script>
-
-@endif
-@endif
+    @if(!$errors->isEmpty())
+        @if($errors->has('post'))
+            <script>
+                $(function () {
+                    $('#createMdl').modal('show');
+                });
+            </script>   
+        @else
+            <script>
+                $(function () {
+                    $('#editMdl').modal('show');
+                });
+            </script>
+        @endif
+    @endif
+    
 @endpush
-
-
-
-

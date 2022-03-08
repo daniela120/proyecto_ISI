@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\categorias;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoriasRequest;
+use Carbon\Carbon;
 class CategoriasController extends Controller
 {
     /**
@@ -29,8 +30,12 @@ class CategoriasController extends Controller
     {
         
         $Categorias = Categorias::paginate();
-        
-        return view('Categorias.pdf');
+
+        $pdf = PDF::loadView('Categorias.pdf',['Categorias'=>$Categorias]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('Categorias.pdf');
     }
 
     /**

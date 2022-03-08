@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\HTTP\Requests\ClientesRequest;
 use App\Models\clientes;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\User;
+use PDF;
 
 class ClientesController extends Controller
 {
@@ -18,24 +23,88 @@ class ClientesController extends Controller
         //
         try {
             //code...
-            $datos['cliente']= clientes::paginate(10);
+            $users=User::all();
+
+            $clientes=clientes::paginate(10);
+
+            $probando=DB::table('clientes as c')
+            ->join('users as u','c.Id_Usuario','=','u.id')
+            ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->orderby('c.id')
+            ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->paginate(25);
+
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
        
-        return view('clientes.index',$datos);
+        return view('clientes.index')->withClientes($clientes)->withUsers($users)->withProbando($probando);
     }
 
     public function pdf()
     {
-        
-        $clientes = cliente::paginate();
-        
-        return view('clientes.pdf');
+        try{
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $clientes = clientes::all();
+        $users=User::all();   
+
+        $probando=DB::table('clientes as c')
+        ->join('users as u','c.Id_Usuario','=','u.id')
+        ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+        ->orderby('c.id')
+        ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+        ->paginate(25);
+
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        //return view('clientes.indexjoin')->withProbando($probando);
+        $pdf = PDF::loadView('clientes.clientepdf',compact('clientes','hoy','probando'));
+
+
+        //$pdf = PDF::loadView('clientes.clientepdf',['clientes'=>$clientes]);
+        return $pdf->stream();
+        //return $pdf->download('___clientes.pdf');
+        //return view('clientes.clientepdf', compact('clientes') );
     }
 
+
+
+
+    public function indexjoin()
+    {
+
+        try {
+            //code...
+            $users=User::all();   
+
+            $clientes=clientes::paginate(10);
+
+            $probando=DB::table('clientes as c')
+            ->join('users as u','c.Id_Usuario','=','u.id')
+            ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->orderby('c.id')
+            ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->paginate(25);
+
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
+       
+        return view('clientes.indexjoin')->withProbando($probando);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -58,19 +127,20 @@ class ClientesController extends Controller
         //
         try {
             //code...
-            $Clientes = request()->except('_token');
-            clientes::insert($Clientes);
+            $clientes = request()->except('_token');
+            clientes::insert($clientes);
+        
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
         
-
-        alert()->success('Cliente Guardada Correctamente');
+        
+        alert()->success('Categoría Guardada Correctamente');
+        
         return redirect()->route('clientes.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -111,8 +181,8 @@ class ClientesController extends Controller
         //
         try {
             //code...
-            $Clientes = request()->except(['_token','_method']);
-            clientes::where('id','=',$id)->update($Clientes);
+            $clientes = request()->except(['_token','_method']);
+            clientes::where('id','=',$id)->update($clientes);
         } catch (\Exception $exception) {
             //throw $th;
             return view('errores.errors',['errors'=>$exception->getMessage()]);

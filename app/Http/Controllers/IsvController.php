@@ -32,8 +32,11 @@ class IsvController extends Controller
     {
         
         $isv = isv::paginate();
-        
-        return view('isv.pdf');
+        $pdf = PDF::loadView('isv.pdf',['isv'=>$isv]);
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        //return view('isv.pdf');
     }
 
     /**
