@@ -6,12 +6,9 @@
 
     <a href="/cargoempleados" class="btn btn-primary btn-circle">
     <i class="fas fa-money-check-alt"></i>
-        
     </a>
-
-    
-    
-    
+    <a href="{{route('salarioshistoricos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
+    </a>
 
 @endsection
     @section('contenido')

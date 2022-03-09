@@ -12,7 +12,8 @@
     <a href="isvs/isvpdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
-
+    <a href="{{route('isv.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
+    </a>
 @endsection
     @section('contenido')
     @include('isv.create')

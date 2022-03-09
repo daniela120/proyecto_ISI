@@ -6,6 +6,8 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -14,6 +16,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new UserExport, 'user.xlsx');
+    }
+
     public function index()
     {
         $datos['Users']=User::paginate(10);
