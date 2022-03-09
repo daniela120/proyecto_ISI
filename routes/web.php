@@ -187,7 +187,7 @@ Route::get('isvs/isvpdf',[App\Http\Controllers\IsvController::class, 'pdf'])->na
 Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.productopdf');
 Route::get('proveedor/proveedorpdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.proveedorpdf');
 Route::get('documento/documentopdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.documentopdf');
-Route::get('pagos/pdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pdf');
+Route::get('pago/pagopdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pagopdf');
 
 Route::get('turno/turnopdf',[App\Http\Controllers\TurnosController::class, 'pdf'])->name('turnos.turnopdf');
 

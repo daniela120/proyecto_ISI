@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TiposdepagoRequest;
 use App\Exports\TiposDePagoExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use PDF;
 
 class TiposdepagoController extends Controller
 {
@@ -36,9 +38,12 @@ class TiposdepagoController extends Controller
 
     public function pdf()
     {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
         
-        $tiposdepago = tipopagos::paginate();
-        $pdf = PDF::loadView('tiposdepago.pdf',['tiposdepago'=>$tiposdepago]);
+        $tiposdepago = tiposdepago::paginate();
+        $pdf = PDF::loadView('tipopagos.pagopdf',compact('tiposdepago','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
