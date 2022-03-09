@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TipodocumentosRequest;
 use App\Exports\TipoDocumentosExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use PDF;
 
 class TipodocumentosController extends Controller
 {
@@ -37,9 +39,12 @@ class TipodocumentosController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $tipodocumentos = tipodocumentos::paginate();
-        $pdf = PDF::loadView('tipodocumentos.pdf',['tipodocumentos'=>$tipodocumentos]);
+        $pdf = PDF::loadView('tipodocumento.documentopdf',compact('tipodocumentos','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

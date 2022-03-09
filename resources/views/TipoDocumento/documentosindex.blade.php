@@ -10,7 +10,7 @@
 
     &nbsp;
 
-    <a href="{{ route('documentos.pdf') }}" class="btn btn-danger btn-sm" data-placement="left">
+    <a href="documento/documentopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 
@@ -32,6 +32,7 @@
                             <th class="text-center">Id </th>
                             <th class="text-center">Tipo de Documento</th> 
                             <th class="text-center">Descripción</th>                             
+                        
                         </tr>
                     </thead>
                     <tbody>
