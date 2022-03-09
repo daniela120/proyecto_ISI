@@ -12,7 +12,7 @@
     <i class="fas fa-file-pdf"></i>
     </a>
 
-    <a href="{{route('categorias.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+    <a href="/categoria/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
 
 
 @endsection

@@ -23,7 +23,7 @@
     <a href="inventario/inventariopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
-    <a href="{{route('inventarios.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+    <a href="/inventario/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
 
     
 

@@ -12,7 +12,7 @@
     <i class="fas fa-file-pdf"></i>
     </a>
     
-    <a href="{{route('cargoempleadohistorico.excel') }}" class="btn btn-success btn-sm">
+    <a href="/cargoempleadohistoricos/excel" class="btn btn-success btn-sm">
         <i class="fas fa-file-excel"></i></a>
     
 

@@ -43,15 +43,15 @@ class PrecioHisMenuExport implements FromView, ShouldAutoSize, WithDrawings
      $mytime= Carbon::now("America/Lima");             
      $Hoy=$mytime->toDateTimeString();
 
-     $probando=DB::table('salarioshistoricos as h')
-     ->join('cargoempleados as i','h.id_cargo','=','i.id')
-     ->select('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
+     $probando=DB::table('precio_his_menus as h')
+     ->join('productos as p','h.id_producto','=','p.id')
+     ->select('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
      ->orderby('h.id')
-     ->groupBy('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
-     ->paginate(25);
-   
-        return view('salarioshistoricos.excel',[
-            'salarios'=> Salarioshistoricos::all(),'hoy'=> $Hoy, 'probando'=>$probando
+     ->groupBy('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+     ->paginate(15);
+     
+        return view('preciohistoricomenu.excel',[
+            'precios'=> precio_his_menu::all(),'hoy'=> $Hoy, 'probando'=>$probando
         ]);
     }
 }

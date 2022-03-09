@@ -84,15 +84,15 @@
                     <tr>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
-                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>CARGOS EMPLEADOS HISTORICO</h4></b> </th>
+                        <th class="text-center" style="background-color:#A9D0F5"><b><h4>PRECIO MENU HISTORICO</h4></b> </th>
                         <th style="background-color:#A9D0F5"></th>
                         <th style="background-color:#A9D0F5"></th>
                         
                     </tr>
                     <tr>
                             <th class="text-center" style="background-color:#ffe599">Id </th>
-                            <th class="text-center" style="background-color:#ffe599">Empleado</th>     
-                            <th class="text-center" style="background-color:#ffe599">Cargo</th>  
+                            <th class="text-center" style="background-color:#ffe599">Nombre Producto</th>     
+                            <th class="text-center" style="background-color:#ffe599">Precio</th>  
                             <th class="text-center" style="background-color:#ffe599">Fecha Inicio</th>                   
                             <th class="text-center" style="background-color:#ffe599">Fecha Final</th>
                             
@@ -100,14 +100,14 @@
                     </thead>
                     <tbody>
                         
-                    @foreach($probando as $cargoempleadoshistorico)
+                    @foreach($probando as $preciomenu)
                         <tr>
                             
-                            <td style="background-color:#ffffff">{{$cargoempleadoshistorico->id}}</td>
-                            <td style="background-color:#ffffff">{{$cargoempleadoshistorico->Nombre}}</td>
-                            <td style="background-color:#ffffff">{{$cargoempleadoshistorico->Cargo}}</td>
-                            <td style="background-color:#ffffff">{{$cargoempleadoshistorico->FechaInicio}}</td>
-                            <td style="background-color:#ffffff">{{$cargoempleadoshistorico->FechaFinal}}</td>
+                            <td style="background-color:#ffffff">{{$preciomenu->id}}</td>
+                            <td style="background-color:#ffffff">{{$preciomenu->NombreProducto}}</td>
+                            <td style="background-color:#ffffff">{{$preciomenu->Precio}}</td>
+                            <td style="background-color:#ffffff">{{$preciomenu->FechaInicio}}</td>
+                            <td style="background-color:#ffffff">{{$preciomenu->FechaFinal}}</td>
                         </tr>
                         @endforeach
                     </tbody>
