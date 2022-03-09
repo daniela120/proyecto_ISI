@@ -179,7 +179,7 @@ Route::get('salarioshistorico/salariohispdf',[App\Http\Controllers\Salarioshisto
 
 Route::get('pedido/pedidospdf',[App\Http\Controllers\PedidosController::class, 'pdf'])->name('pedidos.pedidospdf');
 Route::get('facturas/facturapdf',[App\Http\Controllers\FacturaController::class, 'facturapdf'])->name('factura.facturapdf');
-
+Route::get('pedido/detallepdf',[App\Http\Controllers\PedidosController::class, 'detallepdf'])->name('pedidos.detallepdf');
 
 Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.productopdf');
 Route::get('proveedor/proveedorpdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.proveedorpdf');

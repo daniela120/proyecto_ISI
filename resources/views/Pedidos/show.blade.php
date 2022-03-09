@@ -3,6 +3,10 @@
 @section('titulo')
 
     <span> Detalles Pedido </span>
+
+    <a href="/pedido/detallepdf" class="btn btn-danger btn-sm" data-placement="left">
+        <i class="fas fa-file-pdf"></i>
+    </a>
 @endsection 
 
 @section('contenido')
