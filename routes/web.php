@@ -129,30 +129,6 @@ Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::cla
 Route::get('clientes/indexjoin', [App\Http\Controllers\ClientesController::class, 'indexjoin'])->name('clientes.indexjoin');
 
 
-//
-//
-//EXCEL
-Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
-Route::get('proveedores/excel',[App\Http\Controllers\ProveedoresController::class, 'excel'])->name('proveedores.excel');
-Route::get('descuentos/excel',[App\Http\Controllers\DescuentosController::class, 'excel'])->name('descuentos.excel');
-Route::get('categorias/excel',[App\Http\Controllers\CategoriasController::class, 'excel'])->name('categorias.excel');
-Route::get('inventarios/excel',[App\Http\Controllers\InventariosController::class, 'excel'])->name('inventarios.excel');
-Route::get('clientes/excel',[App\Http\Controllers\ClientesController::class, 'excel'])->name('clientes.excel');
-Route::get('estadoenvios/excel',[App\Http\Controllers\EstadoenviosController::class, 'excel'])->name('estadoenvios.excel');
-Route::get('turnos/excel',[App\Http\Controllers\TurnosController::class, 'excel'])->name('turnos.excel');
-Route::get('tiposdepago/excel',[App\Http\Controllers\TiposdepagoController::class, 'excel'])->name('tiposdepago.excel');
-Route::get('tipodocumentos/excel',[App\Http\Controllers\TipodocumentosController::class, 'excel'])->name('tipodocumentos.excel');
-Route::get('user/excel',[App\Http\Controllers\UserController::class, 'excel'])->name('user.excel');
-Route::get('isv/excel',[App\Http\Controllers\IsvController::class, 'excel'])->name('isv.excel');
-Route::get('salarioshistoricos/excel',[App\Http\Controllers\SalarioshistoricosController::class, 'excel'])->name('salarioshistoricos.excel');
-Route::get('cargoempleados/excel',[App\Http\Controllers\CargoempleadosController::class, 'excel'])->name('cargoempleados.excel');
-Route::get('cargoempleadohistorico/excel',[App\Http\Controllers\cargoempleadohistoricoController::class, 'excel'])->name('cargoempleadohistorico.excel');
-Route::get('empleado/excel',[App\Http\Controllers\EmpleadoController::class, 'excel'])->name('empleado.excel');
-//16
-//Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
-
-
-
 Route::resource('historicopreciomenu', PrecioHisMenuController::class);
 Route::resource('usuarios', UserController::class);
 Route::resource('cargoempleados',CargoempleadosController::class);
@@ -258,3 +234,31 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/pedidos/{pedidos}', [App\Http\Controllers\PedidosController::class, 'show'])->name('pedidos.show');
 Route::get('/factura/{pedidos}', [App\Http\Controllers\FacturaController::class, 'show'])->name('factura.show');
+
+
+
+
+//
+//
+//EXCEL
+Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
+Route::get('proveedores/excel',[App\Http\Controllers\ProveedoresController::class, 'excel'])->name('proveedores.excel');
+Route::get('descuentos/excel',[App\Http\Controllers\DescuentosController::class, 'excel'])->name('descuentos.excel');
+Route::get('categorias/excel',[App\Http\Controllers\CategoriasController::class, 'excel'])->name('categorias.excel');
+Route::get('inventarios/excel',[App\Http\Controllers\InventariosController::class, 'excel'])->name('inventarios.excel');
+Route::get('clientes/excel',[App\Http\Controllers\ClientesController::class, 'excel'])->name('clientes.excel');
+Route::get('estadoenvios/excel',[App\Http\Controllers\EstadoenviosController::class, 'excel'])->name('estadoenvios.excel');
+Route::get('turnos/excel',[App\Http\Controllers\TurnosController::class, 'excel'])->name('turnos.excel');
+Route::get('tiposdepago/excel',[App\Http\Controllers\TiposdepagoController::class, 'excel'])->name('tiposdepago.excel');
+Route::get('tipodocumentos/excel',[App\Http\Controllers\TipodocumentosController::class, 'excel'])->name('tipodocumentos.excel');
+Route::get('user/excel',[App\Http\Controllers\UserController::class, 'excel'])->name('user.excel');
+Route::get('isv/excel',[App\Http\Controllers\IsvController::class, 'excel'])->name('isv.excel');
+Route::get('salarioshistoricos/excel',[App\Http\Controllers\SalarioshistoricosController::class, 'excel'])->name('salarioshistoricos.excel');
+Route::get('cargoempleados/excel',[App\Http\Controllers\CargoempleadosController::class, 'excel'])->name('cargoempleados.excel');
+Route::get('cargoempleadohistorico/excel',[App\Http\Controllers\cargoempleadohistoricoController::class, 'excel'])->name('cargoempleadohistorico.excel');
+Route::get('precioinventario/excel',[App\Http\Controllers\PrecioHisInventarioController::class, 'excel'])->name('precioinventario.excel');
+Route::get('historicopreciomenu/excel',[App\Http\Controllers\PrecioHisMenuController::class, 'excel'])->name('historicopreciomenu.excel');
+Route::get('empleado/excel',[App\Http\Controllers\EmpleadoController::class, 'excel'])->name('empleado.excel');
+//18
+//Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
+

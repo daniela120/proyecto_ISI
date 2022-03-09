@@ -8,6 +8,8 @@ use App\Models\Inventarios;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\PrecioHisInventarioExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PrecioHisInventarioController extends Controller
 {
@@ -16,6 +18,11 @@ class PrecioHisInventarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new PrecioHisInventarioExport, 'precioinventario.xlsx');
+    }
     public function index()
     {
         //

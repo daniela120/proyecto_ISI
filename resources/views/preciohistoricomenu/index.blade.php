@@ -12,6 +12,9 @@
     <a href="/preciohistoricomenus/preciohismenupdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
+    <a href="{{route('historicopreciomenu.excel') }}" class="btn btn-success btn-sm">
+    <i class="fas fa-file-excel"></i></a>
+
     
     
     

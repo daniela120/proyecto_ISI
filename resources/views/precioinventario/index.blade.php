@@ -13,7 +13,8 @@
         <a href="/precioinventarios/precioinventariopdf" class="btn btn-danger btn-sm" data-placement="left">
         <i class="fas fa-file-pdf"></i>
          </a>
-
+         <a href="{{route('precioinventario.excel') }}" class="btn btn-success btn-sm">
+        <i class="fas fa-file-excel"></i></a>
 
     
     
