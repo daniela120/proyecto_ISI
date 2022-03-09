@@ -12,6 +12,10 @@
         <i class="fas fa-file-pdf"></i>
     </a>
 
+    <a href="/pedido/excel" class="btn btn-success btn-sm">
+    <i class="fas fa-file-excel"></i></a>
+
+
 @endsection 
     @section('contenido')
    
