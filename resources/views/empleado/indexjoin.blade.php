@@ -12,6 +12,9 @@
     <i class="fas fa-history"></i>
     </a>
 
+    <a href="{{route('empleado.excel') }}" class="btn btn-success btn-sm">
+        <i class="fas fa-file-excel"></i></a>
+
 
     </div>
    

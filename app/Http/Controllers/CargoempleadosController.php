@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use App\Exports\CargoEmpleadoExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CargoempleadosController extends Controller
 {
@@ -17,6 +19,12 @@ class CargoempleadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new CargoEmpleadoExport, 'cargoempleados.xlsx');
+    }
+
     public function index()
     {
         //

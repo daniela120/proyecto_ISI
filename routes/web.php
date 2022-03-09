@@ -128,7 +128,10 @@ Route::get('empleado/indexjoin', [App\Http\Controllers\EmpleadoController::class
 Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::class, 'indexjoin'])->name('productos.indexjoin');
 Route::get('clientes/indexjoin', [App\Http\Controllers\ClientesController::class, 'indexjoin'])->name('clientes.indexjoin');
 
+
 //
+//
+//EXCEL
 Route::get('productos/excel',[App\Http\Controllers\ProductosController::class, 'excel'])->name('productos.excel');
 Route::get('proveedores/excel',[App\Http\Controllers\ProveedoresController::class, 'excel'])->name('proveedores.excel');
 Route::get('descuentos/excel',[App\Http\Controllers\DescuentosController::class, 'excel'])->name('descuentos.excel');
@@ -139,8 +142,16 @@ Route::get('estadoenvios/excel',[App\Http\Controllers\EstadoenviosController::cl
 Route::get('turnos/excel',[App\Http\Controllers\TurnosController::class, 'excel'])->name('turnos.excel');
 Route::get('tiposdepago/excel',[App\Http\Controllers\TiposdepagoController::class, 'excel'])->name('tiposdepago.excel');
 Route::get('tipodocumentos/excel',[App\Http\Controllers\TipodocumentosController::class, 'excel'])->name('tipodocumentos.excel');
-
+Route::get('user/excel',[App\Http\Controllers\UserController::class, 'excel'])->name('user.excel');
+Route::get('isv/excel',[App\Http\Controllers\IsvController::class, 'excel'])->name('isv.excel');
+Route::get('salarioshistoricos/excel',[App\Http\Controllers\SalarioshistoricosController::class, 'excel'])->name('salarioshistoricos.excel');
+Route::get('cargoempleados/excel',[App\Http\Controllers\CargoempleadosController::class, 'excel'])->name('cargoempleados.excel');
+Route::get('cargoempleadohistorico/excel',[App\Http\Controllers\cargoempleadohistoricoController::class, 'excel'])->name('cargoempleadohistorico.excel');
+Route::get('empleado/excel',[App\Http\Controllers\EmpleadoController::class, 'excel'])->name('empleado.excel');
+//16
 //Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
+
+
 
 Route::resource('historicopreciomenu', PrecioHisMenuController::class);
 Route::resource('usuarios', UserController::class);

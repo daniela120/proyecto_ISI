@@ -6,7 +6,8 @@
 
     <a href="/cargoempleados" class="btn btn-primary btn-circle">
     <i class="fas fa-money-check-alt"></i>
-        
+    </a>
+    <a href="{{route('salarioshistoricos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
     </a>
 
     <a href="/salarioshistorico/salariohispdf" class="btn btn-danger btn-sm" data-placement="left">

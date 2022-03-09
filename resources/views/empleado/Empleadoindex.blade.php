@@ -19,7 +19,13 @@
     <a href="/empleados/empleadopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
+
+    <a href="{{route('empleado.excel') }}" class="btn btn-success btn-sm">
+        <i class="fas fa-file-excel"></i></a>
+
     </div>
+
+    
    
 
 @endsection 

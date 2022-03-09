@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\HTTP\Requests\IsvRequest;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\IsvExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class IsvController extends Controller
 {
@@ -15,6 +18,12 @@ class IsvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new IsvExport, 'isv.xlsx');
+    }
+
     public function index()
     {
         //

@@ -6,6 +6,9 @@ use App\Models\cargoempleados;
 use App\Models\salarioshistoricos;
 use Illuminate\Http\Request;
 use DB;
+use App\Exports\SalarioshistoricosExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Carbon\Carbon;
 use PDF;
 class SalarioshistoricosController extends Controller
@@ -15,6 +18,12 @@ class SalarioshistoricosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new SalarioshistoricosExport, 'salarioshistoricos.xlsx');
+    }
+
     public function index()
     {
         //
