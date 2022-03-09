@@ -57,9 +57,8 @@ class PrecioHisInventarioController extends Controller
         $pdf = PDF::loadView('precioinventario.precioinventariopdf',compact('probando','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
-        //return view('Proveedores.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___preciohistoricoinventario.pdf');
     }
     /**
      * Show the form for creating a new resource.

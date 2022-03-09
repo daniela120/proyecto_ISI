@@ -65,14 +65,14 @@
                     </thead>
                     
                     <tbody>
-                    @foreach($pedidos as $pedidos)
+                    @foreach($probando as $pedidos)
                         <tr>
 
                                 <td>{{$pedidos->id}}</td>
-                                <td>{{$pedidos->id_empleado}}</td>
+                                <td>{{$pedidos->name}}</td>
                                 <td>{{$pedidos->Fecha}}</td>
-                                <td>{{$pedidos->id_tipo_de_pago}}</td>
-                                <td>{{$pedidos->id_cliente}}</td>
+                                <td>{{$pedidos->Nombre_Tipo_Pago}}</td>
+                                <td>{{$pedidos->Nombre}}</td>
                             </tr>
                         @endforeach
                     </tbody>

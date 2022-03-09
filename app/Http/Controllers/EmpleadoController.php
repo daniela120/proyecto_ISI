@@ -76,8 +76,8 @@ class EmpleadoController extends Controller
         $pdf = PDF::loadView('empleado.empleadopdf',compact('empleados','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('empleado.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___empleados.pdf');
     }
 
 

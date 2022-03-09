@@ -47,7 +47,8 @@ class CategoriasController extends Controller
         $pdf = PDF::loadView('categorias.categoriapdf',compact('Categorias','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
+        //return $pdf->stream();
+        return $pdf->download('___categorias.pdf');
         //return view('Categorias.pdf');
     }
 

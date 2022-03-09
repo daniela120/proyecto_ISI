@@ -48,9 +48,8 @@ class ProveedoresController extends Controller
         $pdf = PDF::loadView('proveedores.proveedorpdf',compact('Proveedores','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
-        //return view('Proveedores.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___proveedores.pdf');
     }
 
     /**

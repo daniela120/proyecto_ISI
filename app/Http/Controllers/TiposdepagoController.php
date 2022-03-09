@@ -46,8 +46,8 @@ class TiposdepagoController extends Controller
         $pdf = PDF::loadView('tipopagos.pagopdf',compact('tiposdepago','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('TipoPagos.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___tipodepago.pdf');
     }
 
     /**

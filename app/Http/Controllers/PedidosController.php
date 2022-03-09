@@ -75,8 +75,8 @@ class PedidosController extends Controller
         $pdf = PDF::loadView('pedidos.pedidospdf',compact('pedidos','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
+        //return $pdf->stream();
+        return $pdf->download('___pedidos.pdf');
         //return view('Proveedores.pdf');
     }
 

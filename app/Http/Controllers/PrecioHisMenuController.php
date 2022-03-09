@@ -53,9 +53,8 @@ class PrecioHisMenuController extends Controller
         $pdf = PDF::loadView('preciohistoricomenu.preciohismenupdf',compact('probando','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
-        //return view('Proveedores.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___preciohistoricomenu.pdf');
     }
 
     /**

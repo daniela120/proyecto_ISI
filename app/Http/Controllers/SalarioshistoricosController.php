@@ -56,9 +56,8 @@ class SalarioshistoricosController extends Controller
         $pdf = PDF::loadView('salarioshistoricos.salariohispdf',compact('probando','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
-        //return view('Proveedores.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___salariohistorico.pdf');
     }
 
 

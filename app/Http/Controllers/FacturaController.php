@@ -152,9 +152,21 @@ class FacturaController extends Controller
         $hoy=$mytime->toDateTimeString();
         $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
+        $tiposdepago=tiposdepago::all();
+        $clientes=clientes::all();
+        $empleado=Empleado::all();  
+
         $pedidos = pedidos::paginate();
-        
-        $pdf = PDF::loadView('factura.facturapdf',compact('pedidos','hoy'));
+        $probando=DB::table('pedidos as p')
+        ->join('tiposdepagos as tp','tp.id','=','p.id_tipo_de_pago')
+        ->join('users as u','u.id','=','p.id_usuario')
+         ->join('clientes as c','c.id','=','p.id_cliente')
+         ->select('p.id','u.name','p.Fecha','tp.Nombre_Tipo_Pago','c.Nombre')     
+         ->orderby('p.id')
+        ->groupBy('p.id','u.name','p.Fecha','tp.Nombre_Tipo_Pago','c.Nombre')
+        ->paginate(50);
+           
+        $pdf = PDF::loadView('factura.facturapdf',compact('pedidos','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

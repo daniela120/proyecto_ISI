@@ -101,8 +101,8 @@ class ProductosController extends Controller
         $pdf = PDF::loadView('productos.productopdf',compact('productos','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('isv.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___productos.pdf');
     }
 
 

@@ -48,8 +48,8 @@ class TurnosController extends Controller
         $pdf = PDF::loadView('turnos.turnopdf',compact('turnos','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('Turnos.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___turnos.pdf');
     }
 
     /**

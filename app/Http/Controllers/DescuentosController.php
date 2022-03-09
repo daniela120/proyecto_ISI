@@ -53,8 +53,8 @@ class DescuentosController extends Controller
         
 
         
-        return $pdf->stream();
-        //return $pdf->download('___descuentos.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___descuentos.pdf');
         
         //return view('descuentos.pdf', compact( 'descuentos'));
     }

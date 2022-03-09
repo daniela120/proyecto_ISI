@@ -42,7 +42,8 @@ class CargoempleadosController extends Controller
         $cargoempleados = cargoempleados::paginate();
 
         $pdf = PDF::loadView('cargoempleados.cargopdf',compact('cargoempleados','hoy'));
-        return $pdf->stream();
+        //return $pdf->stream();
+        return $pdf->download('___cargoempleado.pdf');
     }
 
     /**
