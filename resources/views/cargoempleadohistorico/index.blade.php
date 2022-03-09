@@ -8,6 +8,9 @@
     <i class="fas fa-users"></i>
         
     </a>
+    <a href="/cargoempleadohistoricos/cargohispdf" class="btn btn-danger btn-sm" data-placement="left">
+    <i class="fas fa-file-pdf"></i>
+    </a>
     
     
 

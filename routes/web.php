@@ -177,6 +177,7 @@ Route::resource('salario',SalarioshistoricosController::class);
 Route::get('cliente/clientepdf',[App\Http\Controllers\ClientesController::class, 'pdf'])->name('clientes/clientepdf');
     /*return view('BebidasCalientes');
 });*/
+Route::get('cargoempleadohistoricos/cargohispdf',[App\Http\Controllers\cargoempleadohistoricoController::class, 'pdf'])->name('cargoempleadohistorico.cargohispdf');
 Route::get('descuento/descuentopdf',[App\Http\Controllers\DescuentosController::class, 'pdf'])->name('descuentos.descuentopdf');
 Route::get('cargoempleado/cargopdf',[App\Http\Controllers\CargoempleadosController::class, 'pdf'])->name('cargoempleados.cargopdf');
 Route::get('categoria/categoriapdf',[App\Http\Controllers\CategoriasController::class, 'pdf'])->name('categorias.categoriapdf');
@@ -188,9 +189,7 @@ Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::cla
 Route::get('proveedor/proveedorpdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.proveedorpdf');
 Route::get('documento/documentopdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.documentopdf');
 Route::get('pago/pagopdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pagopdf');
-
 Route::get('turno/turnopdf',[App\Http\Controllers\TurnosController::class, 'pdf'])->name('turnos.turnopdf');
-
 Route::get('usuario/userpdf',[App\Http\Controllers\UserController::class, 'pdf'])->name('usuarios.userpdf');
 
 

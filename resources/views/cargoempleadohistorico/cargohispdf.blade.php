@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte Categorías</title>
+    <title>Reporte Cargo empleado historico</title>
     <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{public_path('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
     <style>
@@ -34,7 +34,7 @@
 
         </div>
         <div>
-            <h5>Reporte Categorías</h5>
+            <h5>Reporte de Cargo empleado historico</h5>
 
         </div>
         <div>
@@ -56,18 +56,25 @@
                     <thead>
                         <tr>
                         
+                            <th class="text-center">Secuencial </th>
                             <th class="text-center">Id </th>
-                            <th class="text-center">Categoría</th>                      
-                            <th class="text-center">Descripción</th>      
+                            <th class="text-center">Empleado</th>     
+                            <th class="text-center">Cargo</th>  
+                            <th class="text-center">Fecha Inicio</th>                   
+                            <th class="text-center">Fecha Final</th>        
                         </tr>
                     </thead>
                     
                     <tbody>
-                        @foreach($Categorias as $Categorias)
+                        @foreach($probando as $cargoempleadoshistorico)
                         <tr>
-                            <td>{{$Categorias->id}}</td>
-                            <td>{{$Categorias->Categoria}}</td>
-                            <td>{{$Categorias->Descripcion}}</td>       
+                            <td>{{$cargoempleadoshistorico->id}}</td>
+                            <td>{{$cargoempleadoshistorico->id_empleado}}</td>
+                            <td>{{$cargoempleadoshistorico->Nombre}}</td>
+                            <td>{{$cargoempleadoshistorico->Cargo}}</td>
+                            <td>{{$cargoempleadoshistorico->FechaInicio}}</td>
+                            <td>{{$cargoempleadoshistorico->FechaFinal}}</td>
+                                
                         </tr>
                         @endforeach
                     </tbody>
