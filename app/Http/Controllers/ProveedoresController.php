@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProveedoresRequest;
 use App\Exports\ProveedoresExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use PDF;
 
 
 class ProveedoresController extends Controller
@@ -37,10 +39,13 @@ class ProveedoresController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $Proveedores = Proveedores::paginate();
         
-        $pdf = PDF::loadView('proveedores.pdf',['proveedores'=>$Proveedores]);
+        $pdf = PDF::loadView('proveedores.proveedorpdf',compact('Proveedores','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();

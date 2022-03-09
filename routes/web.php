@@ -185,7 +185,7 @@ Route::get('estadoenvio/estadoenviopdf',[App\Http\Controllers\EstadoenviosContro
 Route::get('inventario/inventariopdf',[App\Http\Controllers\InventariosController::class, 'pdf'])->name('inventarios.inventariopdf');
 Route::get('isvs/isvpdf',[App\Http\Controllers\IsvController::class, 'pdf'])->name('isv.isvpdf');
 Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.productopdf');
-Route::get('proveedores/pdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.pdf');
+Route::get('proveedor/proveedorpdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.proveedorpdf');
 Route::get('documentos/pdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.pdf');
 Route::get('pagos/pdf',[App\Http\Controllers\TiposdepagoController::class, 'pdf'])->name('pagos.pdf');
 
