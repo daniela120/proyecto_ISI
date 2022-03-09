@@ -6,7 +6,8 @@ use App\Models\cargoempleados;
 use App\Models\salarioshistoricos;
 use Illuminate\Http\Request;
 use DB;
-
+use Carbon\Carbon;
+use PDF;
 class SalarioshistoricosController extends Controller
 {
     /**
@@ -37,6 +38,30 @@ class SalarioshistoricosController extends Controller
     
         return view('salarioshistoricos.index')->withProbando($probando);
     }
+
+
+    public function pdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $probando=DB::table('salarioshistoricos as h')
+        ->join('cargoempleados as i','h.id_cargo','=','i.id')
+        ->select('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
+        ->orderby('h.id')
+        ->groupBy('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
+        ->paginate(25);
+
+        $pdf = PDF::loadView('salarioshistoricos.salariohispdf',compact('probando','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
