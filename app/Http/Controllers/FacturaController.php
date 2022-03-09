@@ -175,8 +175,8 @@ class FacturaController extends Controller
         $pdf = PDF::loadView('factura.facturapdf',compact('pedidos','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
+        //return $pdf->stream();
+        return $pdf->download('___Facturas.pdf');
         //return view('Proveedores.pdf');
     }
 

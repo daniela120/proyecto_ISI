@@ -92,6 +92,23 @@ class PedidosController extends Controller
         //return view('Proveedores.pdf');
     }
 
+
+    public function detallepdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $pedidos = pedidos::paginate();
+        
+        $pdf = PDF::loadView('pedidos.detallepdf',compact('pedidos','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        //return $pdf->stream();
+        return $pdf->download('___detallepedidos.pdf');
+        //return view('Proveedores.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -267,7 +284,7 @@ class PedidosController extends Controller
             ->join('isvs as i','i.id','=','dp.id_isv')
            ->select('dp.pedidos_id','pr.NombreProducto', 'pr.Precio', 'dp.Cantidad','desc.ValorDescuento','i.isv')
            ->where('dp.pedidos_id','=',$id)
-           ->get();    
+           ->get();
         
      
      return view('pedidos.show')->withPedidos($pedidos)->withDetallepedidos($detallepedidos);
