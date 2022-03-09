@@ -78,8 +78,8 @@ class InventariosController extends Controller
         $pdf = PDF::loadView('inventarios.inventariopdf',compact('inventarios','hoy','probando'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('inventarios.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___inventarios.pdf');
     }
 
     /**

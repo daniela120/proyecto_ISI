@@ -48,8 +48,8 @@ class EstadoenviosController extends Controller
         $pdf = PDF::loadView('estadoenvios.estadoenviopdf',compact('estadoenvios','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('Estadoenvios.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___estadoenvios.pdf');
     }
 
     /**

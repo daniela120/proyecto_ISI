@@ -80,8 +80,8 @@ class ClientesController extends Controller
 
 
         //$pdf = PDF::loadView('clientes.clientepdf',['clientes'=>$clientes]);
-        return $pdf->stream();
-        //return $pdf->download('___clientes.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___clientes.pdf');
         //return view('clientes.clientepdf', compact('clientes') );
     }
 

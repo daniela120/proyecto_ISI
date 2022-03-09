@@ -47,8 +47,8 @@ class TipodocumentosController extends Controller
         $pdf = PDF::loadView('tipodocumento.documentopdf',compact('tipodocumentos','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('TipoDocumento.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___tipodocumento.pdf');
     }
 
     /**

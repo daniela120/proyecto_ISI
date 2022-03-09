@@ -37,8 +37,8 @@ class UserController extends Controller
         $pdf = PDF::loadView('usuarios.userpdf',compact('User','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('Usuario.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___usuarios.pdf');
     }
 
     /**

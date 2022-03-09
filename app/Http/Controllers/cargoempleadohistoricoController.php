@@ -63,8 +63,8 @@ class cargoempleadohistoricoController extends Controller
         $pdf = PDF::loadView('cargoempleadohistorico.cargohispdf',compact('probando','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        
+        //return $pdf->stream();
+        return $pdf->download('___cargoempleadohistoricopdf.pdf');
         //return view('Proveedores.pdf');
     }
 

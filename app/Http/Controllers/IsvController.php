@@ -49,8 +49,8 @@ class IsvController extends Controller
         $pdf = PDF::loadView('isv.isvpdf',compact('isv','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        return $pdf->stream();
-        //return view('isv.pdf');
+        //return $pdf->stream();
+        return $pdf->download('___isv.pdf');
     }
 
     /**
