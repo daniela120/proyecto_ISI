@@ -6,6 +6,8 @@ use App\Models\precio_his_inventario;
 use Illuminate\Http\Request;
 use App\Models\Inventarios;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use PDF;
 
 class PrecioHisInventarioController extends Controller
 {
@@ -38,6 +40,27 @@ class PrecioHisInventarioController extends Controller
         return view('precioinventario.index')->withProbando($probando);
     }
 
+
+    public function pdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $probando=DB::table('precio_his_inventarios as h')
+            ->join('inventarios as i','h.id_inventario','=','i.id')
+            ->select('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->orderby('h.id')
+            ->groupBy('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->paginate(15);
+
+        $pdf = PDF::loadView('precioinventario.precioinventariopdf',compact('probando','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

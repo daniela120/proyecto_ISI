@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\precio_his_menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use PDF;
 
 class PrecioHisMenuController extends Controller
 {
@@ -33,6 +35,27 @@ class PrecioHisMenuController extends Controller
         }
 
         return view('preciohistoricomenu.index')->withProbando($probando);
+    }
+
+    public function pdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $probando=DB::table('precio_his_menus as h')
+            ->join('productos as p','h.id_producto','=','p.id')
+            ->select('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->orderby('h.id')
+            ->groupBy('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+            ->paginate(15);
+
+        $pdf = PDF::loadView('preciohistoricomenu.preciohismenupdf',compact('probando','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
     }
 
     /**

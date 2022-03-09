@@ -10,7 +10,9 @@
              <i class="fas fa-boxes"></i>
         </a>
 
-
+        <a href="/precioinventarios/precioinventariopdf" class="btn btn-danger btn-sm" data-placement="left">
+        <i class="fas fa-file-pdf"></i>
+         </a>
 
 
     

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Input;
 use DB;
 
 use Carbon\Carbon;
+use PDF;
 use Response;
 use Illuminate\Support\Collection;
 
@@ -61,6 +62,22 @@ class PedidosController extends Controller
 
         return view('Pedidos.pedidosindex')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    
+    }
+
+    public function pdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $pedidos = pedidos::paginate();
+        
+        $pdf = PDF::loadView('pedidos.pedidospdf',compact('pedidos','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
     }
 
     /**
