@@ -58,7 +58,7 @@
                         
                             <th class="text-center">Id </th>
                             <th class="text-center">Empleado</th>
-                            <th class="text-center">Fecha de Nacimiento</th>
+                            <th class="text-center">Fecha de factura</th>
                             <th class="text-center">Tipo Pago</th>
                             <th class="text-center">Cliente</th>                     
                         </tr>
