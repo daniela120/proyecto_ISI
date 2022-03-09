@@ -191,7 +191,7 @@ Route::get('pago/pagopdf',[App\Http\Controllers\TiposdepagoController::class, 'p
 
 Route::get('turno/turnopdf',[App\Http\Controllers\TurnosController::class, 'pdf'])->name('turnos.turnopdf');
 
-Route::get('usuarios/pdf',[App\Http\Controllers\UserController::class, 'pdf'])->name('usuarios.pdf');
+Route::get('usuario/userpdf',[App\Http\Controllers\UserController::class, 'pdf'])->name('usuarios.userpdf');
 
 
 

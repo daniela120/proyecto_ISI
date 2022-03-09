@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use PDF;
 
 class UserController extends Controller
 {
@@ -20,9 +22,12 @@ class UserController extends Controller
 
     public function pdf()
     {
-        
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
         $User = User::paginate();
-        $pdf = PDF::loadView('user.pdf',['user'=>$User]);
+        $pdf = PDF::loadView('usuarios.userpdf',compact('User','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
         return $pdf->stream();
