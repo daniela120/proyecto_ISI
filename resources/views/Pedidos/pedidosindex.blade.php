@@ -8,6 +8,10 @@
         <i class="fas fa-plus"></i>
     </a>
 
+    <a href="/pedido/pedidospdf" class="btn btn-danger btn-sm" data-placement="left">
+        <i class="fas fa-file-pdf"></i>
+    </a>
+
 @endsection 
     @section('contenido')
    

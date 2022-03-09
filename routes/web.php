@@ -190,6 +190,8 @@ Route::get('preciohistoricomenus/preciohismenupdf',[App\Http\Controllers\PrecioH
 Route::get('precioinventarios/precioinventariopdf',[App\Http\Controllers\PrecioHisInventarioController::class, 'pdf'])->name('precioinventario.precioinventariopdf');
 Route::get('salarioshistorico/salariohispdf',[App\Http\Controllers\SalarioshistoricosController::class, 'pdf'])->name('salarioshistoricos.salariohispdf');
 
+Route::get('pedido/pedidospdf',[App\Http\Controllers\PedidosController::class, 'pdf'])->name('pedidos.pedidospdf');
+
 Route::get('producto/productopdf',[App\Http\Controllers\ProductosController::class, 'pdf'])->name('productos.productopdf');
 Route::get('proveedor/proveedorpdf',[App\Http\Controllers\ProveedoresController::class, 'pdf'])->name('proveedores.proveedorpdf');
 Route::get('documento/documentopdf',[App\Http\Controllers\TipodocumentosController::class, 'pdf'])->name('documentos.documentopdf');
