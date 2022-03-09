@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\PrecioHisMenuExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PrecioHisMenuController extends Controller
 {
@@ -15,6 +17,11 @@ class PrecioHisMenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new PrecioHisMenuExport, 'historicopreciomenu.xlsx');
+    }
+
     public function index()
     {
         //
