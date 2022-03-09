@@ -18,7 +18,8 @@ use App\Models\parametrizacion_factura;
 use Illuminate\Support\Collection;
 use DB;
 use PDF;
-
+use App\Exports\FacturaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FacturaController extends Controller
 {
@@ -27,6 +28,11 @@ class FacturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel()
+    {
+        return Excel::download(new FacturaExport, 'factura.xlsx');
+    }
+
     public function index()
     {
         $empleado=Empleado::all();  
