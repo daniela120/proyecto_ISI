@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\cargoempleadohistorico;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Exports\CargoEmpleadoHistoricoExport;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class cargoempleadohistoricoController extends Controller
 {
     //
+    public function excel()
+    {
+        return Excel::download(new CargoEmpleadoHistoricoExport, 'CargoEmpleadoHistorico.xlsx');
+    }
 
     public function index()
     {

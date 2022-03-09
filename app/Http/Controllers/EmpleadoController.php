@@ -15,7 +15,8 @@ use App\Models\User;
 use App\HTTP\Requests\EmpleadoRequest;
 use Carbon\Carbon;
 use PDF;
-
+use App\Exports\EmpleadoExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmpleadoController extends Controller
 {
@@ -25,6 +26,13 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new EmpleadoExport, 'Empleado.xlsx');
+    }
+
+
     public function index()
     {
 
