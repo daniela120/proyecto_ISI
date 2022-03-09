@@ -16,7 +16,8 @@ use App\HTTP\Requests\PedidosRequest;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
-
+use App\Exports\PedidosExport;
+use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
 use Carbon\Carbon;
@@ -31,6 +32,11 @@ class PedidosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function excel()
+    {
+        return Excel::download(new PedidosExport, 'pedidos.xlsx');
+    }
 
     public function __construct()
     {
