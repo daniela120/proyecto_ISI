@@ -4,7 +4,9 @@
 
     <span> Facturas </span>
     
-    
+    <a href="/facturas/facturapdf" class="btn btn-danger btn-sm" data-placement="left">
+        <i class="fas fa-file-pdf"></i>
+         </a>
 
 @endsection 
     @section('contenido')

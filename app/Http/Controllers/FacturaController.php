@@ -146,6 +146,22 @@ class FacturaController extends Controller
     }
 
 
+    public function facturapdf()
+    {
+        $mytime= Carbon::now("America/Lima");
+        $hoy=$mytime->toDateTimeString();
+        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+
+        $pedidos = pedidos::paginate();
+        
+        $pdf = PDF::loadView('factura.facturapdf',compact('pedidos','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
+
+        return $pdf->stream();
+        
+        //return view('Proveedores.pdf');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
