@@ -261,6 +261,7 @@ Route::get('preciohistoricomenus/excel',[App\Http\Controllers\PrecioHisMenuContr
 Route::get('empleados/excel',[App\Http\Controllers\EmpleadoController::class, 'excel'])->name('empleado.excel');
 Route::get('pedido/excel',[App\Http\Controllers\PedidosController::class, 'excel'])->name('pedidos.excel');
 Route::get('facturas/excel',[App\Http\Controllers\FacturaController::class, 'excel'])->name('factura.excel');
-//18
+//Route::get('pedido/exceld',[App\Http\Controllers\PedidosController::class, 'exceldetalles'])->name('pedidos.exceld');
+Route::get('/pedidos/exceld/{pedidos}', [App\Http\Controllers\PedidosController::class, 'exceldetalles'])->name('pedidos.exceld');
 //Route::get('productos/excel', 'ProductosController@exportExcel')->name('productos.excel');
 

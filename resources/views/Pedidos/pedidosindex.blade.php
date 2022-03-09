@@ -47,6 +47,9 @@
                         <i class="fas fa-eye"></i>
                                 </a>
 
+                         <!--        <a href="{{route('pedidos.exceld',$pedidos->id)}}" class="btn btn-success btn-sm">
+    <i class="fas fa-file-excel"></i></a> -->
+
                             <!--    <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="">
                                     <i class="far fa-edit"></i>
