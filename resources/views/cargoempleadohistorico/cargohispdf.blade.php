@@ -43,7 +43,7 @@
 
         <div>
             <label for="fecha" class="form-fields">Fecha y Hora</label>
-            <p>{{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</p> 
+            <p>{{\Carbon\Carbon::parse($hoy)->format('d-F-Y H:m:s')}}</p> 
         </div>
 
         <div>
@@ -80,11 +80,11 @@
                     </tbody>
                 </table>
 
-    <script type="text/php">
+                <script type="text/php">
         if ( isset($pdf) ) {
             $pdf->page_script('
                 $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $pdf->text(270, 780, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+                $pdf->text(270, 790, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
             ');
         }
     </script>   
