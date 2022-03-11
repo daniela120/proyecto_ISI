@@ -26,7 +26,7 @@
 
                     <tr>
                          <th style="background-color:#ffffff"> </th>
-                        <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</th> 
+                        <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d/m/Y H:m:s')}}</th> 
                         <th style="background-color:#ffffff"> </th>  
                         <th style="background-color:#ffffff"> </th>  
                         <th style="background-color:#ffffff"> </th>  
