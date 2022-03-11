@@ -106,7 +106,7 @@
                         <tr>
                                  <td style="background-color:#ffffff"></td>
                                  <td style="background-color:#ffffff">{{$pedidos->id}}</td>
-                                <td style="background-color:#ffffff">{{\Carbon\Carbon::parse($pedidos->Fecha)->format('d M y h:i a')}}</td>                                
+                                <td style="background-color:#ffffff">{{\Carbon\Carbon::parse($pedidos->Fecha)->format('d/m/Y H:m:s a')}}</td>                                
                                 <td style="background-color:#ffffff"></td>
                                 <td style="background-color:#ffffff"></td>
                         </tr>
