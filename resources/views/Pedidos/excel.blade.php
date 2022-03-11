@@ -27,7 +27,7 @@
                     <tr>
                          <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
-                        <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format(''d/m/Y H:m:s'')}}</th> 
+                        <th style="background-color:#ffffff">Fecha y Hora:  <br>  {{\Carbon\Carbon::parse($hoy)->format('d/m/Y H:m:s a')}}</th> 
                         <th style="background-color:#ffffff"> </th>
                          <th style="background-color:#ffffff"> </th>
                         
@@ -106,7 +106,7 @@
                         <tr>
                                  <td style="background-color:#ffffff"></td>
                                  <td style="background-color:#ffffff">{{$pedidos->id}}</td>
-                                <td style="background-color:#ffffff">{{\Carbon\Carbon::parse($pedidos->Fecha)->format('d/m/Y H:m:s a')}}</td>                                
+                                <td style="background-color:#ffffff">{{\Carbon\Carbon::parse($pedidos->Fecha)->format('d M y h:i a')}}</td>                                
                                 <td style="background-color:#ffffff"></td>
                                 <td style="background-color:#ffffff"></td>
                         </tr>
