@@ -30,13 +30,17 @@
             <h4>Mr. Coffee</h4>
 
         </div>
+
     <div class="col-lg-3 form-group">
+    
+    <div>
+        <p>Impreso por: {{ auth()->user()->name }} </p>
+        </div>
                             <div>
-                                <label for="fecha" class="form-fields">Fecha y Hora</label>
-                                <p>{{\Carbon\Carbon::parse($hoy)->format('d/m/Y- h:i a')}}</p> 
+                                <label for="fecha" class="form-fields">Fecha y Hora </label>
+                                <p>{{\Carbon\Carbon::parse($hoy)->format('d/m/Y h:i:s a')}}</p> 
                             </div>
                     </div>
-
                     <input type="hidden" name="inputpedido" id="inputpedido" value="{{($idpedido)}}">
                                 
 
@@ -46,8 +50,6 @@
                                 <p>Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101</p> 
                             </div>
                     </div>
-
-
     <table id="parametro" class="table table-stripped table-bordered dts">
                                 <thead style="background-color:#A9D0F5">
                                  <tr>
