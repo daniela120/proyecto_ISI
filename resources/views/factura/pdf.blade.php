@@ -8,14 +8,32 @@
     <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{public_path('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
 
+    <style>
+
+.der {
+  float: right;
+}
+
+
+</style>
 </head>
 <body>
-    Mr. Coffe
+    
+    <div class="der">
+        <a> 
+            <img class="logo" style="float" src="assets\img\logo-coffee.png" alt="Coffe" 
+            width="170" height="170"/>
+            
+        </a>
+    </div>
+    <div>
+            <h4>Mr. Coffee</h4>
 
+        </div>
     <div class="col-lg-3 form-group">
                             <div>
                                 <label for="fecha" class="form-fields">Fecha y Hora</label>
-                                <p>{{\Carbon\Carbon::parse($hoy)->format('d M y h:i a')}}</p> 
+                                <p>{{\Carbon\Carbon::parse($hoy)->format('d/m/Y- h:i a')}}</p> 
                             </div>
                     </div>
 
@@ -176,6 +194,13 @@
                             </table>
 
 
-
+                            <script type="text/php">
+        if ( isset($pdf) ) {
+            $pdf->page_script('
+                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+                $pdf->text(270, 790, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+            ');
+        }
+    </script>
 </body>
 </html>
