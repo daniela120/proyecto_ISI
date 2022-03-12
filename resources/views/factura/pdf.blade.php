@@ -33,7 +33,7 @@
     <div class="col-lg-3 form-group">
                             <div>
                                 <label for="fecha" class="form-fields">Fecha y Hora</label>
-                                <p>{{\Carbon\Carbon::parse($hoy)->format('d/m/Y- h:i a')}}</p> 
+                                <p>{{\Carbon\Carbon::parse($hoy)->format('d/m/Y- H:m:s a')}}</p> 
                             </div>
                     </div>
 
