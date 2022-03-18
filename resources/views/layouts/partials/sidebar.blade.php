@@ -106,7 +106,7 @@
                     <i class="fas fa-boxes"></i> Inventario
                 </a>
 
-                <a class="collapse-item" href="/historicopreciomenu">
+                <a class="collapse-item" href="/precioinventario">
                       <i class="fas fa-history"></i> Histórico Precio <br>inventario</br>
                 </a>
 
@@ -118,7 +118,7 @@
                 </a>
                
 
-                <a class="collapse-item" href="/precioinventario">
+                <a class="collapse-item" href="/historicopreciomenu">
                      <i class="fas fa-history"></i> Histórico Precio Menú
                 </a>
 

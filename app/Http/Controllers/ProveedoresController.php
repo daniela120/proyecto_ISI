@@ -9,7 +9,7 @@ use App\Exports\ProveedoresExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use PDF;
-
+use Illuminate\Support\Facades\Log;
 
 class ProveedoresController extends Controller
 {
@@ -21,7 +21,13 @@ class ProveedoresController extends Controller
 
     public function excel()
     {
-        return Excel::download(new ProveedoresExport, 'proveedores.xlsx');
+        try{
+           return Excel::download(new ProveedoresExport, 'proveedores.xlsx');
+
+        } catch (\Exception $exception) {
+            Log::channel('Proveedores')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
@@ -29,8 +35,9 @@ class ProveedoresController extends Controller
         try {
             //code...
             $datos['Proveedores']=Proveedores::paginate(10);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Proveedores')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        
@@ -39,17 +46,23 @@ class ProveedoresController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $Proveedores = Proveedores::paginate();
-        
-        $pdf = PDF::loadView('proveedores.proveedorpdf',compact('Proveedores','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $Proveedores = Proveedores::paginate();
+            
+            $pdf = PDF::loadView('proveedores.proveedorpdf',compact('Proveedores','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___proveedores.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___proveedores.pdf');
+
+        } catch (\Exception $exception) {
+            Log::channel('Proveedores')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -59,7 +72,13 @@ class ProveedoresController extends Controller
      */
     public function create()
     {
-        return view('Proveedores.create');
+        try{
+            return view('Proveedores.create');
+
+        } catch (\Exception $exception) {
+            Log::channel('Proveedores')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -71,15 +90,12 @@ class ProveedoresController extends Controller
     public function store(ProveedoresRequest $request)
     {
 
-
-
         try {
             //code...
             $Proveedores = request()->except('_token');
             Proveedores::insert($Proveedores);
         } catch (\Exception $exception) {
-            //throw $th;
-            //dd(get_class($exception));
+            Log::channel('Proveedores')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        
@@ -96,10 +112,15 @@ class ProveedoresController extends Controller
      */
     public function show(ProveedoresRequest $request, $id)
     {
-        $Proveedores= request()->except(['_token','_method']);
-        Proveedores::where('id','=',$id)->update($Proveedores);
-        alert()->success('Proveedor Actualizado correctamente');
-        return redirect()->route('proveedores.index');
+        try{
+            $Proveedores= request()->except(['_token','_method']);
+            Proveedores::where('id','=',$id)->update($Proveedores);
+            alert()->success('Proveedor Actualizado correctamente');
+            return redirect()->route('proveedores.index');
+        } catch (\Exception $exception) {
+            Log::channel('Proveedores')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -125,12 +146,11 @@ class ProveedoresController extends Controller
         try {
             //code...
             $Proveedores= request()->except(['_token','_method']);
-        Proveedores::where('id','=',$id)->update($Proveedores);
+            Proveedores::where('id','=',$id)->update($Proveedores);
 
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Proveedores')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
         
         alert()->success('Proveedor Actualizado correctamente');
@@ -145,8 +165,14 @@ class ProveedoresController extends Controller
      */
     public function destroy($id)
     {
-        Proveedores::destroy($id);
-        alert()->success(' Proveedor Eliminado correctamente');
-        return redirect('proveedores');
+        try{
+            Proveedores::destroy($id);
+
+        } catch (\Exception $exception) {
+            Log::channel('Proveedores')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+            alert()->success(' Proveedor Eliminado correctamente');
+            return redirect('proveedores');
     }
 }

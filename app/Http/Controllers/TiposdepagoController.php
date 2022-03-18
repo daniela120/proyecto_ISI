@@ -9,6 +9,7 @@ use App\Exports\TiposDePagoExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Log;
 
 class TiposdepagoController extends Controller
 {
@@ -19,7 +20,14 @@ class TiposdepagoController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new TiposdepagoExport, 'tiposdepago.xlsx');
+        try{
+            return Excel::download(new TiposdepagoExport, 'tiposdepago.xlsx');
+
+        
+        } catch (\Exception $exception) {
+            Log::channel('Tiposdepago')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
@@ -27,10 +35,10 @@ class TiposdepagoController extends Controller
         try {
             //code...
             $datos['tiposdepago']=tiposdepago::paginate(10);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tiposdepago')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
         
         return view('TipoPagos.pagosindex',$datos);
@@ -38,16 +46,22 @@ class TiposdepagoController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
-        
-        $tiposdepago = tiposdepago::paginate();
-        $pdf = PDF::loadView('tipopagos.pagopdf',compact('tiposdepago','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+            
+            $tiposdepago = tiposdepago::paginate();
+            $pdf = PDF::loadView('tipopagos.pagopdf',compact('tiposdepago','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___tipodepago.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___tipodepago.pdf');
+            
+        } catch (\Exception $exception) {
+            Log::channel('Tiposdepago')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -57,7 +71,13 @@ class TiposdepagoController extends Controller
      */
     public function create()
     {
-        return view('TipoPagos.create');
+        try{
+          return view('TipoPagos.create');
+            
+        } catch (\Exception $exception) {
+            Log::channel('Tiposdepago')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -72,10 +92,10 @@ class TiposdepagoController extends Controller
             //code...
             $tiposdepago = request()->except('_token');
             tiposdepago::insert($tiposdepago);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tiposdepago')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Tipo de Pago Guardado Correctamente');
@@ -118,10 +138,10 @@ class TiposdepagoController extends Controller
             //code...
             $tiposdepago= request()->except(['_token','_method']);
             tiposdepago::where('id','=',$id)->update($tiposdepago);
+           
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tiposdepago')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Tipo de Pagos Actualizada Correctamente');
@@ -139,10 +159,10 @@ class TiposdepagoController extends Controller
         try {
             //code...
             tiposdepago::destroy($id);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tiposdepago')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
       
         alert()->success('Tipo de Pago Eliminado Correctamente');

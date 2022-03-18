@@ -8,6 +8,7 @@ use App\Models\Inventarios;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Log;
 use App\Exports\PrecioHisInventarioExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -21,7 +22,13 @@ class PrecioHisInventarioController extends Controller
 
     public function excel()
     {
-        return Excel::download(new PrecioHisInventarioExport, 'precioinventario.xlsx');
+        try{
+            return Excel::download(new PrecioHisInventarioExport, '');
+        } catch (\Exception $exception) {
+            //throw $th;         
+            Log::channel('PrecioHisInventario-')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
     public function index()
     {
@@ -33,7 +40,7 @@ class PrecioHisInventarioController extends Controller
            // $inventarios=inventarios::all();
 
             $probando=DB::table('precio_his_inventarios as h')
-            ->join('inventarios as i','h.id_inventario','=','i.id')
+           ->join('inventarios as i','h.id_inventario','=','i.id')
             ->select('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
             ->orderby('h.id')
             ->groupBy('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
@@ -41,6 +48,7 @@ class PrecioHisInventarioController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('PrecioHisInventario-')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
     
@@ -50,22 +58,29 @@ class PrecioHisInventarioController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $probando=DB::table('precio_his_inventarios as h')
-            ->join('inventarios as i','h.id_inventario','=','i.id')
-            ->select('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
-            ->orderby('h.id')
-            ->groupBy('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
-            ->paginate(15);
+            $probando=DB::table('precio_his_inventarios as h')
+                ->join('inventarios as i','h.id_inventario','=','i.id')
+                ->select('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+                ->orderby('h.id')
+                ->groupBy('h.id','i.NombreInventario','h.FechaInicio','h.FechaFinal','h.Precio')
+                ->paginate(15);
 
-        $pdf = PDF::loadView('precioinventario.precioinventariopdf',compact('probando','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('precioinventario.precioinventariopdf',compact('probando','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___preciohistoricoinventario.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___preciohistoricoinventario.pdf');
+
+        } catch (\Exception $exception) {
+            //throw $th;         
+            Log::channel('PrecioHisInventario-')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
     /**
      * Show the form for creating a new resource.

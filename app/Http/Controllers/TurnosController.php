@@ -9,6 +9,7 @@ use App\Exports\TurnosExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Log;
 
 class TurnosController extends Controller
 {
@@ -19,19 +20,25 @@ class TurnosController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new TurnosExport, 'turnos.xlsx');
+        try{
+          return Excel::download(new TurnosExport, 'turnos.xlsx');
+            
+        } catch (\Exception $exception) {
+            Log::channel('Turnos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
     {
-        //
+    
         try {
             //code...
             $datos['turnos']=turnos::paginate(10);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Turnos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         return view('Turnos.Turnosindex',$datos);
@@ -39,17 +46,24 @@ class TurnosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        
-        $turnos = turnos::paginate();
-        $pdf = PDF::loadView('turnos.turnopdf',compact('turnos','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            
+            $turnos = turnos::paginate();
+            $pdf = PDF::loadView('turnos.turnopdf',compact('turnos','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___turnos.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___turnos.pdf');
+
+                
+        } catch (\Exception $exception) {
+            Log::channel('Turnos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -59,8 +73,13 @@ class TurnosController extends Controller
      */
     public function create()
     {
-        //
-        return view('turnos.create');
+        try{
+            return view('turnos.create'); 
+
+        } catch (\Exception $exception) {
+            Log::channel('Turnos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -76,10 +95,10 @@ class TurnosController extends Controller
             //code...
             $turnos = request()->except('_token');
             turnos::insert($turnos);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Turnos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
         /*$this->validate($request, [
             'HoraEntrada' => 'date_format:H:i',
@@ -127,10 +146,10 @@ class TurnosController extends Controller
             //code...
             $turnos= request()->except(['_token','_method']);
             turnos::where('id','=',$id)->update($turnos);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Turnos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Turno Actualizado Correctamente');
@@ -145,8 +164,15 @@ class TurnosController extends Controller
      */
     public function destroy($id)
     {
-        turnos::destroy($id);
-        alert()->success(' Turno Eliminado correctamente');
-        return redirect('turnos');
+        try{
+            turnos::destroy($id);
+
+                
+        } catch (\Exception $exception) {
+            Log::channel('Turnos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
+            alert()->success(' Turno Eliminado correctamente');
+            return redirect('turnos');
     }
 }

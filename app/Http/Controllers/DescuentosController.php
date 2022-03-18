@@ -6,6 +6,7 @@ use App\Models\descuentos;
 use Illuminate\Http\Request;
 use App\Http\Requests\DescuentosRequest;
 
+use Illuminate\Support\Facades\Log;
 use App\Exports\DescuentosExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -23,7 +24,15 @@ class DescuentosController extends Controller
     public function excel()
     {
        
-        return Excel::download(new DescuentosExport, 'descuentos.xlsx');
+        try{
+          return Excel::download(new DescuentosExport, 'descuentos.xlsx');
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
@@ -34,6 +43,7 @@ class DescuentosController extends Controller
             $datos['Descuentos']=Descuentos::paginate(10);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -43,20 +53,27 @@ class DescuentosController extends Controller
     
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+         try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $descuentos = Descuentos::paginate();
+            $descuentos = Descuentos::paginate();
 
-        $pdf = PDF::loadView('descuentos.descuentopdf',compact('descuentos','hoy'));
-        
+            $pdf = PDF::loadView('descuentos.descuentopdf',compact('descuentos','hoy'));
+            
 
-        
-        //return $pdf->stream();
-        return $pdf->download('___descuentos.pdf');
-        
-        //return view('descuentos.pdf', compact( 'descuentos'));
+            
+            //return $pdf->stream();
+            return $pdf->download('___descuentos.pdf');
+            
+            //return view('descuentos.pdf', compact( 'descuentos'));
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**
@@ -84,6 +101,7 @@ class DescuentosController extends Controller
             Descuentos::insert($Descuentos);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -132,6 +150,7 @@ class DescuentosController extends Controller
             Descuentos::where('id','=',$id)->update($Descuentos);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -154,6 +173,7 @@ class DescuentosController extends Controller
             Descuentos::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Descuentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }

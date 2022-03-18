@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Log;
 use App\Exports\CargoEmpleadoExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,7 +24,15 @@ class CargoempleadosController extends Controller
 
     public function excel()
     {
-        return Excel::download(new CargoEmpleadoExport, 'cargoempleados.xlsx');
+        try{
+          return Excel::download(new CargoEmpleadoExport, 'cargoempleados.xlsx');
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
@@ -33,6 +43,7 @@ class CargoempleadosController extends Controller
             $datos['cargoempleados']=cargoempleados::paginate(10);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -42,16 +53,23 @@ class CargoempleadosController extends Controller
 
     public function pdf()
     {
-        
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $cargoempleados = cargoempleados::paginate();
+            $cargoempleados = cargoempleados::paginate();
 
-        $pdf = PDF::loadView('cargoempleados.cargopdf',compact('cargoempleados','hoy'));
-        //return $pdf->stream();
-        return $pdf->download('___cargoempleado.pdf');
+            $pdf = PDF::loadView('cargoempleados.cargopdf',compact('cargoempleados','hoy'));
+            //return $pdf->stream();
+            return $pdf->download('___cargoempleado.pdf');
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**
@@ -61,8 +79,14 @@ class CargoempleadosController extends Controller
      */
     public function create()
     {
-        //
-        return view('cargoempleados.create');
+        try{
+            return view('cargoempleados.create');
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     
@@ -94,6 +118,7 @@ class CargoempleadosController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -208,6 +233,7 @@ class CargoempleadosController extends Controller
             cargoempleados::where('id','=',$id)->update($cargoempleados);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -233,6 +259,7 @@ class CargoempleadosController extends Controller
             cargoempleados::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('CargoEmpleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        

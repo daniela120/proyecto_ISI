@@ -37,6 +37,8 @@
                         <td>
                             
                         <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
+
+                        <button class="btn btn-primary" id="bt_save" type="submit"><i class="fas fa-print"></i></button>
                         <a href="{{route('factura.show',$pedidos->id)}}"  >
 
                         <i class="fas fa-eye"></i>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\productos;
 use App\Models\precio_his_menu;
 use Illuminate\Http\Request;
@@ -25,15 +25,16 @@ class ProductosController extends Controller
      */
     public function excel()
     {
-        
-        
-      
-     // $excel= Excel::loadView('productos.excel',compact('productos','categorias','probando','hoy'));
-       //return $excel->download(new ProductosExport,'__productos.xlsx');
-     return Excel::download(new ProductosExport, 'productos.xlsx');
-       // return view('productos.excel')->withProbando($probando);
+        try{
+            // $excel= Excel::loadView('productos.excel',compact('productos','categorias','probando','hoy'));
+            //return $excel->download(new ProductosExport,'__productos.xlsx');
+            return Excel::download(new ProductosExport, 'productos.xlsx');
+            // return view('productos.excel')->withProbando($probando);
 
-       
+        } catch (\Exception $exception) {
+            Log::channel('Productos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
         
     }
     public function index()
@@ -46,15 +47,15 @@ class ProductosController extends Controller
             
             $mytime= Carbon::now("America/Lima");
                 
-        $hoy=$mytime->toDateTimeString();
-        } catch (\Exception $exception) {
-            //throw $th;
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
+            $hoy=$mytime->toDateTimeString();
 
+        } catch (\Exception $exception) {
+            Log::channel('Productos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
-       
-        return view('productos.productosindex')->withProductos($productos)->withCategorias($categorias)->withHoy($hoy);
-        //
+        
+            return view('productos.productosindex')->withProductos($productos)->withCategorias($categorias)->withHoy($hoy);
+            //
     }
 
     public function exceljoin()
@@ -73,9 +74,8 @@ class ProductosController extends Controller
             ->paginate(25);
 
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Productos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         return view('productos.excel')->withProbando($probando);
@@ -84,25 +84,31 @@ class ProductosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
 
-        $productos = productos::paginate();
+            $productos = productos::paginate();
 
-        $probando=DB::table('productos as p')
-        ->join('categorias as c','p.id_Categoria','=','c.id')            
-        ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
-        ->orderby('p.id')
-        ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
-        ->paginate(25);
+            $probando=DB::table('productos as p')
+            ->join('categorias as c','p.id_Categoria','=','c.id')            
+            ->select('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->orderby('p.id')
+            ->groupBy('p.id','p.NombreProducto','p.Descripcion','c.Categoria','p.Precio')
+            ->paginate(25);
 
-        $pdf = PDF::loadView('productos.productopdf',compact('productos','hoy','probando'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('productos.productopdf',compact('productos','hoy','probando'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___productos.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___productos.pdf');
+
+        } catch (\Exception $exception) {
+            Log::channel('Productos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
 
@@ -122,9 +128,8 @@ class ProductosController extends Controller
             ->paginate(25);
 
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Productos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         return view('productos.indexjoin')->withProbando($probando);
@@ -138,8 +143,13 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
-        return view('productos.create');
+        try{
+            return view('productos.create');
+
+        } catch (\Exception $exception) {
+            Log::channel('Productos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -167,10 +177,9 @@ class ProductosController extends Controller
 
             }
 
-        } catch (\Exception $exception) {
-            //throw $th;
+          } catch (\Exception $exception) {
+            Log::channel('Productos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Guardado correctamente en Productos');
@@ -274,11 +283,10 @@ class ProductosController extends Controller
 
        
        
-        } catch (\Exception $exception) {
-            //throw $th;
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-
-        }
+    } catch (\Exception $exception) {
+        Log::channel('Productos')->info($exception->getMessage());
+        return view('errores.errors',['errors'=>$exception->getMessage()]);
+    }
        
         alert()->success('Producto Actualizado Correctamente');
         return redirect()->route('productos.index')->withProductos($productos)->withCategorias($categorias);
@@ -299,9 +307,8 @@ class ProductosController extends Controller
             //code...
             productos::destroy($id);
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Productos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Producto Eliminado Correctamente');

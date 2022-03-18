@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
 use App\Exports\UserExport;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -18,27 +19,45 @@ class UserController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new UserExport, 'user.xlsx');
+        try{
+            return Excel::download(new UserExport, 'user.xlsx');
+                
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
     {
-        $datos['Users']=User::paginate(10);
-        return view('Usuarios.usuariosindex',$datos);
+        try{
+            $datos['Users']=User::paginate(10);
+            return view('Usuarios.usuariosindex',$datos);
+                    
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $User = User::paginate();
-        $pdf = PDF::loadView('usuarios.userpdf',compact('User','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $User = User::paginate();
+            $pdf = PDF::loadView('usuarios.userpdf',compact('User','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___usuarios.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___usuarios.pdf');
+                    
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -48,7 +67,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('Usuarios.create');
+        try{
+            return view('Usuarios.create');
+                
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -59,13 +84,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        //
-        //$datosUser = request()->all();
-        $User = request()->except('_token');
-        user::insert($User);
-        alert()->success('Usuario guardado correctamente');
-        
-        return redirect()->route('usuarios.index');
+        try{
+            //$datosUser = request()->all();
+            $User = request()->except('_token');
+            user::insert($User);
+            alert()->success('Usuario guardado correctamente');
+            
+            return redirect()->route('usuarios.index');
+                    
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
         
     }
 
@@ -101,22 +131,22 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $User= request()->except(['_token','_method']);
-        /*User::where('id','=',$User)->update($User);*/
-        User::where('id','=',$id)->update($User);
-       /*$User = request()->except('_token');
-        User::update($User);
-        /*$User=User::findOrFail($User);*/
-        alert()->success('Usuario Actualizado correctamente');
-        return redirect()->route('usuarios.index');
+        try{
+            
+            $User= request()->except(['_token','_method']);
+            /*User::where('id','=',$User)->update($User);*/
+            User::where('id','=',$id)->update($User);
+        /*$User = request()->except('_token');
+            User::update($User);
+            /*$User=User::findOrFail($User);*/
+            alert()->success('Usuario Actualizado correctamente');
+            return redirect()->route('usuarios.index');
 
-        
-        /*$datosUser = request()->except(['_token','_method']);
-        User::where('id','=',$id)->update($datosUser);
-        alert()->success('Producto guardado correctamente');
-        
-        $User=User::findOrFail($id);
-        return view('usuarios');*/
+                
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
 
         
     }
@@ -129,7 +159,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        try{
+            User::destroy($id);
+                    
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
         return redirect('usuarios')->with('mensaje','Usuario Borrado');
 
     }

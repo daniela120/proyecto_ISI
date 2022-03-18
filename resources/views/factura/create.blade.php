@@ -210,7 +210,7 @@
 
                     <div class="col-lg-4 form-group " id="bt_guardar"> 
                         <input name="_token " value="{{ csrf_token() }}" type="hidden"></input>
-                        <button class="btn btn-primary" id="bt_save" type="submit">Guardar</button>
+                        <button class="btn btn-primary" id="bt_save" type="submit"><i class="fas fa-print"></i></button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                         <a class="btn btn-secondary mr-1" href="{{url('/pedidos') }}">Regresar</a>
                         
