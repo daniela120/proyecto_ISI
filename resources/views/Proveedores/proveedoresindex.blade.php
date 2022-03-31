@@ -3,18 +3,18 @@
 @section('titulo')
 
     <span>Proveedores</span>
-    
+    @can('proveedor_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
     &nbsp;
-
+    @can('proveedor_reporte')
     <a href="/proveedor/proveedorpdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     <a href="/proveedor/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -41,14 +41,18 @@
                         @foreach($Proveedores as $Proveedores)
                         <tr>
                             <td>
+                                @can('proveedor_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editProveedor({{$Proveedores}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('proveedor_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deleteProveedor({{$Proveedores}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$Proveedores->id}}</td>
                             <td>{{$Proveedores->NombreCompania}}</td>

@@ -17,7 +17,7 @@
 @endsection
     @section('contenido')
     @include('Usuarios.create')
-    @include('Usuarios.edit')
+
     @include('Usuarios.delete')
     <!-- tabla -->
     <div class="card">
@@ -33,17 +33,24 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($Users as $User)
+                        @foreach($users as $User)
                         <tr>
                             <td>
-                                <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                onclick="editUser({{$User}})">
+                                @can('user_create')
+                                <a href="{{route('usuarios.edit', $User->id) }}"  >
+
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('permission_create')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deleteUser({{$User}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
+                                @can('permission_create')
+                                <a href="{{ route('usuarios.show', $User->id) }}" ><i class="fas fa-eye"></i></a>
+                                @endcan
                             </td>
                             <td>{{$User->id}}</td>
                             <td>{{$User->email}}</td>

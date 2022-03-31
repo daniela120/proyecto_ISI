@@ -3,23 +3,25 @@
 @section('titulo')
 
     <span>Cargo Empleados</span>
-    
+    @can('cargo_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     
     </a>
-
+    @endcan
+    @can('salariohis_index')
     <a href="/salario" class="btn btn-primary btn-circle">
     <i class="fas fa-users"></i>
-        
     </a>
-
+    @endcan
     &nbsp;
+    @can('cargo_reporte')
     <a href="/cargoempleado/cargopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
    <a href="/cargoempleado/excel" class="btn btn-success btn-sm">
         <i class="fas fa-file-excel"></i></a>
+    @endcan
 
 @endsection
     @section('contenido')
@@ -44,14 +46,18 @@
                         @foreach($cargoempleados as $cargoempleados)
                         <tr>
                             <td>
+                                @can('cargo_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editcargoempleados({{$cargoempleados}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('cargo_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deletecargoempleados({{$cargoempleados}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$cargoempleados->id}}</td>
                             <td>{{$cargoempleados->Cargo}}</td>

@@ -16,8 +16,6 @@ class clientes extends Model
         'Nombre',
         'Apellido',
         'Usuario',
-        'Correo',
-        'Contraseña',
         'Direccion',
         'Telefono',
         'FechaNacimiento'

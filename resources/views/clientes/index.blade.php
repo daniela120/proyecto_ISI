@@ -3,21 +3,24 @@
 @section('titulo')
 
     <span>Clientes</span>
-    
+    @can('cliente_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     
     </a>
+    @endcan
+    @can('cliente_show')
     <a href="/clientes/indexjoin" class="btn btn-success btn-circle" >
     <i class="fas fa-eye"></i>
     </a>
-
+    @endcan
+    @can('cliente_reporte')
     <a href="{{ route('clientes/clientepdf') }}" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     
     <a href="/cliente/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -46,14 +49,18 @@
                         @foreach($clientes as $cliente)
                         <tr>
                             <td>
+                                @can('cliente_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editClientes({{$cliente}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('cliente_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deleteClientes({{$cliente}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td><font size=2>{{ $cliente->id }}</td>
                             <td><font size=2>{{ $cliente->Nombre }}</td>

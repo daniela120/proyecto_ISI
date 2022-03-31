@@ -4,16 +4,19 @@
 
     <span>Salarios Histórico  </span>
 
+    @can('cargo_index')
     <a href="/cargoempleados" class="btn btn-primary btn-circle">
     <i class="fas fa-money-check-alt"></i>
     </a>
-    <a href="{{route('salarioshistoricos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
-    </a>
-
+    @endcan
+    
+    @can('salariohis_reporte')
     <a href="/salarioshistorico/salariohispdf" class="btn btn-danger btn-sm" data-placement="left">
         <i class="fas fa-file-pdf"></i>
-         </a>
-    
+        </a>
+    <a href="{{route('salarioshistoricos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
+    </a>
+    @endcan
     
 
 @endsection

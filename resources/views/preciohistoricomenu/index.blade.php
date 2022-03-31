@@ -3,18 +3,19 @@
 @section('titulo')
 
     <span>Histórico Precio Menú </span>
-
+    
+    @can('producto_index')
     <a href="/productos" class="btn btn-primary btn-circle">
     <i class="fas fa-utensils"></i>
-        
     </a>
-
+    @endcan
+    @can('preciohismenu_reporte')
     <a href="/preciohistoricomenus/preciohismenupdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     <a href="/preciohistoricomenus/excel" class="btn btn-success btn-sm">
     <i class="fas fa-file-excel"></i></a>
-
+    @endcan
     
     
     

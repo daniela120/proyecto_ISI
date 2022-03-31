@@ -18,9 +18,7 @@ class CreateClientesTable extends Migration
 
             $table->string('Nombre');
             $table->string('Apellido');
-            $table->string('Usuario');
-            $table->string('Correo');
-            $table->string('Contraseña');
+            $table->string('Id_Usuario');
             $table->string('Direccion');
             $table->integer('Telefono');  
             $table->date('FechaNacimiento');

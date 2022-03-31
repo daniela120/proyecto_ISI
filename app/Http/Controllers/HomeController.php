@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Cocinero','user','admin']);
+        /*$request->user()->authorizeRoles(['Cocinero','user','admin']);
 
         if($request->user()->hasRole('Cocinero')){
             return redirect('/pedidos');
@@ -45,5 +45,6 @@ class HomeController extends Controller
        
         return view('/BebidasHeladas');
         */
+        return view('home.index');
     }
 }

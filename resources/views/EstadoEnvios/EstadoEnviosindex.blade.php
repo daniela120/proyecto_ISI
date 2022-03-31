@@ -4,17 +4,19 @@
 
     <span>Estados de Envío </span>
     
+    @can('estadoenvio_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
    &nbsp;
-
+    @can('estadoenvio_reporte')
     <a href="/estadoenvio/estadoenviopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="/estadoenvio/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
+    @endcan
 
 @endsection
     @section('contenido')
@@ -38,14 +40,18 @@
                         @foreach($Estadoenvios as $Estadoenvios)
                         <tr>
                             <td>
+                                @can('estadoenvio_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editEstadoenvio({{$Estadoenvios}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('estadoenvio_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deleteEstadoenvios({{$Estadoenvios}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$Estadoenvios->id}}</td>
                             <td>{{$Estadoenvios->Nombre_Estado}}</td>

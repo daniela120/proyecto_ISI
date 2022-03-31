@@ -4,18 +4,19 @@
 
     <span>Descuentos</span>
     
+    @can('descuento_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-    
+    @endcan
     &nbsp;
-
+    @can('descuento_reporte')
     <a href="/descuento/descuentopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="/descuento/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-    
+    @endcan
 
 @endsection
     @section('contenido')
@@ -40,14 +41,18 @@
                         @foreach($Descuentos as $Descuentos)
                         <tr>
                             <td>
+                                @can('descuento_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editdescuento({{$Descuentos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('descuento_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deletedescuento({{$Descuentos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$Descuentos->id}}</td>
                             <td>{{$Descuentos->Descripcion}}</td> 

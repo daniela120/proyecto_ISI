@@ -5,17 +5,18 @@
     <span> Histórico Precio Inventario </span>
     
    
-
+        @can('inventario_index')
         <a href="/inventarios" class="btn btn-success btn-circle" >
              <i class="fas fa-boxes"></i>
         </a>
-
+        @endcan
+        @can('precioinventario_reporte')
         <a href="/precioinventarios/precioinventariopdf" class="btn btn-danger btn-sm" data-placement="left">
         <i class="fas fa-file-pdf"></i>
          </a>
          <a href="{{route('precioinventario.excel') }}" class="btn btn-success btn-sm">
         <i class="fas fa-file-excel"></i></a>
-
+        @endcan
     
     
    

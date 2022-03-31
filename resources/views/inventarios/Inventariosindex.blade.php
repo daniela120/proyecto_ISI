@@ -5,26 +5,28 @@
     <span> Inventario </span>
     
 
-
+    @can('inventario_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
-
+    @endcan
+    @can('precioinventario_index')
     <a href="/precioinventario" class="btn btn-success btn-circle" >
     <i class="fas fa-history"></i>
     </a>
-
+    @endcan
+    @can('inventario_show')
     <a href="/mostrarinventario" class="btn btn-success btn-circle" >
     <i class="far fa-eye"></i>
     </a>
+    @endcan
     &nbsp;
-
+    @can('inventario_reporte')
     <a href="inventario/inventariopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     <a href="/inventario/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
     
 
 @endsection 
@@ -60,14 +62,18 @@
                     @foreach($inventarios as $inventarios)
                         <tr>
                         <td>
+                                @can('inventario_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editinventarios({{$inventarios}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('inventario_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deleteinventarios({{$inventarios}})" >
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
 
                                 <td>{{$inventarios->id}}</td>

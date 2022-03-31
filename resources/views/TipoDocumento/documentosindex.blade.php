@@ -3,19 +3,19 @@
 @section('titulo')
 
     <span>Tipo de Documento</span>
-    
+    @can('documento_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
     &nbsp;
-
+    @can('documento_reporte')
     <a href="documento/documentopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="{{route('tipodocumentos.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -40,14 +40,18 @@
                         @foreach($tipodocumentos as $tipodocumentos)
                         <tr>
                             <td>
+                                @can('documento_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="edittipodocumentos({{$tipodocumentos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('documento_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deletetipodocumentos({{$tipodocumentos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$tipodocumentos->id}}</td>
                             <td>{{$tipodocumentos->TipoDocumento}}</td> 

@@ -4,16 +4,19 @@
 
     <span>Categorías</span>
     
+    @can('categoria_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
+    @endcan
     &nbsp;
+    @can('categoria_reporte')
     <a href="/categoria/categoriapdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="/categoria/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -37,14 +40,18 @@
                         @foreach($Categorias as $Categorias)
                         <tr>
                             <td>
+                                @can('categoria_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editCategoria({{$Categorias}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('categoria_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deleteCategoria({{$Categorias}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$Categorias->id}}</td>
                             <td>{{$Categorias->Categoria}}</td>
