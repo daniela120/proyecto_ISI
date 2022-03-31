@@ -9,6 +9,7 @@ use App\Exports\TipoDocumentosExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Log;
 
 class TipodocumentosController extends Controller
 {
@@ -19,19 +20,24 @@ class TipodocumentosController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new TipoDocumentosExport, 'tipodocumentos.xlsx');
+        try{
+          return Excel::download(new TipoDocumentosExport, '');
+
+        } catch (\Exception $exception) {
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
     {
-        //tipodocumentos
         try {
             //code...
             $datos['tipodocumentos']=tipodocumentos::paginate(10);
+       
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         return view('TipoDocumento.documentosindex',$datos);
@@ -39,16 +45,23 @@ class TipodocumentosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $tipodocumentos = tipodocumentos::paginate();
-        $pdf = PDF::loadView('tipodocumento.documentopdf',compact('tipodocumentos','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $tipodocumentos = tipodocumentos::paginate();
+            $pdf = PDF::loadView('tipodocumento.documentopdf',compact('tipodocumentos','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___tipodocumento.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___tipodocumento.pdf');
+        
+        
+        } catch (\Exception $exception) {
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -73,15 +86,14 @@ class TipodocumentosController extends Controller
         try {
             //code...
             $tipodocumentos = request()->except('_token');
-        tipodocumentos::insert($tipodocumentos);
+            tipodocumentos::insert($tipodocumentos);
+            
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
         
         alert()->success('Tipo Documento Guardado Correctamente');
-        
         return redirect()->route('documentos.index');
     }
 
@@ -121,10 +133,10 @@ class TipodocumentosController extends Controller
             //code...
             $tipodocumentos= request()->except(['_token','_method']);
             tipodocumentos::where('id','=',$id)->update($tipodocumentos);
+       
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Tipo de Documento Actualizado Correctamente');
@@ -143,10 +155,10 @@ class TipodocumentosController extends Controller
         try {
             //code...
             tipodocumentos::destroy($id);
+        
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Tipodocumentos')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
        
         alert()->success('Tipo de Documento Eliminado Correctamente');

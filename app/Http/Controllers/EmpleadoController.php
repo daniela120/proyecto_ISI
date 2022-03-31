@@ -18,6 +18,8 @@ use PDF;
 use App\Exports\EmpleadoExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Support\Facades\Log;
+
 class EmpleadoController extends Controller
 {
     
@@ -29,7 +31,15 @@ class EmpleadoController extends Controller
 
     public function excel()
     {
-        return Excel::download(new EmpleadoExport, 'Empleado.xlsx');
+        try{
+            return Excel::download(new EmpleadoExport, 'Empleado.xlsx');
+        
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
 
@@ -49,6 +59,7 @@ class EmpleadoController extends Controller
             $documentos=tipodocumentos::all();
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -58,34 +69,42 @@ class EmpleadoController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $empleados = Empleado::all();
-        $users=User::all();   
+            $empleados = Empleado::all();
+            $users=User::all();   
 
-        $turnos=turnos::all();
+            $turnos=turnos::all();
 
-        $cargos=cargoempleados::all();
+            $cargos=cargoempleados::all();
 
-        $documentos=tipodocumentos::all();
+            $documentos=tipodocumentos::all();
 
-        $probando=DB::table('empleados as e')
-        ->join('users as u','e.Id_Usuario','=','u.id')
-        ->join('turnos as t','e.Id_Turno','=','t.id')
-        ->join('cargoempleados as c','e.Id_Cargo','=','c.id')
-        ->join('tipodocumentos as d','e.Id_Documento','=','d.id')
-        ->select('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
-        ->orderby('e.id')
-        ->groupBy('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
-        ->paginate(25);
+            $probando=DB::table('empleados as e')
+            ->join('users as u','e.Id_Usuario','=','u.id')
+            ->join('turnos as t','e.Id_Turno','=','t.id')
+            ->join('cargoempleados as c','e.Id_Cargo','=','c.id')
+            ->join('tipodocumentos as d','e.Id_Documento','=','d.id')
+            ->select('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+            ->orderby('e.id')
+            ->groupBy('e.id','e.Nombre','e.Apellido','e.FechaNacimiento','e.FechaContratacion','c.Cargo','e.Telefono','u.name','t.TipoTurno','e.Documento','d.TipoDocumento')
+            ->paginate(25);
 
-        $pdf = PDF::loadView('empleado.empleadopdf',compact('empleados','hoy','probando'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('empleado.empleadopdf',compact('empleados','hoy','probando'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___empleados.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___empleados.pdf');
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
 
@@ -116,6 +135,7 @@ class EmpleadoController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -131,8 +151,15 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        
-        return view('empleado.create');
+        try{
+          return view('empleado.create');
+
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
         //return view('empleado.create')->with('cargoempleadoss',$cargoempleadoss );
       //return view('empleado.create',compact('cargoempleado','cargoempleadoss'));
     }
@@ -157,18 +184,12 @@ class EmpleadoController extends Controller
                 if ($i->Nombre==$request->Nombre and $i->documento==$request->documento and $i->Apellido==$request->Apellido) {
                     $id=$i->id;
                     DB::insert('insert into cargoempleadohistoricos (id_empleado,id_cargo,FechaInicio) values (?, ?, ?)', [$id, $request->Id_Cargo,$request->FechaContratacion]);
-           
                 }
-
             }
-
-           
-            
-            //$id=$ultimo->id;
-
-           
+          
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -204,6 +225,7 @@ class EmpleadoController extends Controller
             $empleados=Empleado::findOrFail( $id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -305,6 +327,7 @@ class EmpleadoController extends Controller
             //cargoempleadohistoricoDB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -333,6 +356,7 @@ class EmpleadoController extends Controller
             Empleado::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Empleado')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }

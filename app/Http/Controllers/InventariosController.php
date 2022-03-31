@@ -10,6 +10,7 @@ use App\Models\categorias;
 use Illuminate\Http\Request;
 use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use PDF;
 
@@ -25,8 +26,14 @@ class InventariosController extends Controller
      */
     public function excel()
     {
-       
-        return Excel::download(new InventariosExport, 'Inventarios.xlsx');
+       try{
+          return Excel::download(new InventariosExport, 'Inventarios.xlsx');
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Inventarios')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
@@ -45,11 +52,9 @@ class InventariosController extends Controller
             ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->paginate(25);
             
-
-
-
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Inventarios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -60,26 +65,33 @@ class InventariosController extends Controller
     }
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $inventarios = inventarios::paginate();
-        $proveedores=proveedores::all();
-        $categorias=categorias::all();
+            $inventarios = inventarios::paginate();
+            $proveedores=proveedores::all();
+            $categorias=categorias::all();
 
-        $probando=DB::table('inventarios as i')
-        ->join('categorias as c','i.Id_Categoria','=','c.id')
-        ->join('proveedores as p','i.Id_Proveedor','=','p.id')
-        ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
-        ->orderby('i.id')
-        ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
-        ->paginate(25);
-        $pdf = PDF::loadView('inventarios.inventariopdf',compact('inventarios','hoy','probando'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $probando=DB::table('inventarios as i')
+            ->join('categorias as c','i.Id_Categoria','=','c.id')
+            ->join('proveedores as p','i.Id_Proveedor','=','p.id')
+            ->select('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+            ->orderby('i.id')
+            ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
+            ->paginate(25);
+            $pdf = PDF::loadView('inventarios.inventariopdf',compact('inventarios','hoy','probando'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___inventarios.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___inventarios.pdf');
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Inventarios')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**
@@ -121,6 +133,7 @@ class InventariosController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Inventarios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -221,21 +234,8 @@ class InventariosController extends Controller
 
                     } 
 
-                    
-                    
-
-
-
-
                    }
-                        
-                       
-
-                    
-                   
-
-                   
-               
+    
                
                // cargoempleadohistorico::where('id','=',$idcorrecto)->update($valuesupdate);
                     
@@ -244,12 +244,10 @@ class InventariosController extends Controller
             }
         }
 
-
-
-
-
         } catch (\Exception $exception) {
             //throw $th;
+            
+            Log::channel('Inventarios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -273,6 +271,8 @@ class InventariosController extends Controller
             inventarios::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            
+            Log::channel('Inventarios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }

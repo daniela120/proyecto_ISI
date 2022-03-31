@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 use DB;
 use App\Exports\SalarioshistoricosExport;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use PDF;
+
 class SalarioshistoricosController extends Controller
 {
     /**
@@ -21,7 +22,13 @@ class SalarioshistoricosController extends Controller
 
     public function excel()
     {
-        return Excel::download(new SalarioshistoricosExport, 'salarioshistoricos.xlsx');
+        try{
+            return Excel::download(new SalarioshistoricosExport, 'salarioshistoricos.xlsx');
+        
+        } catch (\Exception $exception) {
+            Log::channel('Salarioshis')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
@@ -41,7 +48,7 @@ class SalarioshistoricosController extends Controller
             ->paginate(25);
 
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Salarioshis')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
     
@@ -51,22 +58,28 @@ class SalarioshistoricosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $probando=DB::table('salarioshistoricos as h')
-        ->join('cargoempleados as i','h.id_cargo','=','i.id')
-        ->select('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
-        ->orderby('h.id')
-        ->groupBy('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
-        ->paginate(25);
+            $probando=DB::table('salarioshistoricos as h')
+            ->join('cargoempleados as i','h.id_cargo','=','i.id')
+            ->select('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
+            ->orderby('h.id')
+            ->groupBy('h.id','i.Cargo','h.FechaInicio','h.FechaFinal','h.Sueldo')
+            ->paginate(25);
 
-        $pdf = PDF::loadView('salarioshistoricos.salariohispdf',compact('probando','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('salarioshistoricos.salariohispdf',compact('probando','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___salariohistorico.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___salariohistorico.pdf');
+        
+        } catch (\Exception $exception) {
+            Log::channel('Salarioshis')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
 

@@ -3,7 +3,7 @@
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
-
+use Carbon\Carbon;
 return [
 
     /*
@@ -113,6 +113,137 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+     
+      'CargoEmpleadoHis' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/CargoEmpleadoHis-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'CargoEmpleado' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/CargoEmpleado-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+
+      'Categorias' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Categorias-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Clientes' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Clientes-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Descuentos' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Descuentos-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Empleado' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Empleado-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+
+    'Estadoenvios' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Estadoenvios-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Factura' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Factura-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Inventarios' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Inventarios-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'isv' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/isv-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Pedidos' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Pedidos-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'PrecioHisCompras' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/PrecioHisCompras-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'PrecioHisInventario' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/PrecioHisInventario-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+      'PrecioHisMenu' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/PrecioHisMenu-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Productos' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Productos-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Proveedores' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Proveedores-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Salarioshis' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Salarioshis-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Tipodocumentos' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Tipodocumentos-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Tiposdepago' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Tiposdepago-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'Turnos' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/Turnos-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    'User' => [
+        'driver' => 'single', 
+        'path' => storage_path('logs/User-' . (new \DateTime('America/Tegucigalpa'))->format('Y-m-d_H-i-s') . '.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+    ],
+
+    
     ],
 
 ];

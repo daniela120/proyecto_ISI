@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\inventarios;
 use App\Models\proveedores;
 use App\Models\categorias;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\precio_his_inventario;
 use App\HTTP\Requests\InventarioRequestt;
 use Carbon\Carbon;
@@ -32,14 +32,11 @@ class InventariosJoinController extends Controller
             ->orderby('i.id')
             ->groupBy('i.id','i.NombreInventario','c.Categoria','i.PrecioUnitario','i.CantidadStock','i.StockActual','i.StockMin','i.StockMax','p.NombreCompania','i.Descontinuado','i.Id_Proveedor','Id_Categoria')
             ->paginate(25);
-            
-
-
-
+ 
         } catch (\Exception $exception) {
-            //throw $th;
+            //throw $th;         
+            Log::channel('Inventarios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
         }
         //dd($probando);
         

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriasRequest;
 use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Log;
 use App\Exports\CategoriasExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,16 +21,28 @@ class CategoriasController extends Controller
 
     public function excel()
     {
-        return Excel::download(new CategoriasExport, 'categorias.xlsx');
+        try{
+            return Excel::download(new CategoriasExport, 'categorias.xlsx');
+        
+        } catch (\Exception $exception) {
+            Log::channel('Categorias')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
     {
+        
+      //  Log::debug('custom', 'j');
         try {
             //code...
             $datos['Categorias']=Categorias::paginate(10);
         } catch (\Exception $exception) {
             //throw $th;
+           // Log::channel('custom')->info('msj');
+          //  Log::channel('custom', $exception->getMessage());
+          Log::channel('Categorias')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
         }
        
@@ -38,18 +51,24 @@ class CategoriasController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $Categorias = Categorias::paginate();
+            $Categorias = Categorias::paginate();
 
-        $pdf = PDF::loadView('categorias.categoriapdf',compact('Categorias','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('categorias.categoriapdf',compact('Categorias','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___categorias.pdf');
-        //return view('Categorias.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___categorias.pdf');
+            //return view('Categorias.pdf');
+        } catch (\Exception $exception) {
+            Log::channel('Categorias')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**
@@ -71,16 +90,16 @@ class CategoriasController extends Controller
     public function store(CategoriasRequest $request)
     {
 
-
         try {
             //code...
             $Categorias = request()->except('_token');
-        Categorias::insert($Categorias);
+            Categorias::insert($Categorias);
         
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Categorias')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
-
+           // return 0;
         }
         
         
@@ -127,7 +146,7 @@ class CategoriasController extends Controller
             $Categorias= request()->except(['_token','_method']);
             Categorias::where('id','=',$id)->update($Categorias);
         } catch (\Exception $exception) {
-            //throw $th;
+            Log::channel('Categorias')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -150,6 +169,7 @@ class CategoriasController extends Controller
             Categorias::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Categorias')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }

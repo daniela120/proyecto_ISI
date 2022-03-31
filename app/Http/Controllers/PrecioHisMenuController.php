@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use PDF;
 use App\Exports\PrecioHisMenuExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
 
 class PrecioHisMenuController extends Controller
 {
@@ -19,11 +20,21 @@ class PrecioHisMenuController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new PrecioHisMenuExport, 'historicopreciomenu.xlsx');
+        try{
+            return Excel::download(new PrecioHisMenuExport, '');
+            
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('PrecioHisMenu')->info($exception->getMessage());
+        // Log::debug( $exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
     {
+        
         //
         try {
             //code...
@@ -37,6 +48,8 @@ class PrecioHisMenuController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('PrecioHisMenu')->info($exception->getMessage());
+           // Log::debug( $exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -46,22 +59,29 @@ class PrecioHisMenuController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $probando=DB::table('precio_his_menus as h')
-            ->join('productos as p','h.id_producto','=','p.id')
-            ->select('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
-            ->orderby('h.id')
-            ->groupBy('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
-            ->paginate(15);
+            $probando=DB::table('precio_his_menus as h')
+                ->join('productos as p','h.id_producto','=','p.id')
+                ->select('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+                ->orderby('h.id')
+                ->groupBy('h.id','p.NombreProducto','h.FechaInicio','h.FechaFinal','h.Precio')
+                ->paginate(15);
 
-        $pdf = PDF::loadView('preciohistoricomenu.preciohismenupdf',compact('probando','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('preciohistoricomenu.preciohismenupdf',compact('probando','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___preciohistoricomenu.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___preciohistoricomenu.pdf');
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('PrecioHisMenu')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**

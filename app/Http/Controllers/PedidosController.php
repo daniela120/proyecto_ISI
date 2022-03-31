@@ -13,7 +13,7 @@ use App\Models\descuentos;
 use App\Models\productos;
 use App\Models\isv;
 use App\HTTP\Requests\PedidosRequest;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Exports\PedidosExport;
@@ -36,7 +36,14 @@ class PedidosController extends Controller
 
     public function excel()
     {
-        return Excel::download(new PedidosExport, 'pedidos.xlsx');
+        try{
+           return Excel::download(new PedidosExport, 'pedidos.xlsx');
+        } catch (\Exception $exception) {
+            //throw $th;         
+            Log::channel('Pedidos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function exceldetalles($id)
@@ -58,19 +65,21 @@ class PedidosController extends Controller
 
     public function index()
     {
-        $empleado=Empleado::all();  
-    
-        $productos=productos::all();
+        try{
+            $empleado=Empleado::all();   
+            $productos=productos::all();
+            $tiposdepago=tiposdepago::all();
+            $clientes=clientes::all();
+            $descuentos=descuentos::all();
+            $isv=isv::all();
+            $pedidos=pedidos::paginate(50);
+        } catch (\Exception $exception) {
+            //throw $th;
+            
+            Log::channel('Pedidos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
 
-        $tiposdepago=tiposdepago::all();
-
-        $clientes=clientes::all();
-
-        $descuentos=descuentos::all();
-
-        $isv=isv::all();
-        
-        $pedidos=pedidos::paginate(50);
+        }
 
         return view('Pedidos.pedidosindex')->withEmpleado($empleado)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withPedidos($pedidos);
    
@@ -78,36 +87,47 @@ class PedidosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $pedidos = pedidos::paginate();
+            $pedidos = pedidos::paginate();
+            
+            $pdf = PDF::loadView('pedidos.pedidospdf',compact('pedidos','hoy'));
+            
+            return $pdf->download('___pedidos.pdf');
+        } catch (\Exception $exception) {
+    
+            Log::channel('Pedidos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
         
-        $pdf = PDF::loadView('pedidos.pedidospdf',compact('pedidos','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
-
-        //return $pdf->stream();
-        return $pdf->download('___pedidos.pdf');
-        //return view('Proveedores.pdf');
     }
 
 
     public function detallepdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $pedidos = pedidos::paginate();
+            $pedidos = pedidos::paginate();
+            
+            $pdf = PDF::loadView('pedidos.detallepdf',compact('pedidos','hoy'));
+            
+            return $pdf->download('___detallepedidos.pdf');
+            //return view('Proveedores.pdf');
+        } catch (\Exception $exception) {
         
-        $pdf = PDF::loadView('pedidos.detallepdf',compact('pedidos','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            Log::channel('Pedidos')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
 
-        //return $pdf->stream();
-        return $pdf->download('___detallepedidos.pdf');
-        //return view('Proveedores.pdf');
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -116,22 +136,15 @@ class PedidosController extends Controller
      */
     public function create()
     {
+        try{
         $empleado=Empleado::all();  
-
-        $user=User::all();
-        
+        $user=User::all();        
         $productos=productos::all();
-
         $tiposdepago=tiposdepago::all();
-
         $clientes=clientes::all();
-
         $descuentos=descuentos::all();
-
         $isv=isv::all();
-
-        $mytime= Carbon::now("America/Lima");
-                
+        $mytime= Carbon::now("America/Lima");             
         $Hoy=$mytime->toDateTimeString();
 
        // $mytime = Carbon::now();
@@ -144,6 +157,12 @@ class PedidosController extends Controller
             //->get(); 
 
         return view('Pedidos.create')->withEmpleado($empleado)->withUser($user)->withHoy($Hoy)->withProductos($productos)->withTiposdepago($tiposdepago)->withClientes($clientes)->withDescuentos($descuentos)->withIsv($isv);
+    } catch (\Exception $exception) {
+        
+        Log::channel('Pedidos')->info($exception->getMessage());
+        return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+    }
     }
 
    
@@ -212,43 +231,11 @@ class PedidosController extends Controller
 
               
             } catch (\Exception $exception) {
-                //throw $th;
+        
+                Log::channel('Pedidos')->info($exception->getMessage());
                 return view('errores.errors',['errors'=>$exception->getMessage()]);
-               // DB::rollback();
-    
-           }
-          
-          
-          /** 
-           $pedidos=new pedidos;
-           $pedidos->id_empleado=$request->get('id_empleado');
-           $mytime= Carbon::now("America/Lima");
-           $pedidos->Fecha=$mytime->toDateTimeString();
-           $pedidos->id_tipo_de_pago=$request->get('id_tipo_de_pago');
-           $pedidos->id_cliente=$request->get('id_cliente');
-           //$detalles->save();
-          
-         
-           $idProducto=$request->get('idProducto');
-           $PrecioUnitario=$request->get('PrecioUnitario');
-                $Cantidad=$request->get('CantidadDetalles');
-                $id_descuento=$request->get('id_descuento');
-                $id_isv=$request->get('id_isv');
-                
-                $cont = 0;
-           while($cont< count($idProducto)){
-            $detalles= new detallepedidos(); 
-            $detalles->id_pedido=$pedidos->id_pedido;
-            $detalles->Id_Producto=$idProducto[$cont];
-            $detalles->PrecioUnitario=$PrecioUnitario[$cont];
-            $detalles->Cantidad=$Cantidad[$cont];
-            $detalles->id_descuento=$id_descuento[$cont];
-            $detalles->id_isv=$id_isv[$cont];
-            $detalles->Total=$detalles->PrecioUnitario[$cont] * $detalles->Cantidad[$cont];
-            //$detalles->save();
-            $cont=$cont+1;
-        } 
-          **/ 
+        
+            }
             
         alert()->success('Pedido guardado correctamente');
         return redirect()->route('pedidos.index');
@@ -263,7 +250,7 @@ class PedidosController extends Controller
     public function show($id)
     {
 
-       
+       try{
         $pedidos=DB::table('pedidos as p')
            ->join('tiposdepagos as tp','tp.id','=','p.id_tipo_de_pago')
          
@@ -286,9 +273,13 @@ class PedidosController extends Controller
            ->where('dp.pedidos_id','=',$id)
            ->get();
         
-     
      return view('pedidos.show')->withPedidos($pedidos)->withDetallepedidos($detallepedidos);
+    } catch (\Exception $exception) {
         
+        Log::channel('Pedidos')->info($exception->getMessage());
+        return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+    }
      //  $empleado=Empleado::all();  
         
      //  $productos=productos::all();

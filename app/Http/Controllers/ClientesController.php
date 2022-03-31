@@ -12,6 +12,7 @@ use App\Models\User;
 use PDF;
 use App\Exports\ClientesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
 
 class ClientesController extends Controller
 {
@@ -23,7 +24,15 @@ class ClientesController extends Controller
 
     public function excel()
     {
-        return Excel::download(new ClientesExport, 'clientes.xlsx');
+        try{
+           return Excel::download(new ClientesExport, 'clientes.xlsx');
+        
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
@@ -36,7 +45,7 @@ class ClientesController extends Controller
             $clientes=clientes::paginate(10);
 
             $probando=DB::table('clientes as c')
-            ->join('users as u','c.Id_Usuario','=','u.id')
+          //  ->join('users as u','c.Id_Usuario','=','u.id')
             ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
             ->orderby('c.id')
             ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
@@ -44,6 +53,7 @@ class ClientesController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -54,23 +64,23 @@ class ClientesController extends Controller
     public function pdf()
     {
         try{
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+            $mytime= Carbon::now("America/Tegucigalpa");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $clientes = clientes::all();
-        $users=User::all();   
+            $clientes = clientes::all();
+            $users=User::all();   
 
-        $probando=DB::table('clientes as c')
-        ->join('users as u','c.Id_Usuario','=','u.id')
-        ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
-        ->orderby('c.id')
-        ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
-        ->paginate(25);
-
+            $probando=DB::table('clientes as c')
+            ->join('users as u','c.Id_Usuario','=','u.id')
+            ->select('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->orderby('c.id')
+            ->groupBy('c.id','c.Nombre','c.Apellido','u.name','c.Direccion','c.Telefono','c.FechaNacimiento')
+            ->paginate(25);
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -107,6 +117,7 @@ class ClientesController extends Controller
 
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -121,8 +132,17 @@ class ClientesController extends Controller
     public function create()
     {
         //
-        return view('clientes.create');
+        try{
+          return view('clientes.create');
+    
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -140,6 +160,7 @@ class ClientesController extends Controller
         
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -193,6 +214,7 @@ class ClientesController extends Controller
             clientes::where('id','=',$id)->update($clientes);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -215,6 +237,7 @@ class ClientesController extends Controller
             clientes::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Clientes')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }

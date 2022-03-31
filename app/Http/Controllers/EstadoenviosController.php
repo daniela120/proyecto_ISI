@@ -8,6 +8,7 @@ use App\HTTP\Requests\EstadoenviosRequest;
 use Carbon\Carbon;
 use App\Exports\EstadoenviosExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Log;
 use PDF;
 
 class EstadoenviosController extends Controller
@@ -19,7 +20,15 @@ class EstadoenviosController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new EstadoenviosExport, 'Estadoenvios.xlsx');
+        try{
+          return Excel::download(new EstadoenviosExport, 'Estadoenvios.xlsx');
+    
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Estadoenvios')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     public function index()
@@ -30,6 +39,8 @@ class EstadoenviosController extends Controller
             $datos['Estadoenvios']=Estadoenvios::paginate(10);
         } catch (\Exception $exception) {
             //throw $th;
+            
+            Log::channel('Estadoenvios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -39,17 +50,24 @@ class EstadoenviosController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-        $estadoenvios = Estadoenvios::paginate();
+            $estadoenvios = Estadoenvios::paginate();
 
-        $pdf = PDF::loadView('estadoenvios.estadoenviopdf',compact('estadoenvios','hoy'));
-        //$pdf->loadHTML ('<h1>Test</h1>');
+            $pdf = PDF::loadView('estadoenvios.estadoenviopdf',compact('estadoenvios','hoy'));
+            //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___estadoenvios.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___estadoenvios.pdf');
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::channel('Estadoenvios')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+
+        }
     }
 
     /**
@@ -78,6 +96,7 @@ class EstadoenviosController extends Controller
         Estadoenvios::insert($estadoenvios);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Estadoenvios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -124,6 +143,7 @@ class EstadoenviosController extends Controller
             Estadoenvios::where('id','=',$id)->update($Estadoenvios);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Estadoenvios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
@@ -146,6 +166,7 @@ class EstadoenviosController extends Controller
             Estadoenvios::destroy($id);
         } catch (\Exception $exception) {
             //throw $th;
+            Log::channel('Estadoenvios')->info($exception->getMessage());
             return view('errores.errors',['errors'=>$exception->getMessage()]);
 
         }
