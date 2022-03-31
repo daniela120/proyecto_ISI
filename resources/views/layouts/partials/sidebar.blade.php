@@ -142,6 +142,7 @@
                 </a>
                 @endcan
                 @can('precioinventario_index')
+
                 <a class="collapse-item" href="/precioinventario">
                       <i class="fas fa-history"></i> Histórico Precio <br>inventario</br>
                 </a>
@@ -157,6 +158,8 @@
                 </a>
                 @endcan
                 @can('preciohismenu_index')
+               
+
                 <a class="collapse-item" href="/historicopreciomenu">
                      <i class="fas fa-history"></i> Histórico Precio Menú
                 </a>

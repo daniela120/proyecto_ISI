@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use PDF;
 use App\Exports\UserExport;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Spatie\Permission\Models\Role;
@@ -23,7 +24,13 @@ class UserController extends Controller
      */
     public function excel()
     {
-        return Excel::download(new UserExport, 'user.xlsx');
+        try{
+            return Excel::download(new UserExport, 'user.xlsx');
+                
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     public function index()
@@ -35,16 +42,22 @@ class UserController extends Controller
 
     public function pdf()
     {
-        $mytime= Carbon::now("America/Lima");
-        $hoy=$mytime->toDateTimeString();
-        $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
+        try{
+            $mytime= Carbon::now("America/Lima");
+            $hoy=$mytime->toDateTimeString();
+            $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
         $user = User::paginate();
         $pdf = PDF::loadView('usuarios.userpdf',compact('user','hoy'));
         //$pdf->loadHTML ('<h1>Test</h1>');
 
-        //return $pdf->stream();
-        return $pdf->download('___usuarios.pdf');
+            //return $pdf->stream();
+            return $pdf->download('___usuarios.pdf');
+                    
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
@@ -54,8 +67,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('user_create'), 403);
-        return view('Usuarios.create');
+        try{
+            abort_if(Gate::denies('user_create'), 403);
+            return view('Usuarios.create');
+                
+        } catch (\Exception $exception) {
+            Log::channel('User')->info($exception->getMessage());
+            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        }
     }
 
     /**
