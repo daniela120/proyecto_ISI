@@ -4,18 +4,19 @@
 
     <span>Tipo de Pagos</span>
     
+    @can('pago_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
     &nbsp;
 
+    @can('pago_reporte')
     <a href="/pago/pagopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
-
     <a href="{{route('tiposdepago.excel') }}" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -38,14 +39,18 @@
                         @foreach($tiposdepago as $tiposdepago)
                         <tr>
                             <td>
+                                @can('pago_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editPago({{$tiposdepago}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('pago_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deletePago({{$tiposdepago}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$tiposdepago->id}}</td>
                             <td>{{$tiposdepago->Nombre_Tipo_Pago}}</td>        

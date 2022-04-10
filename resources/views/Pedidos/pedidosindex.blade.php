@@ -3,18 +3,20 @@
 @section('titulo')
 
     <span> Pedidos </span>
-    
+
+    @can('pedido_create')
     <a href="/pedidos/create" class="btn btn-primary btn-circle" >
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
+    @can('pedido_reporte')
     <a href="/pedido/pedidospdf" class="btn btn-danger btn-sm" data-placement="left">
         <i class="fas fa-file-pdf"></i>
     </a>
 
     <a href="/pedido/excel" class="btn btn-success btn-sm">
     <i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection 
     @section('contenido')
@@ -42,11 +44,12 @@
                         <td>
                             
                         <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
+                        @can('pedido_show')
                         <a href="{{route('pedidos.show',$pedidos->id)}}"  >
 
                         <i class="fas fa-eye"></i>
                                 </a>
-
+                        @endcan
                          <!--        <a href="{{route('pedidos.exceld',$pedidos->id)}}" class="btn btn-success btn-sm">
     <i class="fas fa-file-excel"></i></a> -->
 

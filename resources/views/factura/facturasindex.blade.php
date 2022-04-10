@@ -4,12 +4,14 @@
 
     <span> Facturas </span>
     
+    @can('factura_reporte')
     <a href="/facturas/facturapdf" class="btn btn-danger btn-sm" data-placement="left">
         <i class="fas fa-file-pdf"></i>
          </a>
 
          <a href="/facturas/excel" class="btn btn-success btn-sm">
     <i class="fas fa-file-excel"></i></a>
+    @endcan
 
 @endsection 
     @section('contenido')
@@ -37,13 +39,11 @@
                         <td>
                             
                         <!--<a href="{{url('/pedidos/'.$pedidos->id_pedido.'/show')}}"  >-->
-
-                        <button class="btn btn-primary" id="bt_save" type="submit"><i class="fas fa-print"></i></button>
+                        @can('factura_show')
                         <a href="{{route('factura.show',$pedidos->id)}}"  >
-
                         <i class="fas fa-eye"></i>
                                 </a>
-
+                        @endcan
                                
                                
                             </td>

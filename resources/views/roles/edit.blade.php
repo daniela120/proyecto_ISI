@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-    <span>Asignar Rol</span>
+    <span>Editar Rol</span>
     
 
 @endsection
@@ -15,7 +15,7 @@
     @endif
 
 <div class="card">
-    <form action="{{ route('usuarios.update', $user->id) }}" method="post" class="form-horizontal">
+    <form action="{{ route('roles.update', $role->id) }}" method="post" class="form-horizontal">
     @csrf
     @method('PUT')
 
@@ -23,7 +23,7 @@
         <p class="h5">Nombre:</p>
 
 
-        <p class="form-control">{{$user->name}}</p> 
+        <p class="form-control">{{$role->name}}</p> 
         
     
 
@@ -35,14 +35,14 @@
                             <div class="tab-pane active" id="profile">
                                 <table class="table">
                                     <tbody>
-                                        @foreach ($roles as $id => $role)
+                                    @foreach ($permissions as $id => $permission)
                                         <tr>
                                             <td>
                                                 <div class="form-check">
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="checkbox"
-                                                            name="roles[]"
-                                                            value="{{ $id }}" {{ $user->roles->contains($id) ? 'checked' : ''}}
+                                                            name="permissions[]"
+                                                            value="{{ $id }}" {{ $role->permissions->contains($id) ? 'checked' : ''}}
                                                         >
                                                         <span class="form-check-sign">
                                                             <span class="check" value=""></span>
@@ -51,7 +51,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                {{ $role }}
+                                                {{ $permission }}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -66,8 +66,8 @@
             </div>
     </div>
     <div class="buttons-form-submit d-flex justify-content-end">
-    <a href="{{ route('usuarios.usuariosindex') }}" class="btn btn-sm btn-success mr-3"> Volver </a>
-    <!--<button href="{{ route('usuarios.usuariosindex') }}" type="button" class="btn btn-secondary mr-1" >Cerrar</button>-->
+    <a href="{{ route('roles.index') }}" class="btn btn-sm btn-success mr-3"> Volver </a>
+    <!-- <button href="{{ route('roles.index')}}" type="button" class="btn btn-secondary mr-1" >Cerrar</button> -->
 </div>
 </div>
         

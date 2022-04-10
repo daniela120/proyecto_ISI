@@ -24,10 +24,10 @@ class CreateFacturasTable extends Migration
 
             
             $table->timestamps();
-
+/*
             $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete("cascade");
             $table->foreign('parametrizacion_id')->references('id_parametro')->on('parametrizacion_facturas')->onDelete("cascade");
-            
+            */
         });
     }
 

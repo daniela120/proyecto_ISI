@@ -71,16 +71,17 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->roles()->attach(Role::where('name', 'user')->first());
+        //$user->roles()->attach(Role::where('name', 'user')->first());
+        $user->assignRole('User');
         return $user;
     }    
 
-    public function redirectPath(){
+    /* public function redirectPath(){
 
         if (auth()->user()->email == 'miguel@gg.com'){
 
         return '/home';
         }
         return '/BebidasCalientes';
-    }
+    } */
 }

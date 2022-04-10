@@ -3,18 +3,21 @@
 @section('titulo')
 
     <span>Turnos</span>
-    
+
+    @can('turno_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
+    @endcan
 
     &nbsp;
 
+    @can('turno_reporte')
     <a href="/turno/turnopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     <a href="/turno/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>
-
+    @endcan
 
 @endsection
     @section('contenido')
@@ -40,14 +43,18 @@
                         @foreach($turnos as $turnos)
                         <tr>
                             <td>
+                                @can('turno_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editturnos({{$turnos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('turno_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                 onclick="deleteturnos({{$turnos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$turnos->id}}</td>
                             <td>{{$turnos->TipoTurno}}</td> 

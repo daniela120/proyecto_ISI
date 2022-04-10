@@ -8,13 +8,14 @@
     <i class="fas fa-users"></i>
         
     </a>
+    @can('cargohis_reporte') 
     <a href="/cargoempleadohistoricos/cargohispdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
     
     <a href="/cargoempleadohistoricos/excel" class="btn btn-success btn-sm">
         <i class="fas fa-file-excel"></i></a>
-    
+    @endcan
 
 @endsection
     @section('contenido')

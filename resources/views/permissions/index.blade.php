@@ -2,28 +2,18 @@
 
 @section('titulo')
 
-    <span>Valor Impuesto</span>
-    
-    @can('isv_create')
+    <span>Permisos</span>
+    @can('permission_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
     @endcan
-    &nbsp;
-
-    @can('isv_reporte')
-    <a href="isvs/isvpdf" class="btn btn-danger btn-sm" data-placement="left">
-    <i class="fas fa-file-pdf"></i>
-    </a>
-    <a href="/isvs/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i></a>   
-    </a>
-    @endcan
 
 @endsection
-    @section('contenido')
-    @include('isv.create')
-    @include('isv.edit')
-    @include('isv.delete')
+  @section('contenido')
+    @include('permissions.create')
+    @include('permissions.edit')
+    @include('permissions.delete')
     <!-- tabla -->
     <div class="card">
             <div class=card-body>
@@ -31,32 +21,32 @@
                     <thead>
                         <tr>
                             <th class="text-center">Acciones</th>
-                            <th class="text-center">id</th>
-                            <th class="text-center">Descripcion</th>
-                            <th class="text-center">isv</th>                             
+                            <th class="text-center">Id </th>
+                            <th class="text-center">name</th>                      
+                            <th class="text-center">guard_name</th>  
                         </tr>
                     </thead>
                     <tbody>
                         
-                        @foreach($isv as $isv)
+                        @foreach($permissions as $permission)
                         <tr>
                             <td>
-                                @can('isv_edit')
+                                @can('permission_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
-                                 onclick="editIsv({{$isv}})">
+                                 onclick="editpermission({{$permission}})">
                                     <i class="far fa-edit"></i>
                                 </a>
                                 @endcan
-                                @can('isv_destroy')
+                                @can('permission_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
-                                onclick="deleteIsv({{$isv}})">
+                                 onclick="deletepermission({{$permission}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                                 @endcan
                             </td>
-                            <td>{{$isv->id}}</td>
-                            <td>{{$isv->Descripcion}}</td> 
-                            <td>{{$isv->isv}}</td>        
+                            <td>{{$permission->id}}</td>
+                            <td>{{$permission->name}}</td>  
+                            <td>{{$permission->guard_name}}</td>        
                         </tr>
                         @endforeach
                     </tbody>
@@ -76,21 +66,24 @@
 
     <!-- funcion editCategoria para pasar parametros y editar-->
     <script>    
-        function editIsv(isv){
-            $("#editIsvForm").attr('action',`/isv/${isv.id}`);
-            $("#editIsvForm #Descripcion").val(isv.Descripcion); 
-            $("#editIsvForm #isv").val(isv.isv);
+
+        function editpermission(permission){
+            $("#editpermissionFrm").attr('action',`/permissions/${permission.id}`);
+            $("#editpermissionFrm #name").val(permission.name);    
+
+            
         } 
     </script>
-
-    <!--DELETE -->
+    
+     <!-- funcion deleteCategoria para pasar parametros y eliminar-->
     <script>    
-        function deleteIsv(isv){
-        $("#deleteIsvFrm").attr('action',`/isv/${isv.id}`);      
-    } 
+
+        function deletepermission(permission){
+            $("#deletepermissionFrm").attr('action',`/permissions/${permission.id}`);
+                   
+        } 
     </script>
     
-  
     
     <!-- para validaciones-->
     @if(!$errors->isEmpty())
@@ -111,5 +104,3 @@
         @endif
     @endif
 @endpush
-
-

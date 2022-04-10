@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+
+
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Carbon\Carbon;
 use PDF;
 use App\Exports\UserExport;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
+
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -30,14 +35,9 @@ class UserController extends Controller
 
     public function index()
     {
-        try{
-            $datos['Users']=User::paginate(10);
-            return view('Usuarios.usuariosindex',$datos);
-                    
-        } catch (\Exception $exception) {
-            Log::channel('User')->info($exception->getMessage());
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-        }
+        abort_if(Gate::denies('user_index'), 403);
+        $users=User::paginate(10);
+        return view('Usuarios.usuariosindex', compact('users'));
     }
 
     public function pdf()
@@ -47,9 +47,9 @@ class UserController extends Controller
             $hoy=$mytime->toDateTimeString();
             $direccion="Colonia Humuya, Avenida Altiplano, Calle Poseidón, 11101";
 
-            $User = User::paginate();
-            $pdf = PDF::loadView('usuarios.userpdf',compact('User','hoy'));
-            //$pdf->loadHTML ('<h1>Test</h1>');
+        $user = User::paginate();
+        $pdf = PDF::loadView('usuarios.userpdf',compact('user','hoy'));
+        //$pdf->loadHTML ('<h1>Test</h1>');
 
             //return $pdf->stream();
             return $pdf->download('___usuarios.pdf');
@@ -68,6 +68,7 @@ class UserController extends Controller
     public function create()
     {
         try{
+            abort_if(Gate::denies('user_create'), 403);
             return view('Usuarios.create');
                 
         } catch (\Exception $exception) {
@@ -84,18 +85,13 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        try{
-            //$datosUser = request()->all();
-            $User = request()->except('_token');
-            user::insert($User);
-            alert()->success('Usuario guardado correctamente');
-            
-            return redirect()->route('usuarios.index');
-                    
-        } catch (\Exception $exception) {
-            Log::channel('User')->info($exception->getMessage());
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-        }
+        //
+        //$datosUser = request()->all();
+        $user = request()->except('_token');
+        User::insert($user);
+        alert()->success('Usuario guardado correctamente');
+        
+        return redirect()->route('usuarios.index');
         
     }
 
@@ -105,9 +101,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        abort_if(Gate::denies('user_show'), 403);
+        $user = User::findOrFail($id);
+        $user->load('roles');
+        return view('usuarios.show', compact('user'));   
     }
 
     /**
@@ -116,10 +115,14 @@ class UserController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)    
     {
-        /*$User=User::findOrFail($User);
-        return redirect()->route('usuarios.index');*/
+        abort_if(Gate::denies('user_edit'), 403);
+        $user=User::findOrFail($id);
+        //abort_if(Gate::denies('user_edit'), 403);
+        $roles = Role::all()->pluck('name', 'id');
+        $user->load('roles');
+        return view('usuarios.edit', compact('user', 'roles'));
     }
 
     /**
@@ -129,24 +132,19 @@ class UserController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        try{
-            
-            $User= request()->except(['_token','_method']);
-            /*User::where('id','=',$User)->update($User);*/
-            User::where('id','=',$id)->update($User);
-        /*$User = request()->except('_token');
-            User::update($User);
-            /*$User=User::findOrFail($User);*/
-            alert()->success('Usuario Actualizado correctamente');
-            return redirect()->route('usuarios.index');
+        //$User= request()->except(['_token','_method']);
 
-                
-        } catch (\Exception $exception) {
-            Log::channel('User')->info($exception->getMessage());
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
-        }
+        //User::where('id','=',$id)->update($User);
+
+        $user = User::findOrFail($id);
+        $data = $request->only('name', 'username', 'email');
+
+        $roles = $request->input('roles', []);
+        $user->syncRoles($roles);
+
+        return redirect()->route('usuarios.edit', $user)->with('info','Se asigno los roles correctamente');
 
         
     }
@@ -159,14 +157,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            User::destroy($id);
-                    
-        } catch (\Exception $exception) {
-            Log::channel('User')->info($exception->getMessage());
-            return view('errores.errors',['errors'=>$exception->getMessage()]);
+        abort_if(Gate::denies('user_destroy'), 403);
+        $user = User::findOrFail($id);
+        if (auth()->user()->id == $user->id){
+            return redirect()->route('usuarios.usuariosindex');
         }
+        
+        User::destroy($id);
+        
+        
+        
         return redirect('usuarios')->with('mensaje','Usuario Borrado');
+
+
 
     }
 }

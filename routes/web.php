@@ -25,6 +25,8 @@ use App\Http\Controllers\PrecioHisMenuController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ParametrizacionFacturaController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\SalarioshistoricosController;
 
@@ -128,30 +130,46 @@ Route::get('empleado/indexjoin', [App\Http\Controllers\EmpleadoController::class
 Route::get('productos/indexjoin', [App\Http\Controllers\ProductosController::class, 'indexjoin'])->name('productos.indexjoin');
 Route::get('clientes/indexjoin', [App\Http\Controllers\ClientesController::class, 'indexjoin'])->name('clientes.indexjoin');
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('historicopreciomenu', PrecioHisMenuController::class);
+    //Route::resource('usuarios', UserController::class);
+    Route::resource('cargoempleados',CargoempleadosController::class);
+    Route::resource('clientes', ClientesController::class);
+    Route::resource('pagos', TiposdepagoController::class);
+    Route::resource('categorias', CategoriasController::class);
+    Route::resource('documentos', TipodocumentosController::class);
+    Route::resource('turnos', TurnosController::class);
+    Route::resource('estadoenvios', EstadoenviosController::class);
+    //Route::resource('empleado', EmpleadoController::class);
+    Route::resource('proveedores', ProveedoresController::class);
+    Route::resource('empleado',EmpleadoController::class);
+    Route::resource('descuentos',DescuentosController::class);
+    Route::resource('inventarios',InventariosController::class);
+    Route::resource('mostrarinventario', InventariosJoinController::class);       
+    Route::resource('pedidos',PedidosController::class);
+    Route::resource('precioinventario',PrecioHisInventarioController::class);
+    Route::resource('productos',ProductosController::class);
+    Route::resource('isv',IsvController::class);
+    Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
+    Route::resource('factura',FacturaController::class);
+    Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
 
-Route::resource('historicopreciomenu', PrecioHisMenuController::class);
-Route::resource('usuarios', UserController::class);
-Route::resource('cargoempleados',CargoempleadosController::class);
-Route::resource('clientes', ClientesController::class);
-Route::resource('pagos', TiposdepagoController::class);
-Route::resource('categorias', CategoriasController::class);
-Route::resource('documentos', TipodocumentosController::class);
-Route::resource('turnos', TurnosController::class);
-Route::resource('estadoenvios', EstadoenviosController::class);
-//Route::resource('empleado', EmpleadoController::class);
-Route::resource('proveedores', ProveedoresController::class);
-Route::resource('empleado',EmpleadoController::class);
-Route::resource('descuentos',DescuentosController::class);
-Route::resource('inventarios',InventariosController::class);
-Route::resource('mostrarinventario', InventariosJoinController::class);       
-Route::resource('pedidos',PedidosController::class);
-Route::resource('precioinventario',PrecioHisInventarioController::class);
-Route::resource('productos',ProductosController::class);
-Route::resource('isv',IsvController::class);
-Route::resource('cargoempleadohistorico',cargoempleadohistoricoController::class);
-Route::resource('factura',FacturaController::class);
-Route::resource('parametrizacionfactura',ParametrizacionFacturaController::class);
 
+
+//Rutas User Controller
+Route::get('/usuarios/create', [App\Http\Controllers\UserController::class, 'create'])->name('usuarios.create');
+Route::post('/usuarios', [App\Http\Controllers\UserController::class, 'store'])->name('usuarios.store');
+
+Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.usuariosindex');
+Route::get('/usuarios/{usuario}', [App\Http\Controllers\UserController::class, 'show'])->name('usuarios.show');
+Route::get('/usuarios/{usuario}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuarios/{usuario}', [App\Http\Controllers\UserController::class, 'update'])->name('usuarios.update');
+Route::delete('/usuarios/{usuario}', [App\Http\Controllers\UserController::class, 'destroy'])->name('usuarios.delete');
+
+
+});
 
 //Route::delete('empleado/{id}/delete', 'App\EmpleadoController@destroy');
 //Route::put('empleado/{id}', 'EmpleadoController@update')->name('updateempleado');

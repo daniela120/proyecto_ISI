@@ -4,27 +4,29 @@
 
     <span>Productos</span>
     
+    @can('producto_create')
     <a href="" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#createMdl">
         <i class="fas fa-plus"></i>
     </a>
-
+    @endcan
+    @can('preciohismenu_index')
     <a href="/historicopreciomenu" class="btn btn-primary btn-circle">
     <i class="fas fa-history"></i>
-        
     </a>
-
+    @endcan
+    @can('producto_show')
     <a href="/productos/indexjoin" class="btn btn-primary btn-circle">
     <i class="fas fa-eye"></i>
-        
     </a>
+    @endcan
     &nbsp;
-
+    @can('producto_reporte')
     <a href="/producto/productopdf" class="btn btn-danger btn-sm" data-placement="left">
     <i class="fas fa-file-pdf"></i>
     </a>
-
     <a href="/producto/excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i>
     </a>
+    @endcan
 
 
     
@@ -53,14 +55,18 @@
                         @foreach($productos as $productos)
                         <tr>
                             <td>
+                                @can('producto_edit')
                                 <a href="" class="edit-form-data" data-toggle="modal" data-target="#editMdl"
                                  onclick="editPreoducto({{$productos}})">
                                     <i class="far fa-edit"></i>
                                 </a>
+                                @endcan
+                                @can('producto_destroy')
                                 <a href="" class="delete-form-data" data-toggle="modal" data-target="#deleteMdl"
                                  onclick="deleteProducto({{$productos}})">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                @endcan
                             </td>
                             <td>{{$productos->id}}</td>
                             <td>{{$productos->NombreProducto}}</td>
