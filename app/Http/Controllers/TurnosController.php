@@ -34,7 +34,7 @@ class TurnosController extends Controller
     
         try {
             //code...
-            $datos['turnos']=turnos::paginate(10);
+            $datos['turnos'];
             
         } catch (\Exception $exception) {
             Log::channel('Turnos')->info($exception->getMessage());
